@@ -3,8 +3,21 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.0'
 
-# 수영
+# 로그인
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-naver'
+gem "omniauth-google-oauth2"
+gem 'omniauth-kakao', :git => 'https://github.com/hcn1519/omniauth-kakao'
+
+# 알림
+gem 'unread'
+
+# 대댓글
+gem 'acts_as_commentable_with_threading'
+
+gem 'figaro'
+gem "rails_db", "1.6"
 
 gem 'bootstrap', '~> 4.0'
 gem 'jquery-rails'
