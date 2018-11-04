@@ -1,0 +1,14 @@
+<div class="container">
+  <h1 style = "margin-top: 40px; text-align: center"> HOME </h1>
+  <h1 style = "margin-top: 40px; text-align: center"> 로그인을 해봅시다. </h1>
+  <div class="form-group" style="margin-top: 50px; text-align: center">
+    <% if user_signed_in? %>
+      <p> 현재 로그인된 유저의 이메일: <%= current_user.email %> </p>
+      <p> <%= link_to "로그아웃", destroy_user_session_path, 
+              method: :delete, data: {confirm: "로그아웃 하시겠습니까?"},
+              class: 'btn btn-default' %> </p>
+    <% else %>
+      <p> <%= link_to "로그인", new_user_session_path, class: 'btn btn-default' %> </p>
+    <% end %>
+  </div>
+</div>

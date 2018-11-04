@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @freeboard.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @freeboard.content %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @freeboard.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_freeboard_path(@freeboard) %> |
+<%= link_to 'Back', freeboards_path %>
