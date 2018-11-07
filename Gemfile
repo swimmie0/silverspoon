@@ -2,7 +2,12 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.0'
-
+gem 'nokogiri', '~> 1.8', '>= 1.8.5'
+gem 'rails_db', '~> 2.0', '>= 2.0.4'
+gem 'carrierwave', ' ~>1.0'
+gem 'mini_magick'
+gem 'fog-aws'
+gem 'figaro'
 # 수영
 gem 'devise'
 

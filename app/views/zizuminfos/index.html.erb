@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Zizuminfos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @zizuminfos.each do |zizuminfo| %>
+      <tr>
+        <td><%= link_to 'Show', zizuminfo %></td>
+        <td><%= link_to 'Edit', edit_zizuminfo_path(zizuminfo) %></td>
+        <td><%= link_to 'Destroy', zizuminfo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Zizuminfo', new_zizuminfo_path %>

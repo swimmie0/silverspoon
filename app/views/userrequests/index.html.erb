@@ -1,0 +1,237 @@
+<!---->
+레스토랑 추가 링크
+메뉴 추가 링크
+
+<!--크롤링 링크-->
+<%= link_to "크롤링 업데이트", "/crawling"%>
+
+<!--레스토랑 추가 링크, 메뉴 추가 링크, 승인 요청 내역(변경 전, 후), 승인 버튼-->
+<hr/>
+
+<!--추가테이블-->
+<%= form_tag userrequests_permit_path, method: :post do %>
+  <p>
+    추가
+    <%= submit_tag '추가 승인' %>
+    <%= submit_tag '반려처리' %>
+  </p>
+  <table>
+    <thead>
+      <tr>
+          <th>체크</th>
+          <th>요청</th>
+          <th>요청자</th>
+          <th>식당</th>
+          <th>메뉴이름</th>
+          <th>메밀</th>
+          <th>밀</th>
+          <th>대두</th>
+          <th>호두</th>
+          <th>땅콩</th>
+          <th>복숭아</th>
+          <th>토마토</th>
+          <th>돼지고기</th>
+          <th>난류</th>
+          <th>우유</th>
+          <th>닭고기</th>
+          <th>쇠고기</th>
+          <th>새우</th>
+          <th>고등어</th>
+          <th>홍합</th>
+          <th>전복</th>
+          <th>굴</th>
+          <th>조개류</th>
+          <th>게</th>
+          <th>오징어</th>
+          <th>아황산</th>
+          <th>요청일</th>
+      </tr>
+    </thead>
+    <tbody>  
+      <% @add_requests.each do |r| %>
+        <tr>
+          <td><%= check_box_tag 'permit_ids[]', r.id%></td>
+          <td><%= r.request_type %></td>
+          <td><%= r.uid %></td>
+          <td><%= r.restaurant_name%></td>
+          <td><%= r.menu_name%></td>
+          <td><%= r.a1_maemil %></td>
+          <td><%= r.a2_mil%></td>
+          <td><%= r.a3_daedu%></td>
+          <td><%= r.a4_hodu%></td>
+          <td><%= r.a5_ddangkong%></td>
+          <td><%= r.a6_peach %></td>
+          <td><%= r.a7_tomato %></td>
+          <td><%= r.a8_piggogi%></td>
+          <td><%= r.a9_nanryu%></td>
+          <td><%= r.a10_milk %></td>
+          <td><%= r.a11_ddakgogi %></td>
+          <td><%= r.a12_shoigogi %></td>
+          <td><%= r.a13_saewoo %></td>
+          <td><%= r.a14_godeungeoh %></td>
+          <td><%= r.a15_honghap %></td>
+          <td><%= r.a16_junbok %></td>
+          <td><%= r.a17_gul%></td>
+          <td><%= r.a18_jogaeryu%></td>
+          <td><%= r.a19_gye %></td>
+          <td><%= r.a20_ohjingeoh %></td>
+          <td><%= r.a21_ahwangsan %></td>
+          <td><%= r.created_at%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<hr/>
+
+<!--수정요청 테이블-->
+<%= form_tag userrequests_permit_path, method: :post do %>
+  <p>
+    수정
+    <%= submit_tag '수정 승인' %>
+    <%= submit_tag '반려처리' %>
+  </p>
+  <table>
+    <thead>
+      <tr>
+          <th>체크</th>
+          <th>요청</th>
+          <th>요청자</th>
+          <th>식당</th>
+          <th>메뉴이름</th>
+          <th>메밀</th>
+          <th>밀</th>
+          <th>대두</th>
+          <th>호두</th>
+          <th>땅콩</th>
+          <th>복숭아</th>
+          <th>토마토</th>
+          <th>돼지고기</th>
+          <th>난류</th>
+          <th>우유</th>
+          <th>닭고기</th>
+          <th>쇠고기</th>
+          <th>새우</th>
+          <th>고등어</th>
+          <th>홍합</th>
+          <th>전복</th>
+          <th>굴</th>
+          <th>조개류</th>
+          <th>게</th>
+          <th>오징어</th>
+          <th>아황산</th>
+          <th>요청일</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @edit_requests.each do |r| %>
+        <tr>
+          <td><%= check_box_tag 'permit_ids[]', r.id%></td>
+          <td><%= r.request_type %></td>
+          <td><%= r.uid %></td>
+          <td><%= r.restaurant_name%></td>
+          <td><%= r.menu_name%></td>
+          <td><%= r.a1_maemil %></td>
+          <td><%= r.a2_mil%></td>
+          <td><%= r.a3_daedu%></td>
+          <td><%= r.a4_hodu%></td>
+          <td><%= r.a5_ddangkong%></td>
+          <td><%= r.a6_peach %></td>
+          <td><%= r.a7_tomato %></td>
+          <td><%= r.a8_piggogi%></td>
+          <td><%= r.a9_nanryu%></td>
+          <td><%= r.a10_milk %></td>
+          <td><%= r.a11_ddakgogi %></td>
+          <td><%= r.a12_shoigogi %></td>
+          <td><%= r.a13_saewoo %></td>
+          <td><%= r.a14_godeungeoh %></td>
+          <td><%= r.a15_honghap %></td>
+          <td><%= r.a16_junbok %></td>
+          <td><%= r.a17_gul%></td>
+          <td><%= r.a18_jogaeryu%></td>
+          <td><%= r.a19_gye %></td>
+          <td><%= r.a20_ohjingeoh %></td>
+          <td><%= r.a21_ahwangsan %></td>
+          <td><%= r.created_at%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<hr/>
+<!--삭제요청 테이블-->
+<%= form_tag userrequests_permit_path, method: :post do %>
+  <p>
+    삭제
+    <%= submit_tag '삭제 승인' %>
+    <%= submit_tag '반려처리' %>
+  </p>
+  <table>
+    <thead>
+      <tr>
+          <th>체크</th>
+          <th>요청</th>
+          <th>요청자</th>
+          <th>식당</th>
+          <th>메뉴이름</th>
+          <th>메밀</th>
+          <th>밀</th>
+          <th>대두</th>
+          <th>호두</th>
+          <th>땅콩</th>
+          <th>복숭아</th>
+          <th>토마토</th>
+          <th>돼지고기</th>
+          <th>난류</th>
+          <th>우유</th>
+          <th>닭고기</th>
+          <th>쇠고기</th>
+          <th>새우</th>
+          <th>고등어</th>
+          <th>홍합</th>
+          <th>전복</th>
+          <th>굴</th>
+          <th>조개류</th>
+          <th>게</th>
+          <th>오징어</th>
+          <th>아황산</th>
+          <th>요청일</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @delete_requests.each do |r| %>
+        <tr>
+          <td><%= check_box_tag 'permit_ids[]', r.id%></td>
+          <td><%= r.request_type %></td>
+          <td><%= r.uid %></td>
+          <td><%= r.restaurant_name%></td>
+          <td><%= r.menu_name%></td>
+          <td><%= r.a1_maemil %></td>
+          <td><%= r.a2_mil%></td>
+          <td><%= r.a3_daedu%></td>
+          <td><%= r.a4_hodu%></td>
+          <td><%= r.a5_ddangkong%></td>
+          <td><%= r.a6_peach %></td>
+          <td><%= r.a7_tomato %></td>
+          <td><%= r.a8_piggogi%></td>
+          <td><%= r.a9_nanryu%></td>
+          <td><%= r.a10_milk %></td>
+          <td><%= r.a11_ddakgogi %></td>
+          <td><%= r.a12_shoigogi %></td>
+          <td><%= r.a13_saewoo %></td>
+          <td><%= r.a14_godeungeoh %></td>
+          <td><%= r.a15_honghap %></td>
+          <td><%= r.a16_junbok %></td>
+          <td><%= r.a17_gul%></td>
+          <td><%= r.a18_jogaeryu%></td>
+          <td><%= r.a19_gye %></td>
+          <td><%= r.a20_ohjingeoh %></td>
+          <td><%= r.a21_ahwangsan %></td>
+          <td><%= r.created_at%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
