@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Freeboards</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Name</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @freeboards.each do |freeboard| %>
+      <tr>
+        <td><%= freeboard.title %></td>
+        <td><%= freeboard.content %></td>
+        <td><%= freeboard.name %></td>
+        <td><%= link_to 'Show', freeboard %></td>
+        <td><%= link_to 'Edit', edit_freeboard_path(freeboard) %></td>
+        <td><%= link_to 'Destroy', freeboard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Freeboard', new_freeboard_path %>
