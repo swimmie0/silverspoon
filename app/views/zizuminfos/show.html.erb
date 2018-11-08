@@ -1,4 +1,79 @@
-<p id="notice"><%= notice %></p>
+<div>
+    <p><span class = "zizum-name px-5 py-2 irop"><%= @zizuminfo.restaurant_name + " " + @zizuminfo.zizum_name%></span></p>
+    <p class = "pl-5 jeju mt-4"><i class="fas fa-map-marker-alt"></i> <%= @zizuminfo.sido + " " +@zizuminfo.sigungu + " " +@zizuminfo.sangse_juso %></p>
+    <p class = "pl-5 jeju"><i class="fas fa-phone"></i> <%= @zizuminfo.phone_number %></p>
+</div>
 
-<%= link_to 'Edit', edit_zizuminfo_path(@zizuminfo) %> |
-<%= link_to 'Back', zizuminfos_path %>
+<!--알레르기 테이블-->
+<p class = "jeju mb-0 float-right mr-1">
+  <span class="mr-2">포함하지 않음 : <i class="fas fa-times"></i></span>
+  <span class="mr-2">교차위험 : <i class="fas fa-star allergy-star"></i></span>
+  <span class="mr-2">포함 : <i class="fas fa-circle allergy-circle"></i></span>
+  <span >제공 안함 :  ㆍ </span>
+</p>
+
+<br><br>
+<table class = "allergy-table jeju">
+  <thead>
+    <tr class = "text-center">
+      <th>메뉴 이름</th>
+      <th><span>메밀</span></th>
+      <th><span>밀</span> </th>
+      <th><span>대두</span></th>
+      <th><span>호두</span></th>
+      <th><span>땅콩</span></th>
+      <th><span>복숭아</span></th>
+      <th><span>토마토</span></th>
+      <th><span>돼지고기</span></th>
+      <th><span>난류</span></th>
+      <th><span>우유</span></th>
+      <th><span>닭고기</span></th>
+      <th><span>쇠고기</span></th>
+      <th><span>새우</span></th>
+      <th><span>고등어</span></th>
+      <th><span>홍합</span></th>
+      <th><span>전복</span></th>
+      <th><span>굴</span></th>
+      <th><span>조개류</span></th>
+      <th><span>게</span></th>
+      <th><span>오징어</span></th>
+      <th><span>아황산</span></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+  <% @zizuminfo.restaurant.menus.each do |menu| %>
+      <tr class = "text-center">
+        <td>
+          <%= menu.menu_name%>
+          <%= link_to userrequests_edit_request_url(menuID: menu.id) do%><i class="fab fa-telegram-plane"></i><%end%>
+
+        </td>
+        <td><%= value2icon(menu.a1_maemil)%></td>
+        <td><%= value2icon(menu.a2_mil)%></td>
+        <td><%= value2icon(menu.a3_daedu)%></td>
+        <td><%= value2icon(menu.a4_hodu)%></td>
+        <td><%= value2icon(menu.a5_ddangkong)%></td>
+        <td><%= value2icon(menu.a6_peach)%></td>
+        <td><%= value2icon(menu.a7_tomato)%></td>
+        <td><%= value2icon(menu.a8_piggogi)%></td>
+        <td><%= value2icon(menu.a9_nanryu)%></td>
+        <td><%= value2icon(menu.a10_milk)%></td>
+        <td><%= value2icon(menu.a11_ddakgogi)%></td>
+        <td><%= value2icon(menu.a12_shoigogi)%></td>
+        <td><%= value2icon(menu.a13_saewoo)%></td>
+        <td><%= value2icon(menu.a14_godeungeoh)%></td>
+        <td><%= value2icon(menu.a15_honghap)%></td>
+        <td><%= value2icon(menu.a16_junbok)%></td>
+        <td><%= value2icon(menu.a17_gul)%></td>
+        <td><%= value2icon(menu.a18_jogaeryu)%></td>
+        <td><%= value2icon(menu.a19_gye)%></td>
+        <td><%= value2icon(menu.a20_ohjingeoh)%></td>
+        <td><%= value2icon(menu.a21_ahwangsan)%></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to '<button type="button" class= "fill mbutton">메뉴 추가 요청</button>'.html_safe, userrequests_new_request_url(restaurantID: @zizuminfo.restaurant.id)%>

@@ -1,25 +1,19 @@
-<p id="notice"><%= notice %></p>
+<p> <strong><%=params[:restaurant_name]%></strong> 로 검색 결과
+   : <strong><%=@zizums.length%> 개</strong>의 지점을 찾았습니다.</p> <br>
 
-<h1>Zizuminfos</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @zizuminfos.each do |zizuminfo| %>
-      <tr>
-        <td><%= link_to 'Show', zizuminfo %></td>
-        <td><%= link_to 'Edit', edit_zizuminfo_path(zizuminfo) %></td>
-        <td><%= link_to 'Destroy', zizuminfo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+  <!-- Informations -->
+  <div class="shops">
+    <% @zizums.each do |zizum| %>
+      <div class="card" style="width: 20rem;">
+        <div class="card-body">
+          <%# ajax로 전송할 레스토랑 이름%>
+          <h3 class="seeMenu"><%= zizum.restaurant_name%></h3>
+          <h3><%=zizum.zizum_name%></h3>
+          <%# display:none 하고 옆으로 메뉴 띄울 것임%>
+          <p class="card-text"><%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
+          <p class="card-text"><%=link_to '식당상세페이지',zizuminfo_path(id: zizum.id)%>
+         
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Zizuminfo', new_zizuminfo_path %>
+  </div>  <!-- shops : close --> <br>
