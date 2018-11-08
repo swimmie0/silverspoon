@@ -4,7 +4,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+  
   has_many :boards
+
+  acts_as_follower
+
+  mount_uploader :profileimg, S3Uploader
   
   # GENDER_TYPES = [ ["male","0"], [ "female","1" ] ]
   # validates_inclusion_of :is_female, in: [true, false]
