@@ -38,6 +38,10 @@ Rails.application.routes.draw do
   # 나만의 페이지
   get '/profile/:id' => 'profile#show', as: 'profile'
 
+  # Follow 기능
+  post '/zizuminfos/:id/follow', to: 'follows#zizum_back_follow_toggle', as: 'zizum_back_follow'
+  post '/menus/index/params', to: 'follows#zizum_front_follow_toggle', as: 'zizum_front_follow'
+
   resources :freeboards
   resources :userrequests
   resources :zizuminfos

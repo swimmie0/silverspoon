@@ -68,6 +68,24 @@
                         </div>
                         <p class="card-text"><%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
                         <p class="card-text"><%=link_to '식당상세페이지',zizuminfo_path(id: zizum.id)%></p>
+
+                        <% if zizum.followed_by?(current_user) %>
+                            <!-- 좋아요를 했다면 -->
+                            <%# link_to (fa_icon('thumbs-up', style: 'color: blue'), like_article_path, method: :post) %>
+                            <%= link_to(fa_icon('heart', class: "like icon"), 
+                            zizum_front_follow_path(id: zizum.id, utf8: params[:utf8], sido: params[:sido] , sigungu: params[:sigungu], a9_nanryu: params[:a9_nanryu], a6_peach: params[:a6_peach], a7_tomato: params[:a7_tomato], a1_maemil: params[:a1_maemil], a2_mil: params[:a2_mil], a3_daedu: params[:a3_daedu], a11_ddakgogi: params[:a11_ddakgogi], a12_shoigogi: params[:a12_shoigogi], a8_piggogi: params[:a8_piggogi], a13_saewoo: params[:a13_saewoo], a14_godeungeoh: params[:a14_godeungeoh], a15_honghap: params[:a15_honghap], a16_junbok: params[:a16_junbok], a17_gul: params[:a17_gul], a18_jogaeryu: params[:a18_jogaeryu], a19_gye: params[:a19_gye], a20_ohjingeoh: params[:a20_ohjingeoh], a4_hodu: params[:a4_hodu], a5_ddangkong: params[:a5_ddangkong], a21_ahwangsan: params[:a21_ahwangsan]),
+                            method: :post)%> 
+                            <%# <p id="like-num"></p> %>
+                            <%#= link_to("이미 라이크 눌렀어요!", zizum_front_follow_path(params), method: :post) %>
+                            <!-- 좋아요를 안 했다면 -->
+                        <% else %>
+                            <%# link_to (fa_icon('thumbs-up', style: 'text-decoration: none'), like_article_path, method: :post) %>
+                            <%= link_to(fa_icon('heart', class: "unlike icon"), 
+                            zizum_front_follow_path(id: zizum.id, utf8: params[:utf8], sido: params[:sido] , sigungu: params[:sigungu], a9_nanryu: params[:a9_nanryu], a6_peach: params[:a6_peach], a7_tomato: params[:a7_tomato], a1_maemil: params[:a1_maemil], a2_mil: params[:a2_mil], a3_daedu: params[:a3_daedu], a11_ddakgogi: params[:a11_ddakgogi], a12_shoigogi: params[:a12_shoigogi], a8_piggogi: params[:a8_piggogi], a13_saewoo: params[:a13_saewoo], a14_godeungeoh: params[:a14_godeungeoh], a15_honghap: params[:a15_honghap], a16_junbok: params[:a16_junbok], a17_gul: params[:a17_gul], a18_jogaeryu: params[:a18_jogaeryu], a19_gye: params[:a19_gye], a20_ohjingeoh: params[:a20_ohjingeoh], a4_hodu: params[:a4_hodu], a5_ddangkong: params[:a5_ddangkong], a21_ahwangsan: params[:a21_ahwangsan]), 
+                            method: :post)%> 
+                            <%#= zizum.followers_count%>
+                            <%#= link_to("라이크 눌러요!", zizum_front_follow_path(params), method: :post) %>
+                        <% end %>
                       
                     </div>
                 </div>
@@ -90,6 +108,20 @@
   
     });
 
+    $(".icon").click(function(){
+    // var res = $(this).;
+    // alert(res);:
+        //var ziz = $(this).siblings(".zizumName").html();
+        if ($(this).hasClass("like")) //follow하고 있다면
+            {
+                $(this).removeClass("like");
+                $(this).addClass("unlike");
+            }
+            else if ($(this).hasClass("unlike"))
+            {
+                $(this).removeClass("unlike");
+                $(this).addClass("like");
+        };
 
 
 

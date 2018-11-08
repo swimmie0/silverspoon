@@ -2,6 +2,19 @@
     <p><span class = "zizum-name px-5 py-2 irop"><%= @zizuminfo.restaurant_name + " " + @zizuminfo.zizum_name%></span></p>
     <p class = "pl-5 jeju mt-4"><i class="fas fa-map-marker-alt"></i> <%= @zizuminfo.sido + " " +@zizuminfo.sigungu + " " +@zizuminfo.sangse_juso %></p>
     <p class = "pl-5 jeju"><i class="fas fa-phone"></i> <%= @zizuminfo.phone_number %></p>
+    <p class = "pl-5 jeju">
+      <%= fa_icon('heart') %>
+      <% @zizuminfo.followers.each do |follower|%>
+        <%= link_to follower.name, profile_path(follower.id), style: "color:black; text-decoration: none" %>
+      <%end %>
+      <% if @zizuminfo.followers_count == 1 %>
+      님 께서 좋아요를 눌렀습니다.
+      <% elsif @zizuminfo.followers_count > 2 %>
+      님 등께서 좋아요를 눌렀습니다.
+      <% elsif @zizuminfo.followers_count < 1 %>
+      아직 좋아요를 누른 사용자가 없습니다.
+      <% end %>
+    </p>
 </div>
 
 <!--알레르기 테이블-->
@@ -77,3 +90,19 @@
 </table>
 
 <%= link_to '<button type="button" class= "fill mbutton">메뉴 추가 요청</button>'.html_safe, userrequests_new_request_url(restaurantID: @zizuminfo.restaurant.id)%>
+
+<script>
+
+    $(".icon").click(function(){
+        if ($(this).hasClass("like")) //follow하고 있다면
+            {
+                $(this).removeClass("like");
+                $(this).addClass("unlike");
+            }
+        else if ($(this).hasClass("unlike"))
+            {
+                $(this).removeClass("unlike");
+                $(this).addClass("like");
+            }
+    });
+</script> 
