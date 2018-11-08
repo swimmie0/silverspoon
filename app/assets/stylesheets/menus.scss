@@ -1,3 +1,114 @@
 // Place all the styles related to the menus controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.allergy{
+    width: 180px;
+}
+
+.experiment{
+    background-color: #e2dccf;
+    font-weight: 600;
+}
+
+
+//-----
+.unlike{
+    color: blue;
+}
+
+.getinfo{
+    display: none;
+}
+
+.hideMenu{
+    display: none; 
+}
+
+
+
+#menuBox{
+    margin-top: 20px;
+    width: 400px;
+    height: 700px;
+    overflow-y: scroll;
+    padding: 20px;
+    -webkit-box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+    -moz-box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+    box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+    
+}
+
+.shop-card{
+    width: 100%;
+    background-color: rgba(255, 253, 253, 0.801);
+    -webkit-box-shadow: 0px 3px 4px 0px rgba(11, 36, 4, 0.315);
+    -moz-box-shadow: 0px 3px 4px 0px rgba(11, 36, 4, 0.315);
+    box-shadow: 0px 3px 4px 0px rgba(11, 36, 4, 0.315);
+    padding: 20px;
+}
+
+.shop-card:hover
+.shop-card:active{
+    background-color: #E2D6CF;
+}
+
+.fa-utensil-spoon{
+    margin-right: 15px;
+}
+.shops{
+    margin-top: 20px;
+    background-color: rgba(255, 253, 253, 0.801);
+    width: 600px;
+    height: 700px;
+    overflow-y: scroll;
+    -webkit-box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+    -moz-box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+    box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+}
+
+
+.sido{
+    margin-right: 10px;
+    font-weight: 450;
+    color: #454338;
+}
+.num_res{
+    font-size: 20px;
+}
+
+.fa-utensils{
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+
+.fish2{
+    margin-left:10px;
+}
+
+
+.allergy-check{
+    margin-top: 7px;
+    margin-left: 15px;
+}
+
+
+
+.a-submit{
+    margin-top: 15px;
+    height: 40px;
+    background-color: transparent;
+    border-style: none;
+    color: rgb(180, 158, 145);
+    font-size: 20px;
+    font-weight: 650;
+}
+
+.a-submit:hover{
+    color: rgb(109, 93, 84);
+}
+.fa-search{
+    transform: scale(1.5);
+    margin-left: 10px;
+}
