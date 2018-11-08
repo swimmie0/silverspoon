@@ -4,15 +4,14 @@ Rails.application.routes.draw do
   resources :zizuminfos
   resources :restaurants
   resources :menus
-  
+
   get 'home/index'
   root 'home#index'
 
   #크롤링
   get '/crawling' => 'restaurants#crawling'
-  # 수영
+  # login
   devise_for :users, :controllers => { omniauth_callbacks: 'user/omniauth_callbacks' }
-
 
   ## 수정 / 삭제 요청 ###
   #요청 확인
