@@ -87,7 +87,10 @@ class RestaurantsController < ApplicationController
     # sleep 1.5
     Menu.Momstouch
     puts "crwaling update finished!"
-    redirect_to userrequests_path
+    #redirect_to userrequests_path
+    redirect_to home_index_path
+
+    @successCrawl = 1
   end
 
 

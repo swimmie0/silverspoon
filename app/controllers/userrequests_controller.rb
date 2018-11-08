@@ -24,8 +24,6 @@ class UserrequestsController < ApplicationController
   def create
     @userrequest = Userrequest.new(userrequest_params)
     @userrequest.save
-
-
     redirect_to(profile_path(current_user.id))
   end
 

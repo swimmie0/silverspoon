@@ -1,18 +1,27 @@
 Rails.application.routes.draw do
-  resources :freeboards
-  resources :userrequests
-  resources :zizuminfos
-  resources :restaurants
-  resources :menus
 
-  get 'home/index'
-  root 'home#index'
+  ##SEARCH------resources :zizuminfos 보다 위에
+  get 'zizuminfos/search'
+  ##-------------------------------------
 
-  #크롤링
-  get '/crawling' => 'restaurants#crawling'
-  # login
-  devise_for :users, :controllers => { omniauth_callbacks: 'user/omniauth_callbacks' }
 
+  #SEARCH----------resouces :restaurants 보다 위에 가게 해야 함! --------------------
+  get 'restaurants/search' => "restaurants#search"
+  get 'menus/search/' => "menus#search"
+  get 'menus/getMenu' => "menus#getMenu"
+  get 'menus/index' => "menus#index", as: 'menus'
+  #--------------------------------------------------------------------------
+
+ #===============메뉴별 제보 요청==============
+ get 'userrequests/index'
+
+ get 'userrequests/new'
+
+ get 'userrequests/ask'
+
+ get 'edit_asks/index'
+ 
+ get 'edit_asks/ask'
   ## 수정 / 삭제 요청 ###
   #요청 확인
   get '/userrequests' => 'userrequests#index'
@@ -24,5 +33,25 @@ Rails.application.routes.draw do
   post '/userrequests/edit_request' => 'userrequests#edit_request'
   #승인
   post '/userrequests/permit' => 'userrequests#permit'
+  #=================================
+
+  resources :freeboards
+  resources :userrequests
+  resources :zizuminfos
+  resources :restaurants
+  resources :menus
+
+  get 'home/index'
+  root 'home#index'
+
+  #============크롤링===============
+  get '/crawling' => 'restaurants#crawling'
+  #================================
+
+  # login
+  devise_for :users, :controllers => { omniauth_callbacks: 'user/omniauth_callbacks' }
+
+ 
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,8 @@
+<h2>식당 이름으로 검색</h2>
+    
+<%= form_tag(zizuminfos_path, method: :get) do %>
+    <%= text_field_tag :restaurant_name, params[:restaurant_name] %> 
+    <br> <br>
+    <%= submit_tag 'Search'%>
+<% end %>
+
