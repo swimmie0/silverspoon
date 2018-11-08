@@ -15,6 +15,7 @@
    </th>
       <th>Title</th>
       <th>Name</th>
+      <th>댓글</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,6 +27,7 @@
         <td><%= freeboard.category %></td> 
         <td><%= link_to freeboard.title, freeboard %></td>
         <td><%= freeboard.name %></td>
+        <td> <%= freeboard.comment_threads.count %></td>
         <%# <td><%= link_to 'Show', freeboard %>
         <%# <td><%= link_to 'Edit', edit_freeboard_path(freeboard) %>
         <%# <td><%= link_to 'Destroy', freeboard, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -37,6 +39,7 @@
         <td><%= d.category %></td> 
         <td><%= link_to d.title, d %></td>
         <td><%= d.name %></td>
+        <td> <%= d.comment_threads.count %></td>
       </tr>
     <% end %>   
   
@@ -45,6 +48,7 @@
       <td><%= i.category %></td> 
       <td><%= link_to i.title, i %></td>
       <td><%= i.name %></td>
+      <td> <%= i.comment_threads.count %></td>
      </tr>
     <% end %>
 
@@ -53,6 +57,7 @@
         <td><%= q.category %></td> 
         <td><%= link_to q.title, q %></td>
         <td><%= q.name %></td>
+        <td> <%= q.comment_threads.count %></td>        
       </tr>
     <% end %>
 

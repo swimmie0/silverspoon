@@ -13,6 +13,10 @@ class FreeboardsController < ApplicationController
   # GET /freeboards/1
   # GET /freeboards/1.json
   def show
+    @freeboard = Freeboard.find(params[:id]) 
+    if user_signed_in?
+      @new_comment  = Comment.build_from(@freeboard, current_user.id, "")  
+    end
   end
 
   # GET /freeboards/new
