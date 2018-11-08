@@ -1,0 +1,293 @@
+<p><%=@userrequest.restaurant_name%> 메뉴 추가/삭제 요청</p>
+
+<%= form_for @userrequest, url: {action: "create"}, html: {class: "클래스이름 여기!"} do |f| %>
+  <!--#######################사용자가 볼 수 없는 영역 시작################-->
+  <!--사용자 아이디 자동 입력-->
+  <div class="field">  
+    <%= f.hidden_field :uid, value: current_user.id%>
+  </div> 
+  <div class="field">
+    <%= f.hidden_field :status, value: "미처리"%> 
+  </div> 
+    <div class="field">
+    <%= f.hidden_field :restaurant_id%> 
+  </div> 
+    <div class="field">
+    <%= f.hidden_field :restaurant_name%> 
+  </div> 
+  <!--######################사용자가 볼 수 없는 영역 끝#######################-->
+
+  <!--수정, 삭제, 삭제면 아래 전부안보이게 하기-->
+  <div class="field">
+    <%= f.select(:request_type, ["수정","삭제"], {prompt: "--수정 / 삭제 선택--"}, {:class => "some_class"}) %>
+  </div> 
+  
+  <!--메뉴이름-->
+  <div class="field">
+    <%= f.label :menu_name%>
+    <%= f.text_field :menu_name %>
+  </div> 
+
+  <!--알레르기 정보-->
+  <div class="field">
+    <p>메밀</p>
+    <%= f.label :a1_maemil, '포함'%>
+    <%= f.radio_button :a1_maemil, 1%>
+    <%= f.label :a1_maemil, '미포함'%>
+    <%= f.radio_button :a1_maemil, 0%>
+    <%= f.label :a1_maemil, '교차가능'%>
+    <%= f.radio_button :a1_maemil, -2%>
+    <%= f.label :a1_maemil, '제공안함'%>
+    <%= f.radio_button :a1_maemil, -1%>
+  </div>
+
+  <div class="field">
+    <p>밀</p>
+    <%= f.label :a2_mil, '포함'%>
+    <%= f.radio_button :a2_mil, 1%>
+    <%= f.label :a2_mil, '미포함'%>
+    <%= f.radio_button :a2_mil, 0%>
+    <%= f.label :a2_mil, '교차가능'%>
+    <%= f.radio_button :a2_mil, -2%>
+    <%= f.label :a2_mil, '제공안함'%>
+    <%= f.radio_button :a2_mil, -1%>
+  </div>
+
+  <div class="field">
+    <p>대두</p>
+    <%= f.label :a3_daedu, '포함'%>
+    <%= f.radio_button :a3_daedu, 1%>
+    <%= f.label :a3_daedu, '미포함'%>
+    <%= f.radio_button :a3_daedu, 0%>
+    <%= f.label :a3_daedu, '교차가능'%>
+    <%= f.radio_button :a3_daedu, -2%>
+    <%= f.label :a3_daedu, '제공안함'%>
+    <%= f.radio_button :a3_daedu, -1%>
+  </div>
+
+  <div class="field">
+    <p>호두</p>
+    <%= f.label :a4_hodu, '포함'%>
+    <%= f.radio_button :a4_hodu, 1%>
+    <%= f.label :a4_hodu, '미포함'%>
+    <%= f.radio_button :a4_hodu, 0%>
+    <%= f.label :a4_hodu, '교차가능'%>
+    <%= f.radio_button :a4_hodu, -2%>
+    <%= f.label :a4_hodu, '제공안함'%>
+    <%= f.radio_button :a4_hodu, -1%>
+  </div><div class="field">
+    <p>땅콩</p>
+    <%= f.label :a5_ddangkong, '포함'%>
+    <%= f.radio_button :a5_ddangkong, 1%>
+    <%= f.label :a5_ddangkong, '미포함'%>
+    <%= f.radio_button :a5_ddangkong, 0%>
+    <%= f.label :a5_ddangkong, '교차가능'%>
+    <%= f.radio_button :a5_ddangkong, -2%>
+    <%= f.label :a5_ddangkong, '제공안함'%>
+    <%= f.radio_button :a5_ddangkong, -1%>
+  </div>
+
+  <div class="field">
+    <p>복숭아</p>
+    <%= f.label :a6_peach, '포함'%>
+    <%= f.radio_button :a6_peach, 1%>
+    <%= f.label :a6_peach, '미포함'%>
+    <%= f.radio_button :a6_peach, 0%>
+    <%= f.label :a6_peach, '교차가능'%>
+    <%= f.radio_button :a6_peach, -2%>
+    <%= f.label :a6_peach, '제공안함'%>
+    <%= f.radio_button :a6_peach, -1%>
+  </div>
+
+  <div class="field">
+    <p>토마토</p>
+    <%= f.label :a7_tomato, '포함'%>
+    <%= f.radio_button :a7_tomato, 1%>
+    <%= f.label :a7_tomato, '미포함'%>
+    <%= f.radio_button :a7_tomato, 0%>
+    <%= f.label :a7_tomato, '교차가능'%>
+    <%= f.radio_button :a7_tomato, -2%>
+    <%= f.label :a7_tomato, '제공안함'%>
+    <%= f.radio_button :a7_tomato, -1%>
+  </div>
+
+  <div class="field">
+    <p>돼지고기</p>
+    <%= f.label :a8_piggogi, '포함'%>
+    <%= f.radio_button :a8_piggogi, 1%>
+    <%= f.label :a8_piggogi, '미포함'%>
+    <%= f.radio_button :a8_piggogi, 0%>
+    <%= f.label :a8_piggogi, '교차가능'%>
+    <%= f.radio_button :a8_piggogi, -2%>
+    <%= f.label :a8_piggogi, '제공안함'%>
+    <%= f.radio_button :a8_piggogi, -1%>
+  </div>
+
+  <div class="field">
+    <p>난류</p>
+    <%= f.label :a9_nanryu, '포함'%>
+    <%= f.radio_button :a9_nanryu, 1%>
+    <%= f.label :a9_nanryu, '미포함'%>
+    <%= f.radio_button :a9_nanryu, 0%>
+    <%= f.label :a9_nanryu, '교차가능'%>
+    <%= f.radio_button :a9_nanryu, -2%>
+    <%= f.label :a9_nanryu, '제공안함'%>
+    <%= f.radio_button :a9_nanryu, -1%>
+  </div>
+
+  <div class="field">
+    <p>우유</p>
+    <%= f.label :a10_milk, '포함'%>
+    <%= f.radio_button :a10_milk, 1%>
+    <%= f.label :a10_milk, '미포함'%>
+    <%= f.radio_button :a10_milk, 0%>
+    <%= f.label :a10_milk, '교차가능'%>
+    <%= f.radio_button :a10_milk, -2%>
+    <%= f.label :a10_milk, '제공안함'%>
+    <%= f.radio_button :a10_milk, -1%>
+  </div>
+  <div class="field">
+    <p>닭고기</p>
+    <%= f.label :a11_ddakgogi, '포함'%>
+    <%= f.radio_button :a11_ddakgogi, 1%>
+    <%= f.label :a11_ddakgogi, '미포함'%>
+    <%= f.radio_button :a11_ddakgogi, 0%>
+    <%= f.label :a11_ddakgogi, '교차가능'%>
+    <%= f.radio_button :a11_ddakgogi, -2%>
+    <%= f.label :a11_ddakgogi, '제공안함'%>
+    <%= f.radio_button :a11_ddakgogi, -1%>
+  </div>
+  <div class="field">
+    <p>쇠고기</p>
+    <%= f.label :a12_shoigogi, '포함'%>
+    <%= f.radio_button :a12_shoigogi, 1%>
+    <%= f.label :a12_shoigogi, '미포함'%>
+    <%= f.radio_button :a12_shoigogi, 0%>
+    <%= f.label :a12_shoigogi, '교차가능'%>
+    <%= f.radio_button :a12_shoigogi, -2%>
+    <%= f.label :a12_shoigogi, '제공안함'%>
+    <%= f.radio_button :a12_shoigogi, -1%>
+  </div>
+  <div class="field">
+    <p>새우</p>
+    <%= f.label :a13_saewoo, '포함'%>
+    <%= f.radio_button :a13_saewoo, 1%>
+    <%= f.label :a13_saewoo, '미포함'%>
+    <%= f.radio_button :a13_saewoo, 0%>
+    <%= f.label :a13_saewoo, '교차가능'%>
+    <%= f.radio_button :a13_saewoo, -2%>
+    <%= f.label :a13_saewoo, '제공안함'%>
+    <%= f.radio_button :a13_saewoo, -1%>
+  </div>
+
+  <div class="field">
+    <p>고등어</p>
+    <%= f.label :a14_godeungeoh, '포함'%>
+    <%= f.radio_button :a14_godeungeoh, 1%>
+    <%= f.label :a14_godeungeoh, '미포함'%>
+    <%= f.radio_button :a14_godeungeoh, 0%>
+    <%= f.label :a14_godeungeoh, '교차가능'%>
+    <%= f.radio_button :a14_godeungeoh, -2%>
+    <%= f.label :a14_godeungeoh, '제공안함'%>
+    <%= f.radio_button :a14_godeungeoh, -1%>
+  </div>
+  
+  <div class="field">
+    <p>홍합</p>
+    <%= f.label :a15_honghap, '포함'%>
+    <%= f.radio_button :a15_honghap, 1%>
+    <%= f.label :a15_honghap, '미포함'%>
+    <%= f.radio_button :a15_honghap, 0%>
+    <%= f.label :a15_honghap, '교차가능'%>
+    <%= f.radio_button :a15_honghap, -2%>
+    <%= f.label :a15_honghap, '제공안함'%>
+    <%= f.radio_button :a15_honghap, -1%>
+  </div>
+
+  <div class="field">
+    <p>전복</p>
+    <%= f.label :a16_junbok, '포함'%>
+    <%= f.radio_button :a16_junbok, 1%>
+    <%= f.label :a16_junbok, '미포함'%>
+    <%= f.radio_button :a16_junbok, 0%>
+    <%= f.label :a16_junbok, '교차가능'%>
+    <%= f.radio_button :a16_junbok, -2%>
+    <%= f.label :a16_junbok, '제공안함'%>
+    <%= f.radio_button :a16_junbok, -1%>
+  </div>
+
+  <div class="field">
+    <p>굴</p>
+    <%= f.label :a17_gul, '포함'%>
+    <%= f.radio_button :a17_gul, 1%>
+    <%= f.label :a17_gul, '미포함'%>
+    <%= f.radio_button :a17_gul, 0%>
+    <%= f.label :a17_gul, '교차가능'%>
+    <%= f.radio_button :a17_gul, -2%>
+    <%= f.label :a17_gul, '제공안함'%>
+    <%= f.radio_button :a17_gul, -1%>
+  </div>
+
+  <div class="field">
+    <p>조개류</p>
+    <%= f.label :a18_jogaeryu, '포함'%>
+    <%= f.radio_button :a18_jogaeryu, 1%>
+    <%= f.label :a18_jogaeryu, '미포함'%>
+    <%= f.radio_button :a18_jogaeryu, 0%>
+    <%= f.label :a18_jogaeryu, '교차가능'%>
+    <%= f.radio_button :a18_jogaeryu, -2%>
+    <%= f.label :a18_jogaeryu, '제공안함'%>
+    <%= f.radio_button :a18_jogaeryu, -1%>
+  </div>
+
+  <div class="field">
+    <p>게</p>
+    <%= f.label :a19_gye, '포함'%>
+    <%= f.radio_button :a19_gye, 1%>
+    <%= f.label :a19_gye, '미포함'%>
+    <%= f.radio_button :a19_gye, 0%>
+    <%= f.label :a19_gye, '교차가능'%>
+    <%= f.radio_button :a19_gye, -2%>
+    <%= f.label :a19_gye, '제공안함'%>
+    <%= f.radio_button :a19_gye, -1%>
+  </div>
+  
+  <div class="field">
+    <p>오징어</p>
+    <%= f.label :a20_ohjingeoh, '포함'%>
+    <%= f.radio_button :a20_ohjingeoh, 1%>
+    <%= f.label :a20_ohjingeoh, '미포함'%>
+    <%= f.radio_button :a20_ohjingeoh, 0%>
+    <%= f.label :a20_ohjingeoh, '교차가능'%>
+    <%= f.radio_button :a20_ohjingeoh, -2%>
+    <%= f.label :a20_ohjingeoh, '제공안함'%>
+    <%= f.radio_button :a20_ohjingeoh, -1%>
+  </div>
+
+  <div class="field">
+    <p>아황산</p>
+    <%= f.label :a21_ahwangsan, '포함'%>
+    <%= f.radio_button :a21_ahwangsan, 1%>
+    <%= f.label :a21_ahwangsan, '미포함'%>
+    <%= f.radio_button :a21_ahwangsan, 0%>
+    <%= f.label :a21_ahwangsan, '교차가능'%>
+    <%= f.radio_button :a21_ahwangsan, -2%>
+    <%= f.label :a21_ahwangsan, '제공안함'%>
+    <%= f.radio_button :a21_ahwangsan, -1%>
+  </div>
+  
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image,
+        accept: 'image/png, image/gif, image/jpeg'%>
+  </div>
+
+  <div>
+    <%=f.text_area :memo, size: "24x6", placeholder: "placeholder text" %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

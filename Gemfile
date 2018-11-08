@@ -4,6 +4,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.4.0'
 
 # 로그인
+gem 'nokogiri', '~> 1.8', '>= 1.8.5'
+gem 'rails_db', '~> 2.0', '>= 2.0.4'
+gem 'carrierwave', ' ~>1.0'
+gem 'mini_magick'
+gem 'fog-aws'
+
+# 수영
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-naver'
@@ -17,7 +24,6 @@ gem 'unread'
 gem 'acts_as_commentable_with_threading'
 
 gem 'figaro'
-gem "rails_db", "1.6"
 
 gem 'bootstrap', '~> 4.0'
 gem 'jquery-rails'
