@@ -50,7 +50,10 @@ Rails.application.routes.draw do
 
   # login
   devise_for :users, :controllers => { omniauth_callbacks: 'user/omniauth_callbacks' }
-
+  resources :comments, only: [:create, :destroy]
+  # 알림
+  get '/new_alarms/read_all' => 'new_alarms#read_all'
+  resources :new_alarms #순서이대로
  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
