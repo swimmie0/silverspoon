@@ -34,6 +34,9 @@ Rails.application.routes.draw do
   #승인
   post '/userrequests/permit' => 'userrequests#permit'
   #=================================
+  
+  # 나만의 페이지
+  get '/profile/:id' => 'profile#show', as: 'profile'
 
   resources :freeboards
   resources :userrequests
