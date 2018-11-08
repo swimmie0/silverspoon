@@ -12,6 +12,7 @@
     <% end %>
     <button><%= link_to '식당으로 검색', zizuminfos_search_path, :style=> "color: #454338; text-decoration: none;" %></button>
     <button><%= link_to '알레르기 검색', menus_search_path, :style=> "color: #454338; text-decoration: none;" %></button>
+    <button><%= link_to '나만의 페이지', profile_path(current_user.id), :style=> "color: #454338; text-decoration: none;" %></button>
     <div><%= link_to "크롤링 업데이트", "/crawling"%></div>
 
   </div>

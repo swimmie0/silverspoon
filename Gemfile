@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.0'
 
+# 팔로우
+gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master' 
+
 # 로그인
 gem 'nokogiri', '~> 1.8', '>= 1.8.5'
 gem 'rails_db', '~> 2.0', '>= 2.0.4'
