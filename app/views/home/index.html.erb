@@ -1,14 +1,17 @@
-
-<%= link_to "크롤링 업데이트", "/crawling"%><br>
-
-<% if user_signed_in? %>
-    <%= link_to "로그아웃", destroy_user_session_path%>
-<% else%>
-    <%= link_to "로그인", new_user_session_path%>
-<%end%>
-
-<br>
----------------------------------------------
-<br>
-<button><%= link_to '식당으로 검색', zizuminfos_search_path, :style=> "color: #454338; text-decoration: none;" %></button>
+<div class="container">
+  <h1 style = "margin-top: 40px; text-align: center"> HOME </h1>
+  <h1 style = "margin-top: 40px; text-align: center"> 로그인을 해봅시다. </h1>
+  <div class="form-group" style="margin-top: 50px; text-align: center">
+    <% if user_signed_in? %>
+      <p> 현재 로그인된 유저의 이메일: <%= current_user.email %> </p>
+      <p> <%= link_to "로그아웃", destroy_user_session_path, 
+              method: :delete, data: {confirm: "로그아웃 하시겠습니까?"},
+              class: 'btn btn-default' %> </p>
+    <% else %>
+      <p> <%= link_to "로그인", new_user_session_path, class: 'btn btn-default' %> </p>
+    <% end %>
+  </div>
+</div>
+ <%= link_to "크롤링 업데이트", "/crawling"%>
+ <button><%= link_to '식당으로 검색', zizuminfos_search_path, :style=> "color: #454338; text-decoration: none;" %></button>
 <button><%= link_to '알레르기 검색', menus_search_path, :style=> "color: #454338; text-decoration: none;" %></button>

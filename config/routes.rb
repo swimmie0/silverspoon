@@ -13,22 +13,23 @@ Rails.application.routes.draw do
   #--------------------------------------------------------------------------
 
 
+  resources :freeboards
   resources :userrequests
-  get 'home/index'
-  root 'home#index'
   resources :zizuminfos
   resources :restaurants
   resources :menus
-  devise_for :users
+
+  get 'home/index'
+  root 'home#index'
 
   #============크롤링===============
   get '/crawling' => 'restaurants#crawling'
   #================================
 
-  # 수영
-  #devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks' }
+  # login
+  devise_for :users, :controllers => { omniauth_callbacks: 'user/omniauth_callbacks' }
 
-  #============수정요청=============
+  #===============메뉴별 제보 요청==============
   ## 수정 / 삭제 요청 ###
   #요청 확인
   get '/userrequests' => 'userrequests#index'

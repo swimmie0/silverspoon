@@ -2,14 +2,28 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.0'
+
+# 로그인
 gem 'nokogiri', '~> 1.8', '>= 1.8.5'
 gem 'rails_db', '~> 2.0', '>= 2.0.4'
 gem 'carrierwave', ' ~>1.0'
 gem 'mini_magick'
 gem 'fog-aws'
-gem 'figaro'
+
 # 수영
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-naver'
+gem "omniauth-google-oauth2"
+gem 'omniauth-kakao', :git => 'https://github.com/hcn1519/omniauth-kakao'
+
+# 알림
+gem 'unread'
+
+# 대댓글
+gem 'acts_as_commentable_with_threading'
+
+gem 'figaro'
 
 gem 'bootstrap', '~> 4.0'
 gem 'jquery-rails'

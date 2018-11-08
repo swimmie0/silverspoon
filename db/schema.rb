@@ -12,6 +12,25 @@
 
 ActiveRecord::Schema.define(version: 2018_11_07_025910) do
 
+  create_table "freeboards", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.string "name"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_freeboards_on_user_id"
+  end
+
+  create_table "identities", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "provider"
+    t.string "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_identities_on_user_id"
+  end
+
   create_table "menus", force: :cascade do |t|
     t.string "menu_name"
     t.integer "a1_maemil"
@@ -117,6 +136,11 @@ ActiveRecord::Schema.define(version: 2018_11_07_025910) do
     t.string "ages"
     t.string "profileimg"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
