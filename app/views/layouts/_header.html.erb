@@ -1,0 +1,35 @@
+<div id="navbar" class="navbarstyle"> 
+    <div class="navbarcontent"> 
+        <div><%= link_to "Freeboard", freeboards_path, class: "headerfont", :style=>"text-decoration: none; color: #454338;" %></div>    
+
+        <!-- 알림창 -->
+            <%# <% if user_signed_in? %>
+                <%# <button onclick="showHide('info_html')" onfocus="this.blur()" style="background:none;border:none;">
+                    <%if current_user.new_alarms.unread_by(current_user).count ==0 %>
+                     <%# <a class="fa fa-globe" style="color:black;"></a> 
+                    <% else %> 
+                    <%# <a class="fa fa-globe" style="color:black;">
+                        <span class="fa fa-comment"></span>
+                        <span class="num"> <%= current_user.new_alarms.unread_by(current_user).count %> </span>
+                    <%# </a>  
+                    <%end%>
+                 <%# </button>
+                <div id="info_html" class="modal"><div class="inborder">
+                    <div class="noti_title"><b>알림창</b></div><hr>
+                    <%= render partial: "new_alarms/new_alarm", collection: current_user.new_alarms.unread_by(current_user) %><br>
+                    <%# <%= link_to '<b>모두 읽기</b>'.html_safe, new_alarms_read_all_path, {:style=>'color:black;margin-left:80%;'}%>
+                <%# </div></div>
+            </div>   %>
+            <%# <% end %>   
+            
+        <!-- 로그인/로그아웃 -->
+        <div>
+            <% if !user_signed_in? %> 
+                <%= link_to "Log In", new_user_session_path, class:"headerfont", :style=>"text-decoration: none; color: #454338;" %>
+            <% elsif user_signed_in?%>
+                <%= link_to "Log Out", destroy_user_session_path, method: :delete, class:"headerfont", :style=>"text-decoration: none; color: #454338;" %>
+            <% end %>
+        </div>
+
+    </div>
+</div>
