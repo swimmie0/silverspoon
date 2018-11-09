@@ -3,6 +3,7 @@
     <p class = "pl-5 jeju mt-4"><i class="fas fa-map-marker-alt"></i> <%= @zizuminfo.sido + " " +@zizuminfo.sigungu + " " +@zizuminfo.sangse_juso %></p>
     <p class = "pl-5 jeju"><i class="fas fa-phone"></i> <%= @zizuminfo.phone_number %></p>
     <p class = "pl-5 jeju">
+      
       <%= fa_icon('heart') %>
       <% @zizuminfo.followers.each do |follower|%>
         <%= link_to follower.name, profile_path(follower.id), style: "color:black; text-decoration: none" %>
