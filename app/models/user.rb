@@ -7,10 +7,15 @@ class User < ApplicationRecord
   
   has_one :profile
   has_many :boards
+  has_many :freeboards
+  has_many :new_alarms
 
   acts_as_follower
-
+  acts_as_reader
+  
   mount_uploader :profileimg, S3Uploader
+
+
   
   # GENDER_TYPES = [ ["male","0"], [ "female","1" ] ]
   # validates_inclusion_of :is_female, in: [true, false]

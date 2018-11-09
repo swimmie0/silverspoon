@@ -1,0 +1,9 @@
+<div class="comments-header">  
+    <h4>댓글 (<%= commentable.comment_threads.count %>)</h4>
+</div>
+ 
+<div class="comments-container">  
+    <%= render partial: "comments/reply", locals: {comments: commentable.root_comments} %>
+</div>
+<hr/>
+<%= render partial: "comments/form", locals: {new_comment: new_comment} %>
