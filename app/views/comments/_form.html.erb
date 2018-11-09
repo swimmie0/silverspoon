@@ -1,0 +1,19 @@
+<% if user_signed_in? %>
+  <%= form_for @new_comment do |f| %>  
+    <%= f.hidden_field :commentable_id, value: @new_comment.commentable_id %>
+    <%= f.hidden_field :commentable_type, value: @new_comment.commentable_type %>
+    <div class="field form-group">
+      <%= f.text_area :body, class: 'form-control' %>
+    </div>
+    
+    <div class="field form-group">
+      <%= submit_tag "댓글 작성", style: "float: right" %><br/>
+    </div>
+  <% end %>
+
+
+<% else %>
+    <div class="field form-group">
+      <%= text_area_tag :nil, "", class: "form-control", placeholder: "로그인해야" %>
+    </div>
+<% end %>

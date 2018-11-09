@@ -5,11 +5,18 @@ class FreeboardsController < ApplicationController
   # GET /freeboards.json
   def index
     @freeboards = Freeboard.all
+    @free_daily = Freeboard.where(category: "일상글")
+    @free_information = Freeboard.where(category: "정보글")
+    @free_qna = Freeboard.where(category: "질문글")
   end
 
   # GET /freeboards/1
   # GET /freeboards/1.json
   def show
+    @freeboard = Freeboard.find(params[:id]) 
+    if user_signed_in?
+      @new_comment  = Comment.build_from(@freeboard, current_user.id, "")  
+    end
   end
 
   # GET /freeboards/new
@@ -71,6 +78,6 @@ class FreeboardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def freeboard_params
-      params.require(:freeboard).permit(:title, :content, :name, :user_id)
+      params.require(:freeboard).permit(:title, :content, :name, :category, :user_id)
     end
 end
