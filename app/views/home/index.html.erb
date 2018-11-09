@@ -12,7 +12,15 @@
     <% end %>
     <button><%= link_to '식당으로 검색', zizuminfos_search_path, :style=> "color: #454338; text-decoration: none;" %></button>
     <button><%= link_to '알레르기 검색', menus_search_path, :style=> "color: #454338; text-decoration: none;" %></button>
-    <button><%= link_to '나만의 페이지', profile_path(current_user.id), :style=> "color: #454338; text-decoration: none;" %></button>
+    <% if user_signed_in? %> 
+      <% if current_user.profile.nil? %> 
+      <div>   <%= link_to "My Page", new_profile_path(@profile), class:"headerfont", :style=>"text-decoration: none; color: #454338;" %>
+      <% elsif !current_user.profile.nil? %>
+      <div>     <%= link_to "My Page", profile_path(current_user.profile.id), class:"headerfont", :style=>"text-decoration: none; color: #454338;"  %>
+      <% end %>
+      <% elsif owner_signed_in?%>
+      <%= link_to "나의 식당관리", home_myrt_path, class:"headerfont", :style=>"text-decoration: none; color: #454338;" %>    
+    <% end %>
     <div><%= link_to "크롤링 업데이트", "/crawling"%></div>
 
   </div>

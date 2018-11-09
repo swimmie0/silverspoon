@@ -1,5 +1,19 @@
 class FollowsController < ApplicationController
 
+    def article_destroy
+        @article = Article.find(params[:id])
+        @article.destroy
+
+        redirect_to profile_url(current_user.profile.id)
+    end
+
+    def profile_follow_destroy_toggle
+        @zizum = Zizuminfo.find(params[:id])
+        current_user.stop_following(@zizum) 
+
+        redirect_to profile_url(current_user.profile.id)
+    end 
+
     def article_follow_toggle
         @article = Article.find(params[:id])
         if @article.followed_by?(current_user)

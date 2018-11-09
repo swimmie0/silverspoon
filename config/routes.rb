@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   ##SEARCH------resources :zizuminfos 보다 위에
   get 'zizuminfos/search'
   ##-------------------------------------
@@ -36,7 +37,8 @@ Rails.application.routes.draw do
   #=================================
   
   # 나만의 페이지
-  get '/profile/:id' => 'profile#show', as: 'profile'
+  resources :profiles
+  get '/zizuminfos/:id/follow_destroy', to: 'follows#profile_follow_destroy_toggle', as: 'profile_follow_destroy'
 
   # Follow 기능
   post '/zizuminfos/:id/follow', to: 'follows#zizum_back_follow_toggle', as: 'zizum_back_follow'
