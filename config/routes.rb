@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   #SEARCH----------resouces :restaurants 보다 위에 가게 해야 함! --------------------
   get 'restaurants/search' => "restaurants#search"
   get 'menus/search/' => "menus#search"
-  get 'menus/getMenu' => "menus#getMenu"
+  get 'menus/getGungu' => "menus#getGungu"
   get 'menus/index' => "menus#index", as: 'menus'
   #--------------------------------------------------------------------------
 
