@@ -2,9 +2,6 @@
 <div class="menu">
     <h1 class="title">Filter by Allergy . . .</h1>
 
-<!--- custom 검색옵션 -->
-    
-    
     <%# location은 partial location2는 그냥 %>
     <div class="original-check">
         <%= form_tag(menus_path, method: :get) do %>
@@ -12,6 +9,7 @@
                 <div class="sido">
                 <%#= select :sido, options_for_select([["서울특별시", "서울특별시"], ["부산광역시","부산광역시"], ["대구광역시","대구광역시"],["60대이상","60대이상"]]) %>  
                     <select name="sido" class="origin-sido options selectcss">
+                        <option value="시도" class="sido-opt">--시/도--</option>
                         <option value="서울특별시" class="sido-opt">서울특별시</option>
                         <option value="부산광역시" class="sido-opt">부산광역시</option>
                         <option value="대구광역시" class="sido-opt">대구광역시</option> 
@@ -31,16 +29,13 @@
                     </select>
                 </div>
 
-                <div class="sigungu d-flex">
-                    <div class="buttons">
-                        <div class="jikjup enteropt">시군구 입력</div>
-                        <div class="all enteropt">시군구 전체</div>
-                    </div>
-                    <div class="enter">
-                    <%# 직접 입력할 경우 아래와 같은 field 뜨게%>
-                        <%= text_field_tag :sigungu, params[:sigungu], :class => "sigungu-enter options", :id => "location2", :placeholder => "시군구 직접 입력"%>
-                    </div>
+                <div class="sigungu">
+                     <select name="sigungu" class="origin-sigungu options selectcss">
+                        <%# default 값 %>
+                        <option value="전체" class="sigungu-opt">--전체선택--</option>
+                     </select>
                 </div>
+                
             </div>
 
             <br>
@@ -98,7 +93,7 @@
                 
                 <button type="submit" class="a-submit">
                  Search<i class="fas fa-search"></i>
-                 </button>
+                </button>
             </div>
                 
         <%end%>
@@ -118,61 +113,52 @@
 
 
 <script>
-
+    var sigungu;
+    let sigungu_length;
     $("#custom-alert").click(function(){
         alert("로그인이 필요한 기능입니다");
     });
 
-   
+    $(".origin-sido").click(function() {
+        var sido = $(this).val();
+        console.log(sido);
+        
+        $.ajax({
+            async : true,
+            data : {sido : sido},
+            type : "GET",
+            url : "getGungu",
+            success : function(data){
+                
+                sigungu = data["sigungu_name"];
+                if(sido != "시도"){
+                    sigungu_length = Object.keys(sigungu).length;
+                    
+                    var options = '';
+                    options += '<option value="' +"전체"+ '">' + "--전체선택--" + '</option>';
+                    for (var i = 0; i <sigungu_length; i++) {
+                        options += '<option value="' + sigungu[i]+'"'+'class='+'"sigungu-opt"'+'>' + sigungu[i] + '</option>';
+                    }
 
-       //experiment는 눌렸다는 것 임시로 표시하기 위해서.
-   
+                    $(".origin-sigungu").html(options);
+                }
 
-    $("#custom").click(function(){
-        if( $(this).children("#ct").html() == "내 알러지정보 불러오기")
-        {   
-            $(".original-check").addClass("getinfo");
-            $("#myinfo").removeClass("getinfo");
-            $(".allergy-check").css('visibility','visible');
-            $(".downic").removeClass("fa-caret-down");
-            $(".downic").addClass("fa-caret-up");
-            $(this).children("#ct").html("되돌리기");
-            
-            $(".custom-sido").val($(".origin-sido").val());
-
-            if($("#location2").val()=="전체"){
-                $(".all").addClass("experiment");
             }
-           
-            else {
-                 $(".jikjup").addClass("experiment");
-            }
-               
+        })
+        $(".sigungu").css("display","block");
 
-            $("#location").val($("#location2").val());
-        }
-        else
-        {
-            $(".original-check").removeClass("getinfo");
-            $("#myinfo").addClass("getinfo");
-            $(this).children("#ct").html("내 알러지정보 불러오기");
-            
-          if($("#location").val()=="전체"){
-                $(".all").addClass("experiment");
-            }
-            
-            else {
-                 $(".jikjup").addClass("experiment");
-            }
-
-            $(".origin-sido").val($(".custom-sido").val());
-            $("#location2").val($("#location").val());
-        }
-
+       
+      
     });
 
+    $(".a-submit").click(function(){
+        if($(".origin-sido").val()=="시도"){
+             alert("시/도를 선택하세요");
+             return false;//alert 창 닫기.
+        }
+    });
    
-
+    
 
     
 </script>

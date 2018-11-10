@@ -1,16 +1,17 @@
 class MenusController < ApplicationController
   before_action :authenticate_user!
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
-
+  require 'open-uri'
+  require 'json'
   # GET /menus
   # GET /menus.json
 
   #메뉴로 검색
   def search
+    
   end
 
   def index
-     #초기값 설정. 테러 미안.ㅠㅠ 이렇게 안하니까 에러나서.
      sido = params[:sido]
      sigungu = params[:sigungu]
      a1=0
@@ -69,12 +70,12 @@ class MenusController < ApplicationController
 
 
      # -------------------메뉴(@menus)가 속한 식당 찾기.----------------
-    
+     
      @restaurants = Restaurant.where(:restaurant_name => @menus.map(&:restaurant_name).uniq)
-    #  puts "실험씨작======================================================="
+     #  puts "실험씨작======================================================="
      @temp = Zizuminfo.where(:restaurant_name => @restaurants.map(&:restaurant_name))
      
-     if sigungu == "전체" 
+     if sigungu == "전체"
       @zizums = @temp.where(:sido => sido)
      else
       @zizums = @temp.where("#{:sido} LIKE ? AND #{:sigungu} LIKE ?", sido, sigungu)
@@ -85,22 +86,25 @@ class MenusController < ApplicationController
       
   end
 
-  def getMenu
+  def getGungu
     #받아오기
-       @restaurant_name = params[:res_name]
-       @menus = params[:res_menu]
-       $result = {"restaurant_name" => nil, "menus" => nil}
+    @locations = JSON.parse(File.read(File.join('sigungu.json')))
 
-       $result[:restaurant_name] = @restaurant_name
-       $result[:menus] = @menus
-       $result = $result.to_json
-       puts "실험실험실험============================================="
-       puts $result
-       puts "싫끝====================================================="
+    @sido_name = params[:sido]
+    @sigungu_name = @locations["data"][0][@sido_name]
 
-       respond_to do |format|
-        format.json {render json: $result}
-      end
+    $result={"sido_name" => nil, "sigungu_name"=>nil}
+    $result["sido_name"]=@sido_name
+    $result["sigungu_name"]=@sigungu_name
+    
+    $result = $result.to_json
+    puts "실험실험실험============================================="
+    puts $result
+    puts "싫끝====================================================="
+
+    respond_to do |format|
+      format.json {render json: $result}
+    end
   end
 
   # GET /menus/1
@@ -213,3 +217,4 @@ end
     def menu_params
       params.require(:menu).permit(:menu_name,:a1_maemil,:a2_mil,:a3_daedu,:a4_hodu,:a5_ddangkong,:a6_peach,:a7_tomato,:a8_piggogi, :a9_nanryu, :a10_milk, :a11_ddakgogi, :a12_shoigogi, :a13_saewoo, :a14_godeungeoh, :a15_honghap, :a16_junbok, :a17_gul, :a18_jogaeryu, :a19_gye, :a20_ohjingeoh, :a21_ahwangsan, :restaurant_name, :restaurant_id, :image)
     end
+  end

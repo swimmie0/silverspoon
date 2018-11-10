@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.0'
+gem 'json'
 
 # 팔로우
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master' 

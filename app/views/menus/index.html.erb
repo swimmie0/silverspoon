@@ -1,9 +1,16 @@
 <%# ------------재검색 끝끝끝----------------------------------------------------------------------------- %>
 <br>
-<div class="num_res"><strong><i class="fas fa-utensils"></i><%=params[:sido]%>/<%=params[:sigungu]%></strong>-<%=@zizums.length%>개 결과</div>
+<%if params[:sigungu]==""%>
+    <div class="num_res"><strong><i class="fas fa-utensils"></i><%=params[:sido]%>/전체</strong>-<%=@zizums.length%>개 결과</div>
+<%else%>
+    <div class="num_res"><strong><i class="fas fa-utensils"></i><%=params[:sido]%>/<%=params[:sigungu]%></strong>-<%=@zizums.length%>개 결과</div>
+<%end%>
 
+<div class="re-search">
+    재검색기능 추가하기:지원
+</div>
 <% if @zizums.length == 0%>
-    <p><%=params[:sido]%>/<%=params[:sigungu]%>가 일치하지 않는 시군구이거나 해당 식당이 없습니다.<br>다시 검색해주세요
+    <p><%=params[:sido]%>/<%=params[:sigungu]%>에 해당 식당이 없습니다.<br>다시 검색해주세요
     <br><%= link_to '알레르기 검색', menus_search_path %><br></p>
 <% else %>
     <div class="d-flex justify-content-around">
@@ -105,24 +112,21 @@
 
     $(".card-body").click(function() {
         $("#menuBox").html($(this).children(".seeMenu").siblings('.hideMenu').html());
-  
     });
 
     $(".icon").click(function(){
     // var res = $(this).;
     // alert(res);:
         //var ziz = $(this).siblings(".zizumName").html();
-        if ($(this).hasClass("like")) //follow하고 있다면
-            {
-                $(this).removeClass("like");
-                $(this).addClass("unlike");
-            }
-            else if ($(this).hasClass("unlike"))
-            {
-                $(this).removeClass("unlike");
-                $(this).addClass("like");
-        };
-
+        if ($(this).hasClass("like")) {
+            $(this).removeClass("like");
+            $(this).addClass("unlike");
+        }
+        else if ($(this).hasClass("unlike")){
+            $(this).removeClass("unlike");
+            $(this).addClass("like");
+        }
+    });
 
 
 
