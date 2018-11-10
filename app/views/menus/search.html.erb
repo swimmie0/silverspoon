@@ -8,7 +8,7 @@
             <div class="ziyuk d-flex">
                 <div class="sido">
                 <%#= select :sido, options_for_select([["서울특별시", "서울특별시"], ["부산광역시","부산광역시"], ["대구광역시","대구광역시"],["60대이상","60대이상"]]) %>  
-                    <select name="sido" class="origin-sido options selectcss">
+                    <select name="sido" class="origin-sido sido-select options selectcss">
                         <option value="시도" class="sido-opt">--시/도--</option>
                         <option value="서울특별시" class="sido-opt">서울특별시</option>
                         <option value="부산광역시" class="sido-opt">부산광역시</option>
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="sigungu">
-                     <select name="sigungu" class="origin-sigungu options selectcss">
+                     <select name="sigungu" class="origin-sigungu sigungu-select options selectcss">
                         <%# default 값 %>
                         <option value="전체" class="sigungu-opt">--전체선택--</option>
                      </select>
@@ -102,7 +102,7 @@
     
 </div>
 <div id="myinfo" class="getinfo">
-    <%#= render partial: 'custom' %>
+    <%= render partial: 'custom' %>
 </div>
 <button id="custom" class="mbutton fill"><div id="ct" style="color:black; text-decoration: none;">내 알러지정보 불러오기</div></button>
 
@@ -119,7 +119,7 @@
         alert("로그인이 필요한 기능입니다");
     });
 
-    $(".origin-sido").click(function() {
+    $(".sido-select").click(function() {
         var sido = $(this).val();
         console.log(sido);
         
@@ -133,22 +133,17 @@
                 sigungu = data["sigungu_name"];
                 if(sido != "시도"){
                     sigungu_length = Object.keys(sigungu).length;
-                    
                     var options = '';
                     options += '<option value="' +"전체"+ '">' + "--전체선택--" + '</option>';
                     for (var i = 0; i <sigungu_length; i++) {
                         options += '<option value="' + sigungu[i]+'"'+'class='+'"sigungu-opt"'+'>' + sigungu[i] + '</option>';
                     }
 
-                    $(".origin-sigungu").html(options);
+                    $(".sigungu-select").html(options);
                 }
 
             }
         })
-        $(".sigungu").css("display","block");
-
-       
-      
     });
 
     $(".a-submit").click(function(){
@@ -158,7 +153,55 @@
         }
     });
    
-    
+   $("#custom").click(function(){
+        if( $(this).children("#ct").html() == "내 알러지정보 불러오기")
+        {   
+            $(".original-check").addClass("getinfo");
+            $("#myinfo").removeClass("getinfo");
+            $(".allergy-check").css('visibility','visible');
+           
+            $(this).children("#ct").html("되돌리기");
+            
+            $(".custom-sido").val($(".origin-sido").val());
+            $(".custom-sigungu").val($(".origin-sigungu").val());
+            $(".custom-sigungu").html($(".origin-sigungu").html());
+        }
+        else
+        {
+            $(".original-check").removeClass("getinfo");
+            $("#myinfo").addClass("getinfo");
+            $(this).children("#ct").html("내 알러지정보 불러오기");
+            $(".origin-sido").val($(".custom-sido").val());
+            $(".origin-sigungu").val($(".custom-sigungu").val());
+            $(".origin-sigungu").html($(".custom-sigungu").html());
+        }
 
+    });
+
+    //페이지 뒤로 넘어가기 했을 시에 에러 수정.
+    var sido = $(".sido-select").val();
+    console.log(sido);
     
+    $.ajax({
+        async : true,
+        data : {sido : sido},
+        type : "GET",
+        url : "getGungu",
+        success : function(data){
+            
+            sigungu = data["sigungu_name"];
+            if(sido != "시도"){
+                sigungu_length = Object.keys(sigungu).length;
+                var options = '';
+                options += '<option value="' +"전체"+ '">' + "--전체선택--" + '</option>';
+                for (var i = 0; i <sigungu_length; i++) {
+                    options += '<option value="' + sigungu[i]+'"'+'class='+'"sigungu-opt"'+'>' + sigungu[i] + '</option>';
+                }
+
+                $(".sigungu-select").html(options);
+            }
+
+        }
+    })
+    //에러 수정 끝
 </script>
