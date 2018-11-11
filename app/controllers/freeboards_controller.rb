@@ -2,7 +2,7 @@ class FreeboardsController < ApplicationController
   before_action :set_freeboard, only: [:show, :edit, :update, :destroy]
 
   # GET /freeboards
-  # GET /freeboards.json
+  # GET /freeboards.json 
   def index
     @freeboards = Freeboard.all
     @free_daily = Freeboard.where(category: "일상글")

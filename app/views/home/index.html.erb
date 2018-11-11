@@ -18,8 +18,6 @@
       <% elsif !current_user.profile.nil? %>
       <div>     <%= link_to "My Page", profile_path(current_user.profile.id), class:"headerfont", :style=>"text-decoration: none; color: #454338;"  %>
       <% end %>
-      <% elsif owner_signed_in?%>
-      <%= link_to "나의 식당관리", home_myrt_path, class:"headerfont", :style=>"text-decoration: none; color: #454338;" %>    
     <% end %>
     <div><%= link_to "크롤링 업데이트", "/crawling"%></div>
 
