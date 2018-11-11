@@ -1,102 +1,114 @@
 <%# ------------재검색 끝끝끝----------------------------------------------------------------------------- %>
 <br>
-<div class="num_res"><strong><i class="fas fa-utensils"></i><%=params[:sido]%>/<%=params[:sigungu]%></strong>-<%=@zizums.length%>개 결과</div>
+<%if params[:sigungu]==""%>
+    <div class="num_res"><strong><i class="fas fa-utensils"></i><%=params[:sido]%>/전체</strong>-<%=@zizums.length%>개 결과</div>
+<%else%>
+    <div class="num_res"><strong><i class="fas fa-utensils"></i><%=params[:sido]%>/<%=params[:sigungu]%></strong>-<%=@zizums.length%>개 결과</div>
+<%end%>
 
+<div class="re-search">
+    재검색기능 추가하기:지원
+</div>
 <% if @zizums.length == 0%>
-    <p><%=params[:sido]%>/<%=params[:sigungu]%>가 일치하지 않는 시군구이거나 해당 식당이 없습니다.<br>다시 검색해주세요
+    <p><%=params[:sido]%>/<%=params[:sigungu]%>에 해당 식당이 없습니다.<br>다시 검색해주세요
     <br><%= link_to '알레르기 검색', menus_search_path %><br></p>
 <% else %>
-    <div class="d-flex justify-content-around">
-        <div class="shops">
-            <% @zizums.each do |zizum| %>
-                <div class="card shop-card">
-                    <div class="card-body">
-                        <%# ajax로 전송할 레스토랑 이름%>
-                        <h3 class="seeMenu"><%= zizum.restaurant_name%></h3>
-                        <h3 class="zizumName"><%= zizum.zizum_name%></h3>
-                        <%# display:none 하고 옆으로 메뉴 띄울 것임%>
-                        <div class="hideMenu">
-                            <% @menus.where(:restaurant_name => zizum.restaurant_name).each do |menu|%>
-                                <strong><i class="fas fa-utensil-spoon"></i><%=menu.menu_name%></strong><br>
-                                <strong>--제공되지 않은 알러지항목:</strong>
-                                <%if menu.a1_maemil == -1 %>메밀 <%end%>
-                                <%if menu.a2_mil == -1%>밀<%end%>
-                                <%if menu.a3_daedu == -1%>대두<%end%>
-                                <%if menu.a4_hodu == -1%>호두<%end%>
-                                <%if menu.a5_ddangkong == -1%>땅콩<%end%>
-                                <%if menu.a6_peach == -1%>복숭아<%end%>
-                                <%if menu.a7_tomato == -1%>토마토<%end%>
-                                <%if menu.a8_piggogi == -1%>돼지고기<%end%>
-                                <%if menu.a9_nanryu == -1%>난류<%end%>
-                                <%if menu.a10_milk == -1%>우유<%end%>
-                                <%if menu.a11_ddakgogi == -1%>닭고기<%end%>
-                                <%if menu.a12_shoigogi == -1%>쇠고기<%end%>
-                                <%if menu.a13_saewoo == -1%>새우<%end%>
-                                <%if menu.a14_godeungeoh == -1%>고등어<%end%>
-                                <%if menu.a15_honghap == -1%>홍합<%end%>
-                                <%if menu.a16_junbok == -1%>전복<%end%>
-                                <%if menu.a17_gul == -1%>굴<%end%>
-                                <%if menu.a18_jogaeryu == -1%>조개류<%end%>
-                                <%if menu.a19_gye == -1%>게<%end%>
-                                <%if menu.a20_ohjingeoh == -1%>오징어<%end%>
-                                <%if menu.a21_ahwangsan == -1%>아황산류<%end%>
-                                <br>
-                                <strong>--교차 위험군:</strong>
-                                <% if menu.a1_maemil == -2 %>메밀 <%end%>
-                                <%if menu.a2_mil == -2%>밀<%end%>
-                                <%if menu.a3_daedu == -2%>대두<%end%>
-                                <%if menu.a4_hodu == -2%>호두<%end%>
-                                <%if menu.a5_ddangkong == -2%>땅콩<%end%>
-                                <%if menu.a6_peach == -2%>복숭아<%end%>
-                                <%if menu.a7_tomato == -2%>토마토<%end%>
-                                <%if menu.a8_piggogi == -2%>돼지고기<%end%>
-                                <%if menu.a9_nanryu == -2%>난류<%end%>
-                                <%if menu.a10_milk == -2%>우유<%end%>
-                                <%if menu.a11_ddakgogi == -2%>닭고기<%end%>
-                                <%if menu.a12_shoigogi == -2%>쇠고기<%end%>
-                                <%if menu.a13_saewoo == -2%>새우<%end%>
-                                <%if menu.a14_godeungeoh == -2%>고등어<%end%>
-                                <%if menu.a15_honghap == -2%>홍합<%end%>
-                                <%if menu.a16_junbok == -2%>전복<%end%>
-                                <%if menu.a17_gul == -2%>굴<%end%>
-                                <%if menu.a18_jogaeryu == -2%>조개류<%end%>
-                                <%if menu.a19_gye == -2%>게<%end%>
-                                <%if menu.a20_ohjingeoh == -2%>오징어<%end%>
-                                <%if menu.a21_ahwangsan == -2%>아황산류<%end%>
-                                <br><br>
-                            <% end%>
-                        </div>
-                        <p class="card-text"><%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
-                        <p class="card-text"><%=link_to '식당상세페이지',zizuminfo_path(id: zizum.id)%></p>
 
-                        <% if zizum.followed_by?(current_user) %>
-                            <!-- 좋아요를 했다면 -->
-                            <%# link_to (fa_icon('thumbs-up', style: 'color: blue'), like_article_path, method: :post) %>
-                            <%= link_to(fa_icon('heart', class: "like icon"), 
-                            zizum_front_follow_path(id: zizum.id, utf8: params[:utf8], sido: params[:sido] , sigungu: params[:sigungu], a9_nanryu: params[:a9_nanryu], a6_peach: params[:a6_peach], a7_tomato: params[:a7_tomato], a1_maemil: params[:a1_maemil], a2_mil: params[:a2_mil], a3_daedu: params[:a3_daedu], a11_ddakgogi: params[:a11_ddakgogi], a12_shoigogi: params[:a12_shoigogi], a8_piggogi: params[:a8_piggogi], a13_saewoo: params[:a13_saewoo], a14_godeungeoh: params[:a14_godeungeoh], a15_honghap: params[:a15_honghap], a16_junbok: params[:a16_junbok], a17_gul: params[:a17_gul], a18_jogaeryu: params[:a18_jogaeryu], a19_gye: params[:a19_gye], a20_ohjingeoh: params[:a20_ohjingeoh], a4_hodu: params[:a4_hodu], a5_ddangkong: params[:a5_ddangkong], a21_ahwangsan: params[:a21_ahwangsan]),
-                            method: :post)%> 
-                            <%# <p id="like-num"></p> %>
-                            <%#= link_to("이미 라이크 눌렀어요!", zizum_front_follow_path(params), method: :post) %>
-                            <!-- 좋아요를 안 했다면 -->
-                        <% else %>
-                            <%# link_to (fa_icon('thumbs-up', style: 'text-decoration: none'), like_article_path, method: :post) %>
-                            <%= link_to(fa_icon('heart', class: "unlike icon"), 
-                            zizum_front_follow_path(id: zizum.id, utf8: params[:utf8], sido: params[:sido] , sigungu: params[:sigungu], a9_nanryu: params[:a9_nanryu], a6_peach: params[:a6_peach], a7_tomato: params[:a7_tomato], a1_maemil: params[:a1_maemil], a2_mil: params[:a2_mil], a3_daedu: params[:a3_daedu], a11_ddakgogi: params[:a11_ddakgogi], a12_shoigogi: params[:a12_shoigogi], a8_piggogi: params[:a8_piggogi], a13_saewoo: params[:a13_saewoo], a14_godeungeoh: params[:a14_godeungeoh], a15_honghap: params[:a15_honghap], a16_junbok: params[:a16_junbok], a17_gul: params[:a17_gul], a18_jogaeryu: params[:a18_jogaeryu], a19_gye: params[:a19_gye], a20_ohjingeoh: params[:a20_ohjingeoh], a4_hodu: params[:a4_hodu], a5_ddangkong: params[:a5_ddangkong], a21_ahwangsan: params[:a21_ahwangsan]), 
-                            method: :post)%> 
-                            <%#= zizum.followers_count%>
-                            <%#= link_to("라이크 눌러요!", zizum_front_follow_path(params), method: :post) %>
-                        <% end %>
-                      
+<div class="zizumOrder">
+    <button type="button" class="btn btn-outline-dark default-order">가나다순</button>
+    <button type="button" class="btn btn-outline-dark famous-order">인기순</button>
+</div>
+<div class="d-flex justify-content-around">
+    <div class="shops">
+        <% @zizums.each do |zizum| %>
+            <div class="card shop-card">
+                <div class="card-body">
+                    <%# ajax로 전송할 레스토랑 이름%>
+                    <h3 class="seeMenu"><%= zizum.restaurant_name%></h3>
+                    <h3 class="zizumName"><%= zizum.zizum_name%></h3>
+                    <%# display:none 하고 옆으로 메뉴 띄울 것임%>
+                    <div class="hideMenu">
+                        <% @menus.where(:restaurant_name => zizum.restaurant_name).each do |menu|%>
+                            <strong><i class="fas fa-utensil-spoon"></i><%=menu.menu_name%></strong><br>
+                            <strong>--제공되지 않은 알러지항목:</strong>
+                            <%if menu.a1_maemil == -1 %>메밀 <%end%>
+                            <%if menu.a2_mil == -1%>밀<%end%>
+                            <%if menu.a3_daedu == -1%>대두<%end%>
+                            <%if menu.a4_hodu == -1%>호두<%end%>
+                            <%if menu.a5_ddangkong == -1%>땅콩<%end%>
+                            <%if menu.a6_peach == -1%>복숭아<%end%>
+                            <%if menu.a7_tomato == -1%>토마토<%end%>
+                            <%if menu.a8_piggogi == -1%>돼지고기<%end%>
+                            <%if menu.a9_nanryu == -1%>난류<%end%>
+                            <%if menu.a10_milk == -1%>우유<%end%>
+                            <%if menu.a11_ddakgogi == -1%>닭고기<%end%>
+                            <%if menu.a12_shoigogi == -1%>쇠고기<%end%>
+                            <%if menu.a13_saewoo == -1%>새우<%end%>
+                            <%if menu.a14_godeungeoh == -1%>고등어<%end%>
+                            <%if menu.a15_honghap == -1%>홍합<%end%>
+                            <%if menu.a16_junbok == -1%>전복<%end%>
+                            <%if menu.a17_gul == -1%>굴<%end%>
+                            <%if menu.a18_jogaeryu == -1%>조개류<%end%>
+                            <%if menu.a19_gye == -1%>게<%end%>
+                            <%if menu.a20_ohjingeoh == -1%>오징어<%end%>
+                            <%if menu.a21_ahwangsan == -1%>아황산류<%end%>
+                            <br>
+                            <strong>--교차 위험군:</strong>
+                            <% if menu.a1_maemil == -2 %>메밀 <%end%>
+                            <%if menu.a2_mil == -2%>밀<%end%>
+                            <%if menu.a3_daedu == -2%>대두<%end%>
+                            <%if menu.a4_hodu == -2%>호두<%end%>
+                            <%if menu.a5_ddangkong == -2%>땅콩<%end%>
+                            <%if menu.a6_peach == -2%>복숭아<%end%>
+                            <%if menu.a7_tomato == -2%>토마토<%end%>
+                            <%if menu.a8_piggogi == -2%>돼지고기<%end%>
+                            <%if menu.a9_nanryu == -2%>난류<%end%>
+                            <%if menu.a10_milk == -2%>우유<%end%>
+                            <%if menu.a11_ddakgogi == -2%>닭고기<%end%>
+                            <%if menu.a12_shoigogi == -2%>쇠고기<%end%>
+                            <%if menu.a13_saewoo == -2%>새우<%end%>
+                            <%if menu.a14_godeungeoh == -2%>고등어<%end%>
+                            <%if menu.a15_honghap == -2%>홍합<%end%>
+                            <%if menu.a16_junbok == -2%>전복<%end%>
+                            <%if menu.a17_gul == -2%>굴<%end%>
+                            <%if menu.a18_jogaeryu == -2%>조개류<%end%>
+                            <%if menu.a19_gye == -2%>게<%end%>
+                            <%if menu.a20_ohjingeoh == -2%>오징어<%end%>
+                            <%if menu.a21_ahwangsan == -2%>아황산류<%end%>
+                            <br><br>
+                        <% end%>
                     </div>
+                    <p class="card-text"><%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
+                    <p class="card-text"><%=link_to '식당상세페이지',zizuminfo_path(id: zizum.id)%></p>
+
+                    <% if zizum.followed_by?(current_user) %>
+                        <!-- 좋아요를 했다면 -->
+                        <%# link_to (fa_icon('thumbs-up', style: 'color: blue'), like_article_path, method: :post) %>
+                        <%= link_to(fa_icon('heart', class: "like icon"), 
+                        zizum_front_follow_path(id: zizum.id, utf8: params[:utf8], sido: params[:sido] , sigungu: params[:sigungu], a9_nanryu: params[:a9_nanryu], a6_peach: params[:a6_peach], a7_tomato: params[:a7_tomato], a1_maemil: params[:a1_maemil], a2_mil: params[:a2_mil], a3_daedu: params[:a3_daedu], a11_ddakgogi: params[:a11_ddakgogi], a12_shoigogi: params[:a12_shoigogi], a8_piggogi: params[:a8_piggogi], a13_saewoo: params[:a13_saewoo], a14_godeungeoh: params[:a14_godeungeoh], a15_honghap: params[:a15_honghap], a16_junbok: params[:a16_junbok], a17_gul: params[:a17_gul], a18_jogaeryu: params[:a18_jogaeryu], a19_gye: params[:a19_gye], a20_ohjingeoh: params[:a20_ohjingeoh], a4_hodu: params[:a4_hodu], a5_ddangkong: params[:a5_ddangkong], a21_ahwangsan: params[:a21_ahwangsan]),
+                        method: :post)%> 
+                        <%# <p id="like-num"></p> %>
+                        <%#= link_to("이미 라이크 눌렀어요!", zizum_front_follow_path(params), method: :post) %>
+                        <!-- 좋아요를 안 했다면 -->
+                    <% else %>
+                        <%# link_to (fa_icon('thumbs-up', style: 'text-decoration: none'), like_article_path, method: :post) %>
+                        <%= link_to(fa_icon('heart', class: "unlike icon"), 
+                        zizum_front_follow_path(id: zizum.id, utf8: params[:utf8], sido: params[:sido] , sigungu: params[:sigungu], a9_nanryu: params[:a9_nanryu], a6_peach: params[:a6_peach], a7_tomato: params[:a7_tomato], a1_maemil: params[:a1_maemil], a2_mil: params[:a2_mil], a3_daedu: params[:a3_daedu], a11_ddakgogi: params[:a11_ddakgogi], a12_shoigogi: params[:a12_shoigogi], a8_piggogi: params[:a8_piggogi], a13_saewoo: params[:a13_saewoo], a14_godeungeoh: params[:a14_godeungeoh], a15_honghap: params[:a15_honghap], a16_junbok: params[:a16_junbok], a17_gul: params[:a17_gul], a18_jogaeryu: params[:a18_jogaeryu], a19_gye: params[:a19_gye], a20_ohjingeoh: params[:a20_ohjingeoh], a4_hodu: params[:a4_hodu], a5_ddangkong: params[:a5_ddangkong], a21_ahwangsan: params[:a21_ahwangsan]), 
+                        method: :post)%> 
+                        <%#= zizum.followers_count%>
+                        <%#= link_to("라이크 눌러요!", zizum_front_follow_path(params), method: :post) %>
+                    <% end %>
+                    
                 </div>
-            <% end %>
-        </div>
-        <%# 해당 메뉴가 뜨는 자리. %>
-        <div id="menuBox">
-        (해당 메뉴 뜨는 자리) 
-        즐거운 한끼식사 걱정없식
-        </div>
+            </div>
+        <% end %>
     </div>
+    <%# 해당 메뉴가 뜨는 자리. %>
+    <div id="menuBox">
+    (해당 메뉴 뜨는 자리) 
+    즐거운 한끼식사 걱정없식
+    </div>
+</div>
 
 <%end%>
 </div>
@@ -105,24 +117,21 @@
 
     $(".card-body").click(function() {
         $("#menuBox").html($(this).children(".seeMenu").siblings('.hideMenu').html());
-  
     });
 
     $(".icon").click(function(){
     // var res = $(this).;
     // alert(res);:
         //var ziz = $(this).siblings(".zizumName").html();
-        if ($(this).hasClass("like")) //follow하고 있다면
-            {
-                $(this).removeClass("like");
-                $(this).addClass("unlike");
-            }
-            else if ($(this).hasClass("unlike"))
-            {
-                $(this).removeClass("unlike");
-                $(this).addClass("like");
-        };
-
+        if ($(this).hasClass("like")) {
+            $(this).removeClass("like");
+            $(this).addClass("unlike");
+        }
+        else if ($(this).hasClass("unlike")){
+            $(this).removeClass("unlike");
+            $(this).addClass("like");
+        }
+    });
 
 
 
