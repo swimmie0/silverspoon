@@ -21,6 +21,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       #profileimg
       t.string :profileimg
 
+      #전문가
+      t.boolean :isExpert, default: false
+
       ## Rememberable
       t.datetime :remember_created_at
 
@@ -42,7 +45,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-
+      t.boolean :admin, default: false
       t.timestamps null: false
     end
 

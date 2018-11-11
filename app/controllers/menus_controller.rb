@@ -128,14 +128,14 @@ class MenusController < ApplicationController
     @zizums_num =  Zizuminfo.where(:restaurant_id => @restaurant).count
     @rt_name = Restaurant.where(:id => @restaurant).pluck(:restaurant_name)
 
-    for n in 0...@zizums_num
-    #메뉴추가알림 메뉴는 restaurant랑 연동//좋아요는 zizuminfo랑연동//
-      @zizums[n].followers.each do |follower| ##restaurant의 zizum 팔로워// 메뉴가 속한 식당을 찾고 그 지점을 찾기
-        @new_alarm = NewAlarm.create! user: follower , #좋아요한 사용자
-        content:"#{@rt_name}의 메뉴가 추가되었습니다.", # 워딩 수정하기 " #{@restuarant_name} #{@zizum_name}""
-        link: request.referrer #수정하기 해당 article path로
-      end
-    end
+    # for n in 0...@zizums_num
+    # #메뉴추가알림 메뉴는 restaurant랑 연동//좋아요는 zizuminfo랑연동//
+    #   @zizums[n].followers.each do |follower| ##restaurant의 zizum 팔로워// 메뉴가 속한 식당을 찾고 그 지점을 찾기
+    #     @new_alarm = NewAlarm.create! user: follower , #좋아요한 사용자
+    #     content:"#{@rt_name}의 메뉴가 추가되었습니다.", # 워딩 수정하기 " #{@restuarant_name} #{@zizum_name}""
+    #     link: request.referrer #수정하기 해당 article path로
+    #   end
+    # end
   
 
     respond_to do |format|
@@ -168,13 +168,13 @@ class MenusController < ApplicationController
  @zizums_num =  Zizuminfo.where(:restaurant_id => @restaurant).count
  @rt_name = Restaurant.where(:id => @restaurant).pluck(:restaurant_name)
 
- for n in 0...@zizums_num
-   @zizums[n].followers.each do |follower|
-     @new_alarm = NewAlarm.create! user: follower , #좋아요한 사용자
-     content:"#{@rt_name}의 메뉴가 수정되었습니다.", # 워딩 수정하기 " #{@restuarant_name} #{@zizum_name}""
-     link: request.referrer 
-   end
- end
+#  for n in 0...@zizums_num
+#    @zizums[n].followers.each do |follower|
+#      @new_alarm = NewAlarm.create! user: follower , #좋아요한 사용자
+#      content:"#{@rt_name}의 메뉴가 수정되었습니다.", # 워딩 수정하기 " #{@restuarant_name} #{@zizum_name}""
+#      link: request.referrer 
+#    end
+#  end
 end
 
   # DELETE /menus/1
@@ -188,13 +188,13 @@ end
     @zizums_num =  Zizuminfo.where(:restaurant_id => @restaurant).count
     @rt_name = Restaurant.where(:id => @restaurant).pluck(:restaurant_name)
    
-    for n in 0...@zizums_num
-      @zizums[n].followers.each do |follower| 
-        @new_alarm = NewAlarm.create! user: follower , #좋아요한 사용자
-        content:"#{@rt_name.to_s.gsub('["','').gsub('"]','')}의 메뉴 #{@menu.menu_name}이/가 삭제되었습니다.", # 워딩 수정하기 " #{@restuarant_name} #{@zizum_name}""
-        link: request.referrer #수정하기 해당 article path로
-      end
-    end
+    # for n in 0...@zizums_num
+    #   @zizums[n].followers.each do |follower| 
+    #     @new_alarm = NewAlarm.create! user: follower , #좋아요한 사용자
+    #     content:"#{@rt_name.to_s.gsub('["','').gsub('"]','')}의 메뉴 #{@menu.menu_name}이/가 삭제되었습니다.", # 워딩 수정하기 " #{@restuarant_name} #{@zizum_name}""
+    #     link: request.referrer #수정하기 해당 article path로
+    #   end
+    # end
      
 
     respond_to do |format|
@@ -213,3 +213,4 @@ end
     def menu_params
       params.require(:menu).permit(:menu_name,:a1_maemil,:a2_mil,:a3_daedu,:a4_hodu,:a5_ddangkong,:a6_peach,:a7_tomato,:a8_piggogi, :a9_nanryu, :a10_milk, :a11_ddakgogi, :a12_shoigogi, :a13_saewoo, :a14_godeungeoh, :a15_honghap, :a16_junbok, :a17_gul, :a18_jogaeryu, :a19_gye, :a20_ohjingeoh, :a21_ahwangsan, :restaurant_name, :restaurant_id, :image)
     end
+  end

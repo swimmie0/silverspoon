@@ -10,23 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2018_11_09_010144) do
+ActiveRecord::Schema.define(version: 2018_11_11_153214) do
 
-  create_table "follows", force: :cascade do |t|
-    t.string "followable_type", null: false
-    t.integer "followable_id", null: false
-    t.string "follower_type", null: false
-    t.integer "follower_id", null: false
-    t.boolean "blocked", default: false, null: false
+  create_table "admins", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["followable_id", "followable_type"], name: "fk_followables"
-    t.index ["followable_type", "followable_id"], name: "index_follows_on_followable_type_and_followable_id"
-    t.index ["follower_id", "follower_type"], name: "fk_follows"
-    t.index ["follower_type", "follower_id"], name: "index_follows_on_follower_type_and_follower_id"
-=======
-ActiveRecord::Schema.define(version: 2018_11_08_175749) do
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
 
   create_table "comments", force: :cascade do |t|
     t.integer "commentable_id"
@@ -43,7 +39,20 @@ ActiveRecord::Schema.define(version: 2018_11_08_175749) do
     t.datetime "updated_at", null: false
     t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
     t.index ["user_id"], name: "index_comments_on_user_id"
->>>>>>> c902fd00f0270f2bd683aa96997159b9d8c7e452
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.string "followable_type", null: false
+    t.integer "followable_id", null: false
+    t.string "follower_type", null: false
+    t.integer "follower_id", null: false
+    t.boolean "blocked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followable_id", "followable_type"], name: "fk_followables"
+    t.index ["followable_type", "followable_id"], name: "index_follows_on_followable_type_and_followable_id"
+    t.index ["follower_id", "follower_type"], name: "fk_follows"
+    t.index ["follower_type", "follower_id"], name: "index_follows_on_follower_type_and_follower_id"
   end
 
   create_table "freeboards", force: :cascade do |t|
@@ -97,13 +106,6 @@ ActiveRecord::Schema.define(version: 2018_11_08_175749) do
     t.index ["restaurant_id"], name: "index_menus_on_restaurant_id"
   end
 
-<<<<<<< HEAD
-  create_table "profiles", force: :cascade do |t|
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_profiles_on_user_id"
-=======
   create_table "new_alarms", force: :cascade do |t|
     t.string "content"
     t.integer "user_id"
@@ -111,6 +113,13 @@ ActiveRecord::Schema.define(version: 2018_11_08_175749) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_new_alarms_on_user_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "read_marks", force: :cascade do |t|
@@ -122,7 +131,6 @@ ActiveRecord::Schema.define(version: 2018_11_08_175749) do
     t.index ["readable_type", "readable_id"], name: "index_read_marks_on_readable_type_and_readable_id"
     t.index ["reader_id", "reader_type", "readable_type", "readable_id"], name: "read_marks_reader_readable_index", unique: true
     t.index ["reader_type", "reader_id"], name: "index_read_marks_on_reader_type_and_reader_id"
->>>>>>> c902fd00f0270f2bd683aa96997159b9d8c7e452
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -198,12 +206,14 @@ ActiveRecord::Schema.define(version: 2018_11_08_175749) do
     t.string "gender", default: ""
     t.string "ages"
     t.string "profileimg"
+    t.boolean "isExpert", default: false
     t.datetime "remember_created_at"
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
