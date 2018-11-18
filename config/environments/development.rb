@@ -43,7 +43,7 @@ Rails.application.configure do
   #   :port => 587,
   #   :domain => "helpfood.com",
   #   :user_name => "postmaster@helpfood.com",
-  #   :password => "ad3fe347c5258f17aaad317f66d20212-9525e19d-8eaaf072"
+  #   :password => ""
   # }
   # config.action_mailer.default_url_options = {host:'localhost:3000'}
 

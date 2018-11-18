@@ -4,7 +4,7 @@ class FreeboardsController < ApplicationController
   # GET /freeboards
   # GET /freeboards.json 
   def index
-    if current_user.name == ""
+    if user_signed_in? && current_user.name == ""
       flash[:warning] ='닉네임을 설정해주세요'
       redirect_to edit_user_registration_path
     end
@@ -13,19 +13,28 @@ class FreeboardsController < ApplicationController
     @free_daily = Freeboard.where(category: "일상글")
     @free_information = Freeboard.where(category: "정보글")
     @free_qna = Freeboard.where(category: "질문글")
+    @free_crowd = Freeboard.where(category: "제보글")    
   end
 
   # GET /freeboards/1
   # GET /freeboards/1.json
   def show
     @freeboard = Freeboard.find(params[:id]) 
+    @writer = @freeboard.user
+
     if user_signed_in?
-      @new_comment  = Comment.build_from(@freeboard, current_user.id, "")  
+      @new_comment  = Comment.build_from(@freeboard, current_user.id, "") 
+      if current_user.name == ""
+        flash[:warning] ='닉네임을 설정해주세요'
+        redirect_to edit_user_registration_path
+      end  
     end
-    if current_user.name == ""
-      flash[:warning] ='닉네임을 설정해주세요'
-      redirect_to edit_user_registration_path
+
+    if @freeboard.locked && @writer != current_user
+      flash[:warning] = '비밀글은 작성자와 관리자만 볼 수 있습니다.'
+      redirect_to freeboards_path
     end
+
   end
 
   # GET /freeboards/new
@@ -74,7 +83,7 @@ class FreeboardsController < ApplicationController
   def destroy
     @freeboard.destroy
     respond_to do |format|
-      format.html { redirect_to freeboards_url, notice: 'Freeboard was successfully destroyed.' }
+      format.html { redirect_back(fallback_location: root_path) }
       format.json { head :no_content }
     end
   end
@@ -87,6 +96,6 @@ class FreeboardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def freeboard_params
-      params.require(:freeboard).permit(:title, :content, :name, :category, :user_id)
+      params.require(:freeboard).permit(:title, :content, :name, :category, :locked, :user_id)
     end
 end

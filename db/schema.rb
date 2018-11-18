@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2018_11_11_153214) do
     t.text "content"
     t.string "name"
     t.string "category"
+    t.boolean "locked", default: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -11,7 +11,8 @@
       <%# <a class="dropdown-item" id="all">전체</a>       %>
       <a class="dropdown-item" id="showSingle" target="d">일상글</a>
       <a class="dropdown-item" id="showSingle" target="i">정보글</a>
-      <a class="dropdown-item" id="showSingle" target="q">질문글</a></div>      
+      <a class="dropdown-item" id="showSingle" target="q">질문글</a>
+      <a class="dropdown-item" id="showSingle" target="c">제보글</a></div>                
    </th>
       <th>Title</th>
       <th>Name</th>
@@ -28,9 +29,10 @@
         <td><%= link_to freeboard.title, freeboard %></td>
         <td><%= freeboard.name %></td>
         <td> <%= freeboard.comment_threads.count %></td>
+        <td><% if freeboard.locked %>LOCKED<% end %></td>
         <%# <td><%= link_to 'Show', freeboard %>
         <%# <td><%= link_to 'Edit', edit_freeboard_path(freeboard) %>
-        <%# <td><%= link_to 'Destroy', freeboard, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%# <td><%= link_to 'Destroy', freeboard, method: :delete, data: { confirm: 'Are you sure?' }%>
       </tr>
     <% end %>
 
@@ -58,6 +60,16 @@
         <td><%= link_to q.title, q %></td>
         <td><%= q.name %></td>
         <td> <%= q.comment_threads.count %></td>        
+      </tr>
+    <% end %>
+
+    <% @free_crowd.each do |c| %>
+      <tr class="postc" style= "display:none">
+        <td><%= c.category %></td> 
+        <td><%= link_to c.title, c %></td>
+        <td><%= c.name %></td>
+        <td> <%= c.comment_threads.count %></td>   
+        <td><% if c.locked %>LOCKED<% end %></td>
       </tr>
     <% end %>
 
