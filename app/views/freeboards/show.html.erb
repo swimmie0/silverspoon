@@ -19,4 +19,8 @@
 <%= link_to 'Edit', edit_freeboard_path(@freeboard) %> |
 <%= link_to 'Back', freeboards_path %>
 
-<%= render partial: "comments/template", locals: {commentable: @freeboard, new_comment: @comment} %>
+<% if @freeboard.category == "질문글" %>
+  <%= render partial: "comments/answer", locals: {commentable: @freeboard, new_comment: @comment} %>
+<% else %>
+  <%= render partial: "comments/template", locals: {commentable: @freeboard, new_comment: @comment} %>
+<% end %>

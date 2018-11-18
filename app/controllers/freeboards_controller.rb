@@ -4,6 +4,11 @@ class FreeboardsController < ApplicationController
   # GET /freeboards
   # GET /freeboards.json 
   def index
+    if current_user.name == ""
+      flash[:warning] ='닉네임을 설정해주세요'
+      redirect_to edit_user_registration_path
+    end
+
     @freeboards = Freeboard.all
     @free_daily = Freeboard.where(category: "일상글")
     @free_information = Freeboard.where(category: "정보글")
@@ -17,10 +22,14 @@ class FreeboardsController < ApplicationController
     if user_signed_in?
       @new_comment  = Comment.build_from(@freeboard, current_user.id, "")  
     end
+    if current_user.name == ""
+      flash[:warning] ='닉네임을 설정해주세요'
+      redirect_to edit_user_registration_path
+    end
   end
 
   # GET /freeboards/new
-  def new
+  def new   
     @freeboard = Freeboard.new
   end
 

@@ -3,6 +3,7 @@
 <%# <%= resource_name.to_s.humanize %> 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
+  <h5>필수</h5>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" , class: "form-control" %>
@@ -14,7 +15,7 @@
   </div>
   <hr>
 
- <hr>
+ <hr><h5>선택</h5>
   <div class="field">
     <h5> 성별 </h5> 
       <%= f.radio_button :gender, "male" %> 남자<br/>
