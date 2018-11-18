@@ -5,6 +5,7 @@ class CreateFreeboards < ActiveRecord::Migration[5.2]
       t.text :content
       t.string :name
       t.string :category
+      t.boolean :locked, default: false
       t.references :user, foreign_key: true
 
       t.timestamps
