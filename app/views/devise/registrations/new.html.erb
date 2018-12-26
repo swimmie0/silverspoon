@@ -2,7 +2,7 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
-
+<h5>필수</h5>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
@@ -27,7 +27,7 @@
     <%= f.text_field :name, class: "form-control", :required => true %>
   </div>
 
- <hr>
+ <hr><h5> 선택 </h5> 
   <div class="field">
     <h5> 성별 </h5> 
       <%= f.radio_button :gender, "남" %> 남자<br/>
