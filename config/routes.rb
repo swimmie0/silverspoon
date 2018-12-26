@@ -56,9 +56,20 @@ Rails.application.routes.draw do
   get '/crawling' => 'restaurants#crawling'
   #================================
 
-  # login
-  devise_for :users, :controllers => { omniauth_callbacks: 'user/omniauth_callbacks' }
+  # user
+  devise_for :users, :controllers => { omniauth_callbacks: 'user/omniauth_callbacks', registrations: 'user/registrations' }
+  # post '/users/checkDouble' => 'user/registrations#checkDouble'
+  # post "/users/checkDouble" => "user/registrations#checkDouble" 
+  devise_scope :user do
+     post "/users/checkDouble" => "user/registrations#checkDouble" 
+     post "/checkDouble" => "user/registrations#checkDouble"
+     get "/users" => 'user/registrations#new'
+  end
+
   resources :comments, only: [:create, :destroy]
+ 
+
+
   # 알림
   get '/new_alarms/read_all' => 'new_alarms#read_all'
   resources :new_alarms #순서이대로
