@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(version: 2018_11_11_153214) do
     t.text "content"
     t.string "name"
     t.string "category"
-    t.boolean "locked", default: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -207,14 +206,12 @@ ActiveRecord::Schema.define(version: 2018_11_11_153214) do
     t.string "gender", default: ""
     t.string "ages"
     t.string "profileimg"
-    t.boolean "isExpert", default: false
     t.datetime "remember_created_at"
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
