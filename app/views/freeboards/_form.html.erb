@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label "카테고리" %>
-  <%= form.select :category, options_for_select([["일상글", "일상글"], ["정보글","정보글"], ["질문글","질문글"]]) %> <%# {prompt:'카테고리선택'}%>  
+  <%= form.select :category, options_for_select([["일상글", "일상글"], ["정보글","정보글"], ["질문글","질문글"],["제보글","제보글"]]) %> <%# {prompt:'카테고리선택'}%>  
 
   <div class="field">
     <%= form.label :title %>
@@ -24,8 +24,14 @@
     <%= form.label :content %>
     <%= form.text_area :content %>
   </div>
+
+  <div class="field">
+      <%= form.radio_button :locked, true %> 비밀글<br/>
+  </div>
   
   <div class="actions">
     <%= form.submit %>
   </div>
+
+
 <% end %>

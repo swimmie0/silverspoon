@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   ##SEARCH------resources :zizuminfos 보다 위에
   get 'zizuminfos/search'
   ##-------------------------------------
@@ -63,7 +62,8 @@ Rails.application.routes.draw do
   # 알림
   get '/new_alarms/read_all' => 'new_alarms#read_all'
   resources :new_alarms #순서이대로
- 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'# 맨아래에 둬주세요
+  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
