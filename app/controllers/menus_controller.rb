@@ -83,8 +83,6 @@ class MenusController < ApplicationController
      end
      ### @menus.where(:shop_id => 어쩌고 ) 이용하기 (views 에서 보일 때)
 
-
-      
   end
 
   def getGungu
@@ -107,6 +105,7 @@ class MenusController < ApplicationController
       format.json {render json: $result}
     end
   end
+
 
   # GET /menus/1
   # GET /menus/1.json
