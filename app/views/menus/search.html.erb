@@ -2,6 +2,7 @@
 <div class="menu">
     <h1 class="title">Filter by Allergy . . .</h1>
 
+
     <%# location은 partial location2는 그냥 %>
     <div class="original-check">
         <%= form_tag(menus_path, method: :get) do %>
@@ -9,7 +10,7 @@
                 <div class="sido">
                 <%#= select :sido, options_for_select([["서울특별시", "서울특별시"], ["부산광역시","부산광역시"], ["대구광역시","대구광역시"],["60대이상","60대이상"]]) %>  
                     <select name="sido" class="origin-sido sido-select options selectcss">
-                        <option value="시도" class="sido-opt">--시/도--</option>
+                        <option value="전체" class="sido-opt">--시/도--</option>
                         <option value="서울특별시" class="sido-opt">서울특별시</option>
                         <option value="부산광역시" class="sido-opt">부산광역시</option>
                         <option value="대구광역시" class="sido-opt">대구광역시</option> 
@@ -121,7 +122,6 @@
 
     $(".sido-select").click(function() {
         var sido = $(this).val();
-        console.log(sido);
         
         $.ajax({
             async : true,
@@ -131,7 +131,7 @@
             success : function(data){
                 
                 sigungu = data["sigungu_name"];
-                if(sido != "시도"){
+                if(sido != "전체"){
                     sigungu_length = Object.keys(sigungu).length;
                     var options = '';
                     options += '<option value="' +"전체"+ '">' + "--전체선택--" + '</option>';
@@ -146,12 +146,12 @@
         })
     });
 
-    $(".a-submit").click(function(){
-        if($(".origin-sido").val()=="시도"){
-             alert("시/도를 선택하세요");
-             return false;//alert 창 닫기.
-        }
-    });
+    // $(".a-submit").click(function(){
+    //     if($(".origin-sido").val()=="시도"){
+    //          alert("시/도를 선택하세요");
+    //          return false;//alert 창 닫기.
+    //     }
+    // });
    
    $("#custom").click(function(){
         if( $(this).children("#ct").html() == "내 알러지정보 불러오기")
@@ -164,7 +164,7 @@
             
             $(".custom-sido").val($(".origin-sido").val());
             $(".custom-sigungu").val($(".origin-sigungu").val());
-            $(".custom-sigungu").html($(".origin-sigungu").html());
+            
         }
         else
         {
@@ -173,14 +173,13 @@
             $(this).children("#ct").html("내 알러지정보 불러오기");
             $(".origin-sido").val($(".custom-sido").val());
             $(".origin-sigungu").val($(".custom-sigungu").val());
-            $(".origin-sigungu").html($(".custom-sigungu").html());
+            
         }
 
     });
 
     //페이지 뒤로 넘어가기 했을 시에 에러 수정.
     var sido = $(".sido-select").val();
-    console.log(sido);
     
     $.ajax({
         async : true,
@@ -190,7 +189,7 @@
         success : function(data){
             
             sigungu = data["sigungu_name"];
-            if(sido != "시도"){
+            if(sido != "전체"){
                 sigungu_length = Object.keys(sigungu).length;
                 var options = '';
                 options += '<option value="' +"전체"+ '">' + "--전체선택--" + '</option>';

@@ -62,8 +62,6 @@ class MenusController < ApplicationController
      #---------------------------------------------------------
  
  
-     #!!만약 교차가능성이랑 모르겠음 부분 처리하려면 수정해야함.---------
- 
      #--------------------search 에 맞게 메뉴 찾기---------------------
     
      @menus = Menu.where("#{:a1_maemil} <= ? AND #{:a2_mil} <= ? AND #{:a3_daedu} <= ? AND #{:a4_hodu} <= ? AND #{:a5_ddangkong} <= ? AND #{:a6_peach} <= ? AND #{:a7_tomato} <= ? AND #{:a8_piggogi} <= ? AND #{:a9_nanryu} <= ? AND #{:a10_milk} <= ? AND #{:a11_ddakgogi} <= ? AND #{:a12_shoigogi} <= ? AND #{:a13_saewoo} <= ? AND #{:a14_godeungeoh} <= ? AND #{:a15_honghap} <= ? AND #{:a16_junbok} <= ? AND #{:a17_gul} <= ? AND #{:a18_jogaeryu} <= ? AND #{:a19_gye} <= ? AND #{:a20_ohjingeoh} <= ? AND #{:a21_ahwangsan} <= ?", a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21)
@@ -75,40 +73,10 @@ class MenusController < ApplicationController
      #  puts "실험씨작======================================================="
      @temp = Zizuminfo.where(:restaurant_name => @restaurants.map(&:restaurant_name))
      
-    if sido == "서울특별시" || sido =="서울" || sido =="서울시"
-      sido = "서울특별시"
-    elsif sido =="부산광역시" || sido =="부산" || sido == "부산시"
-    sido = "부산광역시"
-    elsif sido =="대구광역시" || sido =="대구" || sido == "대구시"
-      sido = "대구광역시"
-    elsif sido =="인천광역시" || sido =="인천" || sido == "인천시"
-      sido = "인천광역시"
-    elsif sido =="광주광역시" || sido =="광주" || sido == "광주시"
-      sido = "광주광역시"
-    elsif sido =="대전광역시" || sido =="대전" || sido == "대전시"
-      sido = "대전광역시"
-    elsif sido =="세종특별자치시" || sido =="세종" || sido == "세종시"
-      sido = "세종특별자치시"
-    elsif sido =="경기도" || sido =="경기"
-      sido = "경기도"
-    elsif sido =="강원도" || sido =="강원"
-      sido = "강원도"
-    elsif sido =="충청북도" || sido =="충북"
-      sido = "충청북도"
-    elsif sido =="충청남도" || sido =="충남"
-      sido = "충청남도"
-    elsif sido =="전라남도" || sido =="전남"
-      sido = "전라남도"
-    elsif sido =="전라북도" || sido =="전북"
-      sido = "전라북도"
-    elsif sido =="경상남도" || sido =="경남"
-      sido = "경상남도"
-    elsif sido =="경상북도" || sido =="경북"
-      sido = "경상북도"
-    elsif sido =="제주특별자치시" || sido =="제주시" ||sido =="제주" ||sido =="제주도" ||sido ="제주특별자치도"
-      sido = "제주특별자치시"
-    end
-     if sigungu == "전체"
+    
+     if sido == "전체"
+      @zizums = @temp
+     elsif sigungu == "전체"
       @zizums = @temp.where("#{:sido} LIKE?", sido)
      else
       @zizums = @temp.where("#{:sido} LIKE ? AND #{:sigungu} LIKE ?", sido, sigungu)
