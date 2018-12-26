@@ -35,6 +35,18 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  # for 인증메일
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = { 
+  #   :authentication => :plain,
+  #   :address => "smtp.mailgun.org",
+  #   :port => 587,
+  #   :domain => "helpfood.com",
+  #   :user_name => "postmaster@helpfood.com",
+  #   :password => ""
+  # }
+  # config.action_mailer.default_url_options = {host:'localhost:3000'}
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
