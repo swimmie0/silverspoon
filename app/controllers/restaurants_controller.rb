@@ -33,7 +33,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant_name = @restaurant.restaurant_name
       ## for notification
-      Board.create!(content: "새로운 식당 #{@restaurant_name}가 등록되었습니다.") # 워딩 수정하기
+      # Board.create!(content: "새로운 식당 #{@restaurant_name}가 등록되었습니다.") # 워딩 수정하기
       # link: request.referrer #수정하기 해당 article path로
   
 

@@ -60,7 +60,7 @@
         <strong>주의해야 할 음식 : </strong>
         <%= @profile.user.allergy.gsub(',','') %> 
       </p>
-
+      
       <div align="right">
         <button class="fill mbutton">  <!-- 수정 버튼 위치 2 -->
           <%= link_to '개인정보 변경', edit_user_registration_path, :style=> "color:black; text-decoration: none;" %>
@@ -113,6 +113,37 @@
     <hr />
 </div>
 
+<!-- 내가쓴글관리-->
+<div>
+  <h3 id="spreadBtn1" class= "jeju" style="text-align:center;"> 내가 쓴 글 </h3>
+  <hr/>
+    <div id="hiddenList1" class="rounded">
+      <div class="row">
+
+        <div class="col-8 jeju"> 
+          <% @user_posts.each do |post|%>
+            <div class="row">
+              <div class="col-6" align = left>
+                <%= link_to post.title, post, :style=> "color:black; text-decoration: none; font-size: 120%" %>                    
+              </div>
+              <div class="col-3" align = right>
+                <%= post.created_at %>                    
+              </div>
+              <div class="col-3" align = right>
+                <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }   %>             
+              </div>
+            </div>
+          <% end %>  
+        </div>    
+
+        <div class="col-8 jeju"> 
+          내가 쓴 총 댓글 수: <%= @user_commentnum %>
+        </div>  
+
+      </div>
+    </div>
+    <hr />
+</div>
 
 <div class= "jeju">
   <h3 id="spreadBtn2" style="text-align:center;"> <i id="spreadBtn1" class="fas fa-question-circle"></i> <strong>'수정 요청'</strong> 현황 <strong>확인</strong> <i id="spreadBtn1" class="fas fa-question-circle"></i> </h3>

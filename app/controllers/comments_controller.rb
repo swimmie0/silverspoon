@@ -11,19 +11,22 @@ class CommentsController < ApplicationController
             make_child_comment
             format.html  { redirect_to("#{request.referrer}#comment#{@comment.id}", :notice => '댓글이 작성되었습니다.') }
                 # 댓글에 대댓글 작성 시 댓글 작성자에게 알림이 울림.
-                if @comment.parent != nil
-                    @new_alarm = NewAlarm.create! user: @comment.parent.user,
+                if @comment.parent != nil && @comment.parent.user != current_user
+                    @new_alarm = NewAlarm.create! user:  @comment.parent.user,
                                                   content: "#{current_user.name.truncate(15, omission: '...')} 님이 답댓글을 달았습니다.",
                                                   link: request.referrer
-                end
+                  
+                end  
         else
             format.html  { redirect_to(request.referrer, :alert => '댓글 내용을 작성해주세요.') }
         end
       end
 
-      @new_alarm = NewAlarm.create! user: commentable.user,
+      if @comment.parent == nil && commentable.user != current_user
+        @new_alarm = NewAlarm.create! user: commentable.user,
                                     content: "#{current_user.name.truncate(15, omission: '...')} 님이 댓글을 달았습니다.",
                                     link: request.referrer
+      end                             
     end
 
     def destroy

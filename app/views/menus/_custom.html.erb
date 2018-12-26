@@ -2,7 +2,8 @@
     <div class="ziyuk d-flex">
         <div class="sido">
         <%#= select :sido, options_for_select([["서울특별시", "서울특별시"], ["부산광역시","부산광역시"], ["대구광역시","대구광역시"],["60대이상","60대이상"]]) %>  
-            <select name="sido" class="custom-sido options selectcss">
+            <select name="sido" class="custom-sido options sido-select selectcss">
+                <option value="시도" class="sido-opt">--시/도--</option>
                 <option value="서울특별시" class="sido-opt">서울특별시</option>
                 <option value="부산광역시" class="sido-opt">부산광역시</option>
                 <option value="대구광역시" class="sido-opt">대구광역시</option> 
@@ -22,16 +23,13 @@
             </select>
         </div>
 
-        <div class="sigungu d-flex">
-            <div class="buttons">
-                <div class="jikjup enteropt">시군구 입력</div>
-                <div class="all enteropt">시군구 전체</div>
-            </div>
-            <div class="enter">
-            <%# 직접 입력할 경우 아래와 같은 field 뜨게%>
-                <%= text_field_tag :sigungu, params[:sigungu], :class => "sigungu-enter options", :id => "location", :placeholder => "시군구 직접 입력"%>
-            </div>
+        <div class="sigungu">
+                <select name="sigungu" class="custom-sigungu sigungu-select options selectcss">
+                <%# default 값 %>
+                    <option value="전체" class="sigungu-opt">--전체선택--</option>
+                </select>
         </div>
+        
     </div>
 
     <br>

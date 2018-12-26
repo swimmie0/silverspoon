@@ -2,19 +2,20 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.0'
+gem 'json'
 
 # 팔로우
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master' 
 gem "font-awesome-rails"
 
-# 로그인
 gem 'nokogiri', '~> 1.8', '>= 1.8.5'
 gem 'rails_db', '~> 2.0', '>= 2.0.4'
 gem 'carrierwave', ' ~>1.0'
 gem 'mini_magick'
 gem 'fog-aws'
 
-# 수영
+# 회원관리
+gem 'rails_admin'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-naver'

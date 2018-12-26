@@ -14,7 +14,7 @@ class User < ApplicationRecord
   acts_as_reader
   
   mount_uploader :profileimg, S3Uploader
-
+  validates_uniqueness_of :name
 
   
   # GENDER_TYPES = [ ["male","0"], [ "female","1" ] ]
@@ -38,13 +38,13 @@ class User < ApplicationRecord
               user = User.new(
                 profileimg: auth.info.image,
                 # remote_profileimage_url: auth.info.image.gsub('http://','https://'),
-                name: auth.info.name,
+                # name: auth.info.name,
                 password: Devise.friendly_token[0,20]
               )
             elsif auth.provider == "google_oauth2"
               user = User.new(
                 email: auth.info.email,
-                name: auth.info.name,                
+                # name: auth.info.name,                
                 gender: auth.extra.raw_info.gender,
                 # is_female: auth.extra.raw_info.gender == "female" ? false : true,                              
                 profileimg: auth.info.image,
@@ -53,7 +53,7 @@ class User < ApplicationRecord
               elsif auth.provider == "naver"  
                 user = User.new(
                   email: auth.info.email,
-                  name: auth.info.name,                
+                  # name: auth.info.name,                
                   gender: auth.extra.raw_info.response.gender = "F" ? "female" : "male", #nil값인경우..
                   ages: auth.extra.raw_info.response.age,
                   profileimg: auth.info.image,
