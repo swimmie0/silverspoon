@@ -15,9 +15,10 @@
   <%= @freeboard.name %>
 </p>
 
-
+<% if current_user == @freeboard.user%>
 <%= link_to 'Edit', edit_freeboard_path(@freeboard) %> |
 <%= link_to 'Back', freeboards_path %>
+<%end%>
 
 <% if @freeboard.category == "질문글" %>
   <%= render partial: "comments/answer", locals: {commentable: @freeboard, new_comment: @comment} %>

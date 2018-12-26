@@ -1,4 +1,4 @@
-<% if user_signed_in? %>
+<% if user_signed_in? && current_user.name != nil %>
   <%= form_for @new_comment do |f| %>  
     <%= f.hidden_field :commentable_id, value: @new_comment.commentable_id %>
     <%= f.hidden_field :commentable_type, value: @new_comment.commentable_type %>
@@ -14,6 +14,6 @@
 
 <% else %>
     <div class="field form-group">
-      <%= text_area_tag :nil, "", class: "form-control", placeholder: "로그인해야" %>
+      <%= text_area_tag :nil, "", class: "form-control", placeholder: "회원가입 후 닉네임을 설정해야 작성가능합니다" %>
     </div>
 <% end %>

@@ -17,7 +17,7 @@
 
   <div class = "field">
     <%= f.label "이름" %><br/>
-    <%= f.text_field :name, class: "form-control", :required => true %>
+    <%= f.text_field :name, class: "form-control", id: "checkname", :required => true %>
     <p class = "mt-4 mb-2" id = "check-warning"></p>
   </div>
   <hr>
@@ -71,7 +71,7 @@
   </div>
   
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Update", id: "submitButton" %>
   </div>
 <% end %>
 <%# <h3>Cancel my account</h3> %>
@@ -89,11 +89,10 @@
  $(document).ready(function(){  
      $("#checkname").keyup(function(){                           
       var nameIn = document.getElementById("checkname").value;
-      var IDeIn = document.getElementById("checkID").value;
         $.ajax({    //checkid와같이x
           async : true,
           type : "POST",
-          data : {name : nameIn, IDe : IDeIn},
+          data : {name : nameIn},
           url : "checkDouble",
           dataType : "json",
           success : function(data){
@@ -104,42 +103,9 @@
                 document.getElementById("check-warning").innerHTML = "해당 닉네임은 이미 사용중입니다";
                  document.getElementById("submitButton").disabled = true;
             }
-            else if(data["ableName"] == 0 && data["ableID"] == 1 ){
+            else if(data["ableName"] == 0){
                 document.getElementById("check-warning").innerHTML = "사용가능한 닉네임입니다";
-                 document.getElementById("submitButton").disabled = true;
-            }    
-            else if(data["ableName"] == 0 && data["ableID"] == 0 ){
-                document.getElementById("check-warning").innerHTML = "사용가능한 닉네임입니다";
-                document.getElementById("submitButton").disabled = false;
-            }
-          }
-        })
-    })
-    
-     $("#checkID").keyup(function(){
-      var IDeIn = document.getElementById("checkID").value;
-      var nameIn = document.getElementById("checkname").value;
-        $.ajax({
-          async : true,
-          type : "POST",
-          data : {name : nameIn,IDe : IDeIn},
-          url : "checkDouble",
-          dataType : "json",
-          success : function(data){
-            
-            console.log(data);
-          
-            if (data["ableID"] == 1){
-                document.getElementById("check-id").innerHTML = "해당 아이디는 이미 사용중입니다";
-                document.getElementById("submitButton").disabled = true;
-            }
-            else if( data["ableID"] == 0 && data["ableName"] ==1){
-                document.getElementById("check-id").innerHTML = "사용가능한 아이디입니다";
-                document.getElementById("submitButton").disabled = true;
-            }
-            else if(data["ableName"] == 0 && data["ableID"] == 0 ){
-                   document.getElementById("check-id").innerHTML = "사용가능한 아이디입니다";
-                   document.getElementById("submitButton").disabled = false;
+                 document.getElementById("submitButton").disabled = false;
             }
           }
         })
