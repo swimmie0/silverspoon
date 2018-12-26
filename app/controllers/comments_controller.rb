@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
       respond_to do |format|
         if @comment.save
             make_child_comment
-            format.html  { redirect_to("#{request.referrer}#comment#{@comment.id}", :notice => '댓글이 작성되었습니다.') }
+            format.html  { redirect_to("#{request.referrer}#comment#{@comment.id}", :notice => '작성한 글에 새로운 댓글이 작성되었습니다.') }
                 # 댓글에 대댓글 작성 시 댓글 작성자에게 알림이 울림.
                 if @comment.parent != nil && @comment.parent.user != current_user
                     @new_alarm = NewAlarm.create! user:  @comment.parent.user,

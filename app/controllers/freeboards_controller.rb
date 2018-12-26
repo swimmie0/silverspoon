@@ -4,10 +4,10 @@ class FreeboardsController < ApplicationController
   # GET /freeboards
   # GET /freeboards.json 
   def index
-    if user_signed_in? && current_user.name == ""
-      flash[:warning] ='닉네임을 설정해주세요'
-      redirect_to edit_user_registration_path
-    end
+    # if user_signed_in? && current_user.name == nil
+    #   flash[:warning] ='닉네임을 설정해주세요'
+    #   redirect_to edit_user_registration_path
+    # end
 
     @freeboards = Freeboard.all
     @free_daily = Freeboard.where(category: "일상글")
@@ -22,12 +22,19 @@ class FreeboardsController < ApplicationController
     @freeboard = Freeboard.find(params[:id]) 
     @writer = @freeboard.user
 
+    # 로그인 및 닉네임설정해야 글 볼 수 있도록
+    # if user_signed_in? && current_user.name != nil
+    #   @new_comment  = Comment.build_from(@freeboard, current_user.id, "") 
+    # elsif !user_signed_in?
+    #   flash[:warning] = "로그인해주세요"
+    #   redirect_to root_path  
+    # elsif user_signed_in? && current_user.name == nil
+    #   flash[:warning] ='닉네임을 설정해주세요'
+    #   redirect_to edit_user_registration_path
+    # end
+
     if user_signed_in?
-      @new_comment  = Comment.build_from(@freeboard, current_user.id, "") 
-      if current_user.name == ""
-        flash[:warning] ='닉네임을 설정해주세요'
-        redirect_to edit_user_registration_path
-      end  
+       @new_comment  = Comment.build_from(@freeboard, current_user.id, "") 
     end
 
     if @freeboard.locked && @writer != current_user
@@ -39,6 +46,10 @@ class FreeboardsController < ApplicationController
 
   # GET /freeboards/new
   def new   
+    if user_signed_in? && current_user.name == nil
+      flash[:warning] ='닉네임을 설정해주세요'
+      redirect_to edit_user_registration_path
+    end
     @freeboard = Freeboard.new
   end
 
