@@ -4,16 +4,17 @@ class CommentsController < ApplicationController
     def create
       commentable = commentable_type.constantize.find(commentable_id)
       @comment = Comment.build_from(commentable, current_user.id, body)
-      @comment.name = current_user.name
+      @comment.user = current_user
       
       respond_to do |format|
         if @comment.save
             make_child_comment
-            format.html  { redirect_to("#{request.referrer}#comment#{@comment.id}", :notice => '작성한 글에 새로운 댓글이 작성되었습니다.') }
+            format.html  { redirect_to("#{request.referrer}#comment#{@comment.id}", :notice => '댓글이 작성되었습니다.') }
                 # 댓글에 대댓글 작성 시 댓글 작성자에게 알림이 울림.
                 if @comment.parent != nil && @comment.parent.user != current_user
                     @new_alarm = NewAlarm.create! user:  @comment.parent.user,
-                                                  content: "#{current_user.name.truncate(15, omission: '...')} 님이 답댓글을 달았습니다.",
+                                                  # content: "#{current_user.name.truncate(15, omission: '...')} 님이 답댓글을 달았습니다.",
+                                                  content: "",
                                                   link: request.referrer
                   
                 end  
@@ -24,7 +25,7 @@ class CommentsController < ApplicationController
 
       if @comment.parent == nil && commentable.user != current_user
         @new_alarm = NewAlarm.create! user: commentable.user,
-                                    content: "#{current_user.name.truncate(15, omission: '...')} 님이 댓글을 달았습니다.",
+                                    # content: "#{current_user.name.truncate(15, omission: '...')} 님이 댓글을 달았습니다.",
                                     link: request.referrer
       end                             
     end

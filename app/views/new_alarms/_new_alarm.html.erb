@@ -1,2 +1,5 @@
 	
 <%= link_to new_alarm.content, new_alarm %>
+<p> 댓글이 달렸습니다. (<%=current_user.new_alarms.unread_by(current_user).count %>) </p>
+<%= @num %>
+<%= $num %>
