@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+  :recoverable, :rememberable, :trackable, :validatable, :omniauthable, authentication_keys: [:login]
   
   has_one :profile
   has_many :boards
@@ -14,9 +14,26 @@ class User < ApplicationRecord
   acts_as_reader
   
   mount_uploader :profileimg, S3Uploader
-  validates_uniqueness_of :name
+  # validates_uniqueness_of :name
+  # validates_uniqueness_of :IDe  
+  # validates :name,:IDe, presence: :true, uniqueness: { case_sensitive: false }
+  # validates_format_of :name,:IDe, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
+  # login as username
+  attr_writer :login
 
-  
+  def login
+    @login || self.IDe || self.email
+  end
+
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions.to_h).where(["lower(IDe) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    elsif conditions.has_key?(:IDe) || conditions.has_key?(:email)
+      where(conditions.to_h).first
+    end
+  end
+
   # GENDER_TYPES = [ ["male","0"], [ "female","1" ] ]
   # validates_inclusion_of :is_female, in: [true, false]
 
@@ -38,7 +55,7 @@ class User < ApplicationRecord
               user = User.new(
                 profileimg: auth.info.image,
                 # remote_profileimage_url: auth.info.image.gsub('http://','https://'),
-                # name: auth.info.name,
+                # name: auth.info.name, 중복있을까봐 제외
                 password: Devise.friendly_token[0,20]
               )
             elsif auth.provider == "google_oauth2"

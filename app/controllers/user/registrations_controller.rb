@@ -4,6 +4,34 @@ class User::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   # include Accessible
+  respond_to :json
+  def checkDouble
+    puts "double checking"
+    @name = params[:name]
+    @IDe = params[:IDe]
+    puts @name
+  
+    $result = {"ableID"=> 0,"ableName" => 0}
+    
+      if User.exists?(:name => @name) || @name == ""
+        $result[:ableName] = 1
+      end
+  
+      if User.exists?(:IDe => @IDe) || @IDe == ""
+        $result[:ableID] = 1
+      end
+
+      $result = $result.to_json
+      puts $result
+  
+    respond_to do |format|
+      format.json {render json: $result}
+    end
+  
+    #$result = $result.to_json
+    #puts "json 실행" + $result
+  end
+  
   # GET /resource/sign_up
   # def new
   #   super
@@ -59,4 +87,6 @@ class User::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+   ## 유저네임 중복검사
+ 
 end

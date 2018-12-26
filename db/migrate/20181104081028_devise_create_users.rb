@@ -11,8 +11,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
 
-      # 닉네임/연령/성별/알러지
-      t.string :name, null:false, default: ""
+      # 아이디/닉네임/연령/성별/알러지
+      t.string :IDe
+      t.string :name
       t.string :allergy
       t.string :allergy_etc
       t.string :gender, default: ""

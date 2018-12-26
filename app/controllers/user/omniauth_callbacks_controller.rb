@@ -33,5 +33,6 @@ class User::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       home_index_path
     end
   end
+  
 end
 

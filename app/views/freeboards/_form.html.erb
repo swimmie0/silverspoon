@@ -13,7 +13,14 @@
 
   <div class="field">
     <%= form.label "카테고리" %>
-  <%= form.select :category, options_for_select([["일상글", "일상글"], ["정보글","정보글"], ["질문글","질문글"],["제보글","제보글"]]) %> <%# {prompt:'카테고리선택'}%>  
+    <%# <%= form.select :category, options_for_select([["일상글", "일상글"], ["정보글","정보글"], ["질문글","질문글"],["제보글","제보글"]]) %>
+   <select id="category" name="freeboard[category]">  
+      <option value="일상글">일상글</option>   
+      <option value="정보글">정보글</option>   
+      <option value="질문글">질문글</option>         
+      <option value="제보글">제보글</option>     
+   </select>     
+  </div>
 
   <div class="field">
     <%= form.label :title %>
@@ -25,7 +32,7 @@
     <%= form.text_area :content %>
   </div>
 
-  <div class="field">
+  <div class="field locked" style="display:none;">
       <%= form.radio_button :locked, true %> 비밀글<br/>
   </div>
   
@@ -35,3 +42,16 @@
 
 
 <% end %>
+
+<script>
+locking = function(){
+  if ($("#category").val() == "제보글") {
+    $(".locked").show();
+  }
+  else 
+    $(".locked").hide();
+}
+
+$(document).ready(locking);
+$("#category").change(locking);
+</script>
