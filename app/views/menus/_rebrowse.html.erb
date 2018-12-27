@@ -96,7 +96,15 @@
     <%end%>
 </div>
 
-<div id="myinfo" class="getinfo">
-    <%= render partial: 'custom' %>
-</div>
-<button id="custom" class="mbutton fill"><div id="ct" style="color:black; text-decoration: none;">내 알러지정보 불러오기</div></button>
+<%if user_signed_in?%>
+    <div id="myinfo" class="getinfo">
+        <%= render partial: 'custom' %>
+    </div>
+<%end%>
+
+<button id="custom" class="mbutton fill" data-toggle="modal" data-target="#loginModal"><div id="ct" style="color:black; text-decoration: none;">내 알러지정보 불러오기</div></button>
+
+<%# 로그인 하지 않았을 때 custom 기능 누르면 modal view 뜨도록 %>
+<%if !user_signed_in?%>
+    <%= render partial: 'loginModal'%>
+<%end%>
