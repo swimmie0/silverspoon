@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :conversations do
+    resources :messages
+  end 
+  
   ##SEARCH------resources :zizuminfos 보다 위에
   get 'zizuminfos/search'
   ##-------------------------------------
