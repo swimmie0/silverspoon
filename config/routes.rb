@@ -5,11 +5,12 @@ Rails.application.routes.draw do
   end 
   
   ##SEARCH------resources :zizuminfos 보다 위에
-  get 'zizuminfos/search'
+  get 'zizuminfos/search/' => "zizuminfos#search"
+  get 'zizuminfos/getGungu' => "zizuminfos#getGungu"
   ##-------------------------------------
 
 
-  #SEARCH----------resouces :restaurants 보다 위에 가게 해야 함! --------------------
+  #SEARCH----------resouces :menus 보다 위에 가게 해야 함! --------------------
   get 'restaurants/search' => "restaurants#search"
   get 'menus/search/' => "menus#search"
   get 'menus/getGungu' => "menus#getGungu"

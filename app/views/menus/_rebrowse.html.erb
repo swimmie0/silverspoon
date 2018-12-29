@@ -106,5 +106,5 @@
 
 <%# 로그인 하지 않았을 때 custom 기능 누르면 modal view 뜨도록 %>
 <%if !user_signed_in?%>
-    <%= render partial: 'loginModal'%>
+    <%= render 'layouts/loginModal'%>
 <%end%>

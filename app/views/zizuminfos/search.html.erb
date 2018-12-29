@@ -1,8 +1,102 @@
 <h2>식당 이름으로 검색</h2>
-    
+
+
 <%= form_tag(zizuminfos_path, method: :get) do %>
+    <div class="ziyuk d-flex">
+        <div class="sido">
+        <%#= select :sido, options_for_select([["서울특별시", "서울특별시"], ["부산광역시","부산광역시"], ["대구광역시","대구광역시"],["60대이상","60대이상"]]) %>  
+            <select name="sido" class="origin-sido sido-select options selectcss">
+                <option value="전체" class="sido-opt">--시/도--</option>
+                <option value="서울특별시" class="sido-opt">서울특별시</option>
+                <option value="부산광역시" class="sido-opt">부산광역시</option>
+                <option value="대구광역시" class="sido-opt">대구광역시</option> 
+                <option value="인천광역시" class="sido-opt">인천광역시</option>     
+                <option value="광주광역시" class="sido-opt">광주광역시</option>
+                <option value="대전광역시" class="sido-opt">대전광역시</option>
+                <option value="세종특별자치시" class="sido-opt">세종특별자치시</option> 
+                <option value="경기도" class="sido-opt">경기도</option>
+                <option value="강원도" class="sido-opt">강원도</option>
+                <option value="충청북도" class="sido-opt">충청북도</option>
+                <option value="충청남도" class="sido-opt">충청남도</option> 
+                <option value="전라북도" class="sido-opt">전라북도</option>
+                <option value="전라남도" class="sido-opt">전라남도</option>
+                <option value="경상북도" class="sido-opt">경상북도</option>
+                <option value="경상남도" class="sido-opt">경상남도</option> 
+                <option value="제주특별자치시" class="sido-opt">제주특별자치시</option>
+            </select>
+        </div>
+
+        <div class="sigungu">
+                <select name="sigungu" class="origin-sigungu sigungu-select options selectcss">
+                <%# default 값 %>
+                <option value="전체" class="sigungu-opt">--전체선택--</option>
+                </select>
+        </div>
+                
+    </div>
+    <br>
     <%= text_field_tag :restaurant_name, params[:restaurant_name] %> 
     <br> <br>
     <%= submit_tag 'Search'%>
 <% end %>
 
+
+<script>
+    var sigungu;
+    var sigungu_length;
+
+    $(".sido-select").click(function() {
+        var sido = $(this).val();
+        
+        $.ajax({
+            async : true,
+            data : {sido : sido},
+            type : "GET",
+            url : "getGungu",
+            success : function(data){
+                
+                sigungu = data["sigungu_name"];
+                if(sido != "전체"){
+                    sigungu_length = Object.keys(sigungu).length;
+                    var options = '';
+                    options += '<option value="' +"전체"+ '">' + "--전체선택--" + '</option>';
+                    for (var i = 0; i <sigungu_length; i++) {
+                        options += '<option value="' + sigungu[i]+'"'+'class='+'"sigungu-opt"'+'>' + sigungu[i] + '</option>';
+                    }
+
+                    $(".sigungu-select").html(options);
+                }
+
+            }
+        })
+    });
+
+   
+
+    //페이지 뒤로 넘어가기 했을 시에 에러 수정.
+    var sido = $(".sido-select").val();
+   if(sido != "전체"){
+    $.ajax({
+        async : true,
+        data : {sido : sido},
+        type : "GET",
+        url : "getGungu",
+        success : function(data){
+            
+            sigungu = data["sigungu_name"];
+            if(sido != "전체"){
+                sigungu_length = Object.keys(sigungu).length;
+                var options = '';
+                options += '<option value="' +"전체"+ '">' + "--전체선택--" + '</option>';
+                for (var i = 0; i <sigungu_length; i++) {
+                    options += '<option value="' + sigungu[i]+'"'+'class='+'"sigungu-opt"'+'>' + sigungu[i] + '</option>';
+                }
+
+                $(".sigungu-select").html(options);
+            }
+
+        }
+    });
+    }
+    //에러 수정 끝
+</script>
