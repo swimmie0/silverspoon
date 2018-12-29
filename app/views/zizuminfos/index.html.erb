@@ -1,49 +1,140 @@
-<p> <strong><%=params[:restaurant_name]%></strong> 로 검색 결과
-   : <strong>대표 지점 혹은 식당</strong>을 찾았습니다.</p> <br>
+<br><br><br>
+<%= render partial: "rebrowse"%>
+
+<p> <strong><%=params[:sido]%>/<%=params[:sigungu]%>의 <%=params[:restaurant_name]%></strong> 로 검색 결과
+   : <strong><%=@zizums.length%>개의 식당</strong>을 찾았습니다.</p> <br>
+  
 
   <!-- Informations -->
   <div class="shops">
-    <%# @zizums.each do |zizum| %>
+    <%@zizums.each do |zizum|%>
       <div class="card" style="width: 20rem;">
         <div class="card-body">
           <%# ajax로 전송할 레스토랑 이름%>
-          <h3 class="seeMenu"><%= @zizums.restaurant_name%></h3>
-          <h3><%=@zizums.zizum_name%></h3>
+          <h3 class="seeMenu"><%= zizum.restaurant_name%></h3>
+          <h3><%=zizum.zizum_name%></h3>
           <%# display:none 하고 옆으로 메뉴 띄울 것임%>
-          <p class="card-text"><%=@zizums.sigungu%>, <%=@zizums.sangse_juso%></p>
-          <p class="card-text"><%=link_to '식당상세페이지',zizuminfo_path(id: @zizums.id)%>
-          <% if @zizums.followed_by?(current_user) %>
-            <!-- 좋아요를 했다면 -->
+          <p class="card-text"><%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
+          <p class="card-text"><%=link_to '식당상세페이지',zizuminfo_path(id: zizum.id)%>
+          <%if user_signed_in?%>
+            <% if zizum.followed_by?(current_user) %>
+                <!-- 좋아요를 했다면 -->
                 <%= link_to(fa_icon('heart', class: "like icon"), 
-                zizum_front_follow_path(id: @zizums.id, utf8: params[:utf8], sido: params[:sido] , sigungu: params[:sigungu], a9_nanryu: params[:a9_nanryu], a6_peach: params[:a6_peach], a7_tomato: params[:a7_tomato], a1_maemil: params[:a1_maemil], a2_mil: params[:a2_mil], a3_daedu: params[:a3_daedu], a11_ddakgogi: params[:a11_ddakgogi], a12_shoigogi: params[:a12_shoigogi], a8_piggogi: params[:a8_piggogi], a13_saewoo: params[:a13_saewoo], a14_godeungeoh: params[:a14_godeungeoh], a15_honghap: params[:a15_honghap], a16_junbok: params[:a16_junbok], a17_gul: params[:a17_gul], a18_jogaeryu: params[:a18_jogaeryu], a19_gye: params[:a19_gye], a20_ohjingeoh: params[:a20_ohjingeoh], a4_hodu: params[:a4_hodu], a5_ddangkong: params[:a5_ddangkong], a21_ahwangsan: params[:a21_ahwangsan], commit: params[:commit]),
-                 method: :post)%> 
-            <!-- 좋아요를 안 했다면 -->
+                zizum_front_follow_path(id: zizum.id, utf8: params[:utf8], sido: params[:sido] , sigungu: params[:sigungu], a9_nanryu: params[:a9_nanryu], a6_peach: params[:a6_peach], a7_tomato: params[:a7_tomato], a1_maemil: params[:a1_maemil], a2_mil: params[:a2_mil], a3_daedu: params[:a3_daedu], a11_ddakgogi: params[:a11_ddakgogi], a12_shoigogi: params[:a12_shoigogi], a8_piggogi: params[:a8_piggogi], a13_saewoo: params[:a13_saewoo], a14_godeungeoh: params[:a14_godeungeoh], a15_honghap: params[:a15_honghap], a16_junbok: params[:a16_junbok], a17_gul: params[:a17_gul], a18_jogaeryu: params[:a18_jogaeryu], a19_gye: params[:a19_gye], a20_ohjingeoh: params[:a20_ohjingeoh], a4_hodu: params[:a4_hodu], a5_ddangkong: params[:a5_ddangkong], a21_ahwangsan: params[:a21_ahwangsan], commit: params[:commit]),
+                method: :post)%> 
+                <!-- 좋아요를 안 했다면 -->
             <% else %>
                 <%= link_to(fa_icon('heart', class: "unlike icon"), 
-                zizum_front_follow_path(id: @zizums.id, utf8: params[:utf8], sido: params[:sido] , sigungu: params[:sigungu], a9_nanryu: params[:a9_nanryu], a6_peach: params[:a6_peach], a7_tomato: params[:a7_tomato], a1_maemil: params[:a1_maemil], a2_mil: params[:a2_mil], a3_daedu: params[:a3_daedu], a11_ddakgogi: params[:a11_ddakgogi], a12_shoigogi: params[:a12_shoigogi], a8_piggogi: params[:a8_piggogi], a13_saewoo: params[:a13_saewoo], a14_godeungeoh: params[:a14_godeungeoh], a15_honghap: params[:a15_honghap], a16_junbok: params[:a16_junbok], a17_gul: params[:a17_gul], a18_jogaeryu: params[:a18_jogaeryu], a19_gye: params[:a19_gye], a20_ohjingeoh: params[:a20_ohjingeoh], a4_hodu: params[:a4_hodu], a5_ddangkong: params[:a5_ddangkong], a21_ahwangsan: params[:a21_ahwangsan], commit: params[:commit]), 
+                zizum_front_follow_path(id: zizum.id, utf8: params[:utf8], sido: params[:sido] , sigungu: params[:sigungu], a9_nanryu: params[:a9_nanryu], a6_peach: params[:a6_peach], a7_tomato: params[:a7_tomato], a1_maemil: params[:a1_maemil], a2_mil: params[:a2_mil], a3_daedu: params[:a3_daedu], a11_ddakgogi: params[:a11_ddakgogi], a12_shoigogi: params[:a12_shoigogi], a8_piggogi: params[:a8_piggogi], a13_saewoo: params[:a13_saewoo], a14_godeungeoh: params[:a14_godeungeoh], a15_honghap: params[:a15_honghap], a16_junbok: params[:a16_junbok], a17_gul: params[:a17_gul], a18_jogaeryu: params[:a18_jogaeryu], a19_gye: params[:a19_gye], a20_ohjingeoh: params[:a20_ohjingeoh], a4_hodu: params[:a4_hodu], a5_ddangkong: params[:a5_ddangkong], a21_ahwangsan: params[:a21_ahwangsan], commit: params[:commit]), 
                 method: :post)%>
             <% end %>
+          <%else%>
+            <i class="fa fa-heart unlike icon" data-toggle="modal" data-target="#loginModal"></i>
+          <%end%>
+          
         </div>
       </div>
-    <%# end %>
+    <% end %>
   </div>  <!-- shops : close --> <br>
+
+   <%# 로그인 하지 않았을 때 custom 기능 누르면 modal view 뜨도록 %>
+    <%if !user_signed_in?%>
+        <%= render 'layouts/loginModal'%>
+    <%end%>
 
   <script>
 
+    //첫 시작
+    $(".sido-select").val('<%=params[:sido]%>');
+    $(".sigungu-select").val('<%=params[:sigungu]%>');
+    //처음 지역 채우기 끝
+
+
     $(".icon").click(function(){
-        // var res = $(this).;
-        // alert(res);
-        //var ziz = $(this).siblings(".zizumName").html();
-        if ($(this).hasClass("like")) //follow하고 있다면
-            {
-                $(this).removeClass("like");
-                $(this).addClass("unlike");
+            // var res = $(this).;
+            // alert(res);
+            //var ziz = $(this).siblings(".zizumName").html();
+            if('<%=user_signed_in?%>'===true){
+                if ($(this).hasClass("like")) //follow하고 있다면
+                    {
+                        $(this).removeClass("like");
+                        $(this).addClass("unlike");
+                    }
+                else if ($(this).hasClass("unlike"))
+                    {
+                        $(this).removeClass("unlike");
+                        $(this).addClass("like");
+                    }    
             }
-        else if ($(this).hasClass("unlike"))
-            {
-                $(this).removeClass("unlike");
-                $(this).addClass("like");
-            }    
-            });
-          
+            else{
+
+            }     
+        });
+    
+
+    var sigungu;
+    var sigungu_length;
+
+
+  $(".sido-select").click(function() {
+        var sido = $(this).val();
+        
+        $.ajax({
+            async : true,
+            data : {sido : sido},
+            type : "GET",
+            url : "getGungu",
+            success : function(data){
+                
+                sigungu = data["sigungu_name"];
+                if(sido != "전체"){
+                    sigungu_length = Object.keys(sigungu).length;
+                    var options = '';
+                    options += '<option value="' +"전체"+ '">' + "--전체선택--" + '</option>';
+                    for (var i = 0; i <sigungu_length; i++) {
+                        options += '<option value="' + sigungu[i]+'"'+'class='+'"sigungu-opt"'+'>' + sigungu[i] + '</option>';
+                    }
+
+                    $(".sigungu-select").html(options);
+                }
+
+            }
+        })
+    });
+
+  
+
+    //페이지 뒤로 넘어가기 했을 시 및 시/도 자동 세팅되어있는 경우에 에러 수정.
+    var sido = $(".sido-select").val();
+    
+   if(sido != "전체"){
+    $.ajax({
+        async : true,
+        data : {sido : sido},
+        type : "GET",
+        url : "getGungu",
+        success : function(data){
+            
+            sigungu = data["sigungu_name"];
+            if(sido != "전체"){
+                sigungu_length = Object.keys(sigungu).length;
+                var options = '';
+                options += '<option value="' +"전체"+ '">' + "--전체선택--" + '</option>';
+                for (var i = 0; i <sigungu_length; i++) {
+                    options += '<option value="' + sigungu[i]+'"'+'class='+'"sigungu-opt"'+'>' + sigungu[i] + '</option>';
+                }
+
+                $(".sigungu-select").html(options);
+            }
+
+        }
+    });
+    }
+    //에러 수정 끝
+
+
+ 
+
+  
 </script>
+
