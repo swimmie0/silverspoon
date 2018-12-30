@@ -34,17 +34,15 @@ class ZizuminfosController < ApplicationController
     @sigungu_name = @locations["data"][0][@sido_name]
 
     $result={"sido_name" => nil, "sigungu_name"=>nil}
-    $result["sido_name"]=@sido_name
-    $result["sigungu_name"]=@sigungu_name
+    $result["sido_name"]= @sido_name
+    $result["sigungu_name"]= @sigungu_name
     
     $result = $result.to_json
-    puts "실험실험실험============================================="
-    puts $result
-    puts "싫끝====================================================="
 
     respond_to do |format|
       format.json {render json: $result}
     end
+
   end
 
   # GET /zizuminfos/1
