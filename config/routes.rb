@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   
   ##SEARCH------resources :zizuminfos 보다 위에
   get 'zizuminfos/search/' => "zizuminfos#search"
-  get 'zizuminfos/getGungu' => "zizuminfos#getGungu"
   ##-------------------------------------
 
 
@@ -14,6 +13,7 @@ Rails.application.routes.draw do
   get 'restaurants/search' => "restaurants#search"
   get 'menus/search/' => "menus#search"
   get 'menus/getGungu' => "menus#getGungu"
+  get 'zizuminfos/getGungu' => "menus#getGungu"
   get 'menus/index' => "menus#index", as: 'menus'
   #--------------------------------------------------------------------------
 
