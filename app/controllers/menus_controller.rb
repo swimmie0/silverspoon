@@ -1,11 +1,25 @@
 class MenusController < ApplicationController
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
   require 'open-uri'
   require 'json'
   # GET /menus
   # GET /menus.json
 
+  #로그인 팝업창
+  module ApplicationHelper
+    def resource_name
+      :user
+    end
+  
+    def resource
+      @resource ||= User.new
+    end
+  
+    def devise_mapping
+     @devise_mapping ||= Devise.mappings[:user]
+    end
+  end
   #메뉴로 검색
   def search
     
