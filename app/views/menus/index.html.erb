@@ -171,30 +171,32 @@
         })
     });
 
-   $("#custom").click(function(){
-        if( $(this).children("#ct").html() == "내 알러지정보 불러오기")
-        {   
-            $(".original-check").addClass("getinfo");
-            $("#myinfo").removeClass("getinfo");
-            $(".allergy-check").css('visibility','visible');
-           
-            $(this).children("#ct").html("되돌리기");
+  if('<%=user_signed_in?%>'=="true"){
+    $("#custom").click(function(){
+            if( $(this).children("#ct").html() == "내 알러지정보 불러오기")
+            {   
+                $(".original-check").addClass("getinfo");
+                $("#myinfo").removeClass("getinfo");
+                $(".allergy-check").css('visibility','visible');
             
-            $(".custom-sido").val($(".origin-sido").val());
-            $(".custom-sigungu").val($(".origin-sigungu").val());
-            
-        }
-        else
-        {
-            $(".original-check").removeClass("getinfo");
-            $("#myinfo").addClass("getinfo");
-            $(this).children("#ct").html("내 알러지정보 불러오기");
-            $(".origin-sido").val($(".custom-sido").val());
-            $(".origin-sigungu").val($(".custom-sigungu").val());
-            
-        }
+                $(this).children("#ct").html("되돌리기");
+                
+                $(".custom-sido").val($(".origin-sido").val());
+                $(".custom-sigungu").val($(".origin-sigungu").val());
+                
+            }
+            else
+            {
+                $(".original-check").removeClass("getinfo");
+                $("#myinfo").addClass("getinfo");
+                $(this).children("#ct").html("내 알러지정보 불러오기");
+                $(".origin-sido").val($(".custom-sido").val());
+                $(".origin-sigungu").val($(".custom-sigungu").val());
+                
+            }
 
-    });
+        });
+    }
 
     //페이지 뒤로 넘어가기 했을 시 및 시/도 자동 세팅되어있는 경우에 에러 수정.
     var sido = $(".sido-select").val();
