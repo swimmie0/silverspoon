@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_26_145148) do
+ActiveRecord::Schema.define(version: 2019_01_02_070257) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -149,6 +149,33 @@ ActiveRecord::Schema.define(version: 2018_12_26_145148) do
     t.index ["readable_type", "readable_id"], name: "index_read_marks_on_readable_type_and_readable_id"
     t.index ["reader_id", "reader_type", "readable_type", "readable_id"], name: "read_marks_reader_readable_index", unique: true
     t.index ["reader_type", "reader_id"], name: "index_read_marks_on_reader_type_and_reader_id"
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.string "title"
+    t.text "explain"
+    t.text "content1"
+    t.string "recipeimage1"
+    t.text "content2"
+    t.string "recipeimage2"
+    t.text "content3"
+    t.string "recipeimage3"
+    t.text "content4"
+    t.string "recipeimage4"
+    t.text "content5"
+    t.string "recipeimage5"
+    t.text "content6"
+    t.string "recipeimage6"
+    t.text "content7"
+    t.string "recipeimage7"
+    t.text "content8"
+    t.string "recipeimage8"
+    t.text "content9"
+    t.string "recipeimage9"
+    t.text "content10"
+    t.string "recipeimage10"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "restaurants", force: :cascade do |t|
