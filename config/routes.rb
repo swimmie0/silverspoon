@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :recipes
   resources :conversations do
     resources :messages
   end 

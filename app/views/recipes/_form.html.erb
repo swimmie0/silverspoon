@@ -1,0 +1,208 @@
+<%= form_for(recipe) do |f| %>
+  <div class="recipe-new-upper d-flex justify-content-between">
+    <div class="recipe-new-upper-main">레시피 등록</div>
+    <div class="recipe-new-upper-submit">
+      <%= f.submit "공유하기",  class: "post-submit-button" %>
+    </div>
+  </div>
+  
+  <% if recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+      <% recipe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="recipe-new-intro">
+    <div class="field recipe-new-intro-field d-flex">
+      <%= f.label :title, "레시피 제목" , class: "recipe-new-form-title"%>
+      <%= f.text_field :title, class: "recipe-new-intro-input"%>
+    </div>
+
+    <div class="field recipe-new-intro-field d-flex">
+      <%= f.label :explain, "레시피 한 줄 설명", class: "recipe-new-form-title"%>
+      <%= f.text_field :explain, class: "recipe-new-intro-input"%>
+    </div>
+  </div>
+  
+
+  <%# 되도록이면 div 위계 지킬 것. 밑에 스크립트 부모자식관계 변형됨 %>
+  <div class="divide-line recipe-new-divide-line"></div>
+  <div class="recipe-new-body">
+    <div class="recipe-new-body-element">
+      <div class="recipe-new-body-imgcap d-flex">     
+        <%= image_tag("defaultImg3.jpg", class: "recipe-new-defaultimg", id: "firstImg imgPlace") %>
+        <div class="target"></div>
+        
+        <div class="field flex-grow-1">
+          <%= f.text_area :content1, class:"recipe-new-body-cap", placeholder: "레시피의 각 단계에 대한 설명을 작성해주세요" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.file_field :recipeimage1, type: "file", class: "pictureInput", accept: 'image/png,image/gif,image/jpeg', style: "margin-right: 100px; margin-top: 5px; margin-bottom: 5px" %> 
+      </div>
+    </div>
+    
+    <% for x in 2..10 %>
+
+      <div id="hiddenList<%=x%>" style="display:none">
+        <br>
+        <div class="recipe-new-body-element">
+          <div class="recipe-new-body-imgcap d-flex">     
+            <%= image_tag("defaultImg3.jpg", class: "recipe-new-defaultimg", id: "firstImg imgPlace") %>
+            <div class="target"></div>
+            
+            <div class="field flex-grow-1">
+              <%= f.text_area :"content#{x}", class:"recipe-new-body-cap", placeholder: "레시피의 각 단계에 대한 설명을 작성해주세요" %>
+            </div>
+          </div>
+
+          <div class="field">
+            <%= f.file_field :"recipeimage#{x}", type: "file", class: "pictureInput", accept: 'image/png,image/gif,image/jpeg', style: "margin-right: 100px; margin-top: 5px; margin-bottom: 5px" %> 
+            <span id= "deleteBtn<%=x%>" class="btn btn-danger">레시피 삭제</span>
+          </div>
+        </div>
+      </div>
+      
+      
+    <% end %>
+ 
+      <div id= "addBtn" class="recipe-new-body-add">
+        <i class="fas fa-plus"></i>
+      </div>
+
+      <div class="recipe-new-representative">
+        
+      </div>
+
+      <div class="actions">
+        <%= f.submit "공유하기", class: "post-submit-button"%>
+      </div>
+
+  <% end %>
+
+</div>
+
+<script>
+
+  $(document).ready(function(){
+    $("#addBtn").click(function(){
+        if($("#hiddenList2").is(":hidden")){
+          // $("#spreadBtn1").toggleClass("fas fa-arrow-alt-circle-right fas fa-arrow-alt-circle-down");
+          $("#hiddenList2").slideDown();
+        }else if($("#hiddenList3").is(":hidden")){
+          $("#hiddenList3").slideDown();
+        }else if($("#hiddenList4").is(":hidden")){
+          $("#hiddenList4").slideDown();
+        }else if($("#hiddenList5").is(":hidden")){
+          $("#hiddenList5").slideDown();
+        }else if($("#hiddenList6").is(":hidden")){
+          $("#hiddenList6").slideDown();
+        }else if($("#hiddenList7").is(":hidden")){
+          $("#hiddenList7").slideDown();
+        }else if($("#hiddenList8").is(":hidden")){
+          $("#hiddenList8").slideDown();
+        }else if($("#hiddenList9").is(":hidden")){
+          $("#hiddenList9").slideDown();
+        }else if($("#hiddenList10").is(":hidden")){
+          $("#hiddenList10").slideDown();
+        }
+    });
+
+    $("#deleteBtn2").click(function(){
+      if($("#hiddenList2").is(":visible")){
+        $("#hiddenList2").slideUp();
+        $(this).siblings('input').val("");
+      }
+    });
+    $("#deleteBtn3").click(function(){
+      if($("#hiddenList3").is(":visible")){
+        $("#hiddenList3").slideUp();
+        $(this).siblings('input').val("");
+      }
+    });
+    $("#deleteBtn4").click(function(){
+      if($("#hiddenList4").is(":visible")){
+        $("#hiddenList4").slideUp();
+        $(this).siblings('input').val("");
+      }
+    });
+    $("#deleteBtn5").click(function(){
+      if($("#hiddenList5").is(":visible")){
+        $("#hiddenList5").slideUp();
+        $(this).siblings('input').val("");
+      }
+    });
+    $("#deleteBtn6").click(function(){
+      if($("#hiddenList6").is(":visible")){
+        $("#hiddenList6").slideUp();
+        $(this).siblings('input').val("");
+      }
+    });
+    $("#deleteBtn7").click(function(){
+      if($("#hiddenList7").is(":visible")){
+        $("#hiddenList7").slideUp();
+        $(this).siblings('input').val("");
+      }
+    });
+    $("#deleteBtn8").click(function(){
+      if($("#hiddenList8").is(":visible")){
+        $("#hiddenList8").slideUp();
+        $(this).siblings('input').val("");
+      }
+    });
+    $("#deleteBtn9").click(function(){
+      if($("#hiddenList9").is(":visible")){
+        $("#hiddenList9").slideUp();
+        $(this).siblings('input').val("");
+      }
+    });
+    $("#deleteBtn10").click(function(){
+      if($("#hiddenList10").is(":visible")){
+        $("#hiddenList10").slideUp();
+        $(this).siblings('input').val("");
+      }
+    });
+  });
+
+  $(".recipe-new-defaultimg").click(function(){
+    $(this).parent().siblings('div.field').children('input').trigger('click');
+  })
+
+$(function() {
+  $('input.pictureInput').on('change', function(event) {
+    console.log($(this).attr('name'));
+    var files = event.target.files;
+    console.log(files);
+    var image = files[0];
+    // here's the file size
+    console.log(image.size);
+
+    $tempImg = $(this).parent().siblings().children('img');
+    $tempTarget = $(this).parent().siblings().children('div#target');
+    
+    var reader = new FileReader();
+    reader.onload = function(file) {
+      var img = new Image();
+      console.log(file);
+      $tempImg.attr('src',file.target.result);
+      // img.width = 500;
+      // img.height = 400;
+
+      // $tempImg.css('display','none');        
+      // $tempTarget.html(img);
+      // $(this).parent().siblings('div#recipeField').children('img#imgPlace').css('display', 'none');
+      // $(this).parent().siblings('div#recipeField').children('div#target').html(img);
+    }
+    reader.readAsDataURL(image);
+    console.log(files);
+  });
+});
+
+</script>
