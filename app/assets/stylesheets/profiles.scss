@@ -92,17 +92,17 @@ $colors: (
 }
 
 
-// Now every button will have different colors as set above. We get to use the same structure, only changing the custom properties.
-button {  
-  color: #E2D6CF;
-  transition: 0.25s;
+// // Now every button will have different colors as set above. We get to use the same structure, only changing the custom properties.
+// button {  
+//   color: #E2D6CF;
+//   transition: 0.25s;
   
-  &:hover,
-  &:focus { 
-    border-color: var(--hover);
-    color: #FFF;
-  }
-}
+//   &:hover,
+//   &:focus { 
+//     border-color: var(--hover);
+//     color: #FFF;
+//   }
+// }
 
 
 // Basic button styles

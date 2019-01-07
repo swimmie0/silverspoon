@@ -1,9 +1,13 @@
 
-<div class="menu">
-    <h1 class="title">Filter by Allergy . . .</h1>
 
+<h1 class="title">Filter by Allergy . . .</h1>
+
+<div type="button" class="btn btn-outline-dark btn-searchtype btn-allergy active-btn">알레르기 성분 검색</div>
+<div type="button" class="btn btn-outline-dark btn-searchtype btn-restaurant">식당 이름 검색</div>
+<br><br>
 
     <%# location은 partial location2는 그냥 %>
+<div class="allergy-search">
     <div class="original-check">
         <%= form_tag(menus_path, method: :get) do %>
             <div class="ziyuk d-flex">
@@ -31,10 +35,10 @@
                 </div>
 
                 <div class="sigungu">
-                     <select name="sigungu" class="origin-sigungu sigungu-select options selectcss">
+                        <select name="sigungu" class="origin-sigungu sigungu-select options selectcss">
                         <%# default 값 %>
                         <option value="전체" class="sigungu-opt">--전체선택--</option>
-                     </select>
+                        </select>
                 </div>
                 
             </div>
@@ -93,34 +97,96 @@
                 </div>
                 
                 <button type="submit" class="a-submit">
-                 Search<i class="fas fa-search"></i>
+                    Search<i class="fas fa-search"></i>
                 </button>
             </div>
                 
         <%end%>
-    
+
     </div>
     
+    <%if user_signed_in?%>
+        <div id="myinfo" class="getinfo">
+            <%= render partial: 'custom' %>
+        </div>
+    <%end%>
+
+    <button id="custom" class="mbutton fill" data-toggle="modal" data-target="#loginModal"><div id="ct" style="color:black; text-decoration: none;">내 알러지정보 불러오기</div></button>
+
+    <%# 로그인 하지 않았을 때 custom 기능 누르면 modal view 뜨도록 %>
+    <%if !user_signed_in?%>
+        <%= render 'layouts/loginModal'%>
+    <%end%>
+
 </div>
-<%if user_signed_in?%>
-    <div id="myinfo" class="getinfo">
-        <%= render partial: 'custom' %>
-    </div>
-<%end%>
+<%# allergy filtering 끝 %>
 
-<button id="custom" class="mbutton fill" data-toggle="modal" data-target="#loginModal"><div id="ct" style="color:black; text-decoration: none;">내 알러지정보 불러오기</div></button>
+<%# 식당 filtering 시작 %>
+<div class="restaurant-search nodisplay">
+    <%= form_tag(zizuminfos_path, method: :get) do %>
+        <div class="ziyuk d-flex">
+            <div class="sido">
+            <%#= select :sido, options_for_select([["서울특별시", "서울특별시"], ["부산광역시","부산광역시"], ["대구광역시","대구광역시"],["60대이상","60대이상"]]) %>  
+                <select name="sido" class="origin-sido sido-select options selectcss">
+                    <option value="전체" class="sido-opt">--시/도--</option>
+                    <option value="서울특별시" class="sido-opt">서울특별시</option>
+                    <option value="부산광역시" class="sido-opt">부산광역시</option>
+                    <option value="대구광역시" class="sido-opt">대구광역시</option> 
+                    <option value="인천광역시" class="sido-opt">인천광역시</option>     
+                    <option value="광주광역시" class="sido-opt">광주광역시</option>
+                    <option value="대전광역시" class="sido-opt">대전광역시</option>
+                    <option value="세종특별자치시" class="sido-opt">세종특별자치시</option> 
+                    <option value="경기도" class="sido-opt">경기도</option>
+                    <option value="강원도" class="sido-opt">강원도</option>
+                    <option value="충청북도" class="sido-opt">충청북도</option>
+                    <option value="충청남도" class="sido-opt">충청남도</option> 
+                    <option value="전라북도" class="sido-opt">전라북도</option>
+                    <option value="전라남도" class="sido-opt">전라남도</option>
+                    <option value="경상북도" class="sido-opt">경상북도</option>
+                    <option value="경상남도" class="sido-opt">경상남도</option> 
+                    <option value="제주특별자치시" class="sido-opt">제주특별자치시</option>
+                </select>
+            </div>
 
-<%# 로그인 하지 않았을 때 custom 기능 누르면 modal view 뜨도록 %>
-<%if !user_signed_in?%>
-    <%= render 'layouts/loginModal'%>
-<%end%>
-
-
-<%# <button id="reset" onClick="funcreset()">초기화</button> %>
-<%# <p id="myinfo" style="display:none;">로그인해주세요</p> %>
+            <div class="sigungu">
+                    <select name="sigungu" class="origin-sigungu sigungu-select options selectcss">
+                    <%# default 값 %>
+                    <option value="전체" class="sigungu-opt">--전체선택--</option>
+                    </select>
+            </div>
+                    
+        </div>
+        <br>
+        <%= text_field_tag :restaurant_name, params[:restaurant_name] %> 
+        <br> <br>
+        <%= submit_tag 'Search'%>
+    <% end %>
+</div>
+<%# 식당 filtering 끝 %>
 
 
 <script>
+    
+    $(".btn-allergy").click(function(){
+        
+            $(this).addClass("active-btn");
+            $(".btn-restaurant").removeClass("active-btn");
+            $(".restaurant-search").addClass("nodisplay");
+            $(".allergy-search").removeClass("nodisplay");
+        
+    });
+
+    $(".btn-restaurant").click(function(){
+        
+            $(this).addClass("active-btn");
+            $(".btn-allergy").removeClass("active-btn");
+            $(".restaurant-search").removeClass("nodisplay");
+            $(".allergy-search").addClass("nodisplay");
+        
+    })
+
+
+
     var sigungu;
     var sigungu_length;
 
