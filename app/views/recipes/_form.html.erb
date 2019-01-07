@@ -118,7 +118,7 @@
     $("#deleteBtn2").click(function(){
       if($("#hiddenList2").is(":visible")){
         $("#hiddenList2").slideUp();
-        $(this).siblings('input').val("");
+        $(this).siblings('input').val('');
       }
     });
     $("#deleteBtn3").click(function(){
@@ -142,30 +142,35 @@
     $("#deleteBtn6").click(function(){
       if($("#hiddenList6").is(":visible")){
         $("#hiddenList6").slideUp();
+        $(this).siblings('input').attr("class");
         $(this).siblings('input').val("");
       }
     });
     $("#deleteBtn7").click(function(){
       if($("#hiddenList7").is(":visible")){
         $("#hiddenList7").slideUp();
+        $(this).siblings('input').attr("class");
         $(this).siblings('input').val("");
       }
     });
     $("#deleteBtn8").click(function(){
       if($("#hiddenList8").is(":visible")){
         $("#hiddenList8").slideUp();
+        $(this).siblings('input').attr("class");
         $(this).siblings('input').val("");
       }
     });
     $("#deleteBtn9").click(function(){
       if($("#hiddenList9").is(":visible")){
         $("#hiddenList9").slideUp();
+        $(this).siblings('input').attr("class");
         $(this).siblings('input').val("");
       }
     });
     $("#deleteBtn10").click(function(){
       if($("#hiddenList10").is(":visible")){
         $("#hiddenList10").slideUp();
+        $(this).siblings('input').attr("class");
         $(this).siblings('input').val("");
       }
     });
@@ -177,7 +182,6 @@
 
 $(function() {
   $('input.pictureInput').on('change', function(event) {
-    console.log($(this).attr('name'));
     var files = event.target.files;
     console.log(files);
     var image = files[0];
@@ -185,7 +189,6 @@ $(function() {
     console.log(image.size);
 
     $tempImg = $(this).parent().siblings().children('img');
-    $tempTarget = $(this).parent().siblings().children('div#target');
     
     var reader = new FileReader();
     reader.onload = function(file) {

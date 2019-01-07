@@ -85,17 +85,17 @@
                     <%if user_signed_in?%>
                         <% if zizum.followed_by?(current_user) %>
                             <!-- 좋아요를 했다면 -->
-                            <%= link_to(fa_icon('heart', class: "like icon"), 
-                            zizum_front_follow_path(id: zizum.id, utf8: params[:utf8], sido: params[:sido] , sigungu: params[:sigungu], a9_nanryu: params[:a9_nanryu], a6_peach: params[:a6_peach], a7_tomato: params[:a7_tomato], a1_maemil: params[:a1_maemil], a2_mil: params[:a2_mil], a3_daedu: params[:a3_daedu], a11_ddakgogi: params[:a11_ddakgogi], a12_shoigogi: params[:a12_shoigogi], a8_piggogi: params[:a8_piggogi], a13_saewoo: params[:a13_saewoo], a14_godeungeoh: params[:a14_godeungeoh], a15_honghap: params[:a15_honghap], a16_junbok: params[:a16_junbok], a17_gul: params[:a17_gul], a18_jogaeryu: params[:a18_jogaeryu], a19_gye: params[:a19_gye], a20_ohjingeoh: params[:a20_ohjingeoh], a4_hodu: params[:a4_hodu], a5_ddangkong: params[:a5_ddangkong], a21_ahwangsan: params[:a21_ahwangsan], commit: params[:commit]),
-                            method: :post)%> 
-                            <!-- 좋아요를 안 했다면 -->
+                            <i class="fa fa-heart like like-icon icon"></i>
+                            <div class="zizum-id-like"><%=zizum.id%></div>
+                            
                         <% else %>
-                            <%= link_to(fa_icon('heart', class: "unlike icon"), 
-                            zizum_front_follow_path(id: zizum.id, utf8: params[:utf8], sido: params[:sido] , sigungu: params[:sigungu], a9_nanryu: params[:a9_nanryu], a6_peach: params[:a6_peach], a7_tomato: params[:a7_tomato], a1_maemil: params[:a1_maemil], a2_mil: params[:a2_mil], a3_daedu: params[:a3_daedu], a11_ddakgogi: params[:a11_ddakgogi], a12_shoigogi: params[:a12_shoigogi], a8_piggogi: params[:a8_piggogi], a13_saewoo: params[:a13_saewoo], a14_godeungeoh: params[:a14_godeungeoh], a15_honghap: params[:a15_honghap], a16_junbok: params[:a16_junbok], a17_gul: params[:a17_gul], a18_jogaeryu: params[:a18_jogaeryu], a19_gye: params[:a19_gye], a20_ohjingeoh: params[:a20_ohjingeoh], a4_hodu: params[:a4_hodu], a5_ddangkong: params[:a5_ddangkong], a21_ahwangsan: params[:a21_ahwangsan], commit: params[:commit]), 
-                            method: :post)%>
+                            <!-- 좋아요를 안 했다면 -->
+                            <i class="fa fa-heart unlike like-icon icon"></i>
+                            <div class="zizum-id-like"><%=zizum.id%></div>
+                            
                         <% end %>
                     <%else%>
-                    <i class="fa fa-heart unlike icon" data-toggle="modal" data-target="#loginModal"></i>
+                    <i class="fa fa-heart unlike like-icon icon" data-toggle="modal" data-target="#loginModal"></i>
                     <%end%>
                     
                 </div>
@@ -126,27 +126,38 @@
         $("#menuBox").html($(this).children(".seeMenu").siblings('.hideMenu').html());
     });
 
-    $(".icon").click(function(){
-            // var res = $(this).;
-            // alert(res);
-            //var ziz = $(this).siblings(".zizumName").html();
-            if('<%=user_signed_in?%>'===true){
-                if ($(this).hasClass("like")) //follow하고 있다면
+   
+    //ajax 좋아요 구현
+    if('<%=user_signed_in?%>'==="true"){
+        $(".like-icon").click(function(){
+            $zizumid = $(this).siblings("div.zizum-id-like").html();
+            $likeicon = $(this);
+            $.ajax({
+                async : true,
+                data : {id: $zizumid},
+                type : "GET",
+                url : "/follows/zizumfollow",
+                success : function(data){
+                    followType = data["follow"];
+                    console.log("이제"+data["zizumid"]+"를 follow"+followType);
+                    
+                    //followType 은 좋아요 버튼 누른 후의 status
+                    if (followType === false) //follow하고 있다면
                     {
-                        $(this).removeClass("like");
-                        $(this).addClass("unlike");
+                        console.log("follow 하고 있으니까 이제 안할거야");
+                        $likeicon.removeClass("like");
+                        $likeicon.addClass("unlike");
                     }
-                else if ($(this).hasClass("unlike"))
+                    else if (followType === true)
                     {
-                        $(this).removeClass("unlike");
-                        $(this).addClass("like");
+                         console.log("follow 안하고 있으니까 이제 할거야");
+                        $likeicon.removeClass("unlike");
+                        $likeicon.addClass("like");
                     }    
-            }
-            else{
-
-            }     
+                }
+            })
         });
-    
+    }
 
     var sigungu;
     var sigungu_length;
