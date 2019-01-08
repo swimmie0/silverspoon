@@ -1,8 +1,7 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Title:</strong>
   <%= @freeboard.title %>
+  <%= @freeboard.impressionist_count(:filter=>:session_hash) %>
 </p>
 
 <p>
@@ -15,9 +14,10 @@
   <%= @freeboard.name %>
 </p>
 
+
 <% if current_user == @freeboard.user%>
-<%= link_to 'Edit', edit_freeboard_path(@freeboard) %> |
-<%= link_to 'Back', freeboards_path %>
+  <%= link_to 'Edit', edit_freeboard_path(@freeboard) %> |
+  <%= link_to 'Back', freeboards_path %>
 <%end%>
 
 <% if @freeboard.category == "질문글" %>

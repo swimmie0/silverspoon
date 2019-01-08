@@ -21,6 +21,7 @@ gem 'omniauth'
 gem 'omniauth-naver'
 gem "omniauth-google-oauth2"
 gem 'omniauth-kakao', :git => 'https://github.com/hcn1519/omniauth-kakao'
+gem 'impressionist'
 
 # 알림
 gem 'unread'

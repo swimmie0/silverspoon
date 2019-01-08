@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Freeboards</h1>
 
 <table>
@@ -12,11 +10,13 @@
       <a class="dropdown-item" id="showSingle" target="d">일상글</a>
       <a class="dropdown-item" id="showSingle" target="i">정보글</a>
       <a class="dropdown-item" id="showSingle" target="q">질문글</a>
+      <a class="dropdown-item" id="showSingle" target="a">홍보글</a>      
       <a class="dropdown-item" id="showSingle" target="c">제보글</a></div>                
    </th>
       <th>Title</th>
       <th>Name</th>
       <th>댓글</th>
+      <th>조회수</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -29,6 +29,7 @@
         <td><%= link_to freeboard.title, freeboard %></td>
         <td><%= freeboard.name %></td>
         <td> <%= freeboard.comment_threads.count %></td>
+        <td> <%= freeboard.impressionist_count(:filter=>:session_hash) %></td>
         <td><% if freeboard.locked %>LOCKED<% end %></td>
         <%# <td><%= link_to 'Show', freeboard %>
         <%# <td><%= link_to 'Edit', edit_freeboard_path(freeboard) %>
@@ -62,6 +63,15 @@
         <td> <%= q.comment_threads.count %></td>        
       </tr>
     <% end %>
+    
+    <% @free_adv.each do |a| %>
+      <tr class="posta" style= "display:none">
+        <td><%= a.category %></td> 
+        <td><%= link_to a.title, a %></td>
+        <td><%= a.name %></td>
+        <td> <%= a.comment_threads.count %></td>        
+      </tr>
+    <% end %>
 
     <% @free_crowd.each do |c| %>
       <tr class="postc" style= "display:none">
@@ -78,8 +88,15 @@
 
 <br>
 <% if user_signed_in? %>
-<%= link_to 'New Freeboard', new_freeboard_path %>
+  <%= link_to 'New Freeboard', new_freeboard_path %>
 <% end %>
+
+  <div>
+    <%= form_tag(freeboards_path, :method => "get") do %>
+      <%= text_field_tag :search, params[:search]%>
+      <%= submit_tag "검색" %>
+    <% end %> 
+  </div>
 
 <script>
 $(function(){
