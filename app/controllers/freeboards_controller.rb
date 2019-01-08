@@ -1,6 +1,7 @@
 class FreeboardsController < ApplicationController
   before_action :set_freeboard, only: [:show, :edit, :update, :destroy]
-
+  # 조회수
+  impressionist actions: [:show]
   # GET /freeboards
   # GET /freeboards.json 
   def index
@@ -8,12 +9,17 @@ class FreeboardsController < ApplicationController
     #   flash[:warning] ='닉네임을 설정해주세요'
     #   redirect_to edit_user_registration_path
     # end
-
-    @freeboards = Freeboard.all
     @free_daily = Freeboard.where(category: "일상글")
     @free_information = Freeboard.where(category: "정보글")
     @free_qna = Freeboard.where(category: "질문글")
-    @free_crowd = Freeboard.where(category: "제보글")    
+    @free_adv = Freeboard.where(category: "홍보글")      
+    @free_crowd = Freeboard.where(category: "제보글")  
+    
+    @freeboards = if params[:search]
+      @freeposts = Freeboard.search(params[:search]).order("created_at DESC")
+    else
+      @freeposts = Freeboard.all.order('created_at DESC')
+    end
   end
 
   # GET /freeboards/1

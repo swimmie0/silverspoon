@@ -16,17 +16,17 @@
   </div>
 
   <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+    <%= f.label :password %><em>(6글자 이상)</em>
+    <%= f.password_field :password, autocomplete: "off", class: "form-control", id:"password", :required => true   %>
     <%# <%= f.password_field :password, autocomplete: "new-password" %>
+    <p class = "mt-4 mb-2" id = "check-pw1"></p>    
+    
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+    <%= f.password_field :password_confirmation, id:"password2", autocomplete: "off", class: "form-control" %>
+    <p class = "mt-4 mb-2" id = "check-pw2"></p>    
   </div>
 
   <div class = "field">
@@ -87,19 +87,45 @@
 
   <div class="actions">
     <%= f.submit "Sign up" , id: "submitButton" %>
+    <button id="submitclick"> 제출 </button>
   </div>
 <% end %>
 <br>
 <%= render "devise/shared/links" %>
 
 <script>
- document.getElementById("submitButton").disabled = true;
+document.getElementById("submitButton").disabled = true;
 
-// document.getElementById("checkButton").addEventListener("click", function(){
- $(document).ready(function(){  
-     $("#checkname").keyup(function(){                           
+var idFlag = false;
+var pwFlag = false;
+var nameFlag = false;
+
+$(document).ready(function(){
+  var pw_check = document.getElementById("password");
+  var pw_confirm = document.getElementById("password2");
+  var length = document.getElementById("check-pw1");
+  var confirm = document.getElementById("check-pw2");
+  var submit = document.getElementById("submitButton");
+   $("#password").keyup(function(){ 
+    if (pw_check.value.length<6){
+      length.innerHTML = "6글자이상";
+    }else {
+      length.innerHTML = "사용가능";   
+    }
+  });
+  
+  $("#password2").keyup(function(){ 
+    if (pw_confirm.value != pw_check.value ){
+      confirm.innerHTML = "불일치";
+    }else{
+      confirm.innerHTML = "일치";      
+    }
+  });
+  
+  $("#checkname").keyup(function(){                           
       var nameIn = document.getElementById("checkname").value;
       var IDeIn = document.getElementById("checkID").value;
+      var namecheck = document.getElementById("check-warning");
         $.ajax({    //checkid와같이x
           async : true,
           type : "POST",
@@ -107,53 +133,45 @@
           url : "checkDouble",
           dataType : "json",
           success : function(data){
-            
-            console.log(data);
-          
+            console.log(data);     
             if (data["ableName"] == 1){
-                document.getElementById("check-warning").innerHTML = "해당 닉네임은 이미 사용중입니다";
-                 document.getElementById("submitButton").disabled = true;
-            }
-            else if(data["ableName"] == 0 && data["ableID"] == 1 ){
-                document.getElementById("check-warning").innerHTML = "사용가능한 닉네임입니다";
-                 document.getElementById("submitButton").disabled = true;
-            }    
-            else if(data["ableName"] == 0 && data["ableID"] == 0 ){
-                document.getElementById("check-warning").innerHTML = "사용가능한 닉네임입니다";
-                document.getElementById("submitButton").disabled = false;
+                namecheck.innerHTML = "해당 닉네임은 이미 사용중입니다";
+                submit.disabled = true;
+            }else if(data["ableName"] == 0 && data["ableID"] == 1 ){
+                namecheck.innerHTML = "사용가능한 닉네임입니다";
+                submit.disabled = true;
+            }else if(data["ableName"] == 0 && data["ableID"] == 0){
+                namecheck.innerHTML = "사용가능한 닉네임입니다";
+                submit.disabled  = false;
             }
           }
-        })
-    })
+        });
+  });
     
-     $("#checkID").keyup(function(){
+  $("#checkID").keyup(function(){
       var IDeIn = document.getElementById("checkID").value;
       var nameIn = document.getElementById("checkname").value;
+      var idcheck = document.getElementById("check-id");
         $.ajax({
           async : true,
           type : "POST",
           data : {name : nameIn,IDe : IDeIn},
           url : "checkDouble",
           dataType : "json",
-          success : function(data){
-            
+          success : function(data){   
             console.log(data);
-          
             if (data["ableID"] == 1){
-                document.getElementById("check-id").innerHTML = "해당 아이디는 이미 사용중입니다";
-                document.getElementById("submitButton").disabled = true;
-            }
-            else if( data["ableID"] == 0 && data["ableName"] ==1){
-                document.getElementById("check-id").innerHTML = "사용가능한 아이디입니다";
-                document.getElementById("submitButton").disabled = true;
-            }
-            else if(data["ableName"] == 0 && data["ableID"] == 0 ){
-                   document.getElementById("check-id").innerHTML = "사용가능한 아이디입니다";
-                   document.getElementById("submitButton").disabled = false;
+                idcheck.innerHTML = "해당 아이디는 이미 사용중입니다";
+                submit.disabled = true;
+            }else if( data["ableID"] == 0 && data["ableName"] ==1){
+                idcheck.innerHTML = "사용가능한 아이디입니다";
+                submit.disabled = true;
+            }else if(data["ableName"] == 0 && data["ableID"] == 0 ){
+                idcheck.innerHTML = "사용가능한 아이디입니다";
+                submit.disabled = false;
             }
           }
         })
-    })
- })
-
+    });
+ });
 </script>

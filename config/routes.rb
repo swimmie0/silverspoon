@@ -61,7 +61,6 @@ Rails.application.routes.draw do
   #================================
 
   # user
-  devise_for :users, :controllers => { omniauth_callbacks: 'user/omniauth_callbacks', registrations: 'user/registrations' }
   # post '/users/checkDouble' => 'user/registrations#checkDouble'
   # post "/users/checkDouble" => "user/registrations#checkDouble" 
   devise_scope :user do
@@ -69,7 +68,7 @@ Rails.application.routes.draw do
      post "/checkDouble" => "user/registrations#checkDouble"
      get "/users" => 'user/registrations#new'
   end
-
+  devise_for :users, :controllers => { omniauth_callbacks: 'user/omniauth_callbacks', registrations: 'user/registrations' }
   resources :comments, only: [:create, :destroy]
  
 
