@@ -38,9 +38,26 @@ class CommentsController < ApplicationController
           format.js
         end
     end
+
+  #추천기능
+  def vote 
+    @comment = Comment.find_by(id: params[:id])
+    @comment.liked_by(current_user)
+    redirect_back fallback_location: root_path
+  end  
+      
+  def unvote
+    @comment = Comment.find_by(id: params[:id])
+    @comment.unvote_by(current_user)
+    redirect_back fallback_location: root_path           
+    # respond_to do |format|
+    #   format.js {
+    #     render "comments/votes"
+    #   }
+    # end
+  end
    
     private
-   
     def comment_params
       params[:comment][:user_id] = current_user.id
       params.require(:comment).permit(:body, :commentable_id, :commentable_type, :comment_id, :user_id, :name)
@@ -68,4 +85,5 @@ class CommentsController < ApplicationController
       parent_comment = Comment.find comment_id
       @comment.move_to_child_of(parent_comment)
     end
+  
   end

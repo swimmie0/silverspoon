@@ -28,6 +28,7 @@ gem 'unread'
 
 # 대댓글
 gem 'acts_as_commentable_with_threading'
+gem 'acts_as_votable', '~> 0.11.1'
 
 gem 'figaro'
 

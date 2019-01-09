@@ -12,6 +12,7 @@ class User < ApplicationRecord
 
   acts_as_follower
   acts_as_reader
+  acts_as_voter
   
   mount_uploader :profileimg, S3Uploader
   # validates_uniqueness_of :name
@@ -21,6 +22,7 @@ class User < ApplicationRecord
   # login as username
   attr_writer :login
 
+  ## 아이디로 로그인
   def login
     @login || self.IDe || self.email
   end
@@ -34,6 +36,7 @@ class User < ApplicationRecord
     end
   end
 
+  ## 소셜로그인
   # GENDER_TYPES = [ ["male","0"], [ "female","1" ] ]
   # validates_inclusion_of :is_female, in: [true, false]
 

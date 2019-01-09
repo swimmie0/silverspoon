@@ -69,8 +69,13 @@ Rails.application.routes.draw do
      get "/users" => 'user/registrations#new'
   end
   devise_for :users, :controllers => { omniauth_callbacks: 'user/omniauth_callbacks', registrations: 'user/registrations' }
-  resources :comments, only: [:create, :destroy]
- 
+  # resources :comments, only: [:create, :destroy]
+  resources :comments do
+    member do
+      put "like", to: "comments#vote"
+      put "unlike", to: "comments#unvote" 
+    end    
+  end
 
 
   # 알림
