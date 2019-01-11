@@ -2,7 +2,6 @@
 <h2>세부정보를 입력해주세요 </h2>
 <%# <%= resource_name.to_s.humanize %> 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
   <h5>필수</h5>
   <div class="field">
     <%= f.label :email %><br />
@@ -103,7 +102,7 @@
                 document.getElementById("check-warning").innerHTML = "해당 닉네임은 이미 사용중입니다";
                  document.getElementById("submitButton").disabled = true;
             }
-            else if(data["ableName"] == 0){
+            else{
                 document.getElementById("check-warning").innerHTML = "사용가능한 닉네임입니다";
                  document.getElementById("submitButton").disabled = false;
             }

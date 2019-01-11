@@ -1,7 +1,8 @@
 <h2>회원가입 안내</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<%= devise_error_messages! %>
+
 <h5>필수</h5>
   <div class="field">
     <%= f.label :email %><br />
@@ -25,7 +26,7 @@
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, id:"password2", autocomplete: "off", class: "form-control" %>
+    <%= f.password_field :password_confirmation, id:"password2", autocomplete: "off", class: "form-control", :required => true %>
     <p class = "mt-4 mb-2" id = "check-pw2"></p>    
   </div>
 
@@ -93,33 +94,52 @@
 <br>
 <%= render "devise/shared/links" %>
 
+<style>
+.modal { 
+    display: none; 
+    z-index: 1;
+}   
+</style>
+
 <script>
 document.getElementById("submitButton").disabled = true;
+// document.getElementById("password2").disabled = true;
 
-var idFlag = false;
-var pwFlag = false;
-var nameFlag = false;
+var pw_check = document.getElementById("password");
+var pw_confirm = document.getElementById("password2");
+var confirm = document.getElementById("check-pw2");
+var submit = document.getElementById("submitButton");
+function doubleCheck() {
+      if (pw_confirm.value != pw_check.value ){
+      confirm.innerHTML = "불일치";
+      submit.disabled = true;   
+    }else{
+      confirm.innerHTML = "일치";
+      submit.disabled = false;  
+    }  
+}
 
 $(document).ready(function(){
-  var pw_check = document.getElementById("password");
-  var pw_confirm = document.getElementById("password2");
-  var length = document.getElementById("check-pw1");
-  var confirm = document.getElementById("check-pw2");
-  var submit = document.getElementById("submitButton");
+  var lengthcheck = document.getElementById("check-pw1");
+   
    $("#password").keyup(function(){ 
     if (pw_check.value.length<6){
-      length.innerHTML = "6글자이상";
-    }else {
-      length.innerHTML = "사용가능";   
+      lengthcheck.innerHTML = "6글자이상";
+      // pw_confirm.disabled = true; 
+    } else {
+      lengthcheck.innerHTML = "사용가능";  
+      // pw_confirm.disabled = false; 
     }
+     doubleCheck();
   });
   
   $("#password2").keyup(function(){ 
-    if (pw_confirm.value != pw_check.value ){
-      confirm.innerHTML = "불일치";
-    }else{
-      confirm.innerHTML = "일치";      
+      doubleCheck(); 
+    if (location.pathname =="/users"){
+      if (confirm.innerHTML=="일치" && idcheck.innerHTML.length == 0 && namecheck.innerHTML.length ==0){
+      submit.disabled = false;
     }
+  }   
   });
   
   $("#checkname").keyup(function(){                           
@@ -174,4 +194,17 @@ $(document).ready(function(){
         })
     });
  });
+
+// var error= document.getElementById("modal-body")
+//  var modal = document.getElementById('myModal');
+//     function fnShowPopup() {
+//       modal.style.display = "block"; 
+//   }
+
+// $(document).ready(function(){
+//   if (error.innerHTML.length > 13 ) {
+//       setTimeout(fnShowPopup, 300); 
+//   }
+// }); 
+
 </script>
