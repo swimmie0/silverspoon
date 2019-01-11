@@ -69,6 +69,9 @@ Rails.application.routes.draw do
      get "/users" => 'user/registrations#new'
   end
   devise_for :users, :controllers => { omniauth_callbacks: 'user/omniauth_callbacks', registrations: 'user/registrations' }
+  devise_scope :user do
+    get 'editsns', :to => 'devise/registrations#editsns'
+  end
   # resources :comments, only: [:create, :destroy]
   resources :comments do
     member do

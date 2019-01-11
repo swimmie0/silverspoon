@@ -32,6 +32,8 @@ class User::RegistrationsController < Devise::RegistrationsController
     #puts "json 실행" + $result
   end
   
+  def editsns
+  end  
   # GET /resource/sign_up
   # def new
   #   super
