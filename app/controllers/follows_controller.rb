@@ -32,29 +32,70 @@ class FollowsController < ApplicationController
         redirect_to profile_url(current_user.profile.id)
     end 
 
-    def zizum_front_follow_toggle
+    # def zizum_front_follow_toggle
 
+    #     @zizum = Zizuminfo.find(params[:id])
+        
+    #     if @zizum.followed_by?(current_user)
+    #         current_user.stop_following(@zizum)
+    #     else !@zizum.followed_by?(current_user)
+    #         current_user.follow(@zizum)
+    #     end 
+    #         # redirect_to zizum_path(@zizum.id)
+    # end
+
+    # def zizum_back_follow_toggle
+
+    #     @zizum = Zizuminfo.find(params[:id])
+        
+    #     # where(:restaurant_name => @restaurants.map(&:restaurant_name)
+    #     if @zizum.followed_by?(current_user)
+    #         current_user.stop_following(@zizum)
+
+    #     else !@zizum.followed_by?(current_user)
+    #         current_user.follow(@zizum)          
+    #     end 
+    #         redirect_to zizuminfo_url(@zizum.id) 
+    # end
+
+    def zizumfollow
         @zizum = Zizuminfo.find(params[:id])
+        followtype = false
         
         if @zizum.followed_by?(current_user)
             current_user.stop_following(@zizum)
-        else !@zizum.followed_by?(current_user)
+        else
             current_user.follow(@zizum)
-        end 
-            # redirect_to zizum_path(@zizum.id)
+            followtype = true
+        end
+
+        $result = {"zizumid" => nil, "follow" => nil}
+        $result["zizumid"] = @zizum.id
+        $result["follow"] = followtype
+
+        respond_to do |format|
+            format.json {render json: $result}
+        end
     end
 
-    def zizum_back_follow_toggle
+  def getGungu
+    #받아오기
+    @locations = JSON.parse(File.read(File.join('sigungu.json')))
 
-        @zizum = Zizuminfo.find(params[:id])
-        
-        # where(:restaurant_name => @restaurants.map(&:restaurant_name)
-        if @zizum.followed_by?(current_user)
-            current_user.stop_following(@zizum)
+    @sido_name = params[:sido]
+    @sigungu_name = @locations["data"][0][@sido_name]
 
-        else !@zizum.followed_by?(current_user)
-            current_user.follow(@zizum)          
-        end 
-            redirect_to zizuminfo_url(@zizum.id) 
+    $result={"sido_name" => nil, "sigungu_name"=>nil}
+    $result["sido_name"]=@sido_name
+    $result["sigungu_name"]=@sigungu_name
+    
+    $result = $result.to_json
+    puts "실험실험실험============================================="
+    puts $result
+    puts "싫끝====================================================="
+
+    respond_to do |format|
+      format.json {render json: $result}
     end
+  end
 end

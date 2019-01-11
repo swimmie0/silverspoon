@@ -10,9 +10,39 @@ class ZizuminfosController < ApplicationController
   end
   
   def index
+    sido = params[:sido]
+    sigungu = params[:sigungu]
     @restaurants = Restaurant.where("#{:restaurant_name} LIKE?", params[:restaurant_name])
-    @zizums = Zizuminfo.where("#{:restaurant_name} LIKE ?", params[:restaurant_name])
-    @zizums = @zizums[0]
+    @temp = Zizuminfo.where("#{:restaurant_name} LIKE ?", params[:restaurant_name])
+    
+    if sido == "전체"
+      @zizums = @temp
+     elsif sigungu == "전체"
+      @zizums = @temp.where("#{:sido} LIKE?", sido)
+     else
+      @zizums = @temp.where("#{:sido} LIKE ? AND #{:sigungu} LIKE ?", sido, sigungu)
+    end
+    
+    # @zizums = @zizums[0]
+  end
+
+  def getGungu
+    #받아오기
+    @locations = JSON.parse(File.read(File.join('sigungu.json')))
+
+    @sido_name = params[:sido]
+    @sigungu_name = @locations["data"][0][@sido_name]
+
+    $result={"sido_name" => nil, "sigungu_name"=>nil}
+    $result["sido_name"]= @sido_name
+    $result["sigungu_name"]= @sigungu_name
+    
+    $result = $result.to_json
+
+    respond_to do |format|
+      format.json {render json: $result}
+    end
+
   end
 
   # GET /zizuminfos/1
