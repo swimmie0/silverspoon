@@ -10,8 +10,8 @@
     <% else %>
       <p> <%= link_to "로그인", new_user_session_path, class: 'btn btn-default' %> </p>
     <% end %>
-    <button><%= link_to '식당으로 검색', zizuminfos_search_path, :style=> "color: #454338; text-decoration: none;" %></button>
-    <button><%= link_to '알레르기 검색', menus_search_path, :style=> "color: #454338; text-decoration: none;" %></button>
+    
+    <button><%= link_to 'Filtering', menus_search_path, :style=> "color: #454338; text-decoration: none;"%></button>
     <% if user_signed_in? %> 
       <% if current_user.profile.nil? %> 
       <div>   <%= link_to "My Page", new_profile_path(@profile), class:"headerfont", :style=>"text-decoration: none; color: #454338;" %>

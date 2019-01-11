@@ -1,21 +1,29 @@
 Rails.application.routes.draw do
 
+  resources :recipes
   resources :conversations do
     resources :messages
   end 
   
   ##SEARCH------resources :zizuminfos 보다 위에
-  get 'zizuminfos/search'
+  get 'zizuminfos/search/' => "zizuminfos#search"
+  get 'zizuminfos/getGungu' => "menus#getGungu"
+  #밑에 꺼 꼭 넣어야함.
+  get 'zizuminfos/index' => "zizuminfos#index", as: 'zizuminfos'
   ##-------------------------------------
 
 
-  #SEARCH----------resouces :restaurants 보다 위에 가게 해야 함! --------------------
+  #SEARCH----------resouces :menus 보다 위에 가게 해야 함! --------------------
   get 'restaurants/search' => "restaurants#search"
   get 'menus/search/' => "menus#search"
   get 'menus/getGungu' => "menus#getGungu"
+  get 'zizuminfos/getGungu' => "menus#getGungu"
+  #밑에 꺼 꼭 넣어야함.
   get 'menus/index' => "menus#index", as: 'menus'
   #--------------------------------------------------------------------------
 
+  #좋아요 ajax
+  get 'follows/zizumfollow' => "follows#zizumfollow"
  #===============메뉴별 제보 요청==============
  get 'userrequests/index'
 
@@ -43,9 +51,9 @@ Rails.application.routes.draw do
   resources :profiles
   get '/zizuminfos/:id/follow_destroy', to: 'follows#profile_follow_destroy_toggle', as: 'profile_follow_destroy'
 
-  # Follow 기능
-  post '/zizuminfos/:id/follow', to: 'follows#zizum_back_follow_toggle', as: 'zizum_back_follow'
-  post '/menus/index/params', to: 'follows#zizum_front_follow_toggle', as: 'zizum_front_follow'
+  # # Follow 기능
+  # post '/zizuminfos/:id/follow', to: 'follows#zizum_back_follow_toggle', as: 'zizum_back_follow'
+  # post '/menus/index/params', to: 'follows#zizum_front_follow_toggle', as: 'zizum_front_follow'
 
   resources :freeboards
   resources :userrequests

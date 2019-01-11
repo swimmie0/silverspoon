@@ -1,0 +1,97 @@
+// Place all the styles related to the recipes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.recipe-new-upper{
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.recipe-new-upper-main{
+    font-size: 22px;
+    font-weight: 650;
+}
+
+
+.post-submit-button{
+    font-size: 18px;
+    cursor: pointer;
+    width: 6rem;
+    height: 2.3rem;
+    border-radius: 17px;
+    color: white;
+    border-style: none;
+    background-color: rgba(0, 171, 108, 0.849);
+}
+
+.recipe-new-intro{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.recipe-new-intro-field{
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.recipe-new-form-title{
+    font-size: 16px;
+    width: 7.5rem;
+    margin-right: 1rem;
+}
+
+.recipe-new-intro-input{
+    border-style: solid;
+    border-width: 0.4px;
+    border-color: #707070;
+    width: 13rem;
+}
+
+.recipe-new-body{
+    width: 100%;
+}
+
+.recipe-new-divide-line{
+    height: 3px;
+}
+
+.recipe-new-defaultimg{
+    width: 9rem;
+    height: 9rem;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+
+.recipe-new-body-cap{
+    //!! 어떻게 100% 로 딱 채우지?
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.recipe-new-body-add{
+    font-size: 2rem;
+    color: rgba(0, 171, 108, 0.849);
+    cursor: pointer;
+}
+
+.recipe-new-targetimg{
+    width: 9rem;
+    height: 9rem;
+    overflow: hidden;
+}
+
+.recipe-target-imgbox{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.pictureInput{
+    display: none;
+
+}

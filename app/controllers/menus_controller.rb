@@ -7,19 +7,6 @@ class MenusController < ApplicationController
   # GET /menus.json
 
   #로그인 팝업창
-  module ApplicationHelper
-    def resource_name
-      :user
-    end
-  
-    def resource
-      @resource ||= User.new
-    end
-  
-    def devise_mapping
-     @devise_mapping ||= Devise.mappings[:user]
-    end
-  end
   #메뉴로 검색
   def search
     
