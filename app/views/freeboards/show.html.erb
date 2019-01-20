@@ -17,6 +17,7 @@
 <p>
   <strong>Name:</strong>
   <%= @freeboard.name %>
+  <%= link_to @freeboard.name,  profile_path(@writer.profile.id) %>
 </p>
 
 

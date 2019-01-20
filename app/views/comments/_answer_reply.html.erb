@@ -9,13 +9,15 @@
       <%= content_tag(:div, comment.body, style: "white-space: pre-wrap;") %>
 
     <!--추천기능-->
-추천수: <%= comment.votes_for.size %>
-<% if current_user.voted_for? (comment)%>    
-<%= link_to "취소", unlike_comment_path(comment), method: :put %>
-<% else %>
-<%= link_to "추천", like_comment_path(comment), method: :put %>
+ 
+  추천수: <%= comment.votes_for.size %>
+ <% if current_user %>    
+  <% if current_user.voted_for? (comment)%>    
+  <%= link_to "취소", unlike_comment_path(comment), method: :put %>
+  <% else %>
+  <%= link_to "추천", like_comment_path(comment), method: :put %>
+  <% end %>
 <% end %>
-
       <div class="comment-nav" align="right">
         <button onclick="showHide('comment_<%= comment.id %>')" onfocus="this.blur()">답글</button>
       </div>

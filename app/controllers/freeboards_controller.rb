@@ -9,16 +9,19 @@ class FreeboardsController < ApplicationController
     #   flash[:warning] ='닉네임을 설정해주세요'
     #   redirect_to edit_user_registration_path
     # end
+
     @free_daily = Freeboard.where(category: "일상글")
     @free_information = Freeboard.where(category: "정보글")
     @free_qna = Freeboard.where(category: "질문글")
     @free_adv = Freeboard.where(category: "홍보글")      
     @free_crowd = Freeboard.where(category: "제보글")  
+    @recipe = Recipe.all
     
     @freeboards = if params[:search]
-      @freeposts = Freeboard.search(params[:search]).order("created_at DESC")
+      @freeboards = Freeboard.search(params[:search]).order("created_at DESC")
     else
-      @freeposts = Freeboard.all.order('created_at DESC')
+      # @freeboards = Freeboard.all && Recipe.all
+      @freeboards = Freeboard.all.order("created_at DESC")
     end
   end
 
