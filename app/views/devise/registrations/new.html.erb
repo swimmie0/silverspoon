@@ -13,7 +13,6 @@
     <%= f.label "아이디" %><br/>
     <%= f.text_field :IDe, class: "form-control", id: "checkID", :required => true, :placeholder => " 가입 이후 변경이 불가능하오니 가입 시 신중하게 아이디를 기입해주시기 바랍니다.  " %>
     <p class = "mt-4 mb-2" id = "check-id"></p>
-    <%# <button type = "button" id = "checkIDButton">중복확인</button> %>
   </div>
 
   <div class="field">
@@ -35,7 +34,6 @@
     <%= f.text_field :name, class: "form-control", id: "checkname", :required => true, :validates => { :uniqueness => true }  %>
     <p class = "mt-4 mb-2" id = "check-warning"></p>
   </div>
- <%# <button type = "button" id = "checkButton">중복확인</button> %>
 
  <hr><h5> 선택 </h5> 
   <div class="field">
@@ -87,8 +85,8 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" , id: "submitButton" %>
-    <button id="submitclick"> 제출 </button>
+    <%# <%= f.submit "Sign up" , id: "submitButton" %> 
+    <input type="button" value="제출" id="submit"> </input>
   </div>
 <% end %>
 <br>
@@ -102,30 +100,38 @@
 </style>
 
 <script>
-document.getElementById("submitButton").disabled = true;
+// document.getElementById("submitButton").disabled = true;
 // document.getElementById("password2").disabled = true;
-
 var pw_check = document.getElementById("password");
 var pw_confirm = document.getElementById("password2");
 var confirm = document.getElementById("check-pw2");
-var submit = document.getElementById("submitButton");
+// var submit = document.getElementById("submitButton");
+var namecheck = document.getElementById("check-warning");
+var idcheck = document.getElementById("check-id");
+
 function doubleCheck() {
-      if (pw_confirm.value != pw_check.value ){
+    if (pw_confirm.value != pw_check.value ){
       confirm.innerHTML = "불일치";
-      submit.disabled = true;   
+      // submit.disabled = true;   
     }else{
       confirm.innerHTML = "일치";
-      submit.disabled = false;  
+      // submit.disabled = false;  
     }  
 }
 
+// function checkAll() { 
+//    if (confirm.innerHTML == "일치" && namecheck.innerHTML == "사용가능한 닉네임입니다" && idcheck.innerHTML == "사용가능한 아이디입니다"){
+//       submit.disabled = false;       
+//    }else {
+//       submit.disabled = true;            
+//    }
+// }
+
 $(document).ready(function(){
   var lengthcheck = document.getElementById("check-pw1");
-   
    $("#password").keyup(function(){ 
     if (pw_check.value.length<6){
       lengthcheck.innerHTML = "6글자이상";
-      // pw_confirm.disabled = true; 
     } else {
       lengthcheck.innerHTML = "사용가능";  
       // pw_confirm.disabled = false; 
@@ -135,11 +141,11 @@ $(document).ready(function(){
   
   $("#password2").keyup(function(){ 
       doubleCheck(); 
-    if (location.pathname =="/users"){
-      if (confirm.innerHTML=="일치" && idcheck.innerHTML.length == 0 && namecheck.innerHTML.length ==0){
-      submit.disabled = false;
-    }
-  }   
+    // if (location.pathname =="/users"){
+    //   if (confirm.innerHTML=="일치" && idcheck.innerHTML.length == 0 && namecheck.innerHTML.length ==0){
+    //   submit.disabled = false;
+    //   }
+    // }   
   });
   
   $("#checkname").keyup(function(){                           
@@ -156,13 +162,13 @@ $(document).ready(function(){
             console.log(data);     
             if (data["ableName"] == 1){
                 namecheck.innerHTML = "해당 닉네임은 이미 사용중입니다";
-                submit.disabled = true;
+                // submit.disabled = true;
             }else if(data["ableName"] == 0 && data["ableID"] == 1 ){
                 namecheck.innerHTML = "사용가능한 닉네임입니다";
-                submit.disabled = true;
+                // submit.disabled = true;
             }else if(data["ableName"] == 0 && data["ableID"] == 0){
                 namecheck.innerHTML = "사용가능한 닉네임입니다";
-                submit.disabled  = false;
+                // submit.disabled  = false;
             }
           }
         });
@@ -182,18 +188,36 @@ $(document).ready(function(){
             console.log(data);
             if (data["ableID"] == 1){
                 idcheck.innerHTML = "해당 아이디는 이미 사용중입니다";
-                submit.disabled = true;
+                // submit.disabled = true;
             }else if( data["ableID"] == 0 && data["ableName"] ==1){
                 idcheck.innerHTML = "사용가능한 아이디입니다";
-                submit.disabled = true;
+                // submit.disabled = true;
             }else if(data["ableName"] == 0 && data["ableID"] == 0 ){
                 idcheck.innerHTML = "사용가능한 아이디입니다";
-                submit.disabled = false;
+                // submit.disabled = false;
             }
           }
         })
     });
  });
+
+document.getElementById("submit").addEventListener("click", function(){
+  if (location.pathname =="/users"){
+      if (confirm.innerHTML=="불일치" || idcheck.innerHTML == "해당 아이디는 이미 사용중입니다" || namecheck.innerHTML == "해당 닉네임은 이미 사용중입니다"){
+       document.getElementById("submit").type = "button" 
+      }else{
+       document.getElementById("submit").type = "submit"      
+      }
+  }else{
+    if (confirm.innerHTML == "일치" && namecheck.innerHTML == "사용가능한 닉네임입니다" && idcheck.innerHTML == "사용가능한 아이디입니다"){
+    document.getElementById("submit").type = "submit"
+    }else{
+    document.getElementById("submit").type = "button"  
+    alert("제대로 기입했는지 확인하시오")  
+    }
+  }  
+})
+
 
 // var error= document.getElementById("modal-body")
 //  var modal = document.getElementById('myModal');
