@@ -6,9 +6,9 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :trackable, :validatable, :omniauthable, authentication_keys: [:login]
   
   has_one :profile
-  has_many :boards
   has_many :freeboards
   has_many :new_alarms
+  has_many :recipes
 
   acts_as_follower
   acts_as_reader

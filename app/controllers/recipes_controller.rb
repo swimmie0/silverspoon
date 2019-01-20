@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
-
+  impressionist actions: [:show]
   # GET /recipes
   # GET /recipes.json
   def index
@@ -14,6 +14,10 @@ class RecipesController < ApplicationController
 
   # GET /recipes/new
   def new
+    if user_signed_in? && current_user.name == nil
+      flash[:warning] ='닉네임을 설정해주세요'
+      redirect_to edit_user_registration_path
+    end
     @recipe = Recipe.new
   end
 
@@ -25,6 +29,9 @@ class RecipesController < ApplicationController
   # POST /recipes.json
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.user = current_user
+    @recipe.name = current_user.name
+    @recipe.category = "레시피"
 
     respond_to do |format|
       if @recipe.save

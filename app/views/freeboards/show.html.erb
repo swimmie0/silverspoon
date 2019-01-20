@@ -26,8 +26,7 @@
   <%= link_to 'Back', freeboards_path %>
 <%end%>
 
-<% if @freeboard.category == "질문글" %>
-  <%= render partial: "comments/answer", locals: {commentable: @freeboard, new_comment: @comment} %>
-<% else %>
   <%= render partial: "comments/template", locals: {commentable: @freeboard, new_comment: @comment} %>
-<% end %>
+
+<%# template은 댓글틀 / reply는 댓글list, 안에 답글reply_end , 안에 form이 댓글작성box %>
+                <%# / 질문글은 answer이 댓글리스트(추천수기능) %>
