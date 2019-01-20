@@ -200,8 +200,13 @@ ActiveRecord::Schema.define(version: 2019_01_09_142823) do
     t.string "recipeimage9"
     t.text "content10"
     t.string "recipeimage10"
+    t.integer "user_id"
+    t.string "name"
+    t.string "category"
+    t.boolean "locked", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
   create_table "restaurants", force: :cascade do |t|

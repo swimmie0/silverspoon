@@ -23,6 +23,10 @@ class CreateRecipes < ActiveRecord::Migration[5.2]
       t.string :recipeimage9
       t.text :content10
       t.string :recipeimage10
+      t.references :user, foreign_key: true
+      t.string :name
+      t.string :category
+      t.boolean :locked, default: false
 
       t.timestamps
     end

@@ -2,19 +2,19 @@
 <% comments.each do |comment| %>  
   <div class="comments-show">
     <div class="comment">
-      <%= comment.user.name %> / <%= time_ago_in_words(comment.created_at) %>전 [ <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %> ] /
+       <%= link_to comment.user.name, profile_path(comment.user.profile.id) %> / <%= time_ago_in_words(comment.created_at) %>전 [ <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %> ] /
       <% if current_user == comment.user %>
         <%= link_to "지우기", comment_path(comment), method: :delete, remote: false, data: { confirm: "정말로 지우시겠습니까?" }, style: "color: red; font-weight: bold" %>
       <% end %>  
       <%= content_tag(:div, comment.body, style: "white-space: pre-wrap;") %>
       
+    <% if user_signed_in? && current_user.name != nil %>
       <div class="comment-nav" align="right">
         <button onclick="showHide('comment_<%= comment.id %>')" onfocus="this.blur()">답글</button>
       </div>
       
       <div id="comment_<%= comment.id %>" style="display:none;"> <!--답글창-->
         <div class="reply-form">
-         <% if user_signed_in? %>
           <%= form_for @new_comment do |f| %>
             <%= f.hidden_field :commentable_id, value: @new_comment.commentable_id %>
             <%= f.hidden_field :commentable_type, value: @new_comment.commentable_type %>
@@ -26,7 +26,8 @@
             <div class="field form-group">
               <%= submit_tag "답댓글 작성", style: "float: right;" %>
             </div>
-          <% end %>
+           <% end %>
+           
          <% end %> 
         </div>
       </div>

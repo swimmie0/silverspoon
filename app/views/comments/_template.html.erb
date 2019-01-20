@@ -1,9 +1,18 @@
 <div class="comments-header">  
-    <h4>댓글 (<%= commentable.comment_threads.count %>)</h4>
+    <% if @freeboard.category == "질문글" %>
+        <h4>답변 (<%= commentable.comment_threads.count %>)</h4>
+    <% else %>
+        <h4>댓글 (<%= commentable.comment_threads.count %>)</h4>
+    <% end %>
 </div>
  
 <div class="comments-container">  
-    <%= render partial: "comments/answer_reply", locals: {comments: commentable.root_comments} %>
+    <% if @freeboard.category == "질문글" %>
+        <%= render partial: "comments/answer",  locals: {comments: commentable.root_comments} %>
+    <% else %>
+        <%= render partial: "comments/reply",  locals: {comments: commentable.root_comments} %>
+    <% end %>
 </div>
+
 <hr/>
 <%= render partial: "comments/form", locals: {new_comment: new_comment} %>

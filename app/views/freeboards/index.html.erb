@@ -32,9 +32,6 @@
         <td> <%= freeboard.comment_threads.count %></td>
         <td> <%= freeboard.impressionist_count(:filter=>:session_hash) %></td>
         <td><% if freeboard.locked %>LOCKED<% end %></td>
-        <%# <td><%= link_to 'Show', freeboard %>
-        <%# <td><%= link_to 'Edit', edit_freeboard_path(freeboard) %>
-        <%# <td><%= link_to 'Destroy', freeboard, method: :delete, data: { confirm: 'Are you sure?' }%>
       </tr>
     <% end %>
 
@@ -88,8 +85,9 @@
       <tr class="postr" style= "display:none">
         <td>레시피</td> 
         <td><%= link_to r.title, r %></td>
-        <td>작성자;user연결해야함 </td>
-        <td> 댓글;comment연결해야함 </td>   
+        <td><%= r.name %></td>
+        <td> <%= r.comment_threads.count %></td>   
+        <td><% if r.locked %>LOCKED<% end %></td>
       </tr>
     <% end %>
 
@@ -99,6 +97,7 @@
 <br>
 <% if user_signed_in? %>
   <%= link_to 'New Freeboard', new_freeboard_path %>
+  <%= link_to 'New Recipe', new_recipe_path %>  
 <% end %>
 
   <div>
