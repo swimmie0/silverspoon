@@ -21,12 +21,30 @@
   <div class="recipe-new-intro">
     <div class="field recipe-new-intro-field d-flex">
       <%= f.label :title, "레시피 제목" , class: "recipe-new-form-title"%>
-      <%= f.text_field :title, class: "recipe-new-intro-input"%>
+      <%= f.text_field :allergyfor, class: "recipe-new-intro-allergyfor", placeholder:"ex)밀, 우유"%> 알레르기 보유자를 위한, 
+      <%= f.text_field :title, class: "recipe-new-intro-input recipe-new-intro-title", placeholder:"ex)호두식빵 레시피"%>
     </div>
 
     <div class="field recipe-new-intro-field d-flex">
       <%= f.label :explain, "레시피 한 줄 설명", class: "recipe-new-form-title"%>
       <%= f.text_field :explain, class: "recipe-new-intro-input"%>
+    </div>
+
+    <div class="field recipe-new-intro-field d-flex">
+      <%= f.label :ingredients, "레시피 재료", class: "recipe-new-form-title"%>
+      <%= f.text_field :ingredients, class: "recipe-new-intro-input"%>
+    </div>
+
+    <div class="field recipe-new-intro-field d-flex">
+      <%= f.label :tag, "들어간 알레르기 성분 태그!", class: "recipe-new-form-title"%>
+      <%= f.text_field :tag, class: "recipe-new-intro-input allergy-tag-input"%>
+      <div class="allergy-tag-showlist d-flex"></div>
+    </div>
+
+    <div class="allergy-tag-box">
+        <%@allergy_tags.each do |tag|%>
+          <div class="allergy-tag"><%=tag%></div>
+        <%end%>
     </div>
   </div>
   
@@ -90,6 +108,27 @@
 </div>
 
 <script>
+  var tagadd = ''
+  var tagarray = [];
+
+  $(".allergy-tag").click(function(){
+    if($(this).hasClass("allergy-tag-selected")){
+      $(this).removeClass("allergy-tag-selected");
+      $("#tag-"+$(this).html()).remove();
+      tagadd = $(".allergy-tag-showlist").html();
+      tagarray.splice(tagarray.indexOf($(this).html()),1);
+    }
+    else{
+      $(this).addClass("allergy-tag-selected");
+      tagadd += '<div class="allergy-tag-name" id="'+"tag-"+$(this).html()+'">' + $(this).html() +'</div>';
+      $(".allergy-tag-showlist").html(tagadd);
+      tagarray.push($(this).html());
+    }
+
+    $(".allergy-tag-input").val(tagarray);
+  })
+
+
 
   $(document).ready(function(){
     $("#addBtn").click(function(){
