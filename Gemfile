@@ -30,6 +30,7 @@ gem 'unread'
 gem 'acts_as_commentable_with_threading'
 gem 'acts_as_votable', '~> 0.11.1'
 
+
 gem 'figaro'
 
 gem 'bootstrap', '~> 4.1.3'
