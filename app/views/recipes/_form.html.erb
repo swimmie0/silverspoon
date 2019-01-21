@@ -18,33 +18,47 @@
     </div>
   <% end %>
 
-  <div class="recipe-new-intro">
-    <div class="field recipe-new-intro-field d-flex">
-      <%= f.label :title, "레시피 제목" , class: "recipe-new-form-title"%>
-      <%= f.text_field :allergyfor, class: "recipe-new-intro-allergyfor", placeholder:"ex)밀, 우유"%> 알레르기 보유자를 위한, 
-      <%= f.text_field :title, class: "recipe-new-intro-input recipe-new-intro-title", placeholder:"ex)호두식빵 레시피"%>
+  <div class="recipe-new-intro row">
+    <div class="col-3">
+      <div class="recipe-new-body-imgcap">
+        <div>레시피 대표 사진 등록</div>
+        <%= image_tag("defaultImg3.jpg", class: "recipe-new-representative", id: "firstImg imgPlace") %>
+        <div class="target"></div>
+      </div> 
+
+      <div class="field">
+        <%= f.file_field :recipeimage0, type: "file", class: "pictureInput", accept: 'image/png,image/gif,image/jpeg', style: "margin-right: 100px; margin-top: 5px; margin-bottom: 5px" %> 
+      </div>
     </div>
 
-    <div class="field recipe-new-intro-field d-flex">
-      <%= f.label :explain, "레시피 한 줄 설명", class: "recipe-new-form-title"%>
-      <%= f.text_field :explain, class: "recipe-new-intro-input"%>
-    </div>
+    <div class="recipe-new-intro-text col-9">
+      <div class="field recipe-new-intro-field d-flex">
+        <%= f.label :title, "레시피 제목" , class: "recipe-new-form-title"%>
+        <%= f.text_field :allergyfor, class: "recipe-new-intro-allergyfor", placeholder:"ex)밀, 우유"%> 알레르기 보유자를 위한, 
+        <%= f.text_field :title, class: "recipe-new-intro-input recipe-new-intro-title", placeholder:"ex)호두식빵 레시피"%>
+      </div>
 
-    <div class="field recipe-new-intro-field d-flex">
-      <%= f.label :ingredients, "레시피 재료", class: "recipe-new-form-title"%>
-      <%= f.text_field :ingredients, class: "recipe-new-intro-input"%>
-    </div>
+      <div class="field recipe-new-intro-field d-flex">
+        <%= f.label :explain, "레시피 한 줄 설명", class: "recipe-new-form-title"%>
+        <%= f.text_field :explain, class: "recipe-new-intro-input"%>
+      </div>
 
-    <div class="field recipe-new-intro-field d-flex">
-      <%= f.label :tag, "들어간 알레르기 성분 태그!", class: "recipe-new-form-title"%>
-      <%= f.text_field :tag, class: "recipe-new-intro-input allergy-tag-input"%>
-      <div class="allergy-tag-showlist d-flex"></div>
-    </div>
+      <div class="field recipe-new-intro-field d-flex">
+        <%= f.label :ingredients, "레시피 재료", class: "recipe-new-form-title"%>
+        <%= f.text_field :ingredients, class: "recipe-new-intro-input"%>
+      </div>
 
-    <div class="allergy-tag-box">
-        <%@allergy_tags.each do |tag|%>
-          <div class="allergy-tag"><%=tag%></div>
-        <%end%>
+      <div class="field recipe-new-intro-field d-flex">
+        <%= f.label :tag, "들어간 알레르기 성분 태그!", class: "recipe-new-form-title"%>
+        <%= f.text_field :tag, class: "recipe-new-intro-input allergy-tag-input"%>
+        <div class="allergy-tag-showlist d-flex"></div>
+      </div>
+
+      <div class="allergy-tag-box">
+          <%@allergy_tags.each do |tag|%>
+            <div class="allergy-tag"><%=tag%></div>
+          <%end%>
+      </div>
     </div>
   </div>
   
@@ -215,9 +229,10 @@
     });
   });
 
-  $(".recipe-new-defaultimg").click(function(){
+  $(".recipe-new-defaultimg, .recipe-new-representative").click(function(){
     $(this).parent().siblings('div.field').children('input').trigger('click');
   })
+
 
 $(function() {
   $('input.pictureInput').on('change', function(event) {
