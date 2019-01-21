@@ -32,6 +32,17 @@
     margin-bottom: 1rem;
 }
 
+.recipe-new-intro-allergyfor{
+    border-style: solid;
+    border-width: 0.4px;
+    border-bottom-color: #707070;
+
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    width: 150px;
+}
+
 .recipe-new-intro-field{
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
@@ -50,6 +61,9 @@
     width: 13rem;
 }
 
+.recipe-new-intro-title{
+    margin-left: 10px;
+}
 .recipe-new-body{
     width: 100%;
 }
@@ -94,4 +108,41 @@
 .pictureInput{
     display: none;
 
+}
+
+.allergy-tag-input{
+    display: none;
+}
+
+.allergy-tag-box{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 900px;
+    border-style: solid;
+    border-color: gray;
+    border-width: 0.5px;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.allergy-tag{
+    margin: 5px;
+    cursor: pointer;
+    height: 32px;
+    width: 100px;
+    border-style: solid;
+    border-color: rgb(0, 141, 99);
+    border-width: 0.5px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.allergy-tag-selected{
+    border-color: transparent;
+    background-color: rgb(0, 141, 99);
+    color: white;
+}
+
+.allergy-tag-name{
+    margin-right: 10px;
 }

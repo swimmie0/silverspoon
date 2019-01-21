@@ -3,6 +3,8 @@ class CreateRecipes < ActiveRecord::Migration[5.2]
     create_table :recipes do |t|
       t.string :title
       t.text :explain
+      t.text :ingredients
+      t.text :tag
       t.text :content1
       t.string :recipeimage1
       t.text :content2
