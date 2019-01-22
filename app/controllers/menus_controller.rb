@@ -74,7 +74,10 @@ class MenusController < ApplicationController
      #  puts "실험씨작======================================================="
      @temp = Zizuminfo.where(:restaurant_name => @restaurants.map(&:restaurant_name))
      
-    
+     #default 값
+     @temp = @temp.order(restaurant_name: :asc).order(zizum_name: :asc)
+     
+     
      if sido == "전체"
       @zizums = @temp
      elsif sigungu == "전체"

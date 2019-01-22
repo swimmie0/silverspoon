@@ -19,6 +19,7 @@ class RecipesController < ApplicationController
       redirect_to edit_user_registration_path
     end
     @recipe = Recipe.new
+    @allergy_tags=["난류", "우유", "복숭아", "토마토", "메밀", "밀", "대두(콩)", "닭고기", "쇠고기", "돼지고기", "새우", "고등어", "홍합", "전복", "굴", "조개류", "게", "오징어", "호두", "땅콩", "아황산류"]
   end
 
   # GET /recipes/1/edit
@@ -76,7 +77,7 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:title, :explain, :content1, :content2, :content3, :content4, :content5, :content6, :content7, :content8, :content9, :content10,
+      params.require(:recipe).permit(:allergyfor, :recipeimage0, :title, :explain, :ingredients, :tag, :content1, :content2, :content3, :content4, :content5, :content6, :content7, :content8, :content9, :content10,
          :recipeimage1, :recipeimage2, :recipeimage3, :recipeimage4, :recipeimage5, :recipeimage6, :recipeimage7, :recipeimage8, :recipeimage9, :recipeimage10)
     end
 end
