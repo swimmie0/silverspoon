@@ -1,4 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<div class="recipe-show-title">레시피 제목: <%=@recipe.allergyfor%> 알레르기 성분 보유자를 위한,  <%=@recipe.title%></div>
+<div class="recipe-show-explain">레시피 설명: <%=@recipe.explain%></div>
+<div class="recipe-show-ingredients">레시피 재료: <%=@recipe.ingredients%></div>
+<div class="recipe-show-tag">레시피 알레르기 성분 주의: <%=@recipe.tag%></div>
+
+
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>

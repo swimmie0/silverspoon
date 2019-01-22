@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_09_142823) do
+ActiveRecord::Schema.define(version: 2019_01_21_175407) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -180,6 +180,8 @@ ActiveRecord::Schema.define(version: 2019_01_09_142823) do
   create_table "recipes", force: :cascade do |t|
     t.string "title"
     t.text "explain"
+    t.text "ingredients"
+    t.text "tag"
     t.text "content1"
     t.string "recipeimage1"
     t.text "content2"
@@ -206,6 +208,8 @@ ActiveRecord::Schema.define(version: 2019_01_09_142823) do
     t.boolean "locked", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "allergyfor"
+    t.string "recipeimage0"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
