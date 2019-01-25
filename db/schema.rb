@@ -321,18 +321,18 @@ ActiveRecord::Schema.define(version: 2019_01_22_061322) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
-  create_table "zizuminfos", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "id"
-    t.text "zizum_name"
-    t.text "sido"
-    t.text "sigungu"
-    t.text "sangse_juso"
-    t.text "phone_number"
-    t.text "image"
-    t.integer "restaurant_id"
-    t.text "restaurant_name"
-    t.text "created_at"
-    t.text "updated_at"
+  create_table "zizuminfos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "zizum_name"
+    t.string "sido"
+    t.string "sigungu"
+    t.string "sangse_juso"
+    t.string "phone_number"
+    t.string "image"
+    t.bigint "restaurant_id"
+    t.string "restaurant_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_zizuminfos_on_restaurant_id"
   end
 
   add_foreign_key "freeboards", "users"
