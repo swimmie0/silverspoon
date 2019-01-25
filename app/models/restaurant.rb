@@ -20,9 +20,9 @@ class Restaurant < ApplicationRecord
             r.save
         end
 
-        if Restaurant.where(restaurant_name: "한솥")[0].nil?
+        if Restaurant.where(restaurant_name: "빕스")[0].nil?
             r = Restaurant.new
-            r.restaurant_name = "한솥"
+            r.restaurant_name = "빕스"
             r.save
         end
     end
