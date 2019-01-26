@@ -76,17 +76,23 @@ class RestaurantsController < ApplicationController
     Restaurant.RestaurantName
     puts "\n\nrestaurant name finished\n\n"
     # sleep 1.5
-    Zizuminfo.Subway
-    puts "\n\nsubway zizum finished\n\n"
-    # sleep 1.5
-    Zizuminfo.Momstouch
-    puts "\n\nmomstouch zizum finished\n\n"
-    # sleep 1.5
-    Menu.Subway
-    puts "\n\nsubway menu finished\n\n"
-    # sleep 1.5
-    Menu.Momstouch
-    puts "crwaling update finished!"
+    # Zizuminfo.Subway
+    # puts "\n\nsubway zizum finished\n\n"
+    # # sleep 1.5
+    # Zizuminfo.Momstouch
+    # puts "\n\nmomstouch zizum finished\n\n"
+    # # sleep 1.5
+    # Menu.Subway
+    # puts "\n\nsubway menu finished\n\n"
+    # # sleep 1.5
+    # Menu.Momstouch
+    # puts "crwaling update finished!"
+
+    #Zizuminfo.PizzaSchool
+    #Menu.PizzaSchool
+    
+    #Zizuminfo.DunkinDonuts
+    #Menu.DunkinDonuts
     #redirect_to userrequests_path
     redirect_to home_index_path
 
