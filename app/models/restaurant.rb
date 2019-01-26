@@ -25,6 +25,19 @@ class Restaurant < ApplicationRecord
             r.restaurant_name = "한솥"
             r.save
         end
+
+        if Restaurant.where(restaurant_name: "피자스쿨")[0].nil?
+            r = Restaurant.new
+            r.restaurant_name = "피자스쿨"
+            r.save
+        end
+
+        if Restaurant.where(restaurant_name: "던킨도너츠")[0].nil?
+            r = Restaurant.new
+            r.restaurant_name = "던킨도너츠"
+            r.save
+        end
+
     end
 
 end

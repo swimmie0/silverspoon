@@ -153,9 +153,13 @@
                     
         </div>
         <br>
-        <%= text_field_tag :restaurant_name, params[:restaurant_name] %> 
-        <br> <br>
+        <div>
+            <%= text_field_tag :restaurant_name, params[:restaurant_name], class: "restaurant_name_field"%> 
+            <div class="related-key"></div>
+        </div>
         <%= submit_tag 'Search'%>
     <% end %>
     </div>
 </div>
+
+<script src="/assets/relatedsearch.js"></script>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   
   ##SEARCH------resources :zizuminfos 보다 위에
   get 'zizuminfos/search/' => "zizuminfos#search"
+  post 'zizuminfos/getZizum' => "zizuminfos#getZizum"
   get 'zizuminfos/getGungu' => "menus#getGungu"
   #밑에 꺼 꼭 넣어야함.
   get 'zizuminfos/index' => "zizuminfos#index", as: 'zizuminfos'
