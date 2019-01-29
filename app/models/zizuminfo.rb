@@ -267,7 +267,88 @@ class Zizuminfo < ApplicationRecord
                 zizum.sigungu = split_juso[1]
                 
                 #전화번호
-                phone_number = r.css('td:nth-child(2)').text
+                zizum.phone_number = r.css('td:nth-child(2)').text
+
+                zizum.save
+            end
+        end
+    end
+
+    #라라코스트
+    def self.Raracost
+        #restaurant table 상 본점 id
+        r_id = Restaurant.where(restaurant_name: "라라코스트")[0].id
+
+        for pageNum in 1..14
+            url = "http://www.raracost.com/pg/bbs/board.php?bo_table=Nstore&page="+"#{pageNum}"
+            data = Nokogiri::HTML(open(url,'r:binary').read) 
+            rows = data.css('table.board_list tr')
+
+            rows.drop(1).each do |r|
+                #매장이름
+                zizum_name = r.css('td.subject').text
+                
+                #지점 정보가 없을 경우에는 재생성,있을 경우에는 update
+                zizum = Zizuminfo.where(restaurant_name: "빕스", zizum_name: zizum_name)[0]
+
+                if zizum.nil?
+                    zizum = Zizuminfo.new
+                end
+
+                #본점이름
+                zizum.restaurant_name = "라라코스트"
+                zizum.restaurant_id = r_id
+
+                #매장이름
+                zizum.zizum_name = zizum_name
+                
+                #매장주소
+                juso = r.css('td.add').text
+                split_juso = juso.split(" ")
+                sangse_juso = split_juso.drop(2).join(" ")
+
+                sido = split_juso[0]
+
+                if sido == "서울특별시" || sido =="서울" || sido =="서울시"
+                    sido = "서울특별시"
+                elsif sido =="부산광역시" || sido =="부산" || sido == "부산시"
+                    sido = "부산광역시"
+                elsif sido =="대구광역시" || sido =="대구" || sido == "대구시"
+                    sido = "대구광역시"
+                elsif sido =="인천광역시" || sido =="인천" || sido == "인천시"
+                    sido = "인천광역시"
+                elsif sido =="광주광역시" || sido =="광주" || sido == "광주시"
+                    sido = "광주광역시"
+                elsif sido =="대전광역시" || sido =="대전" || sido == "대전시"
+                    sido = "대전광역시"
+                elsif sido =="세종특별자치시" || sido =="세종" || sido == "세종시"
+                    sido = "세종특별자치시"
+                elsif sido =="경기도" || sido =="경기"
+                    sido = "경기도"
+                elsif sido =="강원도" || sido =="강원"
+                    sido = "강원도"
+                elsif sido =="충청북도" || sido =="충북"
+                    sido = "충청북도"
+                elsif sido =="충청남도" || sido =="충남"
+                    sido = "충청남도"
+                elsif sido =="전라남도" || sido =="전남"
+                    sido = "전라남도"
+                elsif sido =="전라북도" || sido =="전북"
+                    sido = "전라북도"
+                elsif sido =="경상남도" || sido =="경남"
+                    sido = "경상남도"
+                elsif sido =="경상북도" || sido =="경북"
+                    sido = "경상북도"
+                elsif sido =="제주특별자치시" || sido =="제주시" ||sido =="제주" ||sido =="제주도" ||sido ="제주특별자치도"
+                    sido = "제주특별자치시"
+                end
+
+                zizum.sido = sido
+                zizum.sigungu = split_juso[1]
+                zizum.sangse_juso = sangse_juso
+                
+                #전화번호
+                zizum.phone_number = r.css('td.name1').text
 
                 zizum.save
             end
