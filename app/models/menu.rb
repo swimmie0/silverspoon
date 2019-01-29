@@ -365,7 +365,7 @@ class Menu < ApplicationRecord
             #18가지: 난류/ 우유/ 메밀/ 땅콩/ 대두/ 밀/ 고등어/ 게/ 새우/ 돼지고기/ 복숭아/ 토마토/ 아황산류/ 호두/ 쇠고기/ 닭고기/ 오징어/ 조개류
             # each메뉴의 알러지txt에 '난류' 포함되어 있으면 '1' 아니면 '0'
             # 난류 9 
-            if  a.css(':contains("대두")').text == "" 
+            if  a.css(':contains("난류")').text == "" 
                 a_info.a9_nanryu = 0
             else
                 a_info.a9_nanryu = 1
@@ -498,6 +498,185 @@ class Menu < ApplicationRecord
             a_info.save
         end
     end
+
+    def self.Raracost
+        #라라코스트
+        url = "http://www.raracost.com/doc/sub0209.php"
+        data = Nokogiri::HTML(open(url))
+        rows = data.css('table')
+
+        rows.each do |row|
+            row.css('tr').each do |r|
+                r_name = "라라코스트"
+
+                ## 각 테이블에 첫 메뉴이름 td:nth-2 나머지는 td:nth-1 
+                if r == row.css('tr')[1]
+                    m_name = r.css('td:nth-child(2)').text
+                    a = r.css('td:nth-child(3)')
+                else
+                    m_name = r.css('td:nth-child(1)').text 
+                    a = r.css('td:nth-child(2)')
+                end
+                
+                if Menu.where(menu_name: m_name)[0].nil? #신규
+                    a_info = Menu.new
+                else
+                    a_info = Menu.where(restaurant_name: r_name, menu_name: m_name)[0] #업데이트
+                end
+
+                #레스토랑
+                a_info.restaurant_name = r_name
+                a_info.restaurant_id = Restaurant.where(restaurant_name: r_name)[0].id
+
+                #메뉴 이름
+                a_info.menu_name = m_name
+
+                # 19가지: 난류, 우유, 메밀, 땅콩, 대두, 밀, 고등어, 게, 새우, 돼지고기, 복숭아, 토마토, 아황산류, 호두, 쇠고기, 닭고기, 오징어, 조개류, 잣
+                # each메뉴의 알러지txt에 '난류' 포함되어 있으면 '1' 아니면 '0'
+                # 난류 9 
+                if  a.css(':contains("난류")').text == "" 
+                    a_info.a9_nanryu = 0
+                else
+                    a_info.a9_nanryu = 1
+                end
+
+                #우유 10
+                if  a.css(':contains("우유")').text == "" 
+                    a_info.a10_milk = 0
+                else
+                    a_info.a10_milk = 1
+                end
+                
+                #메밀 1
+                if  a.css(':contains("메밀")').text == "" 
+                    a_info.a1_maemil = 0
+                else
+                    a_info.a1_maemil = 1
+                end
+
+                #땅콩 5 
+                if  a.css(':contains("땅콩")').text == "" 
+                    a_info.a5_ddangkong = 0
+                else
+                    a_info.a5_ddangkong = 1
+                end
+
+                #대두 3   
+                if  a.css(':contains("대두")').text == ""
+                    a_info.a3_daedu = 0
+                else
+                    a_info.a3_daedu  = 1
+                end
+
+                if a.css(':contains("대구")').text != ""  #홈페이지오타
+                    a_info.a3_daedu  = 1
+                end
+
+                #밀 2 
+                if  a.css(':contains("밀")').text == "" 
+                    a_info.a2_mil = 0
+                else
+                    a_info.a2_mil = 1
+                end
+                
+                #고등어 14 a14_godeungeoh 
+                if  a.css(':contains("고등어")').text == "" 
+                    a_info.a14_godeungeoh = 0
+                else
+                    a_info.a14_godeungeoh = 1
+                end
+
+                #게 19 a19_gye
+                if  a.css(':contains("게")').text == "" 
+                    a_info.a19_gye = 0
+                else
+                    a_info.a19_gye = 1
+                end
+
+                #새우 13 a13_saewoo
+                if  a.css(':contains("새우")').text == "" 
+                    a_info.a13_saewoo  = 0
+                else
+                    a_info.a13_saewoo = 1
+                end
+
+                #돼지고기 8 a8_piggogi 
+                if  a.css(':contains("돼지고기")').text == "" 
+                    a_info.a8_piggogi = 0
+                else
+                    a_info.a8_piggogi = 1
+                end
+
+                #복숭아 6 a6_peach
+                if  a.css(':contains("복숭아")').text == "" 
+                    a_info.a6_peach = 0
+                else
+                    a_info.a6_peach = 1
+                end
+
+                #토마토 7 a7_tomato
+                if  a.css(':contains("토마토")').text == "" 
+                    a_info.a7_tomato = 0
+                else
+                    a_info.a7_tomato = 1
+                end
+
+                #아황산류 a21_ahwangsan
+                if  a.css(':contains("아황산류")').text == "" 
+                    a_info.a21_ahwangsan  = 0
+                else
+                    a_info.a21_ahwangsan = 1
+                end
+
+                #호두 4 a4_hodu
+                if  a.css(':contains("호두")').text == "" 
+                    a_info.a4_hodu  = 0
+                else
+                    a_info.a4_hodu = 1
+                end
+
+                #쇠고기 11 a11_ddakgogi
+                if  a.css(':contains("쇠고기")').text == "" 
+                    a_info.a11_ddakgogi  = 0
+                else
+                    a_info.a11_ddakgogi = 1
+                end
+
+                #닭고기 12 a12_shoigogi
+                if  a.css(':contains("닭고기")').text == "" 
+                    a_info.a12_shoigogi = 0
+                else
+                    a_info.a12_shoigogi = 1
+                end
+
+                # #오징어 20 a20_ohjingeoh
+                # if  a.css(':contains("오징어")').text == "" 
+                #     a_info.a20_ohjingeoh  = 0
+                # else
+                #     a_info.a20_ohjingeoh = 1
+                # end
+
+                #조개류 18 a18_jogaeryu
+                if  a.css(':contains("조개류")').text == "" 
+                    a_info.a18_jogaeryu  = 0
+                else
+                    a_info.a18_jogaeryu = 1
+                end
+
+                # 잣 제공 
+                #미제공 항목 홍합/전복/굴/오징어
+                a_info.a15_honghap = -1
+                a_info.a16_junbok = -1
+                a_info.a17_gul = -1
+                a_info.a20_ohjingeoh = -1
+                
+                if m_name != ""
+                    a_info.save
+                end    
+            end
+        end
+    end
+
     # def self.Hansot
     #     # 한솥
     #     for pageNum in 2..119

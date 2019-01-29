@@ -81,16 +81,16 @@ class RestaurantsController < ApplicationController
     # sleep 1.5
     # Zizuminfo.Momstouch
     puts "\n\nmomstouch zizum finished\n\n"
+    Zizuminfo.Raracost
     # sleep 1.5
-    Zizuminfo.Vips
-    puts "\n\nvips zizum finished\n\n"
+    # Zizuminfo.Vips
     # Menu.Subway
     puts "\n\nsubway menu finished\n\n"
     # sleep 1.5
     # Menu.Momstouch
     puts "\n\nmomstouch menu finished\n\n"
-    Menu.Vips
-    puts "\n\nvips menu finished\n\n"
+    # Menu.Vips
+    Menu.Raracost
     puts "crwaling update finished!"
     #redirect_to userrequests_path
     redirect_to home_index_path

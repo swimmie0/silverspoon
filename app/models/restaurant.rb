@@ -25,6 +25,12 @@ class Restaurant < ApplicationRecord
             r.restaurant_name = "빕스"
             r.save
         end
+
+        if Restaurant.where(restaurant_name: "라라코스트")[0].nil?
+            r = Restaurant.new
+            r.restaurant_name = "라라코스트"
+            r.save
+        end
     end
 
 end
