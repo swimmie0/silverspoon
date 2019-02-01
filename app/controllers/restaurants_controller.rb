@@ -91,10 +91,11 @@ class RestaurantsController < ApplicationController
     #Zizuminfo.PizzaSchool
     #Menu.PizzaSchool
     
-    #Zizuminfo.DunkinDonuts
     #Menu.DunkinDonuts
 
-    Menu.SeasonsTable
+    #Zizuminfo.SeasonsTable
+    #Menu.SeasonsTable
+
     #redirect_to userrequests_path
     redirect_to home_index_path
 
