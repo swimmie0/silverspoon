@@ -1025,5 +1025,107 @@ class Menu < ApplicationRecord
         end
     end
 
+    def self.SeasonsTable
+        url = "https://www.seasonstable.co.kr:7017/menu/allergy.asp"
+        data = Nokogiri::HTML(open(url))
+        #제공안함 : 전복, 굴, 홍합
+        rows = data.css('table#tblAlergy//tbody//tr') 
 
+        rows.each do |r|
+            if r.css('td').size == 3
+                idx = 2
+            else
+                idx = 1
+            end
+
+            idx2 = (idx+1).to_s
+            idx = idx.to_s
+            r_name = "계절밥상"
+            
+            m_name = r.css('td:nth-child('+idx+')').text
+
+            if Menu.where(menu_name: m_name)[0].nil?
+                a_info = Menu.new
+            else
+                a_info = Menu.where(restaurant_name: r_name, menu_name: m_name)[0]
+            end
+
+            #레스토랑
+            a_info.restaurant_name = r_name
+            a_info.restaurant_id = Restaurant.where(restaurant_name: r_name)[0].id
+
+            #메뉴 이름
+            a_info.menu_name = m_name
+
+            
+            allergies = r.css('td:nth-child('+idx2+')').inner_text
+            allergies = allergies.split(',')
+
+            #전복, 홍합, 굴 제공 안함
+            a_info.a1_maemil = 0
+            a_info.a2_mil = 0
+            a_info.a3_daedu = 0
+            a_info.a4_hodu = 0
+            a_info.a5_ddangkong = 0
+            a_info.a6_peach = 0
+            a_info.a7_tomato = 0
+            a_info.a8_piggogi = 0
+            a_info.a9_nanryu = 0
+            a_info.a10_milk = 0
+            a_info.a11_ddakgogi = 0
+            a_info.a12_shoigogi = 0
+            a_info.a13_saewoo = 0
+            a_info.a14_godeungeoh = 0
+            a_info.a15_honghap = -1
+            a_info.a16_junbok = -1
+            a_info.a17_gul = -1
+            a_info.a18_jogaeryu = 0
+            a_info.a19_gye = 0
+            a_info.a20_ohjingeoh = 0
+            a_info.a21_ahwangsan = 0
+
+            allergies.each do |allergy|
+                allergy = allergy.strip
+                if a_info.a10_milk != 1 && allergy == '우유'
+                    a_info.a10_milk = 1
+                elsif a_info.a3_daedu != 1 && allergy == "대두"
+                    a_info.a3_daedu = 1
+                elsif a_info.a1_maemil != 1 && allergy == "메밀"
+                    a_info.a1_maemil = 1
+                elsif a_info.a2_mil != 1 && allergy == "밀"
+                    a_info.a2_mil = 1
+                elsif a_info.a4_hodu != 1 && allergy == "호두"
+                    a_info.a4_hodu = 1
+                elsif a_info.a5_ddangkong != 1 && allergy == "땅콩"
+                    a_info.a5_ddangkong = 1
+                elsif a_info.a6_peach != 1 && allergy == "복숭아"
+                    a_info.a6_peach = 1
+                elsif a_info.a7_tomato != 1 && allergy == "토마토"
+                    a_info.a7_tomato = 1
+                elsif a_info.a8_piggogi != 1 && allergy == "돼지고기"
+                    a_info.a8_piggogi = 1
+                elsif a_info.a9_nanryu != 1 && allergy == "난류"
+                    a_info.a9_nanryu = 1
+                elsif a_info.a11_ddakgogi != 1 && allergy == "닭고기"
+                    a_info.a11_ddakgogi = 1
+                elsif a_info.a12_shoigogi != 1 && allergy == "쇠고기"
+                    a_info.a12_shoigogi = 1
+                elsif a_info.a13_saewoo != 1 && allergy == "새우"
+                    a_info.a13_saewoo = 1
+                elsif a_info.a14_godeungeoh != 1 && allergy == "고등어"
+                    a_info.a14_godeungeoh = 1
+                elsif a_info.a18_jogaeryu != 1 && allergy == "조개류"
+                    a_info.a18_jogaeryu = 1
+                elsif a_info.a19_gye != 1 && allergy == "게"
+                    a_info.a19_gye = 1
+                elsif a_info.a20_ohjingeoh != 1 && allergy == "오징어"
+                    a_info.a20_ohjingeoh = 1
+                elsif a_info.a21_ahwangsan != 1 && allergy == "아황산류"
+                    a_info.a21_ahwangsan = 1
+                end  
+            end
+            a_info.save
+        end
+        
+    end
 end

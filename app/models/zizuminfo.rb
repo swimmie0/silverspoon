@@ -282,11 +282,13 @@ class Zizuminfo < ApplicationRecord
     end
 
     def self.DunkinDonuts
-        url = "https://www.dunkindonuts.co.kr/store/map.php"
+        url 
         data = Nokogiri::HTML(open(url))
        
     end
+    
     #한솥
+
 
     # if !Zizuminfo.exists?(restaurant_name: "서브웨이")
     #     self.Subway
