@@ -93,6 +93,8 @@ class RestaurantsController < ApplicationController
     
     #Zizuminfo.DunkinDonuts
     #Menu.DunkinDonuts
+
+    Menu.SeasonsTable
     #redirect_to userrequests_path
     redirect_to home_index_path
 
