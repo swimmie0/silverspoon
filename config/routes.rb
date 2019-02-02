@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :notices
   resources :recipes
   resources :conversations do
     resources :messages
