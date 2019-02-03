@@ -1,23 +1,22 @@
-<div class="container">
-  <h1 style = "margin-top: 40px; text-align: center"> HOME </h1>
-  <h1 style = "margin-top: 40px; text-align: center"> 로그인을 해봅시다. </h1>
-  <div class="form-group" style="margin-top: 50px;">
-    <div style="text-align: center;">
-    <% if user_signed_in? %>
-      <p> 현재 로그인된 유저의 이메일: <%= current_user.email %> </p>
-      <p> <%= link_to "로그아웃", destroy_user_session_path, 
-              method: :delete, data: {confirm: "로그아웃 하시겠습니까?"},
-              class: 'btn btn-default' %> </p>
-    <% else %>
-      <p> <%= link_to "로그인", new_user_session_path, class: 'btn btn-default' %> </p>
-    <% end %>
-    
-    <button><%= link_to 'Filtering', menus_search_path, :style=> "color: #454338; text-decoration: none;"%></button>
+<div class="mainbanner">
+    <div class="main-img-box">
+        <%=image_tag("mainImg.jpg", class:"main-image")%>
     </div>
-    
+    <div class="mainbanner-btn-box">
+        <%=link_to freeboards_path do%>
+            <div class="mainbanner-button">커뮤니티 바로가기</div>
+        <%end%>
+    </div>
+</div>
+
+<div id="main-contents" class="container">
+  <div id="allergy-filtering" class="allergy-search-box d-flex justify-content-center">
+    <div class="alg-filt-title">알레르기 성분 검색</div>
+  </div>
+
+  <div class="form-group" style="margin-top: 50px;">
     <%= render partial: 'home/search' %>
-    
-        
+            
     <% if user_signed_in? %> 
       <% if current_user.profile.nil? %> 
       <div>   <%= link_to "My Page", new_profile_path(@profile), class:"headerfont", :style=>"text-decoration: none; color: #454338;" %>
@@ -34,7 +33,7 @@
 </div>
 
 <script>
-    
+
     $(".btn-allergy").click(function(){
         
             $(this).addClass("active-btn");

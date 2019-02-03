@@ -21,4 +21,13 @@ $(document).ready(function(){
     $(".rolling_start").click(function(){
         noticeRollingOff = setInterval(noticeRolling,1000); //다시 start를 누르면 자동롤링이 실행하도록 !!
     });
-});		
+});
+
+$(window).on('scroll', function(){
+    scrollTop = $(window).scrollTop();
+    if(scrollTop >= 40){ //밑에 있을 때
+        $('.holder').css('position', 'fixed')
+    }else{//위에 있을 때
+        $('.holder').css('position', 'relative')
+    }
+});
