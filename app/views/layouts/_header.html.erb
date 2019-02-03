@@ -16,10 +16,10 @@
                     <%= link_to "레시피", recipes_path, class: "headerfont"%>
                     <%= link_to "커뮤니티", freeboards_path, class: "headerfont"%>
                     <%= link_to "식당찾기", menus_path, class: "headerfont"%>
-                </div> 
-                <div class="header-personal col-4 flex-row-reverse">
+                </div>
+                <div class="col-2"></div>
+                <div class="header-personal col-2">
                     <%= link_to "Inbox", conversations_path, class: "headerfont" %>
-
                 <!-- 알림창 -->
                     <% if user_signed_in? %>
                         <button onclick="showHide('info_html')" onfocus="this.blur()" style="background:none;border:none;">

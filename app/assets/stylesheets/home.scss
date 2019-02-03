@@ -17,3 +17,62 @@
     border-width: 0.6px;
 }
 
+
+.mainbanner{
+    position: relative;
+}
+
+.main-img-box{
+    height: 465px; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.main-image{
+    width: 1300px;
+    height: 100%;
+}
+
+.mainbanner-btn-box{
+    position: absolute;
+    width: 100%;
+    top: 70%;
+    display: flex;
+    justify-content: center;
+}
+
+.mainbanner-button{
+    //position: absolute;
+    //top: 80%;
+    text-align: center;
+    width: 10rem;
+    height: 2.5rem;
+    border-style: solid;
+    border-color: #FF5400;
+    color: #FF5400;
+    border-width: 0.3px;
+    font-family: 'NanumBarunGothic',serif;
+    font-size: 0.8rem;
+    line-height: 2.5rem;
+
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+    
+}
+
+.mainbanner-button:hover{
+    background-color: #FF5400;
+    color: white;
+}
+
+#main-contents{
+    margin-top: 5rem;
+}
+
+.alg-filt-title{
+    font-family: 'NanumBarunGothic',serif;
+    font-size: 1.2rem;
+    font-weight: bolder;
+}

@@ -22,8 +22,9 @@
     </script>
   </head>
 
-  <%= render 'layouts/header'%>
+  
   <body>
+    <%= render 'layouts/header'%>
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>

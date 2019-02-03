@@ -1,9 +1,10 @@
 //rolling banner css --------------
 .holder{
     left: 0;
-    position: fixed;
+    position: relative;
     right: 0;
     top: 0;
+    z-index: 9999;
 }
 
 .rolling-banner {
@@ -40,8 +41,8 @@
 }
 
 .navbarstyle {
-    border-style: solid;
-    border-color: red;
+    // border-style: solid;
+    // border-color: red;
     display: flex;
     width: 100%;
     height: 3rem;
@@ -49,7 +50,7 @@
     background-color: white;
     -webkit-trasition: 0.6s;
     transition: 0.6s;
-    z-index:999;
+    // z-index:999;
 }
 
 .navbarcontent{
@@ -73,7 +74,7 @@
     display: flex;
     font-family: 'NanumBarunGothic',serif;
     font-size: 0.8rem;
-
+    justify-content: space-around;
 }
 
 .navbarconent:hover{
