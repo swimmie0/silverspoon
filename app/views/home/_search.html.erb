@@ -1,13 +1,17 @@
-<div class="search-box">
-    <div type="button" class="btn btn-outline-dark btn-searchtype btn-allergy active-btn">알레르기 성분 검색</div>
-    <div type="button" class="btn btn-outline-dark btn-searchtype btn-restaurant">식당 이름 검색</div>
-    <br><br>
-
-        <%# location은 partial location2는 그냥 %>
-    <div class="allergy-search">
-        <div class="original-check">
-            <%= form_tag(menus_path, method: :get) do %>
-                <div class="ziyuk d-flex">
+<div class="search-row search-f-row d-flex">
+    <div class="search-box-th s-th-category">카테고리</div>
+    <div class="s-td-category">
+        <div type="button" class="btn btn-outline-dark btn-searchtype btn-allergy active-btn">알레르기 성분 검색</div>
+        <div type="button" class="btn btn-outline-dark btn-searchtype btn-restaurant">식당 이름 검색</div>
+    </div>
+</div>
+    <%# location은 partial location2는 그냥 %>
+<div class="allergy-search">
+    <div class="original-check">
+        <%= form_tag(menus_path, method: :get) do %>
+            <div class="ziyuk d-flex search-row search-s-row">
+                <div class="search-box-th s-th-find">찾기</div>
+                <div class="s-td-find d-flex">
                     <div class="sido">
                     <%#= select :sido, options_for_select([["서울특별시", "서울특별시"], ["부산광역시","부산광역시"], ["대구광역시","대구광역시"],["60대이상","60대이상"]]) %>  
                         <select name="sido" class="origin-sido sido-select options selectcss">
@@ -37,129 +41,107 @@
                             <option value="전체" class="sigungu-opt">--전체선택--</option>
                             </select>
                     </div>
-                    
                 </div>
-
-                <br>
-                <div class="d-flex justify-content-between original-check">
-                    <div>
-                        <div class="a-type"><div class="d-flex typebox justify-content-around"><div class="typename">유제품 및 난류</div><i class="downic fas fa-caret-down"></i></div></div>
-                        <div class="allergy-check">
-                            <%= check_box_tag :a9_nanryu, checked = true%> 난류<br>
-                            <%= check_box_tag :a10_milk, checked = true%> 우유<br>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="a-type"><div class="d-flex typebox justify-content-around"><div class="typename">과채류 및 곡류</div><i class="downic fas fa-caret-down"></i></div></div>
-                        <div class="allergy-check">
-                            <%= check_box_tag :a6_peach, checked = true%> 복숭아<br>
-                            <%= check_box_tag :a7_tomato, checked = true%> 토마토<br>
-                            <%= check_box_tag :a1_maemil, checked = true%> 메밀<br>
-                            <%= check_box_tag :a2_mil, checked = true%> 밀<br>
-                            <%= check_box_tag :a3_daedu, checked = true%> 대두(콩)<br>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="a-type"><div class="d-flex typebox justify-content-around"><div class="typename">육류</div><i class="downic fas fa-caret-down"></i></div></div>
-                        <div class="allergy-check">
-                            <%= check_box_tag :a11_ddakgogi, checked = true%> 닭고기<br>
-                            <%= check_box_tag :a12_shoigogi, checked = true%> 쇠고기<br>
-                            <%= check_box_tag :a8_piggogi, checked = true%> 돼지고기<br>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="a-type"><div class="d-flex typebox justify-content-around"><div class="typename">어패류</div><i class="downic fas fa-caret-down"></i></div></div>
-                        <div class="allergy-check d-flex">
-                            <div>
-                                <%= check_box_tag :a13_saewoo, checked = true%> 새우<br>
-                                <%= check_box_tag :a14_godeungeoh, checked = true%> 고등어<br>
-                                <%= check_box_tag :a15_honghap, checked = true%> 홍합<br>
-                                <%= check_box_tag :a16_junbok, checked = true%> 전복<br>
-                            </div>
-                            <div class="fish2">
-                                <%= check_box_tag :a17_gul, checked = true%> 굴<br>
-                                <%= check_box_tag :a18_jogaeryu, checked = true%> 조개류<br>
-                                <%= check_box_tag :a19_gye, checked = true%> 게<br>
-                                <%= check_box_tag :a20_ohjingeoh, checked = true%> 오징어<br>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="a-type"><div class="d-flex typebox justify-content-around"><div class="typename fruits">과류, 아황산 등</div><i class="downic fas fa-caret-down"></i></div></div>
-                        <div class="allergy-check">
-                            <%= check_box_tag :a4_hodu, checked = true%> 호두<br>
-                            <%= check_box_tag :a5_ddangkong, checked = true%> 땅콩<br>
-                            <%= check_box_tag :a21_ahwangsan, checked = true%> 아황산류<br>
-                        </div>
-                    </div>
-                    
-                    <button type="submit" class="a-submit">
-                        Search<i class="fas fa-search"></i>
-                    </button>
-                </div>
-                    
-            <%end%>
-
-        </div>
-        
-        <%if user_signed_in?%>
-            <div id="myinfo" class="getinfo">
-                <%= render partial: 'menus/custom' %>
             </div>
-        <%end%>
 
-        <button id="custom" class="mbutton fill" data-toggle="modal" data-target="#loginModal"><div id="ct" style="color:black; text-decoration: none;">내 알러지정보 불러오기</div></button>
+            <div class="search-row search-t-row d-flex">
+                <div class="search-box-th s-th-sort">분류</div>
+                <div class="s-td-sort allergy-check">
+                    <div class="d-flex">
+                    <%= check_box_tag :a9_nanryu, checked = true%> 난류<br>
+                    <%= check_box_tag :a10_milk, checked = true%> 우유<br>
+                    <%= check_box_tag :a6_peach, checked = true%> 복숭아<br>
+                    <%= check_box_tag :a7_tomato, checked = true%> 토마토<br>
+                    <%= check_box_tag :a1_maemil, checked = true%> 메밀<br>
+                    <%= check_box_tag :a2_mil, checked = true%> 밀<br>
+                    <%= check_box_tag :a3_daedu, checked = true%> 대두(콩)<br>
+                    <%= check_box_tag :a11_ddakgogi, checked = true%> 닭고기<br>
+                    <%= check_box_tag :a12_shoigogi, checked = true%> 쇠고기<br>
+                    <%= check_box_tag :a8_piggogi, checked = true%> 돼지고기<br>
+                    <%= check_box_tag :a13_saewoo, checked = true%> 새우<br>
+                    <%= check_box_tag :a14_godeungeoh, checked = true%> 고등어<br>
+                    </div>
+                    <div class="d-flex flex-row">
+                    <%= check_box_tag :a15_honghap, checked = true%> 홍합<br>
+                    <%= check_box_tag :a16_junbok, checked = true%> 전복<br>
+                    <%= check_box_tag :a17_gul, checked = true%> 굴<br>
+                    <%= check_box_tag :a18_jogaeryu, checked = true%> 조개류<br>
+                    <%= check_box_tag :a19_gye, checked = true%> 게<br>
+                    <%= check_box_tag :a20_ohjingeoh, checked = true%> 오징어<br>
+                    <%= check_box_tag :a4_hodu, checked = true%> 호두<br>
+                    <%= check_box_tag :a5_ddangkong, checked = true%> 땅콩<br>
+                    <%= check_box_tag :a21_ahwangsan, checked = true%> 아황산류<br>
+                    </div>
+                </div>
 
-        <%# 로그인 하지 않았을 때 custom 기능 누르면 modal view 뜨도록 %>
-        <%if !user_signed_in?%>
-            <%= render 'layouts/loginModal'%>
+               
+            </div>
+            
+            <button type="submit" class="a-submit">
+                Search<i class="fas fa-search"></i>
+            </button>
         <%end%>
 
     </div>
-
-
-    <div class="restaurant-search nodisplay">
-    <%= form_tag(zizuminfos_path, method: :get) do %>
-        <div class="ziyuk d-flex">
-            <div class="sido">
-            <%#= select :sido, options_for_select([["서울특별시", "서울특별시"], ["부산광역시","부산광역시"], ["대구광역시","대구광역시"],["60대이상","60대이상"]]) %>  
-                <select name="sido" class="origin-sido sido-select options selectcss">
-                    <option value="전체" class="sido-opt">--시/도--</option>
-                    <option value="서울특별시" class="sido-opt">서울특별시</option>
-                    <option value="부산광역시" class="sido-opt">부산광역시</option>
-                    <option value="대구광역시" class="sido-opt">대구광역시</option> 
-                    <option value="인천광역시" class="sido-opt">인천광역시</option>     
-                    <option value="광주광역시" class="sido-opt">광주광역시</option>
-                    <option value="대전광역시" class="sido-opt">대전광역시</option>
-                    <option value="세종특별자치시" class="sido-opt">세종특별자치시</option> 
-                    <option value="경기도" class="sido-opt">경기도</option>
-                    <option value="강원도" class="sido-opt">강원도</option>
-                    <option value="충청북도" class="sido-opt">충청북도</option>
-                    <option value="충청남도" class="sido-opt">충청남도</option> 
-                    <option value="전라북도" class="sido-opt">전라북도</option>
-                    <option value="전라남도" class="sido-opt">전라남도</option>
-                    <option value="경상북도" class="sido-opt">경상북도</option>
-                    <option value="경상남도" class="sido-opt">경상남도</option> 
-                    <option value="제주특별자치시" class="sido-opt">제주특별자치시</option>
-                </select>
-            </div>
-
-            <div class="sigungu">
-                    <select name="sigungu" class="origin-sigungu sigungu-select options selectcss">
-                    <%# default 값 %>
-                    <option value="전체" class="sigungu-opt">--전체선택--</option>
-                    </select>
-            </div>
-                    
+    
+    <%if user_signed_in?%>
+        <div id="myinfo" class="getinfo">
+            <%= render partial: 'menus/custom' %>
         </div>
-        <br>
-        <div>
-            <%= text_field_tag :restaurant_name, params[:restaurant_name], class: "restaurant_name_field"%> 
-            <div class="related-key"></div>
-        </div>
-        <%= submit_tag 'Search'%>
-    <% end %>
-    </div>
+    <%end%>
+
+    <button id="custom" class="mbutton fill" data-toggle="modal" data-target="#loginModal"><div id="ct">개인정보 불러오기</div></button>
+
+    <%# 로그인 하지 않았을 때 custom 기능 누르면 modal view 뜨도록 %>
+    <%if !user_signed_in?%>
+        <%= render 'layouts/loginModal'%>
+    <%end%>
+
 </div>
+
+
+<div class="restaurant-search nodisplay">
+<%= form_tag(zizuminfos_path, method: :get) do %>
+    <div class="ziyuk d-flex">
+        <div class="sido">
+        <%#= select :sido, options_for_select([["서울특별시", "서울특별시"], ["부산광역시","부산광역시"], ["대구광역시","대구광역시"],["60대이상","60대이상"]]) %>  
+            <select name="sido" class="origin-sido sido-select options selectcss">
+                <option value="전체" class="sido-opt">--시/도--</option>
+                <option value="서울특별시" class="sido-opt">서울특별시</option>
+                <option value="부산광역시" class="sido-opt">부산광역시</option>
+                <option value="대구광역시" class="sido-opt">대구광역시</option> 
+                <option value="인천광역시" class="sido-opt">인천광역시</option>     
+                <option value="광주광역시" class="sido-opt">광주광역시</option>
+                <option value="대전광역시" class="sido-opt">대전광역시</option>
+                <option value="세종특별자치시" class="sido-opt">세종특별자치시</option> 
+                <option value="경기도" class="sido-opt">경기도</option>
+                <option value="강원도" class="sido-opt">강원도</option>
+                <option value="충청북도" class="sido-opt">충청북도</option>
+                <option value="충청남도" class="sido-opt">충청남도</option> 
+                <option value="전라북도" class="sido-opt">전라북도</option>
+                <option value="전라남도" class="sido-opt">전라남도</option>
+                <option value="경상북도" class="sido-opt">경상북도</option>
+                <option value="경상남도" class="sido-opt">경상남도</option> 
+                <option value="제주특별자치시" class="sido-opt">제주특별자치시</option>
+            </select>
+        </div>
+
+        <div class="sigungu">
+                <select name="sigungu" class="origin-sigungu sigungu-select options selectcss">
+                <%# default 값 %>
+                <option value="전체" class="sigungu-opt">--전체선택--</option>
+                </select>
+        </div>
+                
+    </div>
+    <br>
+    <div>
+        <%= text_field_tag :restaurant_name, params[:restaurant_name], class: "restaurant_name_field"%> 
+        <div class="related-key"></div>
+    </div>
+    <%= submit_tag 'Search'%>
+<% end %>
+</div>
+
 
 <script src="/assets/relatedsearch.js"></script>

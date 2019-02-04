@@ -2,21 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.search-box{
-    border-style: solid;
-    border-color: gray;
-    border-width: 3px;
-}
-
-
-.related-key{
-    background-color: rgb(231, 231, 231);
-    width: 100px;
-    border-style: solid;
-    border-color: black;
-    border-width: 0.6px;
-}
-
 
 .mainbanner{
     position: relative;
@@ -75,4 +60,87 @@
     font-family: 'NanumBarunGothic',serif;
     font-size: 1.2rem;
     font-weight: bolder;
+}
+
+//home-search
+
+.form-group{
+    width: 100%;
+}
+
+.search-f-row{
+    width: 100%;
+    border-color: rgb(226, 226, 226);
+    border-width:  1.2px;
+    border-style: solid;
+    border-bottom-style: none;
+    border-bottom-width: 0px;
+}
+
+.search-s-row{
+    width: 100%;
+    border-color: rgb(226, 226, 226);
+    border-bottom-style: none;
+    border-width:  1.2px;
+    border-style: solid;
+    border-bottom-width: 0px;
+}
+
+.search-t-row{
+    width: 100%;
+    border-color: rgb(226, 226, 226);
+    border-bottom-style: none;
+    border-bottom-width: 0px;
+    border-width:  1.2px;
+    border-style: solid;
+}
+
+.search-box-th{
+    background-color: #1E285D;
+    color: white;
+    font-family: 'NanumBarunGothic',serif;
+    font-size: 0.8rem;
+    font-weight: normal;
+    width: 6rem;
+    text-align: center;  
+    border-right-style: solid;
+    border-width:  1.2px;
+    border-color: rgb(226, 226, 226);
+}
+
+
+.s-th-category{
+    height: 2.5rem;
+    line-height: 2.5rem; 
+}
+
+.s-td-category{
+    width: 100%;
+    background-color: rgb(250, 250, 250);
+    height: 2.5rem;
+    line-height: 2.5rem;
+}
+
+.s-th-find{
+    height: 3.5rem;
+    line-height: 3.5rem;
+}
+
+.s-td-find{
+    width: 100%;
+    background-color: rgb(250, 250, 250);
+    height: 3.5rem;
+    line-height: 3.5rem;
+}
+
+.s-th-sort{
+    height: 10rem;
+    line-height: 10rem;
+}
+
+.s-td-sort{
+    width: 100%;
+    background-color: rgb(250, 250, 250);
+    height: 10rem;
+    line-height: 10rem;
 }
