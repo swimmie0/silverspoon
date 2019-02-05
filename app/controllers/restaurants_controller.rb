@@ -93,7 +93,7 @@ class RestaurantsController < ApplicationController
     
     #Menu.DunkinDonuts
 
-    #Zizuminfo.SeasonsTable
+    Zizuminfo.SeasonsTable
     #Menu.SeasonsTable
 
     #redirect_to userrequests_path
