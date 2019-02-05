@@ -177,6 +177,7 @@
 }
 
 .allergy-cp{
+    cursor: pointer;
     border-width:  0.5px;
     border-color: rgb(148, 148, 148);
     border-style: solid;
@@ -185,6 +186,14 @@
     text-align : center;
     width: 4.5rem;
 }
+
+.allergy-cp-active{
+    background-color:#FF5400;
+
+    color: white; 
+}
+
+
 
 .allergy-cp-img{
     margin-top: 1rem;
@@ -270,3 +279,4 @@
     font-family: 'NanumBarunGothic',serif;
     font-size: 0.8rem;
 }
+
