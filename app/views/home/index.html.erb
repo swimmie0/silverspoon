@@ -151,6 +151,74 @@
             }
         }
     });
-    } 
+    }
+
+    $(".allergy-cp").click(function() {
+        var allergy = $(this).attr('id');
+        if($(this).hasClass('allergy-cp-active')){
+            $(this).removeClass('allergy-cp-active');
+            if(allergy == "a1") $("#a1_maemil").prop('checked', false);
+            else if(allergy == "a2") $("#a2_mil").prop('checked', false);
+            else if(allergy == "a3") $("#a3_daedu").prop('checked', false);
+            else if(allergy == "a4") $("#a4_hodu").prop('checked', false);
+            else if(allergy == "a5") $("#a5_ddangkong").prop('checked', false);
+            else if(allergy == "a6") $("#a6_peach").prop('checked', false);
+            else if(allergy == "a7") $("#a7_tomato").prop('checked', false);
+            else if(allergy == "a8") $("#a8_piggogi").prop('checked', false);
+            else if(allergy == "a9") $("#a9_nanryu").prop('checked', false);
+            else if(allergy == "a10") $("#a10_milk").prop('checked', false);
+            else if(allergy == "a11") $("#a11_ddakgogi").prop('checked', false);
+            else if(allergy == "a12") $("#a12_shoigogi").prop('checked', false);
+            else if(allergy == "a13") $("#a13_saewoo").prop('checked', false);
+            else if(allergy == "a14") $("#a14_godeungeoh").prop('checked', false);
+            else if(allergy == "a15") $("#a15_honghap").prop('checked', false);
+            else if(allergy == "a16") $("#a16_junbok").prop('checked', false);
+            else if(allergy == "a17") $("#a17_gul").prop('checked', false);
+            else if(allergy == "a18") $("#a18_jogaeryu").prop('checked', false);
+            else if(allergy == "a19") $("#a19_gye").prop('checked', false);
+            else if(allergy == "a20") $("#a20_ohjingeoh").prop('checked', false);
+            else if(allergy == "a21") $("#a21_ahwangsan").prop('checked', false);
+            //배경색이 있는 그림이라서 바꿀 수가 없다. 일러스트를 흰색으로 못 바꿈.
+            //$(this).children('img').removeClass('allergy-cp-img-active');
+        }
+        else{
+            $(this).addClass('allergy-cp-active');
+            if(allergy == "a1") $("#a1_maemil").prop('checked', true);
+            else if(allergy == "a2") $("#a2_mil").prop('checked', true);
+            else if(allergy == "a3") $("#a3_daedu").prop('checked', true);
+            else if(allergy == "a4") $("#a4_hodu").prop('checked', true);
+            else if(allergy == "a5") $("#a5_ddangkong").prop('checked', true);
+            else if(allergy == "a6") $("#a6_peach").prop('checked', true);
+            else if(allergy == "a7") $("#a7_tomato").prop('checked', true);
+            else if(allergy == "a8") $("#a8_piggogi").prop('checked', true);
+            else if(allergy == "a9") $("#a9_nanryu").prop('checked', true);
+            else if(allergy == "a10") $("#a10_milk").prop('checked', true);
+            else if(allergy == "a11") $("#a11_ddakgogi").prop('checked', true);
+            else if(allergy == "a12") $("#a12_shoigogi").prop('checked', true);
+            else if(allergy == "a13") $("#a13_saewoo").prop('checked', true);
+            else if(allergy == "a14") $("#a14_godeungeoh").prop('checked', true);
+            else if(allergy == "a15") $("#a15_honghap").prop('checked', true);
+            else if(allergy == "a16") $("#a16_junbok").prop('checked', true);
+            else if(allergy == "a17") $("#a17_gul").prop('checked', true);
+            else if(allergy == "a18") $("#a18_jogaeryu").prop('checked', true);
+            else if(allergy == "a19") $("#a19_gye").prop('checked', true);
+            else if(allergy == "a20") $("#a20_ohjingeoh").prop('checked', true);
+            else if(allergy == "a21") $("#a21_ahwangsan").prop('checked', true);
+            //$(this).children('img').addClass('allergy-cp-img-active');
+        }
+        
+        
+        console.log(allergy);
+
+        // $.ajax({
+        //     async : true,
+        //     data : {allergy: allergy},
+        //     type : "GET",
+        //     url : "menus/index",
+        //     success : function(data){
+        //         console.log("성공");
+        //     }
+        // })
+    });
     //에러 수정 끝
 </script>

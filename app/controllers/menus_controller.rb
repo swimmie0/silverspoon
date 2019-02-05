@@ -13,8 +13,15 @@ class MenusController < ApplicationController
   end
 
   def index
+    # 체크 안했을 경우-알러지 없다. / check 하면 true(알러지없다). a1, a2 등은 알러지 없다고 표시 되면 1 
+     
      sido = params[:sido]
      sigungu = params[:sigungu]
+     allergy = params[:allergy]
+
+    #  puts "============="+allergy
+
+    
      a1=0
      a2=0
      a3=0 
@@ -61,12 +68,13 @@ class MenusController < ApplicationController
      a21 = 2 if params[:a21_ahwangsan] != "true"
  
      #---------------------------------------------------------
- 
+    
  
      #--------------------search 에 맞게 메뉴 찾기---------------------
     
      @menus = Menu.where("#{:a1_maemil} <= ? AND #{:a2_mil} <= ? AND #{:a3_daedu} <= ? AND #{:a4_hodu} <= ? AND #{:a5_ddangkong} <= ? AND #{:a6_peach} <= ? AND #{:a7_tomato} <= ? AND #{:a8_piggogi} <= ? AND #{:a9_nanryu} <= ? AND #{:a10_milk} <= ? AND #{:a11_ddakgogi} <= ? AND #{:a12_shoigogi} <= ? AND #{:a13_saewoo} <= ? AND #{:a14_godeungeoh} <= ? AND #{:a15_honghap} <= ? AND #{:a16_junbok} <= ? AND #{:a17_gul} <= ? AND #{:a18_jogaeryu} <= ? AND #{:a19_gye} <= ? AND #{:a20_ohjingeoh} <= ? AND #{:a21_ahwangsan} <= ?", a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21)
-
+     puts "*************실험입니다 ************"
+     puts @menus[0]
 
      # -------------------메뉴(@menus)가 속한 식당 찾기.----------------
      
