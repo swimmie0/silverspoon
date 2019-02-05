@@ -314,10 +314,12 @@ class Zizuminfo < ApplicationRecord
                 zizum.phone_number = row.css('td.num').text
 
                 juso = row.css('td.storeAddr//p:nth-child(1)').text
+                juso = juso
                 split_juso = juso.split(' ')
                 split_number = split_juso.count
 
                 sido = split_juso[0]
+                sido.slice!(0)
 
 
                 if sido == "서울특별시" || sido =="서울" || sido =="서울시"

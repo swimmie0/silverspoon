@@ -389,7 +389,6 @@ DEPENDENCIES
   rails (~> 5.2.1)
   rails_admin
   rails_db (~> 2.0, >= 2.0.4)
-  ransack (~> 2.1, >= 2.1.1)
   sass-rails (~> 5.0)
   selenium-webdriver
   spring

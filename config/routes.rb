@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'restaurants/search' => "restaurants#search"
   get 'menus/search/' => "menus#search"
   get 'menus/getGungu' => "menus#getGungu"
+  get 'menus/menus/getGungu' => "menus#getGungu"
   get 'zizuminfos/getGungu' => "menus#getGungu"
   #밑에 꺼 꼭 넣어야함.
   get 'menus/index' => "menus#index", as: 'menus'

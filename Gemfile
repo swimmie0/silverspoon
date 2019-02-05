@@ -17,8 +17,6 @@ gem 'carrierwave', ' ~>1.0'
 gem 'mini_magick'
 gem 'fog-aws'
 
-# autocomplete
-gem 'ransack', '~> 2.1', '>= 2.1.1'
 
 # 회원관리
 gem 'rails_admin'
