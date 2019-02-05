@@ -39,20 +39,34 @@
     
     $(".btn-allergy").click(function(){
         
-            $(this).addClass("active-btn");
-            $(".btn-restaurant").removeClass("active-btn");
+            $(this).children('.btn-searchtype-circle').addClass("active-btn");
+            $(this).children('.btn-searchtype-circle').children('div').addClass("active-btn-inside");
+            $(this).children('.category-name').addClass('active-typename');
+            
+            $(".btn-restaurant").children('.btn-searchtype-circle').removeClass("active-btn");
+            $(".btn-restaurant").children('.btn-searchtype-circle').children('div').removeClass("active-btn-inside");
+            $(".btn-restaurant").children('.category-name').removeClass('active-typename');
+            
             $(".restaurant-search").addClass("nodisplay");
             $(".allergy-search").removeClass("nodisplay");
         
     });
+
     $(".btn-restaurant").click(function(){
         
-            $(this).addClass("active-btn");
-            $(".btn-allergy").removeClass("active-btn");
+            $(this).children('.btn-searchtype-circle').addClass("active-btn");
+            $(this).children('.btn-searchtype-circle').children('div').addClass("active-btn-inside");
+            $(this).children('.category-name').addClass('active-typename');
+            
+            $(".btn-allergy").children('.btn-searchtype-circle').removeClass("active-btn");
+            $(".btn-allergy").children('.btn-searchtype-circle').children('div').removeClass("active-btn-inside");
+            $(".btn-allergy").children('.category-name').removeClass('active-typename');
+
             $(".restaurant-search").removeClass("nodisplay");
             $(".allergy-search").addClass("nodisplay");
         
-    })
+    });
+    
     var sigungu;
     var sigungu_length;
     // $("#custom").click(function(){
@@ -74,7 +88,7 @@
                 if(sido != "전체"){
                     sigungu_length = Object.keys(sigungu).length;
                     var options = '';
-                    options += '<option value="' +"전체"+ '">' + "--전체선택--" + '</option>';
+                    options += '<option value="' +"전체"+ '">' + "시・군・구 찾기" + '</option>';
                     for (var i = 0; i <sigungu_length; i++) {
                         options += '<option value="' + sigungu[i]+'"'+'class='+'"sigungu-opt"'+'>' + sigungu[i] + '</option>';
                     }
@@ -129,7 +143,7 @@
             if(sido != "전체"){
                 sigungu_length = Object.keys(sigungu).length;
                 var options = '';
-                options += '<option value="' +"전체"+ '">' + "--전체선택--" + '</option>';
+                options += '<option value="' +"전체"+ '">' + "시・군・구 찾기" + '</option>';
                 for (var i = 0; i <sigungu_length; i++) {
                     options += '<option value="' + sigungu[i]+'"'+'class='+'"sigungu-opt"'+'>' + sigungu[i] + '</option>';
                 }

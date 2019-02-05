@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $(".restaurant_name_field").keyup(function() {
+    $(".restaurant-name-field").keyup(function() {
         var keyvalue = $(this).val();
         $.ajax({
             async : true,

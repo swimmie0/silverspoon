@@ -20,8 +20,14 @@ class ZizuminfosController < ApplicationController
   def index
     sido = params[:sido]
     sigungu = params[:sigungu]
-    @restaurants = Restaurant.where("#{:restaurant_name} LIKE?", params[:restaurant_name])
-    @temp = Zizuminfo.where("#{:restaurant_name} LIKE ?", params[:restaurant_name])
+    if params[:restaurant_name] == ""
+      @temp = Zizuminfo.all
+      puts "=========**************+=== 아무것도 안썼어"
+    else 
+      @temp = Zizuminfo.where("#{:restaurant_name} LIKE ?", params[:restaurant_name])
+    end
+      @restaurants = Restaurant.where("#{:restaurant_name} LIKE?", params[:restaurant_name])
+    
     
     if sido == "전체"
       @zizums = @temp
