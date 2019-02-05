@@ -1,5 +1,4 @@
 $(".btn-allergy").click(function(){
-        
     $(this).addClass("active-btn");
     $(".btn-restaurant").removeClass("active-btn");
     $(".restaurant-search").addClass("nodisplay");
