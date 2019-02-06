@@ -35,8 +35,6 @@
     display: none; 
 }
 
-
-
 #menuBox{
     margin-top: 20px;
     width: 400px;
@@ -83,6 +81,7 @@
     font-weight: 450;
     color: #454338;
 }
+
 .num_res{
     font-size: 20px;
 }
@@ -98,21 +97,3 @@
 }
 
 
-
-.a-submit{
-    margin-top: 15px;
-    height: 40px;
-    background-color: transparent;
-    border-style: none;
-    color: rgb(180, 158, 145);
-    font-size: 20px;
-    font-weight: 650;
-}
-
-.a-submit:hover{
-    color: rgb(109, 93, 84);
-}
-.fa-search{
-    transform: scale(1.5);
-    margin-left: 10px;
-}

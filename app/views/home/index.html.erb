@@ -103,31 +103,33 @@
     //          return false;//alert 창 닫기.
     //     }
     // });
-   if('<%=user_signed_in?%>'=="true"){
-    $("#custom").click(function(){
-            if( $(this).children("#ct").html() == "개인정보 불러오기")
+   if('<%=user_signed_in?%>' === "true"){
+    $(".custom-btn").click(function(){
+            if( $(this).children(".ct").html() === "개인정보 불러오기")
             {   
-                $(".original-check").addClass("getinfo");
-                $("#myinfo").removeClass("getinfo");
-                $(".allergy-check").css('visibility','visible');
+                $(".original-check").addClass("nodisplay");
+                $("#myinfo").removeClass("nodisplay");
+                //$(".allergy-check").css('visibility','visible');
             
-                $(this).children("#ct").html("되돌리기");
+                $(".custom-btn-custom").children(".ct").html("되돌리기");
                 
                 $(".custom-sido").val($(".origin-sido").val());
                 $(".custom-sigungu").val($(".origin-sigungu").val());
                 
             }
-            else
+            else if ($(this).children(".ct").html() === "되돌리기")
             {
-                $(".original-check").removeClass("getinfo");
-                $("#myinfo").addClass("getinfo");
-                $(this).children("#ct").html("개인정보 불러오기");
+                $(".original-check").removeClass("nodisplay");
+                $("#myinfo").addClass("nodisplay");
+
+                $(".custom-btn-original").children(".ct").html("개인정보 불러오기");
                 $(".origin-sido").val($(".custom-sido").val());
                 $(".origin-sigungu").val($(".custom-sigungu").val());
                 
             }
         });
     }
+
     //페이지 뒤로 넘어가기 했을 시에 에러 수정.
     var sido = $(".sido-select").val();
     
@@ -153,10 +155,14 @@
     });
     }
 
-    $(".allergy-cp").click(function() {
+
+    //custom 안했을 때. 숨겨진 체크박스 선택되도록 + active
+    $(".allergy-cp-origin").click(function() {
         var allergy = $(this).attr('id');
         if($(this).hasClass('allergy-cp-active')){
             $(this).removeClass('allergy-cp-active');
+            $(this).children('img').removeClass('allergy-cp-img-active');
+
             if(allergy == "a1") $("#a1_maemil").prop('checked', false);
             else if(allergy == "a2") $("#a2_mil").prop('checked', false);
             else if(allergy == "a3") $("#a3_daedu").prop('checked', false);
@@ -179,10 +185,11 @@
             else if(allergy == "a20") $("#a20_ohjingeoh").prop('checked', false);
             else if(allergy == "a21") $("#a21_ahwangsan").prop('checked', false);
             //배경색이 있는 그림이라서 바꿀 수가 없다. 일러스트를 흰색으로 못 바꿈.
-            //$(this).children('img').removeClass('allergy-cp-img-active');
+            
         }
         else{
             $(this).addClass('allergy-cp-active');
+            $(this).children('img').addClass('allergy-cp-img-active');
             if(allergy == "a1") $("#a1_maemil").prop('checked', true);
             else if(allergy == "a2") $("#a2_mil").prop('checked', true);
             else if(allergy == "a3") $("#a3_daedu").prop('checked', true);
@@ -204,21 +211,286 @@
             else if(allergy == "a19") $("#a19_gye").prop('checked', true);
             else if(allergy == "a20") $("#a20_ohjingeoh").prop('checked', true);
             else if(allergy == "a21") $("#a21_ahwangsan").prop('checked', true);
-            //$(this).children('img').addClass('allergy-cp-img-active');
         }
         
         
         console.log(allergy);
-
-        // $.ajax({
-        //     async : true,
-        //     data : {allergy: allergy},
-        //     type : "GET",
-        //     url : "menus/index",
-        //     success : function(data){
-        //         console.log("성공");
-        //     }
-        // })
     });
-    //에러 수정 끝
+
+
+    
+    //custom (개인정보 불러오기 했을 때), 숨겨진 체크박스 선택되도록
+    $(".allergy-cp-custom").click(function() {
+        var allergy = $(this).attr('id');
+        if($(this).hasClass('allergy-cp-active')){
+            $(this).removeClass('allergy-cp-active');
+
+            if(allergy == "a1_c") $("#a1_maemil_c").prop('checked', false);
+            else if(allergy == "a2_c") $("#a2_mil_c").prop('checked', false);
+            else if(allergy == "a3_c") $("#a3_daedu_c").prop('checked', false);
+            else if(allergy == "a4_c") $("#a4_hodu_c").prop('checked', false);
+            else if(allergy == "a5_c") $("#a5_ddangkong_c").prop('checked', false);
+            else if(allergy == "a6_c") $("#a6_peach_c").prop('checked', false);
+            else if(allergy == "a7_c") $("#a7_tomato_c").prop('checked', false);
+            else if(allergy == "a8_c") $("#a8_piggogi_c").prop('checked', false);
+            else if(allergy == "a9_c") $("#a9_nanryu_c").prop('checked', false);
+            else if(allergy == "a10_c") $("#a10_milk_c").prop('checked', false);
+            else if(allergy == "a11_c") $("#a11_ddakgogi_c").prop('checked', false);
+            else if(allergy == "a12_c") $("#a12_shoigogi_c").prop('checked', false);
+            else if(allergy == "a13_c") $("#a13_saewoo_c").prop('checked', false);
+            else if(allergy == "a14_c") $("#a14_godeungeoh_c").prop('checked', false);
+            else if(allergy == "a15_c") $("#a15_honghap_c").prop('checked', false);
+            else if(allergy == "a16_c") $("#a16_junbok_c").prop('checked', false);
+            else if(allergy == "a17_c") $("#a17_gul_c").prop('checked', false);
+            else if(allergy == "a18_c") $("#a18_jogaeryu_c").prop('checked', false);
+            else if(allergy == "a19_c") $("#a19_gye_c").prop('checked', false);
+            else if(allergy == "a20_c") $("#a20_ohjingeoh_c").prop('checked', false);
+            else if(allergy == "a21_c") $("#a21_ahwangsan_c").prop('checked', false);
+            //배경색이 있는 그림이라서 바꿀 수가 없다. 일러스트를 흰색으로 못 바꿈.
+            $(this).children('img').removeClass('allergy-cp-img-active');
+        }
+        else{
+            $(this).addClass('allergy-cp-active');
+
+            if(allergy == "a1_c") $("#a1_maemil_c").prop('checked', true);
+            else if(allergy == "a2_c") $("#a2_mil_c").prop('checked', true);
+            else if(allergy == "a3_c") $("#a3_daedu_c").prop('checked', true);
+            else if(allergy == "a4_c") $("#a4_hodu_c").prop('checked', true);
+            else if(allergy == "a5_c") $("#a5_ddangkong_c").prop('checked', true);
+            else if(allergy == "a6_c") $("#a6_peach_c").prop('checked', true);
+            else if(allergy == "a7_c") $("#a7_tomato_c").prop('checked', true);
+            else if(allergy == "a8_c") $("#a8_piggogi_c").prop('checked', true);
+            else if(allergy == "a9_c") $("#a9_nanryu_c").prop('checked', true);
+            else if(allergy == "a10_c") $("#a10_milk_c").prop('checked', true);
+            else if(allergy == "a11_c") $("#a11_ddakgogi_c").prop('checked', true);
+            else if(allergy == "a12_c") $("#a12_shoigogi_c").prop('checked', true);
+            else if(allergy == "a13_c") $("#a13_saewoo_c").prop('checked', true);
+            else if(allergy == "a14_c") $("#a14_godeungeoh_c").prop('checked', true);
+            else if(allergy == "a15_c") $("#a15_honghap_c").prop('checked', true);
+            else if(allergy == "a16_c") $("#a16_junbok_c").prop('checked', true);
+            else if(allergy == "a17_c") $("#a17_gul_c").prop('checked', true);
+            else if(allergy == "a18_c") $("#a18_jogaeryu_c").prop('checked', true);
+            else if(allergy == "a19_c") $("#a19_gye_c").prop('checked', true);
+            else if(allergy == "a20_c") $("#a20_ohjingeoh_c").prop('checked', true);
+            else if(allergy == "a21_c") $("#a21_ahwangsan_c").prop('checked', true);
+            
+            $(this).children('img').addClass('allergy-cp-img-active');
+        }
+        
+        console.log(allergy);
+    });
+
+
+    //origin checkbox 뒤로 돌아가기 했을 때 생기는 문제 해결
+    if($("#a1_maemil").prop('checked') == true)
+    {
+        $("#a1").addClass("allergy-cp-active");
+        $("#a1").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a2_mil").prop('checked') == true)
+    {
+        $("#a2").addClass("allergy-cp-active");
+        $("#a2").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a3_daedu").prop('checked') == true)
+    {
+        $("#a3").addClass("allergy-cp-active");
+        $("#a3").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a4_hodu").prop('checked') == true)
+    {
+        $("#a4").addClass("allergy-cp-active");
+        $("#a4").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a5_ddangkong").prop('checked') == true)
+    {
+        $("#a5").addClass("allergy-cp-active");
+        $("#a5").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a6_peach").prop('checked') == true)
+    {
+        $("#a6").addClass("allergy-cp-active");
+        $("#a6").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a7_tomato").prop('checked') == true)
+    {
+        $("#a7").addClass("allergy-cp-active");
+        $("#a7").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a8_piggogi").prop('checked') == true)
+    {
+        $("#a8").addClass("allergy-cp-active");
+        $("#a8").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a9_nanryu").prop('checked') == true)
+    {
+        $("#a9").addClass("allergy-cp-active");
+        $("#a9").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a10_milk").prop('checked') == true)
+    {
+        $("#a10").addClass("allergy-cp-active");
+        $("#a10").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a11_ddakgogi").prop('checked') == true)
+    {
+        $("#a11").addClass("allergy-cp-active");
+        $("#a11").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a12_shoigogi").prop('checked') == true)
+    {
+        $("#a12").addClass("allergy-cp-active");
+        $("#a12").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a13_saewoo").prop('checked') == true)
+    {
+        $("#a13").addClass("allergy-cp-active");
+        $("#a13").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a14_godeungeoh").prop('checked') == true)
+    {
+        $("#a14").addClass("allergy-cp-active");
+        $("#a14").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a15_honghap").prop('checked') == true)
+    {
+        $("#a15").addClass("allergy-cp-active");
+        $("#a15").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a16_junbok").prop('checked') == true)
+    {
+        $("#a16").addClass("allergy-cp-active");
+        $("#a16").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a17_gul").prop('checked') == true)
+    {
+        $("#a17").addClass("allergy-cp-active");
+        $("#a17").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a18_jogaeryu").prop('checked') == true)
+    {
+        $("#a18").addClass("allergy-cp-active");
+        $("#a18").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a19_gye").prop('checked') == true)
+    {
+        $("#a19").addClass("allergy-cp-active");
+        $("#a19").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a20_ohjingeoh").prop('checked') == true)
+    {
+        $("#a20").addClass("allergy-cp-active");
+        $("#a20").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a21_ahwangsan").prop('checked') == true){
+        $("#a21").addClass("allergy-cp-active");
+        $("#a21").children('img').addClass('allergy-cp-img-active');
+    }
+
+
+    //custom checkbox 뒤로 돌아가기 했을 때 생기는 문제 해결+active+custom 불러오기
+    if($("#a1_maemil_c").prop('checked') == true)
+    {
+        $("#a1_c").addClass("allergy-cp-active");
+        $("#a1_c").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a2_mil_c").prop('checked') == true)
+    {
+        $("#a2_c").addClass("allergy-cp-active");
+        $("#a2_c").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a3_daedu_c").prop('checked') == true)
+    {
+        $("#a3_c").addClass("allergy-cp-active");
+        $("#a3_c").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a4_hodu_c").prop('checked') == true)
+    {
+        $("#a4_c").addClass("allergy-cp-active");
+        $("#a4_c").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a5_ddangkong_c").prop('checked') == true)
+    {
+        $("#a5_c").addClass("allergy-cp-active");
+        $("#a5_c").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a6_peach_c").prop('checked') == true)
+    {
+        $("#a6_c").addClass("allergy-cp-active");
+        $("#a6_c").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a7_tomato_c").prop('checked') == true)
+    {
+        $("#a7_c").addClass("allergy-cp-active");
+        $("#a7_c").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a8_piggogi_c").prop('checked') == true)
+    {
+        $("#a8_c").addClass("allergy-cp-active");
+        $("#a8_c").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a9_nanryu_c").prop('checked') == true)
+    {
+        $("#a9_c").addClass("allergy-cp-active");
+        $("#a9_c").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a10_milk_c").prop('checked') == true)
+    {
+        $("#a10_c").addClass("allergy-cp-active");
+        $("#a10_c").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a11_ddakgogi_c").prop('checked') == true)
+    {
+        $("#a11_c").addClass("allergy-cp-active");
+        $("#a11_c").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a12_shoigogi_c").prop('checked') == true)
+    {
+        $("#a12_c").addClass("allergy-cp-active");
+        $("#a12_c").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a13_saewoo_c").prop('checked') == true)
+    {
+        $("#a13_c").addClass("allergy-cp-active");
+        $("#a13_c").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a14_godeungeoh_c").prop('checked') == true)
+    {
+        $("#a14_c").addClass("allergy-cp-active");
+        $("#a14_c").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a15_honghap_c").prop('checked') == true)
+    {
+        $("#a15_c").addClass("allergy-cp-active");
+        $("#a15_c").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a16_junbok_c").prop('checked') == true)
+    {
+        $("#a16_c").addClass("allergy-cp-active");
+        $("#a16_c").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a17_gul_c").prop('checked') == true)
+    {
+        $("#a17_c").addClass("allergy-cp-active");
+        $("#a17_c").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a18_jogaeryu_c").prop('checked') == true)
+    {
+        $("#a18_c").addClass("allergy-cp-active");
+        $("#a18_c").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a19_gye_c").prop('checked') == true)
+    {
+        $("#a19_c").addClass("allergy-cp-active");
+        $("#a19_c").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a20_ohjingeoh_c").prop('checked') == true)
+    {
+        $("#a20_c").addClass("allergy-cp-active");
+        $("#a20_c").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a21_ahwangsan_c").prop('checked') == true){
+        $("#a21_c").addClass("allergy-cp-active");
+        $("#a21_c").children('img').addClass('allergy-cp-img-active');
+    }
 </script>

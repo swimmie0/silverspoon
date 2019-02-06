@@ -22,7 +22,6 @@ class ZizuminfosController < ApplicationController
     sigungu = params[:sigungu]
     if params[:restaurant_name] == ""
       @temp = Zizuminfo.all
-      puts "=========**************+=== 아무것도 안썼어"
     else 
       @temp = Zizuminfo.where("#{:restaurant_name} LIKE ?", params[:restaurant_name])
     end
