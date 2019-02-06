@@ -53,7 +53,20 @@ class Restaurant < ApplicationRecord
             r.restaurant_name = "파파이스"
             r.save
         end
-    end
 
+        ## 7
+        if Restaurant.where(restaurant_name: "배스킨라빈스")[0].nil?
+            r = Restaurant.new
+            r.restaurant_name = "배스킨라빈스"
+            r.save
+        end
+
+        ## 8
+        if Restaurant.where(restaurant_name: "버거킹")[0].nil?
+            r = Restaurant.new
+            r.restaurant_name = "버거킹"
+            r.save
+        end
+    end
 end
 

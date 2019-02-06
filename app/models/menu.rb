@@ -708,7 +708,7 @@ class Menu < ApplicationRecord
                     #메뉴 이름
                     a_info.menu_name = m_name
 
-                    ## 제공: 계란, 우유, 땅콩, 대두, 밀,  돼지고기, 토마토, 아황산류, 호두, 쇠고기, 닭고기,조개류(굴)
+                    ## 제공13: 계란, 우유, 땅콩, 대두, 밀,  돼지고기, 토마토, 아황산류, 호두, 쇠고기, 닭고기,조개류(굴)
                     ## 미제공: 메밀, (고등어, 게, 새우,) -> 해산물?, 복숭아, 오징어
 
                     # each메뉴의 알러지txt에 '난류' 포함되어 있으면 '1' 아니면 '0'
@@ -809,7 +809,7 @@ class Menu < ApplicationRecord
                         a_info.a17_gul = 1
                     end
 
-                    #미제공항목 (홍합/전복/오징어/고등어/게/새우)/복숭아/메밀
+                    #미제공항목8 (홍합/전복/오징어/고등어/게/새우)/복숭아/메밀
                     #기타제공 해산물(해삼물이라고 나와있음)
                     a_info.a15_honghap = -1
                     a_info.a16_junbok = -1
@@ -854,7 +854,7 @@ class Menu < ApplicationRecord
                 #메뉴 이름
                 a_info.menu_name = m_name
 
-                ## 제공: 계란, 우유, 대두, 밀,  돼지고기, 복숭아, 토마토, 아황산류, 쇠고기, 닭고기,조개류(굴)
+                ## 제공12: 계란, 우유, 대두, 밀, 돼지고기, 복숭아, 토마토, 아황산류, 쇠고기, 닭고기,조개류(굴)
                 ## 미제공: 땅콩, 메밀, 호두,(홍합/전복/오징어/고등어/게/새우)
 
                 # each메뉴의 알러지txt에 '난류' 포함되어 있으면 '1' 아니면 '0'
@@ -942,7 +942,7 @@ class Menu < ApplicationRecord
                     a_info.a17_gul = 1
                 end
 
-                #미제공항목 땅콩, 메밀, 호두,(홍합/전복/오징어/고등어/게/새우)
+                #미제공항목9 땅콩, 메밀, 호두,(홍합/전복/오징어/고등어/게/새우)
                 a_info.a5_ddangkong = -1
                 a_info.a1_maemil = -1 
                 a_info.a4_hodu = -1            
@@ -958,7 +958,221 @@ class Menu < ApplicationRecord
                 end   
             end    
         end
-    end          
+    end        
+    
+    def self.Baskin
+        #배스킨라빈스
+        for pageNum in 1..5
+            url = "https://www.baskinrobbins.co.kr/menu/nutrition_new.php?Page=#{pageNum}"
+            data = Nokogiri::HTML(open(url))
+            rows = data.css('table tbody tr')
+        
+            rows.each do |r|
+                r_name = "배스킨라빈스"
+
+                m_name = r.css('td:nth-child(1)').text
+                a=r.css('td:nth-child(8)')
+
+                if Menu.where(menu_name: m_name)[0].nil? #신규
+                    a_info = Menu.new
+                else
+                    a_info = Menu.where(restaurant_name: r_name, menu_name: m_name)[0] #업데이트
+                end  
+
+                a_info.restaurant_name = r_name
+                a_info.restaurant_id = Restaurant.where(restaurant_name: r_name)[0].id
+                a_info.menu_name = m_name
+
+                ## 제공7: 계란, 우유, 대두, 밀, 땅콩, 돼지고기, 복숭아
+                ## 모든 제품은 밀, 대두, 호두, 우유, 땅콩, 돼지고기, 복숭아, 계란, 쇠고기를 사용한 제품과 같은 제조 시설에서 제조되었습니다.   
+                ## 같은 제조시설이면 -2? 제공기준이 시설기준에도 전부포함인데 제공기준0인것도 -2? 그럼 다 -2?
+
+                # each메뉴의 알러지txt에 '난류' 포함되어 있으면 '1' 아니면 '0'
+                # 난류 9 
+                if  a.css(':contains("계란")').text == "" 
+                    a_info.a9_nanryu = 0
+                else
+                    a_info.a9_nanryu = -2
+                end
+
+                #우유 10
+                if  a.css(':contains("우유")').text == "" 
+                    a_info.a10_milk = 0
+                else
+                    a_info.a10_milk = -2
+                end
+
+                #대두 3   
+                if  a.css(':contains("대두")').text == ""
+                    a_info.a3_daedu = 0
+                else
+                    a_info.a3_daedu  = -2
+                end
+
+                #밀 2 
+                if  a.css(':contains("밀")').text == "" 
+                    a_info.a2_mil = 0
+                else
+                    a_info.a2_mil = -2
+                end
+
+                #돼지고기 8 a8_piggogi 
+                if  a.css(':contains("돼지고기")').text == "" 
+                    a_info.a8_piggogi = 0
+                else
+                    a_info.a8_piggogi = -2
+                end
+            
+                #복숭아 6 a6_peach
+                if  a.css(':contains("복숭아")').text == "" 
+                    a_info.a6_peach = 0
+                else
+                    a_info.a6_peach = -2
+                end
+
+                #땅콩 5 
+                if  a.css(':contains("땅콩")').text == "" 
+                    a_info.a5_ddangkong = 0
+                else
+                    a_info.a5_ddangkong = -2
+                end
+
+                #미제공항목11 닭고기, 쇠고기, 메밀, 호두,(홍합/전복/오징어/고등어/게/새우), 조개류, 굴, 아황산류, 토마토
+                ## 밀, 대두, 호두, 우유, 땅콩, 돼지고기, 복숭아, 계란, 쇠고기를 사용한 제품과 같은 제조 시설에서 제조되었습니다.   
+                
+                a_info.a11_ddakgogi= -1
+                a_info.a12_shoigogi= -2
+                a_info.a1_maemil = -1 
+                a_info.a4_hodu = -2           
+                a_info.a15_honghap = -1
+                a_info.a16_junbok = -1
+                a_info.a20_ohjingeoh = -1 
+                a_info.a14_godeungeoh =-1
+                a_info.a19_gye = -1
+                a_info.a13_saewoo = -1
+                a_info.a18_jogaeryu = -1
+                a_info.a21_ahwangsan = -1               
+                a_info.a17_gul = -1
+                a_info.a7_tomato = -1
+
+                if m_name != ""
+                    a_info.save
+                end   
+            end    
+        end
+    end        
+
+    def self.Burgerking
+        url = "http://www.burgerking.co.kr/nutrition"
+        data = Nokogiri::HTML(open(url))
+        rows = data.css('table:nth-child(1) table:nth-child(2) table:nth-child(1) table')
+        r_name = "버거킹"
+
+        rows.each do |row| #각 성분테이블
+            a = row.css('tr:nth-child(1)')
+            row.css('tr').each do |r| #메뉴분류
+                r.css('td.bor_bottom').text.split(/, |추가,|\r\n/).each do |menu| #각메뉴
+                    
+                    m_name = menu.gsub(',','').strip
+
+                    if Menu.where(menu_name: m_name)[0].nil? #신규
+                        a_info = Menu.new
+                        a_info.restaurant_name = r_name
+                        a_info.restaurant_id = Restaurant.where(restaurant_name: r_name)[0].id
+                        a_info.menu_name = m_name
+                    else
+                        a_info = Menu.where(restaurant_name: r_name, menu_name: m_name)[0] #업데이트
+                    end 
+
+                    ## 제공11: 밀, 대두, 우유, 돼지고기, 토마토, 닭고기, 쇠고기, 조개류, 난류, 새우, 게
+
+                    # 난류 9 
+                    a_info.a9_nanryu = 0                    
+                    if  a.css(':contains("난류")').text != "" 
+                        a_info.a9_nanryu = 1
+                    end
+
+                    #우유 10
+                    a_info.a10_milk = 0                    
+                    if  a.css(':contains("우유")').text != "" 
+                        a_info.a10_milk = 1
+                    end
+
+                    #대두 3   
+                    a_info.a3_daedu  = 0                    
+                    if  a.css(':contains("대두")').text != ""
+                        a_info.a3_daedu  = 1
+                    end
+
+                    #밀 2 
+                    a_info.a2_mil = 0                    
+                    if  a.css(':contains("밀")').text != "" 
+                        a_info.a2_mil = 1
+                    end
+
+                    #돼지고기 8 a8_piggogi
+                    a_info.a8_piggogi = 0                     
+                    if  a.css(':contains("돼지고기")').text != "" 
+                        a_info.a8_piggogi = 1
+                    end
+
+                    #토마토 7 a7_tomato
+                    a_info.a7_tomato = 0                    
+                    if  a.css(':contains("토마토")').text != "" 
+                        a_info.a7_tomato = 1
+                    end
+
+                    #쇠고기 11 a11_ddakgogi
+                    a_info.a11_ddakgogi = 0                    
+                    if  a.css(':contains("쇠고기")').text != "" 
+                        a_info.a11_ddakgogi = 1
+                    end
+
+                    #닭고기 12 a12_shoigogi
+                    a_info.a12_shoigogi = 0                    
+                    if  a.css(':contains("닭고기")').text != "" 
+                        a_info.a12_shoigogi = 1
+                    end
+
+                    #조개류 18 a18_jogaeryu
+                    a_info.a18_jogaeryu = 0                    
+                    if  a.css(':contains("조개류")').text != "" 
+                        a_info.a18_jogaeryu = 1
+                    end
+
+                    #게
+                    a_info.a19_gye = 0                                       
+                    if  a.css(':contains("게")').text != ""                     
+                        a_info.a19_gye = 1                    
+                    end
+
+                    #새우
+                    a_info.a13_saewoo = 0                        
+                    if  a.css(':contains("새우")').text != ""                     
+                        a_info.a13_saewoo = 1                        
+                    end
+                    
+
+                    ## 미제공10: 땅콩, 복숭아, 아황산, 호두, 굴, 홍합/전복/오징어/고등어/메밀
+                    a_info.a5_ddangkong = -1
+                    a_info.a6_peach = -1
+                    a_info.a21_ahwangsan = -1
+                    a_info.a4_hodu = -1
+                    a_info.a17_gul = -1
+                    a_info.a15_honghap = -1
+                    a_info.a16_junbok = -1
+                    a_info.a20_ohjingeoh = -1 
+                    a_info.a14_godeungeoh =-1
+                    a_info.a1_maemil = -1 
+
+                    if m_name != "추가"
+                        a_info.save
+                    end
+            end
+        end     
+    end
+end   
+    
                 
     # def self.Hansot
     #     # 한솥
