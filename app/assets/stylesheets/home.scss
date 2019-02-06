@@ -325,7 +325,6 @@
 }
 
 .custom-btn{
-    cursor: pointer;
     margin: 1rem;
     -webkit-appearance: none;
     text-align: center;
@@ -345,8 +344,19 @@
     transition: all .2s ease-in;
 }
 
-.custom-btn:hover{
+.custom-btn-original{
+    cursor: pointer;
+}
+
+.custom-btn-original:hover{
     background-color: rgb(83, 83, 83);
     color: white;
 }
+
+
+.custom-btn-disabled{
+    border-width: 0px;
+    color: rgb(139, 139, 139);    
+}
+
 
