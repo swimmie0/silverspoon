@@ -5,7 +5,13 @@
     position: relative;
     right: 0;
     top: 0;
-    z-index: 500;
+    z-index: 500;    
+}
+
+.holder-shadow{
+    -webkit-box-shadow: 0px 10px 18px -15px rgba(122,122,122,1);
+    -moz-box-shadow: 0px 10px 18px -15px rgba(122,122,122,1);
+    box-shadow: 0px 10px 18px -15px rgba(122,122,122,1);
 }
 
 .rolling-banner {

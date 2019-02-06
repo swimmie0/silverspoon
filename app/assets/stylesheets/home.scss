@@ -94,6 +94,7 @@
     border-bottom-width: 0px;
     border-width:  1.2px;
     border-style: solid;
+    margin-bottom: 1.5rem;
 }
 
 .search-box-th{
@@ -135,8 +136,13 @@
 }
 
 .s-th-sort{
-    height: 13rem;
-    line-height: 13rem;
+    //height 따로 지정 안함. 표 크기 따라서 자동으로 설정.
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    // height: 13rem;
+    // line-height: 13rem;
 }
 
 .s-th-sort-restaurant{
@@ -147,7 +153,7 @@
 .s-td-sort{
     width: 100%;
     background-color: rgb(250, 250, 250);
-    height: 13rem;
+    // height: 13rem;
     align-items: center;
     display: flex;
     justify-content: center;
@@ -159,8 +165,6 @@
     height: 3.5rem;
     line-height: 3.5rem;
 }
-
-
 
 
 .allergy-table-row{
@@ -181,26 +185,31 @@
     border-width:  0.5px;
     border-color: rgb(148, 148, 148);
     border-style: solid;
-    height: 4.5rem;
+    height: 4.8rem;
     // line-height: 4.5rem;
     text-align : center;
-    width: 4.5rem;
+    width: 4.8rem;
 }
 
 .allergy-cp-active{
     background-color:#FF5400;
-
+    border-width: 0px;
+    
     color: white; 
 }
 
-
-
+.allergy-cp-img-active{
+    //눌렀을 때 흰색 되도록
+    -webkit-filter: invert(1) contrast(3.2); /* Safari 6.0 - 9.0 */
+    filter: invert(1) contrast(3.2) ;
+}
 .allergy-cp-img{
     margin-top: 1rem;
     margin-bottom: 0.5rem;
     height: 1.5rem;
     width: 1.5rem;
 }
+
 
 .search-categories{
     margin-left: 1.7rem;
@@ -237,9 +246,10 @@
 }
 
 .active-btn-inside{
-    height: 0.85rem;
-    width: 0.85rem;
-    border-color: none;
+    height: 0.74rem;
+    width: 0.74rem;
+    border-color: transparent;
+    border-width: 0px;
     border-radius: 100%;
     border-style: solid;
     background-color:#FF5400;
@@ -271,12 +281,72 @@
 .restaurant-name-field{
     margin-left: 1.7rem;
     padding-left: 0.4rem;
-    width: 15rem;
+    width: 16.9rem;
     height: 2rem;
     border-width:  0.5px;
     border-color: rgb(148, 148, 148);
     border-style: solid;
     font-family: 'NanumBarunGothic',serif;
     font-size: 0.8rem;
+}
+
+.search-submit{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.a-submit{
+    background-color: transparent;
+    cursor: pointer;
+    margin: 1rem;
+    //type submit 이므로 appearnace 조정
+    -webkit-appearance: none;
+    text-align: center;
+    width: 10rem;
+    height: 2.5rem;
+    border-style: solid;
+    border-color: #FF5400;
+    color: #FF5400;
+    border-width: 0.3px;
+    font-family: 'NanumBarunGothic',serif;
+    font-size: 0.8rem;
+    line-height: 2.5rem;
+
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+.a-submit:hover{
+    background-color: #FF5400;
+    color: white;
+}
+
+.custom-btn{
+    cursor: pointer;
+    margin: 1rem;
+    -webkit-appearance: none;
+    text-align: center;
+    width: 10rem;
+    height: 2.5rem;
+    border-style: solid;
+    border-color: rgb(83, 83, 83);
+    color: rgb(83, 83, 83);
+    border-width: 0.3px;
+    font-family: 'NanumBarunGothic',serif;
+    font-size: 0.8rem;
+    line-height: 2.5rem;
+
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+.custom-btn:hover{
+    background-color: rgb(83, 83, 83);
+    color: white;
 }
 
