@@ -33,6 +33,7 @@
     </div>
 
     <br>
+    <% if current_user.allergy != nil %>  <!--수정-->
     <div class="d-flex justify-content-between original-check">
         <div>
             <div class="a-type"><div class="d-flex typebox justify-content-around"><div class="typename">유제품 및 난류</div><i class="downic fas fa-caret-down"></i></div></div>
@@ -41,6 +42,7 @@
                 <%= check_box_tag :a10_milk, true, current_user.allergy.include?('우유')%> 우유<br>
             </div>
         </div>
+
         <div>
             <div class="a-type"><div class="d-flex typebox justify-content-around"><div class="typename">과채류 및 곡류</div><i class="downic fas fa-caret-down"></i></div></div>
             <div class="allergy-check">
@@ -84,7 +86,7 @@
                 <%= check_box_tag :a21_ahwangsan, true, current_user.allergy.include?('아황산류')%> 아황산류<br>
             </div>
         </div>
-           
+         <%end%>  
         <button type="submit" class="a-submit">
             Search<i class="fas fa-search"></i>
         </button>

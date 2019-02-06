@@ -143,8 +143,8 @@ class User < ApplicationRecord
     self.allergy.gsub!(/[\[\]\"]/, '') if attribute_present?("allergy")
     # self.allergy = "#{allergy}, #{etc}"    
   end
-  before_update do
-    self.allergy = "#{allergy} #{allergy_etc}"    
-  end  
+  # before_update do
+  #   self.allergy = "#{allergy} #{allergy_etc}"    
+  # end  
 
 end
