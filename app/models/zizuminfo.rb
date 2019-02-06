@@ -354,7 +354,66 @@ class Zizuminfo < ApplicationRecord
             end
         end
     end
+
+    def self.Coffeebean
+        r_id = Restaurant.where(restaurant_name: "커피빈")[0].id
+        zizum_name = "커피빈"
+
+        zizum = Zizuminfo.where(restaurant_name: "커피빈", zizum_name: zizum_name)[0]
+        if zizum.nil?
+            zizum = Zizuminfo.new
+        end
+
+        zizum.restaurant_name = "커피빈"
+        zizum.restaurant_id = r_id
+        zizum.zizum_name = zizum_name
+        zizum.save
+    end
     
+    def self.Popeyes
+        r_id = Restaurant.where(restaurant_name: "파파이스")[0].id
+        zizum_name = "파파이스"
+
+        zizum = Zizuminfo.where(restaurant_name: "파파이스", zizum_name: zizum_name)[0]
+        if zizum.nil?
+            zizum = Zizuminfo.new
+        end
+
+        zizum.restaurant_name = "파파이스"
+        zizum.restaurant_id = r_id
+        zizum.zizum_name = zizum_name
+        zizum.save
+    end
+
+    def self.Baskin
+        r_id = Restaurant.where(restaurant_name: "배스킨라빈스")[0].id
+        zizum_name = "배스킨라빈스"
+
+        zizum = Zizuminfo.where(restaurant_name: "배스킨라빈스", zizum_name: zizum_name)[0]
+        if zizum.nil?
+            zizum = Zizuminfo.new
+        end
+
+        zizum.restaurant_name = "배스킨라빈스"
+        zizum.restaurant_id = r_id
+        zizum.zizum_name = zizum_name
+        zizum.save
+    end
+
+    def self.Burgerking
+        r_id = Restaurant.where(restaurant_name: "버거킹")[0].id
+        zizum_name = "버거킹"
+
+        zizum = Zizuminfo.where(restaurant_name: "버거킹", zizum_name: zizum_name)[0]
+        if zizum.nil?
+            zizum = Zizuminfo.new
+        end
+
+        zizum.restaurant_name = "버거킹"
+        zizum.restaurant_id = r_id
+        zizum.zizum_name = zizum_name
+        zizum.save
+    end
 
     #한솥
 

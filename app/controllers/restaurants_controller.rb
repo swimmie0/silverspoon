@@ -83,6 +83,9 @@ class RestaurantsController < ApplicationController
     puts "\n\nmomstouch zizum finished\n\n"
     # Zizuminfo.Raracost
     # Zizuminfo.Vips
+    Zizuminfo.Coffeebean
+    Zizuminfo.Popeyes
+    Zizuminfo.Baskin
     # Menu.Subway
     puts "\n\nsubway menu finished\n\n"
     # sleep 1.5
@@ -91,7 +94,9 @@ class RestaurantsController < ApplicationController
     # Menu.Vips
     # Menu.Raracost
     # Menu.Coffeebean
-    Menu.Popeyes
+    # Menu.Popeyes
+    # Menu.Baskin
+    Menu.Burgerking
     puts "crwaling update finished!"
     #redirect_to userrequests_path
     redirect_to home_index_path
