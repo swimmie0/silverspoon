@@ -34,6 +34,20 @@ class User::RegistrationsController < Devise::RegistrationsController
   
   def editsns
   end  
+
+  ## for 회원가입정보에 알레르기 필수 (소셜로그인)
+  # protected
+
+  # def after_update_path_for(resource)
+  #   if @user.allergy ==  ''
+  #     Identity.destroy(@user.id)
+  #     Profile.destroy(@user.id)
+  #     @user.destroy
+  #   else 
+  #     root_path
+  #   end   
+  # end
+
   # GET /resource/sign_up
   # def new
   #   super
