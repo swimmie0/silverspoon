@@ -24,6 +24,7 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1/edit
   def edit
+    @allergy_tags=["난류", "우유", "복숭아", "토마토", "메밀", "밀", "대두(콩)", "닭고기", "쇠고기", "돼지고기", "새우", "고등어", "홍합", "전복", "굴", "조개류", "게", "오징어", "호두", "땅콩", "아황산류"]
   end
 
   # POST /recipes
