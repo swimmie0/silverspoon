@@ -62,9 +62,11 @@
       </p>
       
       <div align="right">
+        <%= link_to "Log Out", destroy_user_session_path, method: :delete, class:"headerfont", :style=>"text-decoration: none; color: #454338;" %>
         <button class="fill mbutton">  <!-- 수정 버튼 위치 2 -->
           <%= link_to '개인정보 변경', edit_user_registration_path, :style=> "color:black; text-decoration: none;" %>
         </button>
+        
       </div>
     </div>
   </div>

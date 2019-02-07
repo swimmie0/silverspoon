@@ -9,11 +9,24 @@ class ZizuminfosController < ApplicationController
   def search
   end
   
+  def getZizum
+    key = params[:keyvalue]
+    @zizums = Zizuminfo.all.where("#{:zizum_name} LIKE ?", "%#{key}%").map(&:zizum_name)[0]
+    puts @zizums
+    # @restaurant = Restaurant.select("restaurant_name").all
+
+  end
+  
   def index
     sido = params[:sido]
     sigungu = params[:sigungu]
-    @restaurants = Restaurant.where("#{:restaurant_name} LIKE?", params[:restaurant_name])
-    @temp = Zizuminfo.where("#{:restaurant_name} LIKE ?", params[:restaurant_name])
+    if params[:restaurant_name] == ""
+      @temp = Zizuminfo.all
+    else 
+      @temp = Zizuminfo.where("#{:restaurant_name} LIKE ?", params[:restaurant_name])
+    end
+      @restaurants = Restaurant.where("#{:restaurant_name} LIKE?", params[:restaurant_name])
+    
     
     if sido == "전체"
       @zizums = @temp

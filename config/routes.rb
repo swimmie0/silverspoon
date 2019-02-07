@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :notices
   resources :recipes
   resources :conversations do
     resources :messages
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
   
   ##SEARCH------resources :zizuminfos 보다 위에
   get 'zizuminfos/search/' => "zizuminfos#search"
+  post 'zizuminfos/getZizum' => "zizuminfos#getZizum"
   get 'zizuminfos/getGungu' => "menus#getGungu"
   #밑에 꺼 꼭 넣어야함.
   get 'zizuminfos/index' => "zizuminfos#index", as: 'zizuminfos'
@@ -17,6 +19,7 @@ Rails.application.routes.draw do
   get 'restaurants/search' => "restaurants#search"
   get 'menus/search/' => "menus#search"
   get 'menus/getGungu' => "menus#getGungu"
+  get 'menus/menus/getGungu' => "menus#getGungu"
   get 'zizuminfos/getGungu' => "menus#getGungu"
   #밑에 꺼 꼭 넣어야함.
   get 'menus/index' => "menus#index", as: 'menus'

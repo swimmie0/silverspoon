@@ -13,8 +13,13 @@ class MenusController < ApplicationController
   end
 
   def index
+    # 체크 안했을 경우-알러지 없다. / check 하면 true(알러지없다). a1, a2 등은 알러지 없다고 표시 되면 1 
      sido = params[:sido]
      sigungu = params[:sigungu]
+
+    #  puts "============="+allergy
+
+    
      a1=0
      a2=0
      a3=0 
@@ -61,12 +66,11 @@ class MenusController < ApplicationController
      a21 = 2 if params[:a21_ahwangsan] != "true"
  
      #---------------------------------------------------------
- 
+    
  
      #--------------------search 에 맞게 메뉴 찾기---------------------
     
      @menus = Menu.where("#{:a1_maemil} <= ? AND #{:a2_mil} <= ? AND #{:a3_daedu} <= ? AND #{:a4_hodu} <= ? AND #{:a5_ddangkong} <= ? AND #{:a6_peach} <= ? AND #{:a7_tomato} <= ? AND #{:a8_piggogi} <= ? AND #{:a9_nanryu} <= ? AND #{:a10_milk} <= ? AND #{:a11_ddakgogi} <= ? AND #{:a12_shoigogi} <= ? AND #{:a13_saewoo} <= ? AND #{:a14_godeungeoh} <= ? AND #{:a15_honghap} <= ? AND #{:a16_junbok} <= ? AND #{:a17_gul} <= ? AND #{:a18_jogaeryu} <= ? AND #{:a19_gye} <= ? AND #{:a20_ohjingeoh} <= ? AND #{:a21_ahwangsan} <= ?", a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21)
-
 
      # -------------------메뉴(@menus)가 속한 식당 찾기.----------------
      
@@ -81,10 +85,12 @@ class MenusController < ApplicationController
      if sido == "전체"
       @zizums = @temp
      elsif sigungu == "전체"
-      @zizums = @temp.where("#{:sido} LIKE?", sido)
+      @zizums = @temp.where("#{:sido} LIKE ?", sido)
      else
       @zizums = @temp.where("#{:sido} LIKE ? AND #{:sigungu} LIKE ?", sido, sigungu)
      end
+
+     puts @zizums
      ### @menus.where(:shop_id => 어쩌고 ) 이용하기 (views 에서 보일 때)
 
   end
@@ -131,19 +137,19 @@ class MenusController < ApplicationController
     @menu = Menu.new(menu_params)
 
  # -------------------메뉴추가시 알림----------------
-    # @restaurant = @menu.restaurant_id #메뉴의 레스토랑아이디
-    # @zizums = Zizuminfo.where(:restaurant_id => @restaurant) #해당레스토랑아이디를 가지는 지점들찾기
-    # @zizums_num =  Zizuminfo.where(:restaurant_id => @restaurant).count
-    # @rt_name = Restaurant.where(:id => @restaurant).pluck(:restaurant_name)
+    @restaurant = @menu.restaurant_id #메뉴의 레스토랑아이디
+    @zizums = Zizuminfo.where(:restaurant_id => @restaurant) #해당레스토랑아이디를 가지는 지점들찾기
+    @zizums_num =  Zizuminfo.where(:restaurant_id => @restaurant).count
+    @rt_name = Restaurant.where(:id => @restaurant).pluck(:restaurant_name)
 
-    # # for n in 0...@zizums_num
-    # # #메뉴추가알림 메뉴는 restaurant랑 연동//좋아요는 zizuminfo랑연동//
-    # #   @zizums[n].followers.each do |follower| ##restaurant의 zizum 팔로워// 메뉴가 속한 식당을 찾고 그 지점을 찾기
-    # #     @new_alarm = NewAlarm.create! user: follower , #좋아요한 사용자
-    # #     content:"#{@rt_name}의 메뉴가 추가되었습니다.", # 워딩 수정하기 " #{@restuarant_name} #{@zizum_name}""
-    # #     link: request.referrer #수정하기 해당 article path로
-    # #   end
-    # # end
+    # for n in 0...@zizums_num
+    # #메뉴추가알림 메뉴는 restaurant랑 연동//좋아요는 zizuminfo랑연동//
+    #   @zizums[n].followers.each do |follower| ##restaurant의 zizum 팔로워// 메뉴가 속한 식당을 찾고 그 지점을 찾기
+    #     @new_alarm = NewAlarm.create! user: follower , #좋아요한 사용자
+    #     content:"#{@rt_name}의 메뉴가 추가되었습니다.", # 워딩 수정하기 " #{@restuarant_name} #{@zizum_name}""
+    #     link: request.referrer #수정하기 해당 article path로
+    #   end
+    # end
   
 
     respond_to do |format|
