@@ -11,10 +11,10 @@ $(window).on('scroll', function(){
     scrollTop = $(window).scrollTop();
     if(scrollTop >= 40){ //밑에 있을 때
         $('.holder').css('position', 'fixed');
-        $('.holder').addClass('holder-shadow');
+        $('.holder').addClass('holder-shadow', 800);
     }else{//위에 있을 때
         $('.holder').css('position', 'relative')
-        $('.holder').removeClass('holder-shadow');
+        $('.holder').removeClass('holder-shadow', 800);
     }
 });
 
