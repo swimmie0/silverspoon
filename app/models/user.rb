@@ -36,6 +36,7 @@ class User < ApplicationRecord
     end
   end
 
+
   ## 소셜로그인
   # GENDER_TYPES = [ ["male","0"], [ "female","1" ] ]
   # validates_inclusion_of :is_female, in: [true, false]

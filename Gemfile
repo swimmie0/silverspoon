@@ -17,6 +17,7 @@ gem 'carrierwave', ' ~>1.0'
 gem 'mini_magick'
 gem 'fog-aws'
 
+
 # 회원관리
 gem 'rails_admin'
 gem 'devise'

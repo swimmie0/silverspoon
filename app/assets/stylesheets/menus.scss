@@ -2,10 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.active-btn{
-    background-color: rgb(59, 56, 56);
-    color: white;
-}
+
 
 .nodisplay{
     display: none;
@@ -37,8 +34,6 @@
 .hideMenu{
     display: none; 
 }
-
-
 
 #menuBox{
     margin-top: 20px;
@@ -86,6 +81,7 @@
     font-weight: 450;
     color: #454338;
 }
+
 .num_res{
     font-size: 20px;
 }
@@ -101,27 +97,3 @@
 }
 
 
-.allergy-check{
-    margin-top: 7px;
-    margin-left: 15px;
-}
-
-
-
-.a-submit{
-    margin-top: 15px;
-    height: 40px;
-    background-color: transparent;
-    border-style: none;
-    color: rgb(180, 158, 145);
-    font-size: 20px;
-    font-weight: 650;
-}
-
-.a-submit:hover{
-    color: rgb(109, 93, 84);
-}
-.fa-search{
-    transform: scale(1.5);
-    margin-left: 10px;
-}
