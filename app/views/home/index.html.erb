@@ -9,30 +9,42 @@
     </div>
 </div>
 
-<div id="main-contents" class="container">
-  <div id="allergy-filtering" class="d-flex justify-content-center">
-    <div class="alg-filt-title">알레르기 성분 검색</div>
-  </div>
-  <div class="search-full-box">
-  <%= render partial: 'home/search' %>
-  </div>
-  <div class="form-group" style="margin-top: 50px;">
-    
-            
-    <% if user_signed_in? %> 
-      <% if current_user.profile.nil? %> 
-      <div>   <%= link_to "My Page", new_profile_path(@profile), class:"headerfont", :style=>"text-decoration: none; color: #454338;" %>
-      <% elsif !current_user.profile.nil? %>
-      <div>     <%= link_to "My Page", profile_path(current_user.profile.id), class:"headerfont", :style=>"text-decoration: none; color: #454338;"  %>
-      <% end %>
-      <%# elsif owner_signed_in?%>
-      <%#= link_to "나의 식당관리", home_myrt_path, class:"headerfont", :style=>"text-decoration: none; color: #454338;" %>    
-    <% end %>
-    <div><%= link_to "크롤링 업데이트", "/crawling"%></div>
+<div id="main-contents-allergy" class="container">
+    <div id="allergy-filtering" class="d-flex justify-content-center">
+        <div class="alg-filt-title">알레르기 성분 검색</div>
+    </div>
 
-  </div>
-  
+    <div class="search-full-box">
+        <%= render partial: 'home/search' %>
+    </div>
 </div>
+
+<div id="main-contents-about" class="about-contents">
+    <div class="main-about-imgbox">
+        <%=image_tag("mainabout.jpg", class:"main-about-img")%>
+    </div>
+</div>
+
+
+<div id="main-contents-recipe" class="main-contents-recipe container">
+    <div id="main-recipe-titlebox">
+        <div class="main-contents-recipe-title">오늘의 인기 레시피</div>
+    </div>
+    <div class="main-recipes-box d-flex justify-content-between">
+        <%@popular_recipes.each do |popular_rcp|%>
+            <div class="main-popular-recipebox">
+                <%# 등록된 사진 오류남. 해결 해야함. %>
+                <div class="popular-recipe-imgbox">
+                    <%=image_tag("beige-logo.PNG",class:"popular-recipe-img")%>
+                </div>
+                <%=popular_rcp.title%>
+            </div>
+        <%end%>
+    </div>
+</div>
+
+<div><%= link_to "크롤링 업데이트", "/crawling"%></div>
+  
 
 <%#= javascript_include_tag('searchmain.js') %>
 <script>
@@ -100,7 +112,7 @@
 
 
 
-
+    //내 정보 불러오기 script
     $(".custom-btn-original").click(function(){
         $('#myinfo').removeClass('nodisplay');
     });

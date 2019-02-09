@@ -8,13 +8,14 @@
 }
 
 .main-img-box{
-    height: 440px; 
+    height: 480px; 
     width: 100%;
     display: flex;
     justify-content: center;
 }
+
 .main-image{
-    width: 1320px;
+    width: 1300px;
     height: 100%;
 }
 
@@ -51,8 +52,8 @@
     color: white;
 }
 
-#main-contents{
-    margin-top: 5rem;
+#main-contents-allergy{
+    margin-top: 4rem;
 }
 
 .alg-filt-title{
@@ -65,14 +66,12 @@
 .search-full-box{
     margin-top: 1.5rem;
 }
-.form-group{
-    width: 100%;
-}
+
 
 .search-f-row{
     width: 100%;
     border-color: rgb(226, 226, 226);
-    border-width:  1.2px;
+    border-width:  1px;
     border-style: solid;
     border-bottom-style: none;
     border-bottom-width: 0px;
@@ -82,7 +81,7 @@
     width: 100%;
     border-color: rgb(226, 226, 226);
     border-bottom-style: none;
-    border-width:  1.2px;
+    border-width:  1px;
     border-style: solid;
     border-bottom-width: 0px;
 }
@@ -92,9 +91,9 @@
     border-color: rgb(226, 226, 226);
     border-bottom-style: none;
     border-bottom-width: 0px;
-    border-width:  1.2px;
+    border-width:  1px;
     border-style: solid;
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
 }
 
 .search-box-th{
@@ -106,7 +105,7 @@
     width: 5.5rem;
     text-align: center;  
     border-right-style: solid;
-    border-width:  1.2px;
+    border-width:  1px;
     border-color: rgb(226, 226, 226);
 }
 
@@ -222,7 +221,7 @@
     cursor: pointer;
     width: 9rem;
     height: 100%;
-    line-height: 2.5rem;
+    // line-height: 2.5rem;
     align-items: center;
 }
 
@@ -360,3 +359,66 @@
 }
 
 
+//------------검색 부분 완료------------------
+
+//------------mainabout----------------------
+.about-contents{
+    margin-top: 3rem;
+}
+
+.main-about-imgbox{
+   height: 355px;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+}
+
+.main-about-img{
+   width: 1300px;
+   height: 100%;
+}
+
+//------------recipe----------------------
+
+.main-contents-recipe{
+    //#main-contents-allergy 와 margin 동일
+    margin-top: 4rem;
+    width: 100%;
+}
+
+.main-contents-recipe-title{
+    font-family: 'NanumBarunGothic',serif;
+    font-size: 1.2rem;
+    font-weight: bolder;
+}
+
+#main-recipe-titlebox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-recipes-box{
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.main-popular-recipebox{
+    border-color: rgb(226, 226, 226);
+    border-width:  1px;
+    border-style: solid;
+    width: 18rem;
+    height: 18rem;
+}
+
+.popular-recipe-imgbox{
+    height: 70%;
+    border-bottom-style: solid;
+    border-color: rgb(226, 226, 226);
+    border-width:  0.5px;
+}
+
+.popular-recipe-img{
+    width: 100%;
+    height: 100%;
+}
