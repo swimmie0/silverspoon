@@ -13,6 +13,14 @@ class MenusController < ApplicationController
   end
 
   def index
+    # 오늘의 추천식당- daily random
+    day_today = Time.now.day
+    rule = day_today % Restaurant.count
+    @today_restaurants = Restaurant.where(id: [rule-1, rule, rule+1] )
+    
+    # 총 식당- updated_at order
+    @current_restaurants = Restaurant.order("created_at desc").limit(9);
+
     # 체크 안했을 경우-알러지 없다. / check 하면 true(알러지없다). a1, a2 등은 알러지 없다고 표시 되면 1 
      sido = params[:sido]
      sigungu = params[:sigungu]
