@@ -397,7 +397,7 @@
 
 .main-contents-rcp-mtxt{
     font-family: 'NanumBarunGothic',serif;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     color: rgb(165, 164, 164); 
     text-decoration: none;
 }
@@ -457,6 +457,7 @@
    width: 1300px;
    height: 100%;
    background-color: #F8F8F8;
+   font-family:  'NanumBarunGothic',serif;
 }
 
 .main-board-container{
@@ -470,4 +471,26 @@
     border-style: solid;
     border-color:  rgb(226, 226, 226);
     border-width:  1px;
+}
+
+.main-board-upper{
+    margin-bottom: 1rem;   
+}
+
+.main-board-title{
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.main-board-more{
+    font-size: 0.8rem;
+    color: rgb(165, 164, 164); 
+    text-decoration: none;
+}
+
+.main-board-box thead{
+    font-size: 0.8rem;
+    font-weight: 300;
+    background-color: #1E285D;
+    color: white;
 }
