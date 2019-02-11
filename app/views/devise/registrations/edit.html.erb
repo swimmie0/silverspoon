@@ -1,4 +1,4 @@
-<% if current_user.allergy != nil %>  
+ <!--//////////////// 알레르기 정보 수정 필요/////////////-->
 <h2>세부정보를 입력해주세요 </h2>
 <%# <%= resource_name.to_s.humanize %> 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -36,27 +36,27 @@
   <div class="field">
     <h4> 알레르기정보 </h4>
     <div> 유제품 및 난류:
-      <%= check_box_tag 'user[allergy][]', '난류', current_user.allergy.include?('난류') %>난류
-      <%= check_box_tag 'user[allergy][]', '우유', current_user.allergy.include?('우유') %> 우유 
+      <%= check_box_tag 'user[allergy][]', '난류' %>난류
+      <%= check_box_tag 'user[allergy][]', '우유' %> 우유 
     </div><br/>
     <div> 과채류 및 곡류:
-     <%= check_box_tag 'user[allergy][]', '복숭아/토마토', current_user.allergy.include?('복숭아/토마토') %> 복숭아/토마토
-     <%= check_box_tag 'user[allergy][]', '대두(콩)', current_user.allergy.include?('대두(콩)') %> 대두(콩) 
-     <%= check_box_tag 'user[allergy][]', '밀/메밀', current_user.allergy.include?('밀/메밀') %> 밀/메밀 
+     <%= check_box_tag 'user[allergy][]', '복숭아/토마토'%> 복숭아/토마토
+     <%= check_box_tag 'user[allergy][]', '대두(콩)' %> 대두(콩) 
+     <%= check_box_tag 'user[allergy][]', '밀/메밀'%> 밀/메밀 
     </div><br/>
     <div> 육류:
-      <%= check_box_tag 'user[allergy][]', '닭고기', current_user.allergy.include?('닭고기') %> 닭고기 
-      <%= check_box_tag 'user[allergy][]', '돼지고기', current_user.allergy.include?('돼지고기') %>돼지고기 
-      <%= check_box_tag 'user[allergy][]', '쇠고기', current_user.allergy.include?('쇠고기') %>쇠고기
+      <%= check_box_tag 'user[allergy][]', '닭고기' %> 닭고기 
+      <%= check_box_tag 'user[allergy][]', '돼지고기'%>돼지고기 
+      <%= check_box_tag 'user[allergy][]', '쇠고기'%>쇠고기
     </div><br/> 
     <div> 어패류:
-      <%= check_box_tag 'user[allergy][]', '고등어/오징어/게', current_user.allergy.include?('고등어/오징어') %>고등어/오징어
-      <%= check_box_tag 'user[allergy][]', '게/새우', current_user.allergy.include?('게/새우') %> 게/새우 
-      <%= check_box_tag 'user[allergy][]', '조개류/홍합/전복/굴', current_user.allergy.include?('조개류/홍합/전복/굴') %>조개류/홍합/전복/굴
+      <%= check_box_tag 'user[allergy][]', '고등어/오징어' %>고등어/오징어
+      <%= check_box_tag 'user[allergy][]', '게/새우 ' %> 게/새우 
+      <%= check_box_tag 'user[allergy][]', '조개류/홍합/전복/굴' %>조개류/홍합/전복/굴
     </div><br/>
     <div> 견과류,아황산:
-      <%= check_box_tag 'user[allergy][]', '땅콩/호두', current_user.allergy.include?('땅콩/호두') %> 땅콩/호두 
-      <%= check_box_tag 'user[allergy][]', '아황산류', current_user.allergy.include?('아황산류') %> 아황산류 
+      <%= check_box_tag 'user[allergy][]', '땅콩/호두 ' %> 땅콩/호두 
+      <%= check_box_tag 'user[allergy][]', '아황산류 ' %> 아황산류 
     </div><br/>
     <div>
       기타:<%= f.text_field :allergy_etc %>
@@ -77,9 +77,6 @@
 <%# <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
 <%= link_to "Back", :back %>
 
-<% else %>
-  <%= render partial: 'layouts/foredit'%>
-<% end %>
 
 <script>
  document.getElementById("submitButton").disabled = true;
