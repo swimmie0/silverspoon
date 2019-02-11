@@ -1,11 +1,259 @@
-    <%#= select :sido, options_for_select([["서울특별시", "서울특별시"], ["부산광역시","부산광역시"], ["대구광역시","대구광역시"],["60대이상","60대이상"]]) %> 
+ <div class="search-row search-f-row d-flex">
+    <div class="search-box-th s-th-category">카테고리</div>
+    <div class="s-td-category">
+        <div class="search-categories d-flex">
+            <div class="btn-searchtype btn-allergy d-flex">
+                <div class="btn-searchtype-circle active-btn"><div class="active-btn-inside"></div></div>
+                <div class="category-name active-typename">알레르기 성분 검색</div>
+            </div>
+            <div class="btn-searchtype btn-restaurant d-flex">
+                <div class="btn-searchtype-circle"><div></div></div>
+                <div class="category-name">식당 이름 검색</div>
+            </div>
+        </div>
+    </div>
+</div>
+    <%# location은 partial location2는 그냥 %>
+<div class="allergy-search">
     <div class="original-check">
         <%= form_tag(menus_path, method: :get) do %>
-        <div class="ziyuk d-flex">
+            <div class="ziyuk d-flex search-row search-s-row">
+                <div class="search-box-th s-th-find">찾기</div>
+                <div class="s-td-find d-flex">
+                    <div class="sido">
+                    <%#= select :sido, options_for_select([["서울특별시", "서울특별시"], ["부산광역시","부산광역시"], ["대구광역시","대구광역시"],["60대이상","60대이상"]]) %>  
+                        <select name="sido" class="origin-sido sido-select options selectcss">
+                            <option value="전체" class="sido-opt">시・도 찾기</option>
+                            <option value="서울특별시" class="sido-opt">서울특별시</option>
+                            <option value="부산광역시" class="sido-opt">부산광역시</option>
+                            <option value="대구광역시" class="sido-opt">대구광역시</option> 
+                            <option value="인천광역시" class="sido-opt">인천광역시</option>     
+                            <option value="광주광역시" class="sido-opt">광주광역시</option>
+                            <option value="대전광역시" class="sido-opt">대전광역시</option>
+                            <option value="세종특별자치시" class="sido-opt">세종특별자치시</option> 
+                            <option value="경기도" class="sido-opt">경기도</option>
+                            <option value="강원도" class="sido-opt">강원도</option>
+                            <option value="충청북도" class="sido-opt">충청북도</option>
+                            <option value="충청남도" class="sido-opt">충청남도</option> 
+                            <option value="전라북도" class="sido-opt">전라북도</option>
+                            <option value="전라남도" class="sido-opt">전라남도</option>
+                            <option value="경상북도" class="sido-opt">경상북도</option>
+                            <option value="경상남도" class="sido-opt">경상남도</option> 
+                            <option value="제주특별자치시" class="sido-opt">제주특별자치시</option>
+                        </select>
+                    </div>
+
+                    <div class="sigungu">
+                            <select name="sigungu" class="origin-sigungu sigungu-select options selectcss">
+                            <%# default 값 %>
+                            <option value="전체" class="sigungu-opt">시・군・구 찾기</option>
+                            </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search-row search-t-row d-flex">
+                <div class="search-box-th s-th-sort"><span>분류</span></div>
+                <div class="s-td-sort allergy-check">
+                    <div class="allergy-table-row d-flex">
+                        <div class=" allergy-cp allergy-cp-origin" id="a9"><%=image_tag("egg.png", class:"allergy-cp-img")%><div class="allergy-cp-name">난류</div></div>
+                        <div class=" allergy-cp allergy-cp-origin" id="a10"><%=image_tag("milk.png", class:"allergy-cp-img")%><div class="allergy-cp-name">우유</div></div>
+                        <div class=" allergy-cp allergy-cp-origin" id="a6"><%=image_tag("peach.png", class:"allergy-cp-img")%><div class="allergy-cp-name">복숭아</div></div>
+                        <div class=" allergy-cp allergy-cp-origin" id="a7"><%=image_tag("tomato.png", class:"allergy-cp-img")%><div class="allergy-cp-name">토마토</div></div>
+                        <div class=" allergy-cp allergy-cp-origin" id="a1"><%=image_tag("maemil.png", class:"allergy-cp-img")%><div class="allergy-cp-name">메밀</div></div>
+                        <div class=" allergy-cp allergy-cp-origin" id="a2"><%=image_tag("wheat.png", class:"allergy-cp-img")%><div class="allergy-cp-name">밀</div></div>
+                        <div class=" allergy-cp allergy-cp-origin" id="a3"><%=image_tag("bean.png", class:"allergy-cp-img")%><div class="allergy-cp-name">대두(콩)</div></div>
+                        <div class=" allergy-cp allergy-cp-origin" id="a11"><%=image_tag("chicken.png", class:"allergy-cp-img")%><div class="allergy-cp-name">닭고기</div></div>
+                        <div class=" allergy-cp allergy-cp-origin" id="a12"><%=image_tag("beef.png", class:"allergy-cp-img")%><div class="allergy-cp-name">쇠고기</div></div>
+                        <div class=" allergy-cp allergy-cp-origin" id="a8"><%=image_tag("pork.png", class:"allergy-cp-img")%><div class="allergy-cp-name">돼지고기</div></div>
+                        <div class=" allergy-cp allergy-cp-origin" id="a13"><%=image_tag("shrimp.png", class:"allergy-cp-img")%><div class="allergy-cp-name">새우</div></div>
+                        <div class=" allergy-cp allergy-cp-origin" id="a14"><%=image_tag("fish.png", class:"allergy-cp-img")%><div class="allergy-cp-name">고등어</div></div>
+                        <div class=" allergy-cp allergy-cp-origin" id="a15"><%=image_tag("mussel.png", class:"allergy-cp-img")%><div class="allergy-cp-name">홍합</div></div>
+                        <div class=" allergy-cp allergy-cp-origin" id="a16"><%=image_tag("clam(2).png", class:"allergy-cp-img")%><div class="allergy-cp-name">전복</div></div>
+                        <div class=" allergy-cp allergy-cp-origin" id="a17"><%=image_tag("sea-shell.png", class:"allergy-cp-img")%><div class="allergy-cp-name">굴</div></div>
+                        <div class=" allergy-cp allergy-cp-origin" id="a18"><%=image_tag("clam.png", class:"allergy-cp-img")%><div class="allergy-cp-name">조개류</div></div>
+                        <div class=" allergy-cp allergy-cp-origin" id="a19"><%=image_tag("crab.png", class:"allergy-cp-img")%><div class="allergy-cp-name">게</div></div>
+                        <div class=" allergy-cp allergy-cp-origin" id="a20"><%=image_tag("squid.png", class:"allergy-cp-img")%><div class="allergy-cp-name">오징어</div></div>
+                        <div class=" allergy-cp allergy-cp-origin" id="a4"><%=image_tag("walnut.png", class:"allergy-cp-img")%><div class="allergy-cp-name">호두</div></div>
+                        <div class=" allergy-cp allergy-cp-origin" id="a5"><%=image_tag("peanut.png", class:"allergy-cp-img")%><div class="allergy-cp-name">땅콩</div></div>
+                        <div class=" allergy-cp allergy-cp-origin" id="a21"><%=image_tag("cubes.png", class:"allergy-cp-img")%><div class="allergy-cp-name">아황산류</div></div>
+                    </div>
+                    <div class="temp-origin nodisplay"> <%#안보이고 일러스트 누르면 자동으로 선택되도록 하는 기능%>
+                        <%= check_box_tag :a9_nanryu, true, checked = params[:a9_nanryu]%> 난류<br>
+                        <%= check_box_tag :a10_milk, true, checked = params[:a10_milk]%> 우유<br>
+                        <%= check_box_tag :a6_peach, true, checked = params[:a6_peach]%> 복숭아<br>
+                        <%= check_box_tag :a7_tomato, true, checked = params[:a7_tomato]%> 토마토<br>
+                        <%= check_box_tag :a1_maemil, true, checked = params[:a1_maemil]%> 메밀<br>
+                        <%= check_box_tag :a2_mil, true, checked = params[:a2_mil]%> 밀<br>
+                        <%= check_box_tag :a3_daedu, true, checked = params[:a3_daedu]%> 대두(콩)<br>
+                        <%= check_box_tag :a11_ddakgogi, true, checked = params[:a11_ddakgogi]%> 닭고기<br>
+                        <%= check_box_tag :a12_shoigogi, true, checked = params[:a12_shoigogi]%> 쇠고기<br>
+                        <%= check_box_tag :a8_piggogi, true, checked = params[:a8_piggogi]%> 돼지고기<br>
+                        <%= check_box_tag :a13_saewoo, true, checked = params[:a13_saewoo]%> 새우<br>
+                        <%= check_box_tag :a14_godeungeoh, true, checked = params[:a14_godeungeoh]%> 고등어<br>
+                        <%= check_box_tag :a15_honghap, true, checked = params[:a15_honghap]%> 홍합<br>
+                        <%= check_box_tag :a16_junbok, true, checked = params[:a16_junbok]%> 전복<br>
+                        <%= check_box_tag :a17_gul, true, checked = params[:a17_gul]%> 굴<br>
+                        <%= check_box_tag :a18_jogaeryu, true, checked = params[:a18_jogaeryu]%> 조개류<br>
+                        <%= check_box_tag :a19_gye, true, checked = params[:a19_gye]%> 게<br>
+                        <%= check_box_tag :a20_ohjingeoh, true, checked = params[:a20_ohjingeoh]%> 오징어<br>
+                        <%= check_box_tag :a4_hodu, true, checked = params[:a4_hodu]%> 호두<br>
+                        <%= check_box_tag :a5_ddangkong, true, checked = params[:a5_ddangkong]%> 땅콩<br>
+                        <%= check_box_tag :a21_ahwangsan, true, checked = params[:a21_ahwangsan]%> 아황산류<br>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="search-submit">
+                <div id="custom" class="custom-btn custom-btn-original" data-toggle="modal" data-target="#loginModal">
+                    <div class="ct">개인정보 불러오기</div>
+                </div>
+
+                <%# button 말고 div 로 할 시에 검색 안됨 %>
+                <button type="submit" class="a-submit">
+                    검색하기
+                </button>
+            </div>
+        <%end%>
+
+    </div>
+    
+
+    <%# 개인정보 불러오기 %>
+    <%if user_signed_in?%>
+        <div id="myinfo" class="nodisplay">
+            <%# script 합쳐버리면 오류 뜸. %>
+            <script>
+                $(".custom-btn").click(function(){
+                if('<%=current_user.allergy.include?('난류')%>' === "true"){
+                    $("#a9_nanryu").prop('checked', true);
+                    $("#a9").addClass("allergy-cp-active");
+                    $("#a9").children('img').addClass('allergy-cp-img-active');
+                }
+                if('<%=current_user.allergy.include?('우유')%>' === "true"){
+                    $("#a10_milk").prop('checked', true);
+                    $("#a10").addClass("allergy-cp-active");
+                    $("#a10").children('img').addClass('allergy-cp-img-active');
+                }
+                if('<%=current_user.allergy.include?('복숭아')%>' === "true"){
+                    $("#a6_peach").prop('checked', true);
+                    $("#a6").addClass("allergy-cp-active");
+                    $("#a6").children('img').addClass('allergy-cp-img-active');
+                }
+                if('<%=current_user.allergy.include?('토마토')%>' === "true"){
+                    $("#a7_tomato").prop('checked', true);
+                    $("#a7").addClass("allergy-cp-active");
+                    $("#a7").children('img').addClass('allergy-cp-img-active');
+                }
+                if('<%=current_user.allergy.include?('메밀')%>' === "true"){
+                    $("#a2_maemil").prop('checked', true);
+                    $("#a2").addClass("allergy-cp-active");
+                    $("#a2").children('img').addClass('allergy-cp-img-active');
+                }
+                if('<%=current_user.allergy.include?('밀')%>' === "true"){
+                    $("#a1_mil").prop('checked', true);
+                    $("#a1").addClass("allergy-cp-active");
+                    $("#a1").children('img').addClass('allergy-cp-img-active');
+                }
+                if('<%=current_user.allergy.include?('대두(콩)')%>' === "true"){
+                    $("#a3_daedu").prop('checked', true);
+                    $("#a3").addClass("allergy-cp-active");
+                    $("#a3").children('img').addClass('allergy-cp-img-active');
+                }
+                if('<%=current_user.allergy.include?('닭고기')%>' === "true"){
+                    $("#a11_ddakgogi").prop('checked', true);
+                    $("#a11").addClass("allergy-cp-active");
+                    $("#a11").children('img').addClass('allergy-cp-img-active');
+                }
+                if('<%=current_user.allergy.include?('쇠고기')%>' === "true"){
+                    $("#a12_shoigogi").prop('checked', true);
+                    $("#a12").addClass("allergy-cp-active");
+                    $("#a12").children('img').addClass('allergy-cp-img-active');
+                }
+                if('<%=current_user.allergy.include?('돼지고기')%>' === "true"){
+                    $("#a8_piggogi").prop('checked', true);
+                    $("#a8").addClass("allergy-cp-active");
+                    $("#a8").children('img').addClass('allergy-cp-img-active');
+                }
+                if('<%=current_user.allergy.include?('새우')%>' === "true"){
+                    $("#a13_saewoo").prop('checked', true);
+                    $("#a13").addClass("allergy-cp-active");
+                    $("#a13").children('img').addClass('allergy-cp-img-active');
+                }
+                if('<%=current_user.allergy.include?('고등어')%>' === "true"){
+                    $("#a14_godeungeoh").prop('checked', true);
+                    $("#a14").addClass("allergy-cp-active");
+                    $("#a14").children('img').addClass('allergy-cp-img-active');
+                }
+                if('<%=current_user.allergy.include?('홍합')%>' === "true"){
+                    $("#a15_honghap").prop('checked', true);
+                    $("#a15").addClass("allergy-cp-active");
+                    $("#a15").children('img').addClass('allergy-cp-img-active');
+                }
+                if('<%=current_user.allergy.include?('전복')%>' === "true"){
+                    $("#a16_junbok").prop('checked', true);
+                    $("#a16").addClass("allergy-cp-active");
+                    $("#a16").children('img').addClass('allergy-cp-img-active');
+                }
+                if('<%=current_user.allergy.include?('굴')%>' === "true"){
+                    $("#a17_gul").prop('checked', true);
+                    $("#a17").addClass("allergy-cp-active");
+                    $("#a17").children('img').addClass('allergy-cp-img-active');
+                }
+                if('<%=current_user.allergy.include?('조개류')%>' === "true"){
+                    $("#a18_jogaeryu").prop('checked', true);
+                    $("#a18").addClass("allergy-cp-active");
+                    $("#a18").children('img').addClass('allergy-cp-img-active');
+                }
+                if('<%=current_user.allergy.include?('게')%>' === "true"){
+                    $("#a19_gye").prop('checked', true);
+                    $("#a19").addClass("allergy-cp-active");
+                    $("#a19").children('img').addClass('allergy-cp-img-active');
+                }
+                if('<%=current_user.allergy.include?('오징어')%>' === "true"){
+                    $("#a20_ohjingeoh").prop('checked', true);
+                    $("#a20").addClass("allergy-cp-active");
+                    $("#a20").children('img').addClass('allergy-cp-img-active');
+                }
+                if('<%=current_user.allergy.include?('호두')%>' === "true"){
+                    $("#a4_hodu").prop('checked', true);
+                    $("#a4").addClass("allergy-cp-active");
+                    $("#a4").children('img').addClass('allergy-cp-img-active');
+                }
+                if('<%=current_user.allergy.include?('땅콩')%>' === "true"){
+                    $("#a5_ddangkong").prop('checked', true);
+                    $("#a5").addClass("allergy-cp-active");
+                    $("#a5").children('img').addClass('allergy-cp-img-active');
+                }
+                if('<%=current_user.allergy.include?('아황산류')%>' === "true"){
+                    $("#a21_ahwangsan").prop('checked', true);
+                    $("#a21").addClass("allergy-cp-active");
+                    $("#a21").children('img').addClass('allergy-cp-img-active');
+                }
+                 });
+            </script>
+        </div>
+    <%end%>
+
+
+    <%# 로그인 하지 않았을 때 custom 기능 누르면 modal view 뜨도록 %>
+    <%if !user_signed_in?%>
+        <%= render 'layouts/loginModal'%>
+    <%end%>
+
+</div>
+
+
+<div class="restaurant-search nodisplay">
+<%= form_tag(zizuminfos_path, method: :get) do %>
+    <div class="ziyuk d-flex search-row search-s-row">
+        <div class="search-box-th s-th-find">찾기</div>
+        <div class="s-td-find d-flex">
             <div class="sido">
             <%#= select :sido, options_for_select([["서울특별시", "서울특별시"], ["부산광역시","부산광역시"], ["대구광역시","대구광역시"],["60대이상","60대이상"]]) %>  
                 <select name="sido" class="origin-sido sido-select options selectcss">
-                    <option value="전체" class="sido-opt">--시/도--</option>
+                    <option value="전체" class="sido-opt">시・도 찾기</option>
                     <option value="서울특별시" class="sido-opt">서울특별시</option>
                     <option value="부산광역시" class="sido-opt">부산광역시</option>
                     <option value="대구광역시" class="sido-opt">대구광역시</option> 
@@ -25,86 +273,33 @@
                 </select>
             </div>
 
-    
             <div class="sigungu">
                     <select name="sigungu" class="origin-sigungu sigungu-select options selectcss">
                     <%# default 값 %>
-                    <option value="전체" class="sigungu-opt">--전체선택--</option>
+                    <option value="전체" class="sigungu-opt">시・군・구 찾기</option>
                     </select>
             </div>
+        </div> 
+    </div>
+    
+    <div class="search-row search-t-row d-flex">
+        <div class="search-box-th s-th-sort-restaurant">분류</div>
+        <div class="s-td-sort-restaurant">
+            <%= text_field_tag :restaurant_name, params[:restaurant_name], class: "restaurant-name-field", placeholder: "식당 이름을 입력하세요.  ex)서브웨이"%> 
         </div>
-        <br>
-        <div class="d-flex justify-content-between">
-            <div>
-                <div class="a-type"><div class="d-flex typebox justify-content-around"><div class="typename">유제품 및 난류</div><i class="downic fas fa-caret-down"></i></div></div>
-                <div class="allergy-check">
-                    <%= check_box_tag :a9_nanryu, true, checked = params[:a9_nanryu]%> 난류<br>
-                    <%= check_box_tag :a10_milk, true, checked = params[:a10_milk]%> 우유<br>
-                </div>
-            </div>
+    </div>
+    
+    <div class="search-submit">
+        <button class="custom-btn custom-btn-disabled" disabled>
+            <div class="ct">개인정보 불러오기</div>
+        </button>
 
-            <div>
-                <div class="a-type"><div class="d-flex typebox justify-content-around"><div class="typename">과채류 및 곡류</div><i class="downic fas fa-caret-down"></i></div></div>
-                <div class="allergy-check">
-                    <%= check_box_tag :a6_peach, true, checked = params[:a6_peach]%> 복숭아<br>
-                    <%= check_box_tag :a7_tomato, true, checked = params[:a7_tomato]%> 토마토<br>
-                    <%= check_box_tag :a1_maemil, true, checked = params[:a6_peach]%> 메밀<br>
-                    <%= check_box_tag :a2_mil, true, checked = params[:a2_mil]%> 밀<br>
-                    <%= check_box_tag :a3_daedu, true, checked = params[:a3_daedu]%> 대두(콩)<br>
-                </div>
-            </div>
+        <%# button 말고 div 로 할 시에 검색 안됨 %>
+        <button type="submit" class="a-submit">
+            검색하기
+        </button>
+    </div>
 
-            <div>
-                <div class="a-type"><div class="d-flex typebox justify-content-around"><div class="typename">육류</div><i class="downic fas fa-caret-down"></i></div></div>
-                <div class="allergy-check">
-                    <%= check_box_tag :a11_ddakgogi, true, checked = params[:a11_ddakgogi]%> 닭고기<br>
-                    <%= check_box_tag :a12_shoigogi, true, checked = params[:a12_shoigogi]%> 쇠고기<br>
-                    <%= check_box_tag :a8_piggogi, true, checked = params[:a8_piggogi]%> 돼지고기<br>
-                </div>
-            </div>
-
-            <div>
-                <div class="a-type"><div class="d-flex typebox justify-content-around"><div class="typename">어패류</div><i class="downic fas fa-caret-down"></i></div></div>
-                <div class="allergy-check d-flex">
-                    <div>
-                        <%= check_box_tag :a13_saewoo, true, checked = params[:a13_saewoo]%> 새우<br>
-                        <%= check_box_tag :a14_godeungeoh, true, checked = params[:a14_godeungeoh]%> 고등어<br>
-                        <%= check_box_tag :a15_honghap, true, checked = params[:a15_honghap]%> 홍합<br>
-                        <%= check_box_tag :a16_junbok, true, checked = params[:a16_junbok]%> 전복<br>
-                    </div>
-                    <div class="fish2">
-                        <%= check_box_tag :a17_gul, true, checked = params[:a17_gul]%> 굴<br>
-                        <%= check_box_tag :a18_jogaeryu, true, checked = params[:a18_jogaeryu]%> 조개류<br>
-                        <%= check_box_tag :a19_gye, true, checked = params[:a19_gye]%> 게<br>
-                        <%= check_box_tag :a20_ohjingeoh, true, checked = params[:a20_ohjingeoh]%> 오징어<br>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <div class="a-type"><div class="d-flex typebox justify-content-around"><div class="typename">과류, 아황산 등</div><i class="downic fas fa-caret-down"></i></div></div>
-                <div class="allergy-check">
-                    <%= check_box_tag :a4_hodu, true, checked = params[:a4_hodu]%> 호두<br>
-                    <%= check_box_tag :a5_ddangkong, true, checked = params[:a5_ddangkong]%> 땅콩<br>
-                    <%= check_box_tag :a21_ahwangsan, true, checked = params[:a21_ahwangsan]%> 아황산류<br>
-                </div>
-            </div>
-            <button type="submit" class="a-submit">
-                Search<i class="fas fa-search"></i>
-            </button>
-        </div>
-    <%end%>
+<% end %>
 </div>
 
-<%if user_signed_in?%>
-    <div id="myinfo" class="getinfo">
-        <%#= render partial: 'custom' %>
-    </div>
-<%end%>
-
-<button id="custom" class="mbutton fill" data-toggle="modal" data-target="#loginModal"><div id="ct" style="color:black; text-decoration: none;">내 알러지정보 불러오기</div></button>
-
-<%# 로그인 하지 않았을 때 custom 기능 누르면 modal view 뜨도록 %>
-<%if !user_signed_in?%>
-    <%= render 'layouts/loginModal'%>
-<%end%>
