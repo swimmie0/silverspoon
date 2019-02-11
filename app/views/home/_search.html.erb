@@ -120,7 +120,7 @@
     
 
     <%# 개인정보 불러오기 %>
-    <%if user_signed_in?%>
+    <%if user_signed_in? && current_user.allergy != nil%>
         <div id="myinfo" class="nodisplay">
             <%# script 합쳐버리면 오류 뜸. %>
             <script>

@@ -76,7 +76,7 @@ class RestaurantsController < ApplicationController
     Restaurant.RestaurantName
     puts "\n\nrestaurant name finished\n\n"
     # sleep 1.5
-    # Zizuminfo.Subway        #1
+    Zizuminfo.Subway        #1
     # Zizuminfo.Momstouch     #2
     # # Zizuminfo.Raracost
     # Zizuminfo.Vips          #3
@@ -89,7 +89,7 @@ class RestaurantsController < ApplicationController
     # Zizuminfo.DunkinDonuts  #10   
     # ### SushiHiroba         #11
     puts "\n\nzizuminfo finished\n\n"
-    # Menu.Subway             #1
+    Menu.Subway             #1
     # Menu.Momstouch          #2
     # Menu.Vips               #3
     # # Menu.Raracost
