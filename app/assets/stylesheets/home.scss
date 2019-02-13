@@ -58,7 +58,7 @@
 
 .alg-filt-title{
     font-family: 'NanumBarunGothic',serif;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: bold;
 }
 
@@ -390,7 +390,7 @@
 .main-contents-recipe-title{
     text-align: center;
     font-family: 'NanumBarunGothic',serif;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: bold;
 }
 
@@ -490,7 +490,16 @@
 
 .main-board-box thead{
     font-size: 0.8rem;
-    font-weight: 300;
+    
     background-color: #1E285D;
     color: white;
 }
+
+.main-board-box thead tr th{
+    text-align: center;
+}
+
+.main-board-box tbody{
+    background-color: white;
+}
+
