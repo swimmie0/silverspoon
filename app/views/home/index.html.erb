@@ -64,12 +64,15 @@
                 <table class="table main-board-box">
                     <thead>
                         <tr>
-                            <th>댓글</th>
-                            <th>제목</th>
-                            <th>작성자</th>
-                            <th>조회수</th>
+                            <th width="15%">댓글</th>
+                            <th width="50%">제목</th>
+                            <th width="20%">작성자</th>
+                            <th width="15%">조회수</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        <%=render partial: "board"%>
+                    </tbody>
                 </table>
             </div>
 
@@ -81,13 +84,18 @@
                 <table class="table main-board-box">
                     <thead>
                         <tr>
-                            <th>댓글</th>
-                            <th>제목</th>
-                            <th>작성자</th>
-                            <th>조회수</th>
+                            <th width="15%">댓글</th>
+                            <th width="50%">제목</th>
+                            <th width="20%">작성자</th>
+                            <th width="15%">조회수</th>
                         </tr>
                     </thead>
+
+                    <tbody>
+                        <%=render partial: "board"%>
+                    </tbody>
                 </table>
+
             </div>
         </div>
     </div>
@@ -98,6 +106,8 @@
 
 <%#= javascript_include_tag('searchmain.js') %>
 <script>
+
+
     
     $(".btn-allergy").click(function(){
         
