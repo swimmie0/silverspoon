@@ -7,4 +7,106 @@
 }
 
 
+.zizum-about-wrap{
+    height: 500px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.zizum-about-sec{
+    width: 1300px;
+    height: 100%;
+    background-color: #F8F8F8;
+    font-family:  'NanumBarunGothic',serif;
+}
+
+.zizum-about-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.zizum-about-box{
+    width: 100%;
+    height: 75%;
+    background-color: white;
+}
+
+.zizum-about-imgbox{
+    width: 45%;
+    height: 100%;
+    border-style: solid;
+    border-color: rgb(226, 226, 226);
+    border-width: 0.6px;
+}
+
+.zizum-about-txtbox{
+    width: 55%;
+    height: 100%;
+    border-style: solid;
+    border-color:  #FF5400;
+    border-width: 0.6px;
+
+    padding: 2rem;
+    
+}
+
+.zizum-about-img{
+    width: 100%;
+    height: 100%;
+}
+
+.zizum-about-title{
+    height: 42%;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.zizum-about-moreinfo{
+    height: 58%;
+    padding-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.zizum-about-mi-row{
+    width: 100%;
+    display: flex;
+    margin-bottom: 1.2rem;
+}
+
+.zizum-about-stitle{
+    width: 15%;
+    font-weight: bold;
+    margin-right: 3rem;
+}
+
+
+.zizum-allergy{
+    font-family: 'NanumBarunGothic',serif;
+    margin-top: 4rem;
+}
+
+.zizum-allergy-tab{
+    cursor: pointer;
+    width: 12rem;
+    height: 2.5rem;
+    font-size: 0.9rem;
+    border-style: solid;
+    border-color: rgb(226, 226, 226);
+    border-width: 0.6px;
+    color: rgb(139, 139, 139);   
+    background-color: #F8F8F8;
+    line-height: 2.5rem;
+    text-align: center;
+}
+
+.zizum-tab-active{
+    background-color: #1E285D;
+    color: white;
+    border-color: #1E285D;
+}
+
 
