@@ -1,3 +1,36 @@
+<div class="zizum-about-wrap">
+  <div class="zizum-about-sec">
+    <div class="zizum-about-container container">
+      <div class="zizum-about-box d-flex">
+        <div class="zizum-about-imgbox">
+          <%if @zizuminfo.image.blank?%>
+            <%=image_tag("white-logo.PNG", class:"zizum-about-img")%>
+          <%else%>
+            <%=image_tag @zizuminfo.image_url, class:"zizum-about-img"%>
+          <%end%>
+        </div>
+        <div class="zizum-about-txtbox">
+          <div class="zizum-about-title"><%= @zizuminfo.restaurant_name + " " + @zizuminfo.zizum_name%></div>
+          <div class="zizum-about-moreinfo">
+            <div class="zizum-about-mi-row"><div class="zizum-about-stitle">주소</div><div><%= @zizuminfo.sido + " " +@zizuminfo.sigungu + " " +@zizuminfo.sangse_juso %></div></div>
+            <div class="zizum-about-mi-row"><div class="zizum-about-stitle">운영시간</div><div>제보 부탁드립니다.</div></div>
+            <div class="zizum-about-mi-row"><div class="zizum-about-stitle">연락처</div><div><%= @zizuminfo.phone_number %></div></div>
+            <div class="zizum-about-mi-row"><div class="zizum-about-stitle">북마크수</div><div><%= @zizuminfo.followers_count%>명</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="zizum-allergy container">
+  <div class="zizum-allergy-tabbox d-flex">
+    <div class="zizum-allergy-tab zizum-tab-menu zizum-tab-active">메뉴별 보기</div>
+    <div class="zizum-allergy-tab zizum-tab-table">표로 보기</div>
+  </div>
+</div>
+
+
 <div>
     <p><span class = "zizum-name px-5 py-2 irop"><%= @zizuminfo.restaurant_name + " " + @zizuminfo.zizum_name%></span></p>
     <p class = "pl-5 jeju mt-4"><i class="fas fa-map-marker-alt"></i> <%= @zizuminfo.sido + " " +@zizuminfo.sigungu + " " +@zizuminfo.sangse_juso %></p>
