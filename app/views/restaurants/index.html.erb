@@ -1,25 +1,17 @@
-<p id="notice"><%= notice %></p>
+<%# 식당찾기 탭 눌렀을 때 %>
+<div id="main-contents-allergy" class="container">
+   <div class="search-full-box">
+        <%= render partial: 'home/search' %>
+    </div>
+</div>
 
-<h1>Restaurants</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @restaurants.each do |restaurant| %>
-      <tr>
-        <td><%= link_to 'Show', restaurant %></td>
-        <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-        <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Restaurant', new_restaurant_path %>
+<div class="rst-howto-wrap">
+  <div class="rst-howto-box">
+    <div class="rst-howto-container container">
+      <div class="rst-howto-title">이용방법 안내</div>
+      <div class="rst-howto-imagebox d-flex justify-content-center">
+        <%=image_tag("howto.PNG", class:"rst-howto-image")%>
+      </div>
+    </div>
+  </div>
+</div>
