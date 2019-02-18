@@ -61,6 +61,7 @@ class ZizuminfosController < ApplicationController
   # GET /zizuminfos/1
   # GET /zizuminfos/1.json
   def show
+    @allergy_tags=["난류","우유","복숭아","토마토","메밀","밀","대두(콩)","닭고기","쇠고기","돼지고기","새우","고등어","홍합","전복","굴","조개류","게","오징어","호두","땅콩","아황산류"]
   end
 
   # GET /zizuminfos/new
@@ -117,16 +118,16 @@ class ZizuminfosController < ApplicationController
   def value2icon(value)
     #교차 위험
     if value == -2
-      return '<i class="fas fa-star allergy-star"></i>'.html_safe
+      return '<span class="allergy-i allergy-star">△</span>'.html_safe
     #제공 안함
     elsif value == -1
-      return 'ㆍ'.html_safe
+      return '　'.html_safe
     #없음
     elsif value == 0
-      return '<i class="fas fa-times"></i>'.html_safe
+      return '<i class="fas fa-times allergy-i allergy-none"></i>'.html_safe
     #있음
     else
-      return '<i class="fas fa-circle allergy-circle"></i>'.html_safe
+      return '<i class="far fa-circle allergy-i allergy-circle"></i>'.html_safe
     end
   end
 
