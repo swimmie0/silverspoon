@@ -121,13 +121,11 @@
 }
 .shops{
     margin-top: 20px;
-    background-color: rgba(255, 253, 253, 0.801);
+    background-color: rgba(255, 255, 255, 0);
     width: 400px;
-    height: 700px;
-    overflow-y: scroll;
-    -webkit-box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
-    -moz-box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
-    box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+    // -webkit-box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+    // -moz-box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+    // box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
 }
 
 
@@ -152,3 +150,55 @@
 }
 
 
+.rebrowse-box{
+    margin-top: 3.5rem;
+}
+
+.p_window{
+    width: 400px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.pagination {
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.pagination span.bar {
+    background-color: rgb(243, 243, 243);
+    border-radius: 0%;
+    border: 1px solid rgba(189, 187, 187, 0.815);
+}
+
+span.bar a{
+    color:rgb(189, 187, 187);
+    font-size: 0.8rem;
+}
+
+span.pagination a{
+  color: rgb(32, 39, 75);
+  font-size: 0.8rem;
+}
+
+span.pagination, span.bar {
+//   float: left;
+  padding: 4px 8px;
+}
+span.pg{
+    padding: 4px 8px;
+}
+
+span.current {
+  background-color: #1E285D;
+  color: white;
+  border-radius: 50%;
+  font-size: 0.8rem;  
+}
+
+.pagination span.pagination:hover:not(.crrent) {
+  background-color: #ddd;
+  border-radius: 50%;
+}

@@ -84,7 +84,7 @@ class RestaurantsController < ApplicationController
     # Zizuminfo.Popeyes       #5
     # Zizuminfo.Baskin        #6
     # Zizuminfo.PizzaSchool   #7
-    # Zizuminfo.SeasonsTable  #8
+    Zizuminfo.SeasonsTable  #8
     # Zizuminfo.Burgerking    #9
     # Zizuminfo.DunkinDonuts  #10   
     # ### SushiHiroba         #11
@@ -97,7 +97,7 @@ class RestaurantsController < ApplicationController
     # Menu.Popeyes            #5
     # Menu.Baskin             #6
     # Menu.PizzaSchool        #7
-    # Menu.SeasonsTable       #8
+    Menu.SeasonsTable       #8
     # Menu.Burgerking         #9
     # Menu.DunkinDonuts       #10
     # ### SushiHiroba         #11    

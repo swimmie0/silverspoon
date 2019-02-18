@@ -1,7 +1,7 @@
-<!--- 0. 임시 점보트론 -->
+<!--- 0. 임시 점보트론 삭제 
 <div class="jumbotron">
     <p class="text-center text-light">Restaurant 식당 찾기</p></div>
-</div>  
+</div>  --> 
 
 <!--- 1. 필터링 검색탭 -->
 <div id="main-contents-allergy" class="container">
@@ -12,7 +12,7 @@
     <%end%>-->
 
     <!-- 검색탭 -->
-    <div class="search-full-box">
+    <div class="container rebrowse-box">
         <%= render partial: "rebrowse"%>
     </div>
 </div>
@@ -25,22 +25,7 @@
     </div>
 </div>
 
-<!-- 2-2. index-오늘의 추천식당 삭제 -->
-<!-- <div class="index-contents rtnt container">
-    <div id="rtnt-titlebox">
-        <div class="index-content-title text-center">오늘의 추천식당</div>
-    </div>
-    <div class="index-rtnt-box d-flex justify-content-between">
-        <%@today_restaurants.each do |today_rtnt|%>
-            <div class="index-today-rtntbox">
-                <div class="today-rtnt-imgbox">
-                    <%=image_tag("beige-logo.PNG",class:"today-rtnt-img")%>
-                </div>
-                <%=link_to today_rtnt.restaurant_name, today_rtnt %>
-            </div>
-        <%end%>
-    </div>
-</div> -->
+
 
 <!--- 3. index-식당으로 검색 -->
 <div class="index2-contents container" style="display:none;">
@@ -82,11 +67,12 @@
         <button type="button" class="btn btn-outline-dark btn-default-order">가나다순</button>
         <button type="button" class="btn btn-outline-dark btn-famous-order">인기순</button>
     </div> %>
-    <div class="index-contents rtnt container">
+    <div class="result-contents rtnt container">
         <div id="rtnt-titlebox"><div class="index-content-title text-center">식당 안내</div></div>
         <div class="d-flex justify-content-around" style="background-color:#F8F8F8;">
             <div class="shops">
-                <% @zizums.each do |zizum| %>
+              <div>
+                <% @zizum_array.each do |zizum| %>
                     <div class="card shop-card">
                         <div class="card-body">
                             <%# ajax로 전송할 레스토랑 이름%>
@@ -161,7 +147,17 @@
                             <%end%>
                         </div>
                     </div> 
-                <% end %>
+                <% end %></div>
+        <!-- pagination --><div class = "p_window">        
+        <% if @zizum_array.current_page == 1 %>
+            <%= paginate @zizum_array, window: 4 %>
+        <% elsif  @zizum_array.current_page == 2 %>
+            <%= paginate @zizum_array, window: 3 %>
+        <% elsif  @zizum_array.current_page == 3 %>
+            <%= paginate @zizum_array, window: 2 %>
+         <% else %>
+            <%= paginate @zizum_array, window: 2 %>                                    
+        <% end %> </div>  
             </div> <!--shop-->
             <!-- 메뉴 -->
             <div id="menuBox">
@@ -169,8 +165,8 @@
             (해당 메뉴 뜨는 자리) 
             즐거운 한끼식사 걱정없식
             </div>
-        </div> <!-- around -->
-    </div> <!--container -->    
+        </div> <!-- around --> 
+    </div> <!--container -->  
 <%end%>
 
 <%if !user_signed_in?%>
@@ -218,70 +214,11 @@
             $(".index2-contents").css("display","block");
         
     });
-    
-    var sigungu;
-    var sigungu_length;
-    // $("#custom").click(function(){
-    //     if('<%=user_signed_in?%>'==="false"){
-    //         alert("로그인이 필요한 기능입니다.")
-    //     }
-    // });
-    $(".sido-select").click(function() {
-        var sido = $(this).val();
-        
-        $.ajax({
-            async : true,
-            data : {sido : sido},
-            type : "GET",
-            url : "menus/getGungu",
-            success : function(data){
-                
-                sigungu = data["sigungu_name"];
-                if(sido != "전체"){
-                    sigungu_length = Object.keys(sigungu).length;
-                    var options = '';
-                    options += '<option value="' +"전체"+ '">' + "시・군・구 찾기" + '</option>';
-                    for (var i = 0; i <sigungu_length; i++) {
-                        options += '<option value="' + sigungu[i]+'"'+'class='+'"sigungu-opt"'+'>' + sigungu[i] + '</option>';
-                    }
-                    $(".sigungu-select").html(options);
-                }
-            }
-        })
-    });
 
-
-
-    //내 정보 불러오기 script
+     //내 정보 불러오기 script
     $(".custom-btn-original").click(function(){
         $('#myinfo').removeClass('nodisplay');
     });
-
-    //페이지 뒤로 넘어가기 했을 시에 에러 수정.
-    var sido = $(".sido-select").val();
-    
-    if(sido != "전체"){
-    $.ajax({
-        async : true,
-        data : {sido : sido},
-        type : "GET",
-        url : "menus/getGungu",
-        success : function(data){
-            
-            sigungu = data["sigungu_name"];
-            if(sido != "전체"){
-                sigungu_length = Object.keys(sigungu).length;
-                var options = '';
-                options += '<option value="' +"전체"+ '">' + "시・군・구 찾기" + '</option>';
-                for (var i = 0; i <sigungu_length; i++) {
-                    options += '<option value="' + sigungu[i]+'"'+'class='+'"sigungu-opt"'+'>' + sigungu[i] + '</option>';
-                }
-                $(".sigungu-select").html(options);
-            }
-        }
-    });
-    }
-
 
     //custom 안했을 때. 숨겨진 체크박스 선택되도록 + active
     $(".allergy-cp-origin").click(function() {
@@ -454,7 +391,7 @@
     }
 
 
-   //ajax 좋아요 구현
+    //ajax 좋아요 구현
     if('<%=user_signed_in?%>'==="true"){
         $(".like-icon").click(function(){
             $zizumid = $(this).siblings("div.zizum-id-like").html();
@@ -485,4 +422,66 @@
             })
         });
     }
+
+    var sigungu;
+    var sigungu_length;
+    // $("#custom").click(function(){
+    //     if('<%=user_signed_in?%>'==="false"){
+    //         alert("로그인이 필요한 기능입니다.")
+    //     }
+    // });
+    $(".sido-select").click(function() {
+        var sido = $(this).val();
+        
+        $.ajax({
+            async : true,
+            data : {sido : sido},
+            type : "GET",
+            url : "menus/getGungu",
+            success : function(data){
+                
+                sigungu = data["sigungu_name"];
+                if(sido != "전체"){
+                    sigungu_length = Object.keys(sigungu).length;
+                    var options = '';
+                    options += '<option value="' +"전체"+ '">' + "시・군・구 찾기" + '</option>';
+                    for (var i = 0; i <sigungu_length; i++) {
+                        options += '<option value="' + sigungu[i]+'"'+'class='+'"sigungu-opt"'+'>' + sigungu[i] + '</option>';
+                    }
+                    $(".sigungu-select").html(options);
+                }
+            }
+        })
+    });
+
+    //내 정보 불러오기 script
+    $(".custom-btn-original").click(function(){
+        $('#myinfo').removeClass('nodisplay');
+    });
+
+    //페이지 뒤로 넘어가기 했을 시에 에러 수정.
+    var sido = $(".sido-select").val();
+    
+    if(sido != "전체"){
+    $.ajax({
+        async : true,
+        data : {sido : sido},
+        type : "GET",
+        url : "menus/getGungu",
+        success : function(data){
+            
+            sigungu = data["sigungu_name"];
+            if(sido != "전체"){
+                sigungu_length = Object.keys(sigungu).length;
+                var options = '';
+                options += '<option value="' +"전체"+ '">' + "시・군・구 찾기" + '</option>';
+                for (var i = 0; i <sigungu_length; i++) {
+                    options += '<option value="' + sigungu[i]+'"'+'class='+'"sigungu-opt"'+'>' + sigungu[i] + '</option>';
+                }
+                $(".sigungu-select").html(options);
+            }
+        }
+    });
+    }
+
 </script>
