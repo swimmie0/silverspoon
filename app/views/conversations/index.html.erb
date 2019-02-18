@@ -6,17 +6,102 @@
     }
 </style>
 
+<style type="text/scss">
+  body { font-family: 'Jeju Myeongjo', serif; }
+  h1 { font-weight: bold; }
+</style>
+<body style="background-color: #F8F8F8">
+    <div class="container">
+        <div class="row" style="margin-top: 5%; height: 600px" >
+
+            <div class="col-3" style="text-align: center; padding: 0px;height: 100%">
+                <div style="background-color: #141b40; height: 11%; width: 100%">
+                    <p style="line-height: 66px; font-size: 1.2rem; margin: 0px; color: white">TALES MESSAGE</p>
+                </div>
+                <div style="background-color: #1E285D; height: 89%; width: 100%"> 
+                    <p style="line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white"><i class="fas fa-question-circle"></i> 전체 쪽지함</p>
+                    <p style="line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white"><i class="fas fa-question-circle"></i> 쪽지 보관함</p>
+                    <p style="line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white"><i class="fas fa-question-circle"></i> 삭제 쪽지함</p>
+                </div>
+            </div>
+
+            <div class="col-9" style="border: 0.05px solid #bfbebe; padding: 0px; height: 100%">
+                <!--
+                <div style="background-color: #F8F8F8; height: 11%; width: 100%">
+                    <p style="line-height: 66px; padding-left: 2rem; border: 0.05px solid #bfbebe; font-size: 1rem; margin: 0px; color: black"> 보낸 사람 | 내용 | </p>
+                </div> -->
+                <div style="background-color: white; border-right: 0.05px solid #bfbebe; height: 89%">
+                   
+
+
+
+
+<table class="table" style="font-size: 1rem;">
+  <thead >
+    <tr style="height: 4.1rem;">
+      <th scope="col", style="width: 1%">#</th>
+      <th scope="col", style="width: 3%">SENDER</th>
+      <th scope="col", style="width: 10%">LAST CONVERSATION</th>
+      <th scope="col", style="width: 10%">DATE & TIME</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% i = 0 %>
+    <% @conversations.reverse_order.each do |conversation| %>
+        <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+            <% if conversation.sender_id == current_user.id %>
+            <% recipient = User.find(conversation.recipient_id) %>
+            <% else %>
+            <% recipient = User.find(conversation.sender_id) %>
+            <% end %>
+        <tr style="line-height: 29.5px; border-bottom: 1px solid #dee2e6;">
+        <th scope = "row"><%= link_to " #{i+=1} 번", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %> </th>
+            <td><%= link_to "#{recipient.name}님", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %>  </td>
+            <td><%= link_to " #{conversation.messages.last.body.first(22)}...", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %>  </td>
+            <td><%= link_to " #{conversation.messages.last.message_time} ", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %></td>
+        </tr>
+        <% end %> 
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+                    
+                </div>
+                <div style="background-color: #F8F8F8; height: 15%; width: 100%">
+                    <p style="line-height: 66px; text-align: right; padding-right: 2rem; border: 0.05px solid #bfbebe; font-size: 1rem; margin: 0px; color: black"> Pagination Section </p>
+                </div>
+            </div>
+
+
+            
+        </div>
+    </div>
+</body>
+<!-- 
 <div class="list-group col-md-3">
-<ul class="nav nav-pills nav-stacked">
-<li><button type="button" class="list-group-item"
-data-toggle="collapse" data-target="#mail"><h4>Conversations
-<i class="glyphicon glyphicon-inbox"></i></h4></button>
-</li>
-<li><button type="button" class="list-group-item"
-data-toggle="collapse" data-target="#new"><h4>New Message
-<i class="glyphicon glyphicon-new-window" style="vertical-align:right;"></i></h4></button>
-</li>
-</ul>
+    <ul class="nav nav-pills nav-stacked">
+
+        <li><button type="button" class="list-group-item"
+        data-toggle="collapse" data-target="#mail"><h4>Conversations
+        <i class="glyphicon glyphicon-inbox"></i></h4></button>
+        </li>
+
+        <li><button type="button" class="list-group-item"
+        data-toggle="collapse" data-target="#new"><h4>New Message
+        <i class="glyphicon glyphicon-new-window" style="vertical-align:right;"></i></h4></button>
+        </li>
+        
+    </ul>
 </div>
 
 <h1>My Inbox</h1>
@@ -39,6 +124,7 @@ data-toggle="collapse" data-target="#new"><h4>New Message
         </div>
     </div>
 </div>
+
 <div id="new" class="collapse">
     <div class="panel-body">
     <h1 class="panel-heading">All Users:</h1>
@@ -54,3 +140,4 @@ data-toggle="collapse" data-target="#new"><h4>New Message
 </div>
 </div>
 </div>
+-->

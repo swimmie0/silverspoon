@@ -7,4 +7,356 @@
 }
 
 
+.zizum-about-wrap{
+    height: 500px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 
+.zizum-about-sec{
+    width: 1300px;
+    height: 100%;
+    background-color: #F8F8F8;
+    font-family:  'NanumBarunGothic',serif;
+}
+
+.zizum-about-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.zizum-about-box{
+    width: 100%;
+    height: 75%;
+    background-color: white;
+}
+
+.zizum-about-imgbox{
+    width: 45%;
+    height: 100%;
+    border-style: solid;
+    border-color: rgb(226, 226, 226);
+    border-width: 0.6px;
+}
+
+.zizum-about-txtbox{
+    width: 55%;
+    height: 100%;
+    border-style: solid;
+    border-color:  #FF5400;
+    border-width: 0.6px;
+}
+
+.zizum-about-bookmark{
+    height: 7%;
+}
+
+.zizum-about-txtbox-in{
+    height: 93%;
+    padding: 2rem;
+    padding-top: 1rem;
+    overflow-y: auto;
+}
+
+
+.zizum-bookmark{
+    cursor: pointer;
+    color: #FF5400;
+    font-size: 2.2rem;
+    font-weight: 200;
+}
+
+.zizum-id-bookmark{
+    display: none;
+}
+
+.zizum-about-img{
+    width: 100%;
+    height: 100%;
+}
+
+.zizum-about-title{
+    height: 42%;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.zizum-about-moreinfo{
+    width: 100%;
+    height: 58%;
+    padding-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.zizum-about-mi-row{
+    width: 100%;
+    display: flex;
+    margin-bottom: 1.2rem;
+}
+
+.zizum-about-stitle{
+    width: 15%;
+    font-weight: bold;
+    margin-right: 4rem;
+}
+
+.zizum-i-adr, .zizum-i-phone{
+    color: #1E285D;
+    margin-right: 0.7rem;
+}
+
+.zizum-i-time, .zizum-i-bookmark{
+    color: #FF5400;
+    margin-right: 0.7rem;
+}
+
+
+.zizum-allergy{
+    font-family: 'NanumBarunGothic',serif;
+    margin-top: 4rem;
+}
+
+
+.zizum-menu-explain{
+    width: 58%;
+    text-align: right;
+    font-size: 0.8rem;
+    color: rgb(139, 139, 139);  
+}
+
+.zizum-table-explain{
+    line-height: 2.5rem;
+    width: 58%;
+    text-align: right;
+    font-size: 0.8rem;
+    color: rgb(139, 139, 139);  
+}
+
+.zizum-table-explain i, .zizum-table-explain span{
+    margin-right: 0.4rem;
+    margin-left: 0.7rem;
+}
+
+.zizum-allergy-tab{
+    cursor: pointer;
+    width: 21%;
+    height: 2.5rem;
+    font-size: 0.9rem;
+    border-style: solid;
+    border-color: rgb(226, 226, 226);
+    border-width: 0.6px;
+    color: rgb(139, 139, 139);   
+    background-color: #F8F8F8;
+    line-height: 2.5rem;
+    text-align: center;
+
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.zizum-menu-active{
+    background-color: #1E285D;
+    color: white;
+    border-color: #1E285D;
+}
+
+.zizum-table-active{
+    background-color: #FF5400;
+    color: white;
+    border-color: #FF5400;
+}
+.zizum-menu-header{
+    font-size: 0.8rem;
+    color: white;
+    width: 100%;
+    background-color: #1E285D;
+    height: 2rem;
+}
+
+.zizum-menu-header div{
+    line-height: 2rem;
+    text-align: center;
+}
+
+.zizum-menu-header-title{
+    width: 21%;
+}
+
+.zizum-menu-header-cp{
+    width: 79%;
+}
+
+.zizum-menu-box{
+    width: 100%;
+    border-style: solid;
+    border-color: #1E285D;
+    border-width: 0.6px;
+}
+
+.zizum-menu-row{
+    min-height: 3rem;
+    border-top-style: solid;
+    border-top-color: rgb(226, 226, 226);
+    border-width: 0.6px;
+}
+
+
+.zizum-menu-title{
+    font-size: 0.9rem;
+    font-weight: 600;
+    //line-height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-right-style: solid;
+    border-right-color:#1E285D;
+    border-right-width: 0.6px; 
+    width: 21%;
+    background-color: #F8F8F8;
+}
+
+.zizum-menu-cpbox{
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 78%;
+    display: flex;
+    margin: 1rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.zizum-menu-cp{
+    margin: 0.35rem !important;
+    color: #1E285D;
+    font-size: 0.8rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    padding-right: 0.9rem;
+    padding-left: 0.9rem;
+    border-radius: 0.75rem;
+    border-style: solid;
+    border-color: #1E285D;
+    border-width: 1.1px;
+}
+
+.zizum-table-header{
+    font-size: 0.8rem;
+    color: white;
+    width: 100%;
+    background-color: #FF5400;
+    min-height: 2rem;
+}
+
+
+
+.zizum-table-header-title{
+    border-right-style: solid;
+    border-right-color:rgb(226, 226, 226);
+    border-right-width: 0.6px; 
+    width: 13%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.zizum-table-header-cpbox{
+    font-size: 0.65rem;
+    width: 87%;
+}
+
+.zizum-table-header-cp{
+    width: calc(100%/21);
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right-style: solid;
+    border-right-color:rgb(212, 212, 212);
+    border-right-width: 0.6px; 
+}
+
+.zizum-table-body{
+    width: 100%;
+    border-style: solid;
+    border-color: rgb(226, 226, 226);
+    border-width: 0.6px;
+}
+
+
+.zizum-table-row{
+    min-height: 2.5rem;
+    border-top-style: solid;
+    border-top-color: rgb(226, 226, 226);
+    border-width: 0.6px;
+}
+
+
+.zizum-table-body-title{
+    background-color: #F8F8F8;
+    width: 13%;
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-right-style: solid;
+    border-right-color:rgb(226, 226, 226);
+    border-right-width: 0.6px; 
+}
+
+.zizum-table-body-cpbox{
+    width: 87%;
+}
+
+.zizum-table-body-cp{
+    width: calc(100%/21);
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right-style: solid;
+    border-right-color:rgb(212, 212, 212);
+    border-right-width: 0.6px; 
+} 
+
+.zizum-table-orangeborder{
+    width: 100%;
+    height: 0.6px;
+    background-color: #FF5400;
+}
+
+.allergy-i{
+    font-size: 1rem;
+}
+
+.allergy-circle{
+    font-weight: 800;
+    color: #1E285D;
+}
+
+.allergy-star{
+    font-weight: 800;
+    color: #1E285D;
+}
+
+.allergy-none{
+    font-weight: 300;
+    color: rgb(226, 226, 226);
+}
+
+.color-navy{
+    color: #1E285D;
+}
