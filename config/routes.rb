@@ -97,6 +97,10 @@ Rails.application.routes.draw do
   resources :new_alarms #순서이대로
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'# 맨아래에 둬주세요
   
-
+  # concern :paginatable do
+  #   get '(page/:page)', action: :index, on: :collection, as: ''
+  # end
+  
+  # resources :my_resources, concerns: :paginatable
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

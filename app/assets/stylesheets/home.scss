@@ -58,8 +58,8 @@
 
 .alg-filt-title{
     font-family: 'NanumBarunGothic',serif;
-    font-size: 1.2rem;
-    font-weight: bolder;
+    font-size: 1.4rem;
+    font-weight: bold;
 }
 
 //home-search
@@ -256,7 +256,7 @@
 }
 
 .active-typename{
-    font-weight: bolder;
+    font-weight: bold;
     color: #FF5400;
 }
 
@@ -384,19 +384,24 @@
     //#main-contents-allergy 와 margin 동일
     margin-top: 4rem;
     width: 100%;
+    margin-bottom: 4rem;
 }
 
 .main-contents-recipe-title{
+    text-align: center;
     font-family: 'NanumBarunGothic',serif;
-    font-size: 1.2rem;
-    font-weight: bolder;
+    font-size: 1.4rem;
+    font-weight: bold;
 }
 
-#main-recipe-titlebox{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.main-contents-rcp-mtxt{
+    font-family: 'NanumBarunGothic',serif;
+    font-size: 0.8rem;
+    color: rgb(165, 164, 164); 
+    text-decoration: none;
 }
+
 
 .main-recipes-box{
     margin-top: 1.5rem;
@@ -407,8 +412,8 @@
     border-color: rgb(226, 226, 226);
     border-width:  1px;
     border-style: solid;
-    width: 18rem;
-    height: 18rem;
+    width: 17rem;
+    height: 17rem;
 }
 
 .popular-recipe-imgbox{
@@ -422,3 +427,79 @@
     width: 100%;
     height: 100%;
 }
+
+.popular-recipe-textbox{
+   padding: 0.8rem;
+}
+
+.popular-recipe-title{
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: 'NanumBarunGothic',serif;
+}
+
+.popular-recipe-text{
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: rgb(165, 164, 164); 
+    font-family: 'NanumBarunGothic',serif;
+}
+
+
+.main-contents-boardwrap{
+    height: 400px; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.main-contents-board{
+   width: 1300px;
+   height: 100%;
+   background-color: #F8F8F8;
+   font-family:  'NanumBarunGothic',serif;
+}
+
+.main-board-container{
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+.main-board-box{
+    width: 32rem;
+    height: 16rem;
+    border-style: solid;
+    border-color:  rgb(226, 226, 226);
+    border-width:  1px;
+}
+
+.main-board-upper{
+    margin-bottom: 1rem;   
+}
+
+.main-board-title{
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.main-board-more{
+    font-size: 0.8rem;
+    color: rgb(165, 164, 164); 
+    text-decoration: none;
+}
+
+.main-board-box thead{
+    font-size: 0.8rem;
+    
+    background-color: #1E285D;
+    color: white;
+}
+
+.main-board-box thead tr th{
+    text-align: center;
+}
+
+.main-board-box tbody{
+    background-color: white;
+}
+

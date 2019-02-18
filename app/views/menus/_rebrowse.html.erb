@@ -1,4 +1,4 @@
-<div class="search-row search-f-row d-flex">
+ <div class="search-row search-f-row d-flex">
     <div class="search-box-th s-th-category">카테고리</div>
     <div class="s-td-category">
         <div class="search-categories d-flex">
@@ -83,7 +83,7 @@
                         <%= check_box_tag :a10_milk, true, checked = params[:a10_milk]%> 우유<br>
                         <%= check_box_tag :a6_peach, true, checked = params[:a6_peach]%> 복숭아<br>
                         <%= check_box_tag :a7_tomato, true, checked = params[:a7_tomato]%> 토마토<br>
-                        <%= check_box_tag :a1_maemil,true, checked = params[:a1_maemil]%> 메밀<br>
+                        <%= check_box_tag :a1_maemil, true, checked = params[:a1_maemil]%> 메밀<br>
                         <%= check_box_tag :a2_mil, true, checked = params[:a2_mil]%> 밀<br>
                         <%= check_box_tag :a3_daedu, true, checked = params[:a3_daedu]%> 대두(콩)<br>
                         <%= check_box_tag :a11_ddakgogi, true, checked = params[:a11_ddakgogi]%> 닭고기<br>
@@ -103,6 +103,7 @@
                     </div>
                 </div>
             </div>
+
             
             <div class="search-submit">
                 <div id="custom" class="custom-btn custom-btn-original" data-toggle="modal" data-target="#loginModal">
@@ -236,9 +237,9 @@
 
 
     <%# 로그인 하지 않았을 때 custom 기능 누르면 modal view 뜨도록 %>
-    <%if !user_signed_in? %> 
-        <%= render 'layouts/loginModal'%> 
-    <%end%> 
+    <%if !user_signed_in?%>
+        <%= render 'layouts/loginModal'%>
+    <%end%>
 
 </div>
 
@@ -300,3 +301,4 @@
 
 <% end %>
 </div>
+

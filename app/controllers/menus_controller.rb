@@ -14,9 +14,9 @@ class MenusController < ApplicationController
 
   def index
     # 오늘의 추천식당- daily random
-    day_today = Time.now.day
-    rule = day_today % Restaurant.count
-    @today_restaurants = Restaurant.where(id: [rule-1, rule, rule+1] )
+    # day_today = Time.now.day
+    # rule = day_today % Restaurant.count
+    # @today_restaurants = Restaurant.where(id: [rule-1, rule, rule+1] )
     
     # 총 식당- updated_at order
     @current_restaurants = Restaurant.order("created_at desc").limit(9);
@@ -98,6 +98,7 @@ class MenusController < ApplicationController
       @zizums = @temp.where("#{:sido} LIKE ? AND #{:sigungu} LIKE ?", sido, sigungu)
      end
 
+     @zizum_array = Kaminari.paginate_array(@zizums).page(params[:page]).per(3)
      puts @zizums
      ### @menus.where(:shop_id => 어쩌고 ) 이용하기 (views 에서 보일 때)
 

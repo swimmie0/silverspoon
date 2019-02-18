@@ -7,6 +7,7 @@ class Menu < ApplicationRecord
     belongs_to :restaurant
     
     validates :menu_name, :uniqueness => true
+   
 
     def self.Subway
         #서브웨이

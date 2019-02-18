@@ -27,8 +27,14 @@
 
 
 <div id="main-contents-recipe" class="main-contents-recipe container">
-    <div id="main-recipe-titlebox">
-        <div class="main-contents-recipe-title">오늘의 인기 레시피</div>
+    <div id="main-recipe-titlebox" class="row">
+        <div class="col-4"></div>
+        <div class="main-contents-recipe-title col-4">오늘의 인기 레시피</div>
+        <div class="col-4 d-flex align-items-end flex-row-reverse">
+            <span>
+                <%=link_to "더보기 >",recipes_path, class: "main-contents-rcp-mtxt"%>
+            </span>
+        </div>
     </div>
     <div class="main-recipes-box d-flex justify-content-between">
         <%@popular_recipes.each do |popular_rcp|%>
@@ -37,9 +43,61 @@
                 <div class="popular-recipe-imgbox">
                     <%=image_tag("beige-logo.PNG",class:"popular-recipe-img")%>
                 </div>
-                <%=popular_rcp.title%>
+                <div class="popular-recipe-textbox">
+                    <span class="popular-recipe-title"><%=popular_rcp.title%></span><br>
+                    <span class="popular-recipe-text">커밍.쑨.</span>
+                </div>
+                
             </div>
         <%end%>
+    </div>
+</div>
+
+<div class="main-contents-boardwrap">
+    <div class="main-contents-board">
+        <div class="main-board-container container d-flex justify-content-between">
+            <div class="main-board-section">
+                <div class="main-board-upper d-flex justify-content-between">
+                    <span class="main-board-title">・식당 정보 공유 게시판</span>
+                    <span><%=link_to '전체보기', freeboards_path, class: "main-board-more"%></span>
+                </div>
+                <table class="table main-board-box">
+                    <thead>
+                        <tr>
+                            <th width="15%">댓글</th>
+                            <th width="50%">제목</th>
+                            <th width="20%">작성자</th>
+                            <th width="15%">조회수</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%=render partial: "board"%>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="main-board-section">
+                <div class="main-board-upper d-flex justify-content-between">
+                    <span class="main-board-title">・자유 홍보 게시판</span>
+                     <span><%=link_to '전체보기', freeboards_path, class: "main-board-more"%></span>
+                </div>
+                <table class="table main-board-box">
+                    <thead>
+                        <tr>
+                            <th width="15%">댓글</th>
+                            <th width="50%">제목</th>
+                            <th width="20%">작성자</th>
+                            <th width="15%">조회수</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <%=render partial: "board"%>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
     </div>
 </div>
 
@@ -48,6 +106,8 @@
 
 <%#= javascript_include_tag('searchmain.js') %>
 <script>
+
+
     
     $(".btn-allergy").click(function(){
         
