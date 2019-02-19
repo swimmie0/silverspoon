@@ -36,6 +36,7 @@ class ZizuminfosController < ApplicationController
       @zizums = @temp.where("#{:sido} LIKE ? AND #{:sigungu} LIKE ?", sido, sigungu)
     end
     
+    @zizum_array = Kaminari.paginate_array(@zizums).page(params[:page]).per(9)
     # @zizums = @zizums[0]
   end
 

@@ -5,7 +5,8 @@
 
 //--- 2. index 검색전
 .index-contents, .result-contents{
-    margin-top: 4rem;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
     width: 100%;
 }
 .rtnt{
@@ -15,6 +16,7 @@
 
 .index2-contents{
     margin-top: 8rem;
+    margin-bottom: 6rem;    
     width: 100%;
 }
 .index-content-title{
@@ -100,6 +102,7 @@
 .shop-card{
     width: 22rem;
     height: 23rem;
+    border-radius:0px;
     // background-color: rgba(255, 253, 253, 0.801);
     // -webkit-box-shadow: 0px 3px 4px 0px rgba(11, 36, 4, 0.315);
     // -moz-box-shadow: 0px 3px 4px 0px rgba(11, 36, 4, 0.315);
@@ -121,6 +124,13 @@
     margin:auto;
 }
 
+.fa-bookmark{
+    position: absolute;
+    bottom: 26.5%;
+    right: 5%;
+    font-size: 2rem;
+    color: #FF5400;
+}
 .about-rtnt {
     padding-top: 90%;
     // margin-top: 5%;
@@ -149,19 +159,73 @@ p.rtnt-adress{
 .hideMenu{
     display: none; 
 }
+.hideCard{
+    display: none; 
+}
 
-#menuBox{
+#Box{
     margin-top: 20px;
     width: 600px;
-    height: 268*3px;
-    overflow-y: scroll;
+    height: 23*3rem;
     padding: 20px;
+    display:flex;
+    flex-direction: column;    
     // -webkit-box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
     // -moz-box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
     // box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
     
 }
+#menuBox{
+    overflow-y: scroll;
+}
 
+.menu-card {
+    padding: 10px 20px;
+}
+p.menu-name{
+    font-family: 'NanumBarunGothic';
+    font-size: 1rem;
+    font-weight: bolder;
+    line-height: 40%;
+}
+p.menu-intro{
+    font-family: 'NanumBarunGothic',serif;
+    font-size: 0.7rem;
+    // font-weight: lighter ;
+    color: rgb(172, 166, 166);
+    // line-height: 40%;
+    // letter-spacing: 0.1rem;
+}
+.menu-cpbox{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    line-height: 40%;    
+}
+
+
+.menu-cp{
+    width: auto;
+    max-width: 8rem;
+    margin: 0.35rem !important;
+    color: #1E285D;
+    font-size: 0.8rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    padding-right: 0.9rem;
+    padding-left: 0.9rem;
+    border-radius: 0.75rem;
+    border-style: solid;
+    border-color: #1E285D;
+    border-width: 1.1px;
+}
+
+/////
+.rebrowse-box{
+    margin-top: 3.5rem;
+}
 .fa-utensil-spoon{
     margin-right: 15px;
 }
@@ -177,20 +241,10 @@ p.rtnt-adress{
     font-size: 20px;
 }
 
-.fa-utensils{
-    margin-left: 10px;
-    margin-right: 5px;
-}
-
-
-.fish2{
-    margin-left:10px;
-}
-
-
-.rebrowse-box{
-    margin-top: 3.5rem;
-}
+// .fa-utensils{
+//     margin-left: 10px;
+//     margin-right: 5px;
+// }
 
 ////---- pagination-----//// 
 .p_window{
