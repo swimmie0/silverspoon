@@ -40,6 +40,8 @@
 .index-rtnt-box{
     margin-top: 1.5rem;
     width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 // 3. index-식당으로 검색 전
@@ -47,8 +49,9 @@
     border-color: rgb(226, 226, 226);
     border-width:  1px;
     border-style: solid;
-    width: 18rem;
-    height: 20rem;
+    width: 20rem;
+    height: 23rem;
+    margin-right: 10px;
 }
 
 .today-rtnt-imgbox{
@@ -56,11 +59,15 @@
     border-bottom-style: solid;
     border-color: rgb(226, 226, 226);
     border-width:  0.5px;
+
 }
 
 .today-rtnt-img{
     width: 100%;
     height: 100%;
+}
+.about-rtnt2 {
+    margin-left: 10%;
 }
 ///
 .nodisplay{
@@ -124,12 +131,21 @@
     margin:auto;
 }
 
-.fa-bookmark{
+.fa-bookmark.menu{
     position: absolute;
     bottom: 26.5%;
     right: 5%;
     font-size: 2rem;
     color: #FF5400;
+}
+.fa-bookmark.zizum{
+    position: relative;
+    /* margin-top: 3%; */
+    left: 85%;
+    font-size: 2rem;
+    color: #FF5400;
+    line-height: 90%;
+    // z-index: -1;
 }
 .about-rtnt {
     padding-top: 90%;
@@ -293,4 +309,7 @@ span.current {
 .pagination span.pagination:hover:not(.crrent) {
   background-color: #ddd;
   border-radius: 50%;
+}
+.index-today-rtntbox:hover .today-rtnt-img {
+    opacity: 0.5;
 }

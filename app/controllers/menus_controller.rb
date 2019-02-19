@@ -20,6 +20,9 @@ class MenusController < ApplicationController
     
     # 총 식당- updated_at order
     @current_restaurants = Restaurant.order("created_at desc").limit(9);
+    # 총지점
+    @zizuminfos = Zizuminfo.all.order("created_at DESC");
+    @tot_zizums = Kaminari.paginate_array(@zizuminfos).page(params[:page]).per(9)
 
     # 체크 안했을 경우-알러지 없다. / check 하면 true(알러지없다). a1, a2 등은 알러지 없다고 표시 되면 1 
      sido = params[:sido]
