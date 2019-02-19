@@ -31,7 +31,7 @@
     <div class="index-rtnt-box d-flex justify-content-center">
         <%@tot_zizums.reverse.drop(6).each do |zizum|%>
             <div class="index-today-rtntbox">
-                <div class="today-rtnt-imgbox"><%=image_tag("beige-logo.PNG",class:"today-rtnt-img")%></div>
+                <div class="today-rtnt-imgbox"><%=link_to image_tag("beige-logo.PNG",class:"today-rtnt-img"),zizum%></div>
                 <%if user_signed_in?%>
                         <% if zizum.followed_by?(current_user) %>
                             <!-- 좋아요를 했다면 -->
@@ -56,7 +56,7 @@
     <div class="index-rtnt-box d-flex justify-content-center">
         <%@tot_zizums[3..5].each do |zizum|%>
             <div class="index-today-rtntbox">
-                <div class="today-rtnt-imgbox"><%=image_tag("beige-logo.PNG",class:"today-rtnt-img")%></div>
+                <div class="today-rtnt-imgbox"><%=link_to image_tag("beige-logo.PNG",class:"today-rtnt-img"),zizum%></div>
                  <%if user_signed_in?%>
                         <% if zizum.followed_by?(current_user) %>
                             <!-- 좋아요를 했다면 -->
@@ -81,7 +81,7 @@
     <div class="index-rtnt-box d-flex justify-content-center">
         <%@tot_zizums.drop(6).each do |zizum|%>
             <div class="index-today-rtntbox">
-                <div class="today-rtnt-imgbox"><%=image_tag("beige-logo.PNG",class:"today-rtnt-img")%></div>
+                <div class="today-rtnt-imgbox"><%=link_to image_tag("beige-logo.PNG",class:"today-rtnt-img"),zizum%></div>
                  <%if user_signed_in?%>
                         <% if zizum.followed_by?(current_user) %>
                             <!-- 좋아요를 했다면 -->
