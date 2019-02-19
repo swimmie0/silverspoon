@@ -12,7 +12,8 @@ class RestaurantsController < ApplicationController
   def index
    @restaurants = Restaurant.all
    @current_restaurants = Restaurant.order("created_at desc").limit(9);
-   
+   @zizuminfos = Zizuminfo.all.order("created_at DESC");
+   @tot_zizums = Kaminari.paginate_array(@zizuminfos).page(params[:page]).per(9)
   end
 
   # GET /restaurants/1

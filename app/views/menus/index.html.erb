@@ -25,32 +25,81 @@
     </div>
 </div>
 
-
-
 <!--- 3. index-식당으로 검색 -->
 <div class="index2-contents container" style="display:none;">
-<p> 총 <%=Restaurant.count%> 건 </p>
+<p> 총 <%=Zizuminfo.count%> 건 </p>
     <div class="index-rtnt-box d-flex justify-content-center">
-        <%@current_restaurants.reverse.drop(6).each do |current_rtnt|%>
+        <%@tot_zizums.reverse.drop(6).each do |zizum|%>
             <div class="index-today-rtntbox">
                 <div class="today-rtnt-imgbox"><%=image_tag("beige-logo.PNG",class:"today-rtnt-img")%></div>
-                <%=link_to current_rtnt.restaurant_name, current_rtnt %>
+                <%if user_signed_in?%>
+                        <% if zizum.followed_by?(current_user) %>
+                            <!-- 좋아요를 했다면 -->
+                            <i class="fas fa-bookmark zizum"></i>
+                            <div class="zizum-id-like"><%=zizum.id%></div>
+                            <!-- 좋아요를 안 했다면 -->
+                        <% else %>
+                            <i class="far fa-bookmark zizum"></i>
+                            <div class="zizum-id-like"><%=zizum.id%></div>
+                        <% end %>
+                    <%else%>
+                        <i class="far fa-bookmark zizum" data-toggle="modal" data-target="#loginModal"></i>
+                    <%end%>
+                <div class="about-rtnt2">
+                    <p class="rtnt-name"><%= zizum.restaurant_name%>&nbsp;<%= zizum.zizum_name%></p>
+                    <p class="rtnt-intro">신선한 샌드위치를 만드는 서브웨이입니다.</p>                                
+                    <p class="rtnt-adress"><%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
+                </div>
             </div>
         <%end%>
     </div>
     <div class="index-rtnt-box d-flex justify-content-center">
-        <%@current_restaurants[3..5].each do |current_rtnt|%>
+        <%@tot_zizums[3..5].each do |zizum|%>
             <div class="index-today-rtntbox">
                 <div class="today-rtnt-imgbox"><%=image_tag("beige-logo.PNG",class:"today-rtnt-img")%></div>
-                <%=link_to current_rtnt.restaurant_name, current_rtnt %>
+                 <%if user_signed_in?%>
+                        <% if zizum.followed_by?(current_user) %>
+                            <!-- 좋아요를 했다면 -->
+                            <i class="fas fa-bookmark zizum"></i>
+                            <div class="zizum-id-like"><%=zizum.id%></div>
+                            <!-- 좋아요를 안 했다면 -->
+                        <% else %>
+                            <i class="far fa-bookmark zizum"></i>
+                            <div class="zizum-id-like"><%=zizum.id%></div>
+                        <% end %>
+                    <%else%>
+                        <i class="far fa-bookmark zizum" data-toggle="modal" data-target="#loginModal"></i>
+                    <%end%>
+                <div class="about-rtnt2">
+                    <p class="rtnt-name"><%= zizum.restaurant_name%>&nbsp;<%= zizum.zizum_name%></p>
+                    <p class="rtnt-intro">신선한 샌드위치를 만드는 서브웨이입니다.</p>                                
+                    <p class="rtnt-adress"><%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
+                </div>
             </div>
         <%end%>
     </div>    
     <div class="index-rtnt-box d-flex justify-content-center">
-        <%@current_restaurants.drop(6).each do |current_rtnt|%>
+        <%@tot_zizums.drop(6).each do |zizum|%>
             <div class="index-today-rtntbox">
                 <div class="today-rtnt-imgbox"><%=image_tag("beige-logo.PNG",class:"today-rtnt-img")%></div>
-                <%=link_to current_rtnt.restaurant_name, current_rtnt %>
+                 <%if user_signed_in?%>
+                        <% if zizum.followed_by?(current_user) %>
+                            <!-- 좋아요를 했다면 -->
+                            <i class="fas fa-bookmark zizum"></i>
+                            <div class="zizum-id-like"><%=zizum.id%></div>
+                            <!-- 좋아요를 안 했다면 -->
+                        <% else %>
+                            <i class="far fa-bookmark zizum"></i>
+                            <div class="zizum-id-like"><%=zizum.id%></div>
+                        <% end %>
+                    <%else%>
+                        <i class="far fa-bookmark zizum" data-toggle="modal" data-target="#loginModal"></i>
+                    <%end%>
+                <div class="about-rtnt2">
+                    <p class="rtnt-name"><%= zizum.restaurant_name%>&nbsp;<%= zizum.zizum_name%></p>
+                    <p class="rtnt-intro">신선한 샌드위치를 만드는 서브웨이입니다.</p>                                
+                    <p class="rtnt-adress"><%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
+                </div>
             </div>
         <%end%>
     </div>
@@ -79,14 +128,14 @@
                                      <%if user_signed_in?%>
                                         <% if zizum.followed_by?(current_user) %>
                                             <!-- 좋아요를 했다면 -->
-                                            <i class="fas fa-bookmark"></i>
+                                            <i class="fas fa-bookmark menu"></i>
                                             <%# <div class="zizum-id-like"><%=zizum.id</div> %>   
                                         <% else %>
                                             <!-- 좋아요를 안 했다면 -->
-                                            <i class="far fa-bookmark"></i>
+                                            <i class="far fa-bookmark menu"></i>
                                             <%# <div class="zizum-id-like"><%=zizum.id</div> %>
                                         <% end %>
-                                    <%else%><i class="far fa-bookmark" data-toggle="modal" data-target="#loginModal"></i>
+                                    <%else%><i class="far fa-bookmark menu" data-toggle="modal" data-target="#loginModal"></i>
                                     <%end%>   
                                 <%=image_tag("subway.jpg",class:"rtnt-img1")%>                                           
                                 <div class="about-rtnt">
@@ -221,6 +270,7 @@
             $(".allergy-search").removeClass("nodisplay");
             $(".index-contents").css("display","block");
             $(".index2-contents").css("display","none");
+            $(".result-contents").css("display","none");            
         
     });
 
@@ -238,7 +288,8 @@
             $(".allergy-search").addClass("nodisplay");
             $(".index-contents").css("display","none");
             $(".index2-contents").css("display","block");
-        
+            $(".result-contents").css("display","none");                        
+
     });
 
      //내 정보 불러오기 script
