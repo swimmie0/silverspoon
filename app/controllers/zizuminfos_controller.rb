@@ -18,6 +18,7 @@ class ZizuminfosController < ApplicationController
   end
   
   def index
+    
     sido = params[:sido]
     sigungu = params[:sigungu]
     if params[:restaurant_name] == ""

@@ -5,15 +5,43 @@
     </div>
 </div>
 
-<div class="rst-howto-wrap">
-  <div class="rst-howto-box">
-    <div class="rst-howto-container container">
-      <div class="rst-howto-title">이용방법 안내</div>
-      <div class="rst-howto-imagebox d-flex justify-content-center">
-        <%=image_tag("howto.PNG", class:"rst-howto-image")%>
-      </div>
+<!-- 2-1. index-이용방법 안내 -->
+<div id="index-contents" class="index-contents howto container" >
+    <div class="index-content-title text-center">이용방법 안내</div><br/>
+    <div class="d-flex justify-content-center">
+        <%=image_tag("howto.png", class: "howto-img")%>
     </div>
-  </div>
+</div>
+
+
+
+<!--- 3. index-식당으로 검색 -->
+<div class="index2-contents container" style="display:none;">
+<p> 총 <%=Restaurant.count%> 건 </p>
+    <div class="index-rtnt-box d-flex justify-content-center">
+        <%@current_restaurants.reverse.drop(6).each do |current_rtnt|%>
+            <div class="index-today-rtntbox">
+                <div class="today-rtnt-imgbox"><%=image_tag("beige-logo.PNG",class:"today-rtnt-img")%></div>
+                <%=link_to current_rtnt.restaurant_name, current_rtnt %>
+            </div>
+        <%end%>
+    </div>
+    <div class="index-rtnt-box d-flex justify-content-center">
+        <%@current_restaurants[3..5].each do |current_rtnt|%>
+            <div class="index-today-rtntbox">
+                <div class="today-rtnt-imgbox"><%=image_tag("beige-logo.PNG",class:"today-rtnt-img")%></div>
+                <%=link_to current_rtnt.restaurant_name, current_rtnt %>
+            </div>
+        <%end%>
+    </div>    
+    <div class="index-rtnt-box d-flex justify-content-center">
+        <%@current_restaurants.drop(6).each do |current_rtnt|%>
+            <div class="index-today-rtntbox">
+                <div class="today-rtnt-imgbox"><%=image_tag("beige-logo.PNG",class:"today-rtnt-img")%></div>
+                <%=link_to current_rtnt.restaurant_name, current_rtnt %>
+            </div>
+        <%end%>
+    </div>
 </div>
 
 

@@ -11,6 +11,8 @@ class RestaurantsController < ApplicationController
 
   def index
    @restaurants = Restaurant.all
+   @current_restaurants = Restaurant.order("created_at desc").limit(9);
+   
   end
 
   # GET /restaurants/1
