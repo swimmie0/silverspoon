@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  mount_uploader :image, S3Uploader
+  
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
   impressionist actions: [:show]
   # GET /recipes

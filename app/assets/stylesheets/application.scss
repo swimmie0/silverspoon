@@ -7,6 +7,7 @@
 @import "home.scss";
 @import "restaurants.scss";
 @import "zizuminfos.scss";
+@import "footer.scss";
 
 a:hover{
     text-decoration: none;
@@ -20,6 +21,7 @@ body{
     overflow-x:hidden;
     overflow-y:auto;
 }
+
 
 // select {
 //      -webkit-appearance: none; /* 네이티브 외형 감추기 */ 
