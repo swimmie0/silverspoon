@@ -28,6 +28,7 @@
 
           <div class="zizum-about-txtbox-in">
             <div class="zizum-about-title"><%= @zizuminfo.restaurant_name + " " + @zizuminfo.zizum_name%></div>
+            <div class="zizum-about-id nodisplay"><%=@zizuminfo.restaurant.id%></div>
             <div class="zizum-about-moreinfo">
               <div class="zizum-about-mi-row"><div class="zizum-about-stitle"><i class="fas fa-map-marked-alt zizum-i-adr"></i>주소</div><div class="zizum-about-spec"><%= @zizuminfo.sido + " " +@zizuminfo.sigungu + " " +@zizuminfo.sangse_juso %></div></div>
               <div class="zizum-about-mi-row"><div class="zizum-about-stitle"><i class="far fa-clock zizum-i-time"></i></i>운영시간</div><div class="zizum-about-spec">제보 부탁드립니다.</div></div>
@@ -57,7 +58,7 @@
         <span class="allergy-i allergy-star">△</span>교차위험
         <i class="fas fa-times allergy-i allergy-none"></i>성분없음
         <i class="far fa-circle allergy-i allergy-circle"></i>성분포함
-        <span class="color-navy">'빈칸'</span>식당미제공
+        <span class="allergy-i allergy-null">·</span>식당미제공
     </div>
 
   </div>
@@ -123,7 +124,7 @@
     </div>
   </div>
 
-  <div class="div zizum-allergy-table nodisplay">
+  <div class="zizum-allergy-table nodisplay">
     <div class="zizum-table-header d-flex">
       <div class="zizum-table-header-title"><span>메뉴이름</span></div>
       <div class="zizum-table-header-cpbox d-flex justify-content-between">
@@ -132,7 +133,14 @@
         <%end%>
       </div>
     </div>
+
     <div class="zizum-table-body">
+      <%if @zizuminfo.restaurant.menus.length > 10%>
+        <div class="zizum-overlay">
+          <div class="zizum-overlay-text">아래로 스크롤하세요!</div>
+        </div>
+      <%end%>
+
       <%idx = 1%>
       <%@zizuminfo.restaurant.menus.each do |menu|%>
         <div class="zizum-table-row d-flex">
@@ -171,7 +179,7 @@
         <%idx = idx + 1%>
       <%end%>
     </div>
-  </table>
+  </div>
 
 </div>
 
@@ -182,6 +190,17 @@
 <%#= link_to '<button type="button" class= "fill mbutton">메뉴 추가 요청</button>'.html_safe, userrequests_new_request_url(restaurantID: @zizuminfo.restaurant.id)%>
 
 <script>
+  
+  // $zizumid = $(".zizum-about-id").html();
+  // $.ajax({
+  //   async : true,
+  //   data : {id: $zizumid},
+  //   type : "GET",
+  //   url : "show",
+  //   success : function(data){
+        
+  //   }
+  // })
 
   if('<%=user_signed_in?%>'==="true"){
       $(".zizum-bookmark").click(function(){
@@ -218,6 +237,15 @@
     $(".zizum-tab-menu").removeClass("zizum-menu-active");
     $(".zizum-allergy-table").removeClass("nodisplay");
     $(".zizum-allergy-menu").addClass("nodisplay");
+
+    $(".zizum-table-body").scroll(function(){
+      $('.zizum-overlay').fadeOut(230, function(){ $(this).remove();});
+    })
+    
+    $(".zizum-table-body").click(function(){
+      $('.zizum-overlay').fadeOut(230, function(){ $(this).remove();});
+    })
+
   });
 
 
@@ -234,5 +262,8 @@
           }
   });
 
+
+
+  
 
 </script> 

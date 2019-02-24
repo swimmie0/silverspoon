@@ -62,6 +62,17 @@ class ZizuminfosController < ApplicationController
   # GET /zizuminfos/1.json
   def show
     @allergy_tags=["난류","우유","복숭아","토마토","메밀","밀","대두(콩)","닭고기","쇠고기","돼지고기","새우","고등어","홍합","전복","굴","조개류","게","오징어","호두","땅콩","아황산류"]
+    res_id = params[:id]
+    res = Restaurant.where(:id => res_id)
+    puts "=++++++++++++++++++++++"
+
+    @zizum_menus = Menu.where(:restaurant_name => res.map(&:restaurant_name))
+    # @menus = @menus.paginate(page: params[:page], per_page: 10)
+  
+  end
+
+  def zizummenus
+   
   end
 
   # GET /zizuminfos/new
@@ -121,7 +132,7 @@ class ZizuminfosController < ApplicationController
       return '<span class="allergy-i allergy-star">△</span>'.html_safe
     #제공 안함
     elsif value == -1
-      return '　'.html_safe
+      return '<span class="allergy-i allergy-null">·</span>'.html_safe
     #없음
     elsif value == 0
       return '<i class="fas fa-times allergy-i allergy-none"></i>'.html_safe

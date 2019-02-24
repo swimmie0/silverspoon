@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'zizuminfos/search/' => "zizuminfos#search"
   post 'zizuminfos/getZizum' => "zizuminfos#getZizum"
   get 'zizuminfos/getGungu' => "menus#getGungu"
+  get 'zizuminfos/zizummenus' => "zizuminfos#zizummenus"
   #밑에 꺼 꼭 넣어야함.
   get 'zizuminfos/index' => "zizuminfos#index", as: 'zizuminfos'
   ##-------------------------------------
