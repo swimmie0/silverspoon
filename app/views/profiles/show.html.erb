@@ -9,7 +9,90 @@
 <!-- <p id="notice"><%= notice %></p> -->
 
 <!-- My Page : Open-->
-<body class="jeju">
+<body style="font-family: 'NanumBarunGothic',serif;">
+
+<div style="height: 35rem; width: 1300px; margin-left: 71px; justify-content: center; background-color: black">
+  
+    <div style="height: 12rem; background-color: #2e149e">
+      <div class="container">
+        <%= link_to(fa_icon("cog", style: "color: grey; float: right; margin-top: 1.2rem; margin-right: 0.5rem;"), edit_user_registration_path) %>
+        <br>
+        <div style="margin-top: 7.5rem; height: 2.5rem">
+          <span style="font-size: 1.5rem; color: white; margin-left: 11.3rem; margin-top: 0.7rem; float: left"><%= @profile.user.name%></span>
+          <div class="profilebanner-button"> 팔로우하기 </div>
+          <div class="profilebanner-button"> 쪽지보내기 </div>
+        </div>
+      </div>
+    </div>
+
+    <%= image_tag @profile.user.profileimg.url, style: "position: relative; top: -4.75rem; margin-left: 7.5%; width: 10rem; height: 10rem; border-radius: 50%; float:left;" %>
+
+    <div style="height: 23rem; background-color: #F8F8F8">
+      <div class="container">
+        <p style="font-size: 1rem; color: black; margin-left: 1rem; margin-top: 0.7rem; float: left"><strong>성별  </strong> <%= @profile.user.gender %>성 <br> <strong>나이  </strong> <%= @profile.user.ages %>대 <br> <%= link_to " Log Out ", destroy_user_session_path, method: :delete, class:"headerfont", :style=>"text-decoration: none; color: #454338;" %></p>
+        <div style="height: 10.5rem"></div>
+        
+        <div style="position: absolute; margin-top: -3rem; width: 77.5%;">
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a style="color: black" class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">알레르기 정보</a>
+              <a style="text-decoration: none; color: black" class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">MESSAGE</a>
+            </div>
+          </nav>
+
+          <div style="border: 1px solid rgb(226, 226, 226); height: 10rem; background-color: white;">
+              <div style="margin-left: 2rem;margin-top: 2rem;" class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                  <%if @profile.user.allergy.include?("난류") %>
+                    <div style="float: left; height: 6rem; width: 5rem; border: 1px solid rgb(226, 226, 226); background-color: white;"><%= image_tag "profile_egg.png", style: "margin-top: 0.5rem; margin-bottom: 0.5rem; display: block; margin-left: auto; margin-right: auto; width: 50%; width: 2.5rem" %></div>
+                  <% end %>
+                  <% if @profile.user.allergy.include?("복숭아") %>
+                    <div style="float: left; height: 6rem; width: 5rem; border: 1px solid rgb(226, 226, 226); background-color: white;"><%= image_tag "profile_tomato.png", style: "margin-top: 0.5rem; margin-bottom: 0.5rem; display: block; margin-left: auto; margin-right: auto; width: 50%; width: 2.5rem" %></div>
+                  <% end %>
+                  <% if @profile.user.allergy.include?("토마토") %>
+                    <div style="float: left; height: 6rem; width: 5rem; border: 1px solid rgb(226, 226, 226); background-color: white;"><%= image_tag "profile_peach.png", style: "margin-top: 0.5rem; margin-bottom: 0.5rem; display: block; margin-left: auto; margin-right: auto; width: 50%; width: 2.5rem" %></div>
+                  <% end %>
+                  <% if @profile.user.allergy.include?("닭고기") %>
+                    <div style="float: left; height: 6rem; width: 5rem; border: 1px solid rgb(226, 226, 226); background-color: white;"><%= image_tag "profile_beef.png", style: "margin-top: 0.5rem; margin-bottom: 0.5rem; display: block; margin-left: auto; margin-right: auto; width: 50%; width: 2.5rem" %></div>
+                  <% end %>
+                </div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                </div>
+              </div>
+          </div>
+        </div>
+        
+
+
+
+
+
+
+      </div>
+    </div>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- <h1 class="jeju" style="text-align: left; font-weight: bold;">My Page</h1> -->
 <!--<br> <br>-->
@@ -62,6 +145,10 @@
       </p>
       
       <div align="right">
+        <% if @profile.user_id != current_user.id%>
+        <%= link_to "#{@profile.user.name}에게 쪽지 보내기", 
+            conversations_path(sender_id: current_user.id, recipient_id: @profile.user.id), method: "post" %>
+        <% end %>
         <%= link_to "쪽지 화면 가기 | ", conversations_path, method: :get, style: "text-decoration: none; color: #454338;"%>
         <%= link_to " Log Out | ", destroy_user_session_path, method: :delete, class:"headerfont", :style=>"text-decoration: none; color: #454338;" %>
         <button class="fill mbutton">  <!-- 수정 버튼 위치 2 -->
