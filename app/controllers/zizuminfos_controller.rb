@@ -62,17 +62,19 @@ class ZizuminfosController < ApplicationController
   # GET /zizuminfos/1.json
   def show
     @allergy_tags=["난류","우유","복숭아","토마토","메밀","밀","대두(콩)","닭고기","쇠고기","돼지고기","새우","고등어","홍합","전복","굴","조개류","게","오징어","호두","땅콩","아황산류"]
-    res_id = params[:id]
-    res = Restaurant.where(:id => res_id)
-    puts "=++++++++++++++++++++++"
+    
+    @res_id = params[:res_id]
 
-    @zizum_menus = Menu.where(:restaurant_name => res.map(&:restaurant_name))
-    # @menus = @menus.paginate(page: params[:page], per_page: 10)
+    @res = Restaurant.where(:id => @res_id)
+    puts "=++++++show++++++++++++++++"
   
+    @zizum_menus = Menu.where(:restaurant_name => @res.map(&:restaurant_name))
+    puts @zizum_menus[0]
+    @menus = @zizum_menus.paginate(page: params[:page], per_page: 10)
   end
 
   def zizummenus
-   
+    
   end
 
   # GET /zizuminfos/new

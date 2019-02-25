@@ -2,6 +2,177 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.recipe-index-upper{
+    font-family: 'NanumBarunGothic',serif;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.recipe-index-upper-box{
+    width: 1320px;
+    background-color:#F8F8F8;
+}
+
+.recipe-index-upper-container{
+    padding: 4rem 2rem;
+}
+
+.recipe-index-search-area{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.recipe-index-search-area2{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.recipe-index-search-box{
+    width: 75%;
+    display: flex;
+    justify-content: center;
+}
+
+.recipe-index-search-input{
+   
+    font-size: 0.8rem;
+    color: rgb(100, 100, 100);
+    line-height: 3rem;
+    padding: 0.3rem 1rem;
+
+    border-style: solid;
+    border-color: rgb(226,226,226);
+    border-width: 0.6px;
+
+    width: 87%;
+    height: 3rem;
+    background-color: white;
+}
+
+.recipe-index-search-btn{
+
+    //type submit 이므로 appearnace 조정
+    -webkit-appearance: none;
+    border-style: none;
+    cursor: pointer;
+    padding: 0.3rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    width: 13%;
+    height: 3rem;
+    background-color: #1E285D;
+}
+
+
+  .recipe-index-search-tagbox{
+    margin: 2rem 0rem;
+    margin-bottom: 0rem;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.recipe-index-search-tag{
+    cursor: pointer;
+
+    font-weight: 330;
+    margin: 0.35rem !important;
+    color: #1E285D;
+    font-size: 0.8rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    padding-right: 0.6rem;
+    padding-left: 0.6rem;
+    border-radius: 0.75rem;
+    border-style: solid;
+    border-color: #1E285D;
+    border-width: 1px;
+}
+
+.recipe-index-search-tag:hover{
+    text-decoration-line: underline;
+    text-decoration-color: #1E285D;
+
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+
+//=================index search 끝========
+
+//-----------------index main 시작========
+.recipe-index-main{
+    font-family: 'NanumBarunGothic',serif;
+    width: 100%;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+.recipe-index-main-count{
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.recipe-index-body{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+.recipe-index-box{
+    margin: 0.7rem 0.5rem;
+    border-color: rgb(226, 226, 226);
+    border-width:  1px;
+    border-style: solid;
+    width: 22rem;
+    height: 25rem;
+}
+
+.recipe-index-imgbox{
+    height: 70%;
+    border-bottom-style: solid;
+    border-color: rgb(226, 226, 226);
+    border-width:  0.5px;
+}
+
+.recipe-index-img{
+    width: 100%;
+    height: 100%;
+}
+
+.recipe-index-textbox{
+   padding: 0.8rem;
+}
+
+.recipe-index-title{
+    font-size: 1.2rem;
+    font-weight: bold;
+
+}
+
+.recipe-index-text{
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: rgb(165, 164, 164); 
+}
+
+
+
 .recipe-new-upper{
     margin-top: 1.5rem;
     margin-bottom: 2.5rem;
@@ -143,14 +314,4 @@
     border-width: 0.5px;
     border-radius: 8px;
     text-align: center;
-}
-
-.allergy-tag-selected{
-    border-color: transparent;
-    background-color: rgb(0, 141, 99);
-    color: white;
-}
-
-.allergy-tag-name{
-    margin-right: 10px;
 }
