@@ -3,6 +3,35 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+.profilebanner-button{
+  //position: absolute;
+  //bottom: 0;
+  //right: 0;
+  margin-right: 0.5rem;
+  float: right;
+  text-align: center;
+  width: 10rem;
+  height: 2.5rem;
+  border-style: solid;
+  border-color:white;
+  color: white;
+  border-width: 0.3px;
+  font-family: 'NanumBarunGothic',serif;
+  font-size: 0.8rem;
+  line-height: 2.5rem;
+
+  -moz-transition: all .1s ease-in;
+  -o-transition: all .1s ease-in;
+  -webkit-transition: all .1s ease-in;
+  transition: all .1s ease-in;
+}
+
+.profilebanner-button:hover{
+  background-color: #FF5400;
+  border: none;
+  color: white;
+}
+
 //제주명조
 @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css); .jejumyeongjo * { font-family: 'Jeju Myeongjo', serif; }
 
