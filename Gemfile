@@ -36,7 +36,7 @@ gem 'acts_as_votable', '~> 0.11.1'
 
 
 #pagination
-gem 'will_paginate', '~> 3.0.7'
+gem 'will_paginate', '~> 3.1.0'
 
 gem 'figaro'
 

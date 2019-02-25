@@ -16,7 +16,9 @@
           <h3><%=zizum.zizum_name%></h3>
           <%# display:none 하고 옆으로 메뉴 띄울 것임%>
           <p class="card-text"><%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
-          <p class="card-text"><%=link_to '식당상세페이지',zizuminfo_path(id: zizum.id)%>
+          <p class="card-text">
+            <%=link_to '식당상세페이지',zizuminfo_path(id: zizum.id)%>
+          </p>
           <%if user_signed_in?%>
             <% if zizum.followed_by?(current_user) %>
                 <!-- 좋아요를 했다면 -->
@@ -41,7 +43,8 @@
         <%= render 'layouts/loginModal'%>
     <%end%>
 
-  <script>
+<script>
+
 
     //첫 시작
     $(".sido-select").val('<%=params[:sido]%>');

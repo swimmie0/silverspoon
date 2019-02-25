@@ -1,6 +1,44 @@
-<p id="notice"><%= notice %></p>
+<div class="recipe-index-upper">
+  <div class="recipe-index-upper-box">
+    <div class="recipe-index-upper-container container">
+      <%= form_tag(recipes_path, method: :get) do %>
+        <div class="recipe-index-search-area">
+          <div class="recipe-index-search-box">
+            <%= text_field_tag :recipe_word, params[:recipe_word], class: "recipe-index-search-input", placeholder: "검색어 입력(띄어쓰기로 구분해주세요)"%>   
+            <button type="submit" class="recipe-index-search-btn">검색하기</button>
+          </div>
+        </div>
 
-<h1>Recipes</h1>
+        <div class="recipe-index-search-area2">
+          <div class="recipe-index-search-tagbox">
+            <% @allergy_tags.each do |tag|%>
+              <div class="recipe-index-search-tag">#&nbsp;<%=tag%></div>
+            <%end%>
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>
+
+<div class="recipe-index-main container">
+  <div class="recipe-index-main-count">총 <%=@recipes.length%>건</div>
+  <div class="recipe-index-body">
+    <% @recipes.each do |recipe|%>
+      <div class="recipe-index-box">
+          <%# 등록된 사진 오류남. 해결 해야함. %>
+          <div class="recipe-index-imgbox">
+              <%=image_tag("beige-logo.PNG",class:"recipe-index-img")%>
+          </div>
+          <div class="recipe-index-textbox">
+              <span class="recipe-index-title"><%=recipe.title%></span><br>
+              <span class="recipe-index-text">커밍.쑨.</span>
+          </div>
+          
+      </div>
+    <%end%>
+  </div>
+</div>
 
 <table>
   <thead>
@@ -24,3 +62,30 @@
 <br>
 
 <%= link_to 'New Recipe', new_recipe_path %>
+
+<script>
+
+  
+  var tagarray = [];
+  $(".recipe-index-search-tag").click(function(){
+    var key = $(this).html();
+    key = key.split('&nbsp;')[1]
+  
+    if($(this).hasClass("allergy-tag-selected")){
+      $(this).removeClass("allergy-tag-selected");
+      tagarray.splice(tagarray.indexOf(key),1);
+    }
+    else{
+      $(this).addClass("allergy-tag-selected");
+      tagarray.push(key);
+    }
+
+    var idx = 0;
+    var length = tagarray.length;
+    var tagadd = '';
+    for(;idx<length;idx++){
+      tagadd+='#'+tagarray[idx]+' '
+    }
+    $(".recipe-index-search-input").val(tagadd);
+  })
+</script>

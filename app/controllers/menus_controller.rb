@@ -81,7 +81,6 @@ class MenusController < ApplicationController
      #default 값
      @temp = @temp.order(restaurant_name: :asc).order(zizum_name: :asc)
      
-     
      if sido == "전체"
       @zizums = @temp
      elsif sigungu == "전체"
@@ -90,7 +89,6 @@ class MenusController < ApplicationController
       @zizums = @temp.where("#{:sido} LIKE ? AND #{:sigungu} LIKE ?", sido, sigungu)
      end
 
-     puts @zizums
      ### @menus.where(:shop_id => 어쩌고 ) 이용하기 (views 에서 보일 때)
 
   end
@@ -107,9 +105,6 @@ class MenusController < ApplicationController
     $result["sigungu_name"]=@sigungu_name
     
     $result = $result.to_json
-    puts "실험실험실험============================================="
-    puts $result
-    puts "싫끝====================================================="
 
     respond_to do |format|
       format.json {render json: $result}

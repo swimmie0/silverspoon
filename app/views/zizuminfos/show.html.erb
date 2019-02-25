@@ -3,11 +3,11 @@
     <div class="zizum-about-container container">
       <div class="zizum-about-box d-flex">
         <div class="zizum-about-imgbox">
-          <%if @zizuminfo.image.blank?%>
+          <% if @zizuminfo.image.blank?%>
             <%=image_tag("white-logo.PNG", class:"zizum-about-img")%>
           <%else%>
             <%=image_tag @zizuminfo.image_url, class:"zizum-about-img"%>
-          <%end%>
+          <%end %>
         </div>
         <div class="zizum-about-txtbox">
           <div class="d-flex justify-content-end zizum-about-bookmark">
@@ -28,7 +28,8 @@
 
           <div class="zizum-about-txtbox-in">
             <div class="zizum-about-title"><%= @zizuminfo.restaurant_name + " " + @zizuminfo.zizum_name%></div>
-            <div class="zizum-about-id nodisplay"><%=@zizuminfo.restaurant.id%></div>
+            <div class="zizum-about-resid nodisplay"><%=@zizuminfo.restaurant.id%></div>
+            <div class="zizum-about-zizid nodisplay"><%=@zizuminfo.id%></div>
             <div class="zizum-about-moreinfo">
               <div class="zizum-about-mi-row"><div class="zizum-about-stitle"><i class="fas fa-map-marked-alt zizum-i-adr"></i>주소</div><div class="zizum-about-spec"><%= @zizuminfo.sido + " " +@zizuminfo.sigungu + " " +@zizuminfo.sangse_juso %></div></div>
               <div class="zizum-about-mi-row"><div class="zizum-about-stitle"><i class="far fa-clock zizum-i-time"></i></i>운영시간</div><div class="zizum-about-spec">제보 부탁드립니다.</div></div>
@@ -69,7 +70,9 @@
       <div class="zizum-menu-header-title">메뉴이름</div>
       <div class="zizum-menu-header-cp">알레르기 정보(포함하는 성분, 교차성분 안내)</div>
     </div>
+    <%#= will_paginate @zizum_menus %>
     <div class="zizum-menu-box">
+
     <%@zizuminfo.restaurant.menus.each do |menu|%>
       <div class="zizum-menu-row d-flex">
         <div class="zizum-menu-title"><span><%= menu.menu_name%></span></div>
@@ -190,17 +193,18 @@
 <%#= link_to '<button type="button" class= "fill mbutton">메뉴 추가 요청</button>'.html_safe, userrequests_new_request_url(restaurantID: @zizuminfo.restaurant.id)%>
 
 <script>
-  
-  // $zizumid = $(".zizum-about-id").html();
-  // $.ajax({
-  //   async : true,
-  //   data : {id: $zizumid},
-  //   type : "GET",
-  //   url : "show",
-  //   success : function(data){
-        
-  //   }
-  // })
+  $resid = $(".zizum-about-resid").html();
+  console.log($resid);
+  $zizuminfo_id = $(".zizum-about-zizid").html();
+  $.ajax({
+      async : true,
+      data : {res_id: $resid},
+      type : "GET",
+      url : $zizuminfo_id+"/show",
+      success : function(data){
+          
+      }
+  });
 
   if('<%=user_signed_in?%>'==="true"){
       $(".zizum-bookmark").click(function(){
