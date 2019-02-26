@@ -2,6 +2,37 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.ProfileUpperBanner{
+  background-image: image-url("FakeBanner.png")
+}
+
+.ProfileEditButton {
+  color: white; 
+  float: right; 
+  margin-top: 1.2rem; 
+  margin-right: 0.5rem;
+}
+
+.ProfileEditButton:hover {
+  color: #FF5400;
+
+}
+
+.profilebanner-unbutton {
+  margin-right: 0.5rem;
+  float: right;
+  text-align: center;
+  width: 10rem;
+  height: 2.5rem;
+  background-color: #FF5400;
+  border: none;
+  color: white;
+  border-width: 0.3px;
+  font-family: 'NanumBarunGothic',serif;
+  font-size: 0.8rem;
+  line-height: 2.5rem;
+  
+}
 
 .profilebanner-button{
   //position: absolute;

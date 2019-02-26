@@ -1,5 +1,18 @@
 class FollowsController < ApplicationController
 
+    def profile_follow
+        @profile = Profile.find(params[:id])
+
+        if !@profile.followed_by?(current_user)
+            current_user.follow(@profile)
+        else
+            current_user.stop_following(@profile)
+        end 
+
+        redirect_to profile_url(@profile.id)
+    end 
+
+
     def article_destroy
         @article = Article.find(params[:id])
         @article.destroy
