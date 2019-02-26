@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   #좋아요 ajax
   get 'follows/zizumfollow' => "follows#zizumfollow"
+  get 'follows/recipefollow' => "follows#recipefollow"
  #===============메뉴별 제보 요청==============
  get 'userrequests/index'
 
