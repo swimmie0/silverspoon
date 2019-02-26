@@ -2,18 +2,24 @@
 <% comments.each do |comment| %>  
   <div class="comments-show">
     <div class="comment">
-       <%= link_to comment.user.name, profile_path(comment.user.profile.id) %> / <%= time_ago_in_words(comment.created_at) %>전 [ <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %> ] /
-      <% if current_user == comment.user %>
-        <%= link_to "지우기", comment_path(comment), method: :delete, remote: false, data: { confirm: "정말로 지우시겠습니까?" }, style: "color: red; font-weight: bold" %>
-      <% end %>  
-      <%= content_tag(:div, comment.body, style: "white-space: pre-wrap;") %>
-      
-    <% if user_signed_in? && current_user.name != nil %>
-      <div class="comment-nav" align="right">
-        <button onclick="showHide('comment_<%= comment.id %>')" onfocus="this.blur()">답글</button>
+      <div class="comment-profile form-inline"> <!--프로필-->
+        <%=image_tag("beige-logo.PNG", class:"post-profile-img")%>        
+        <%= link_to comment.user.name, profile_path(comment.user.profile.id) %> 
+        <div style="font-weight:lighter;margin-left:1rem;"> <%= time_ago_in_words(comment.created_at) %>전 [ <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %> ] </div> /
+        <% if current_user == comment.user %>
+          <%= link_to "삭제", comment_path(comment), method: :delete, remote: false, data: { confirm: "정말로 지우시겠습니까?" }, style: "color: black;" %>
+        <% end %>  
       </div>
+
+      <div class="comment-content" style="margin:0.6rem 0rem 0rem 0.4rem;">  <!--댓글내용-->
+        <%= content_tag(:div, comment.body, style: "white-space: pre-wrap;") %>
       
-      <div id="comment_<%= comment.id %>" style="display:none;"> <!--답글창-->
+      <% if user_signed_in? && current_user.name != nil %> <!--답글창-->
+      <%# <div class="comment-nav" > %>
+        <button onclick="showHide('comment_<%= comment.id %>')" onfocus="this.blur()" class="reply-btn">답글</button>
+      </div>
+
+      <div id="comment_<%= comment.id %>" style="display:none;margin:0.3rem;"> 
         <div class="reply-form">
           <%= form_for @new_comment do |f| %>
             <%= f.hidden_field :commentable_id, value: @new_comment.commentable_id %>
@@ -24,17 +30,23 @@
               <%= f.text_area :body, class: 'form-control' %>
             </div>
             <div class="field form-group">
-              <%= submit_tag "답댓글 작성", style: "float: right;" %>
+              <%= submit_tag "답댓글 작성", class:"reply-btn", style:"float:right;" %>
             </div>
-           <% end %>
-           
-         <% end %> 
+          <% end %>
         </div>
       </div>
-    </div>
-    <div style="margin-left: 20px;">
+      <%end%>  <!--//답글창-->
+      <br/> <hr style="border-top: 1px dashed rgb(201, 200, 200);width:95%;">
+    </div> <!--//comment-->
+    <%# <div style="margin-left: 20px;"> %>
+    <div>    
       <%= render partial: "comments/reply_end", locals: {comments: comment.children} %>
     </div>
+
   </div>
-  <hr/>
+<hr>
+  
 <% end %>
+
+ 
+  

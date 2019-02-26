@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<div class="result-contents rtnt">
+<div class="result-contents rtnt2">
 <div class=" container" >
 <p> <strong><%=params[:sido]%>/<%=params[:sigungu]%>의 <%=params[:restaurant_name]%></strong> 로 검색 결과
    : <strong><%=@zizums.length%>개의 식당</strong>을 찾았습니다.</p> <br>
@@ -145,7 +145,7 @@
     
    //ajax 좋아요 구현
     if('<%=user_signed_in?%>'==="true"){
-        $(".like-icon").click(function(){
+        $(".zizum").click(function(){
             $zizumid = $(this).siblings("div.zizum-id-like").html();
             $likeicon = $(this);
             $.ajax({
