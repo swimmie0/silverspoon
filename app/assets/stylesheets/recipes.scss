@@ -2,20 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+
+
 .recipe-index-upper{
     font-family: 'NanumBarunGothic',serif;
     display: flex;
     justify-content: center;
     width: 100%;
-}
-
-.recipe-index-upper-box{
-    width: 1320px;
     background-color:#F8F8F8;
 }
 
+
+
 .recipe-index-upper-container{
-    padding: 4rem 2rem;
+    padding: 5rem 2rem;
 }
 
 .recipe-index-search-area{
@@ -97,15 +98,7 @@
     border-width: 1px;
 }
 
-.recipe-index-search-tag:hover{
-    text-decoration-line: underline;
-    text-decoration-color: #1E285D;
 
-    -moz-transition: all .2s ease-in;
-    -o-transition: all .2s ease-in;
-    -webkit-transition: all .2s ease-in;
-    transition: all .2s ease-in;
-}
 
 
 //=================index search 끝========
@@ -119,7 +112,6 @@
 }
 
 .recipe-index-main-count{
-    margin-left: 0.5rem;
     font-size: 1rem;
     font-weight: 500;
 }
@@ -128,46 +120,119 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+
+}
+
+
+.recipe-index-outbox{
+    padding: 0.7rem 0.7rem;
 }
 
 
 .recipe-index-box{
-    margin: 0.7rem 0.5rem;
+    width: 100%;
+    height: 100%;
     border-color: rgb(226, 226, 226);
     border-width:  1px;
     border-style: solid;
-    width: 22rem;
-    height: 25rem;
+    //width: 18rem;
+    height: 24rem;
+}
+
+
+.recipe-index-box:hover{
+   border-color: #FF5400;
+   -moz-transition: all .3s ease-in;
+   -o-transition: all .3s ease-in;
+   -webkit-transition: all .3s ease-in;
+   transition: all .3s ease-in;
 }
 
 .recipe-index-imgbox{
+    width: 100%;
     height: 70%;
     border-bottom-style: solid;
     border-color: rgb(226, 226, 226);
     border-width:  0.5px;
+
+    // position: relative;
+    // overflow: hidden;
 }
+
+
+// .recipe-index-imgbox * {
+//     -webkit-box-sizing: border-box;
+//     box-sizing: border-box;
+//     -webkit-transition: all 0.2s ease-in-out;
+//     transition: all 0.2s ease-in-out;
+// }
+  
+// .recipe-index-imgbox img {
+//     max-width: 100%;
+//     position: relative;
+//     opacity: 0.9;
+// }
+
+// .recipe-index-imgbox:hover img,
+// .recipe-index-imgbox.hover img {
+//     -webkit-filter: grayscale(20%); /* Safari 6.0 - 9.0 */
+//     filter: grayscale(20%);
+//     opacity: 0.35;
+//     -webkit-transform: scale(1.1);
+//     transform: scale(1.1);
+// }
+
+
+
 
 .recipe-index-img{
     width: 100%;
     height: 100%;
 }
 
+.recipe-index-bookmark-area{
+    height: 1%;
+}
+
+.recipe-index-bookmark, .recipe-index-nobookmark{
+    margin-right: 0.7rem;
+}
+
+.recipe-index-bookmark{
+    cursor: pointer;
+    color: #FF5400;
+    font-size: 1.8rem;
+    font-weight: 200;
+}
+
+.recipe-index-id-bookmark{
+    display: none;
+}
+
 .recipe-index-textbox{
-   padding: 0.8rem;
+    height: 30%;
+    width: 100%;
+    padding: 0.6rem 1rem;
 }
 
 .recipe-index-title{
+
     font-size: 1.2rem;
     font-weight: bold;
-
+    margin-bottom: 0.8rem;
 }
 
+
+
 .recipe-index-text{
+}
+
+.recipe-index-text-allergy{
+    font-size: 0.9rem;
+}
+
+.recipe-index-text-2, .recipe-index-user{
     font-size: 0.8rem;
-    font-weight: 400;
     color: rgb(165, 164, 164); 
 }
 
