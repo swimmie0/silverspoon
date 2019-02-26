@@ -2,12 +2,12 @@
   <%= form_for @new_comment do |f| %>  
     <%= f.hidden_field :commentable_id, value: @new_comment.commentable_id %>
     <%= f.hidden_field :commentable_type, value: @new_comment.commentable_type %>
-    <div class="field form-group">
-      <%= f.text_area :body, class: 'form-control' %>
-    </div>
+    <div class="field form-group form-inline">
+      <%= f.text_area :body, class: 'comment form-control',placeholder:"주제와 무관한 댓글, 악플은 삭제될 수 있습니다." %>
+    <%# </div>
     
-    <div class="field form-group">
-      <%= submit_tag "댓글 작성", style: "float: right" %><br/>
+    <div class="field form-group"> %>
+      <%= submit_tag "등록", class:"comment-btn" %><br/>
     </div>
   <% end %>
 

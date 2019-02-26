@@ -1,18 +1,25 @@
+
 <% comments.each do |comment| %>  
-    <div class="comments-show">
-        <div class="comment">
-             <%= link_to comment.user.name, profile_path(comment.user.profile.id) %> / <%= time_ago_in_words(comment.created_at) %>전 [ <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %> ] /
-            <% if current_user == comment.user %>
-              <%= link_to "지우기", comment_path(comment), method: :delete, remote: false, data: { confirm: "정말로 지우시겠습니까?" }, style: "color: red; font-weight: bold" %> 
-            <% end %>  
-            <br> <b>@<%= comment.parent.user.name %></b>  <%= content_tag(:div, comment.body, style: "white-space: pre-wrap;") %>
-        </div>
-        <div class="comment-nav" align="right">
-            <button onclick="showHide('comment_<%= comment.id %>')" onfocus="this.blur()">답글</button>
-        </div>
-        <div id="comment_<%= comment.id %>" style="display:none;">
+  <div class="comments-show">
+    <div class="comment">
+      <div class="comment-profile form-inline"> <!--프로필-->
+        <i class="fas fa-level-up-alt"></i>        
+        <%=image_tag("beige-logo.PNG", class:"comment-profile-img")%>        
+        <%= link_to comment.user.name, profile_path(comment.user.profile.id) %> 
+        <div style="font-weight:lighter;margin-left:1rem;"> <%= time_ago_in_words(comment.created_at) %>전 [ <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %> ] </div> /
+        <% if current_user == comment.user %>
+          <%= link_to "삭제", comment_path(comment), method: :delete, remote: false, data: { confirm: "정말로 지우시겠습니까?" }, style: "color: black;" %>
+        <% end %>  
+      </div>
+
+      <div class="comment-content form-inline" style="margin:0rem 0rem 1.6rem 2.5rem;">  <!--답글내용-->
+        <b>@<%= comment.parent.user.name %></b><%= content_tag(:div, comment.body, style: "white-space: pre-wrap;margin-left:0.8rem;") %>
+      <% if user_signed_in? && current_user.name != nil %> <!--답글창-->
+        <button onclick="showHide('comment_<%= comment.id %>')" onfocus="this.blur()" class="reply-end-btn">답글</button>
+      </div>
+    
+      <div id="comment_<%= comment.id %>" style="display:none;margin:0.3rem;"> 
         <div class="reply-form">
-         <% if user_signed_in? %>
           <%= form_for @new_comment do |f| %>
             <%= f.hidden_field :commentable_id, value: @new_comment.commentable_id %>
             <%= f.hidden_field :commentable_type, value: @new_comment.commentable_type %>
@@ -22,14 +29,17 @@
               <%= f.text_area :body, class: 'form-control' %>
             </div>
             <div class="field form-group">
-              <%= submit_tag "답댓글 작성", style: "float: right;" %>
+              <%= submit_tag "답댓글 작성", class:"reply-btn", style:"float:right;" %>
             </div>
           <% end %>
-         <% end %> 
         </div>
       </div>
-      <div style= "margin-left:20px;">
-        <%= render partial: "comments/reply_end", locals: {comments: comment.children} %>
-      </div>
+      <%end%>  <!--//답글창-->
+    </div> <!--//comment-->
+    <div>
+      <%= render partial: "comments/reply_end", locals: {comments: comment.children} %>
     </div>
+
+  </div>
 <% end %>
+

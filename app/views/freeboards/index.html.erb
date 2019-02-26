@@ -1,125 +1,160 @@
-<h1>Freeboards</h1>
+<div class="post-contents container">
+  <nav class="nav">  <!--나중에수정하기-->
+    <% if params[:category] == nil %>
+      <a class="nav-link all selected" href="/freeboards" target="_self">전체</a ><% else %>  
+      <a class="nav-link all" href="/freeboards" target="_self">전체</a><% end %>  
+    <% if params[:category] == "일상글" %>
+      <a class="nav-link single selected" id="showSingle" target="d">일상글</a><% else %>  
+      <a class="nav-link single" id="showSingle" target="d">일상글</a><% end %>
+    <% if params[:category] == "정보글" %>
+      <a class="nav-link single selected" id="showSingle" target="i">정보글</a><% else %>  
+      <a class="nav-link single" id="showSingle" target="i">정보글</a><% end %> 
+    <% if params[:category] == "질문글" %>
+      <a class="nav-link single selected" id="showSingle" target="q">질문글</a><% else %>  
+      <a class="nav-link single" id="showSingle" target="q">질문글</a><% end %> 
+    <% if params[:category] == "홍보글" %>
+      <a class="nav-link single selected" id="showSingle" target="a">홍보글</a><% else %>  
+      <a class="nav-link single" id="showSingle" target="a">홍보글</a><% end %> 
+    <% if params[:category] == "제보글" %>
+      <a class="nav-link single selected" id="showSingle" target="c">제보글</a><% else %>  
+      <a class="nav-link single" id="showSingle" target="c">제보글</a><% end %>
+  </nav>             
+</div>
 
-<table>
-  <thead>
-    <tr class= "postall postd posti postq posta postc postr">
-      <th>Category 
-      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">▼</button>
-      <div class="dropdown-menu">
-      <%# <a class="dropdown-item" id="all">전체</a>       %>
-      <a class="dropdown-item" id="showSingle" target="d">일상글</a>
-      <a class="dropdown-item" id="showSingle" target="i">정보글</a>
-      <a class="dropdown-item" id="showSingle" target="q">질문글</a>
-      <a class="dropdown-item" id="showSingle" target="a">홍보글</a>      
-      <a class="dropdown-item" id="showSingle" target="c">제보글</a>
-      <a class="dropdown-item" id="showSingle" target="r">레시피</a></div>                
-   </th>
-      <th>Title</th>
-      <th>Name</th>
-      <th>댓글</th>
-      <th>조회수</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class ="contents">
+    <div class="post-num">
+      '전체' 총 <%=Freeboard.all.count%>건
+    </div>
+  <div class="post-table">    
+    <table class="table table-hover">
+      <thead>
+        <tr class= "postall postd posti postq posta postc">
+          <%# <th>Category</th> %>
+          <th style="width:8%;">댓글</th>          
+          <th style="width:60%;" class="title">제목</th>
+          <th>작성자</th>
+          <th style="width:10%;">작성일</th>
+          <th style="width:6%;">조회수</th>      
+        </tr>
+      </thead>
 
-  <tbody>
+      <tbody>
+    </div>
+        <% @freeboards.each do |freeboard| %>
+          <tr class = "postall" >
+            <td> <%= freeboard.comment_threads.count %></td>
+            <%# <td><%= freeboard.category %>
+            <td  class="title"><%= link_to freeboard.title, freeboard, {:class => "linkto"} %></td>
+            <td><%= freeboard.name %><% if freeboard.locked %>LOCKED<% end %></td>
+            <td><%= freeboard.time(freeboard)%></td>                
+            <td> <%= freeboard.impressionist_count(:filter=>:session_hash) %></td>
+          </tr>
+        <% end %>
 
-    <% @freeboards.each do |freeboard| %>
-      <tr class = "postall" >
-        <td><%= freeboard.category %></td> 
-        <td><%= link_to freeboard.title, freeboard %></td>
-        <td><%= freeboard.name %></td>
-        <td> <%= freeboard.comment_threads.count %></td>
-        <td> <%= freeboard.impressionist_count(:filter=>:session_hash) %></td>
-        <td><% if freeboard.locked %>LOCKED<% end %></td>
-      </tr>
-    <% end %>
+        <% @free_daily.each do |d| %>
+          <tr class="postd" style= "display:none">
+            <td> <%= d.comment_threads.count %></td>
+            <%# <td><%= d.category %>
+            <td   class="title"><%= link_to d.title, d, {:class => "linkto"} %></td>
+            <td><%= d.name %></td>
+            <td><%= d.time(d)%></td>                
+            <td> <%= d.impressionist_count(:filter=>:session_hash) %></td>            
+          </tr>
+        <% end %>   
+      
+        <% @free_information.each do |i| %>
+        <tr class="posti" style= "display:none">
+          <td> <%= i.comment_threads.count %></td>
+          <%# <td><%= i.category %>
+          <td   class="title"><%= link_to i.title, i, {:class => "linkto"} %></td>
+          <td><%= i.name %></td>
+          <td><%= i.time(i)%></td>                                                
+          <td> <%= i.impressionist_count(:filter=>:session_hash) %></td>
+        </tr>
+        <% end %>
 
-    <% @free_daily.each do |d| %>
-      <tr class="postd" style= "display:none">
-        <td><%= d.category %></td> 
-        <td><%= link_to d.title, d %></td>
-        <td><%= d.name %></td>
-        <td> <%= d.comment_threads.count %></td>
-      </tr>
-    <% end %>   
-  
-    <% @free_information.each do |i| %>
-     <tr class="posti" style= "display:none">
-      <td><%= i.category %></td> 
-      <td><%= link_to i.title, i %></td>
-      <td><%= i.name %></td>
-      <td> <%= i.comment_threads.count %></td>
-     </tr>
-    <% end %>
+        <% @free_qna.each do |q| %>
+          <tr class="postq" style= "display:none">
+          <td> <%= q.comment_threads.count %></td>
+            <%# <td><%= q.category %>
+            <td   class="title"><%= link_to q.title, q, {:class => "linkto"} %></td>
+            <td><%= q.name %></td>
+            <td><%= q.time(q)%></td>                                         
+          <td> <%= q.impressionist_count(:filter=>:session_hash) %></td>              
+          </tr>
+        <% end %>
+        
+        <% @free_adv.each do |a| %>
+          <tr class="posta" style= "display:none">
+            <td> <%= a.comment_threads.count %></td>
+            <%# <td><%= a.category %>
+            <td   class="title"><%= link_to a.title, a, {:class => "linkto"} %></td>
+            <td><%= a.name %></td>
+          <td><%= a.time(a) %></td>                         
+          <td> <%= a.impressionist_count(:filter=>:session_hash) %></td>          
+          </tr>
+        <% end %>
 
-    <% @free_qna.each do |q| %>
-      <tr class="postq" style= "display:none">
-        <td><%= q.category %></td> 
-        <td><%= link_to q.title, q %></td>
-        <td><%= q.name %></td>
-        <td> <%= q.comment_threads.count %></td>        
-      </tr>
-    <% end %>
-    
-    <% @free_adv.each do |a| %>
-      <tr class="posta" style= "display:none">
-        <td><%= a.category %></td> 
-        <td><%= link_to a.title, a %></td>
-        <td><%= a.name %></td>
-        <td> <%= a.comment_threads.count %></td>        
-      </tr>
-    <% end %>
+        <% @free_crowd.each do |c| %>
+          <tr class="postc" style= "display:none">
+            <td> <%= c.comment_threads.count %></td>
+            <%# <td><%= c.category %>
+            <td   class="title"><%= link_to c.title, c, {:class => "linkto"} %></td>
+            <td><%= c.name %></td>
+            <td><%= c.time(c)%></td>                                            
+          <td> <%= c.impressionist_count(:filter=>:session_hash) %></td>        
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
 
-    <% @free_crowd.each do |c| %>
-      <tr class="postc" style= "display:none">
-        <td><%= c.category %></td> 
-        <td><%= link_to c.title, c %></td>
-        <td><%= c.name %></td>
-        <td> <%= c.comment_threads.count %></td>   
-        <td><% if c.locked %>LOCKED<% end %></td>
-      </tr>
-    <% end %>
-
-    <% @recipe.each do |r| %>
-      <tr class="postr" style= "display:none">
-        <td>레시피</td> 
-        <td><%= link_to r.title, r %></td>
-        <td><%= r.name %></td>
-        <td> <%= r.comment_threads.count %></td>   
-        <td><% if r.locked %>LOCKED<% end %></td>
-      </tr>
-    <% end %>
-
-  </tbody>
-</table>
-
-<br>
-<% if user_signed_in? %>
-  <%= link_to 'New Freeboard', new_freeboard_path %>
-  <%= link_to 'New Recipe', new_recipe_path %>  
-<% end %>
-
-  <div>
-    <%= form_tag(freeboards_path, :method => "get") do %>
-      <%= text_field_tag :search, params[:search]%>
-      <%= submit_tag "검색" %>
-    <% end %> 
+<div class="postpost-btn container"> 
+  <div class="post-btn">
+   <% if user_signed_in? %><%= link_to '새 글 작성', new_freeboard_path, {:class => "new-linkto"} %> <% end %>
   </div>
-<%# 지원 임시로 넣어둔 recipe link %>
-<br>
-<%= link_to 'Recipe Board', recipes_path%>
+</div>
+
+<div class="post-table">
+  <div class="post-search form-inline">
+    <%= form_tag(freeboards_path, :method => "get") do %>
+      <%= text_field_tag :search, params[:search], class: 'search form-control', placeholder:'검색어 입력'%>
+      <span class="input-group-btn">
+        <button class="btn btn-search" type="button"><i class="fa fa-search fa-fw"></i>검색</button>
+      </span>
+      <%# <%= submit_tag "검색", class: 'btn btn-outline-primary my-2 my-sm-0' %> 
+    <% end %> 
+  </div>  
+
+  <div class = "p_window">   
+    <%= paginate @freeboards%>
+  </div>
+</div> <!--second. post table-->
+
+</div> <!--contents-->
 
 <script>
+// $("#showSingle").click(function() {
+//   $("#showSingle").toggleClass('nav-clicked');
+// });
+
+$('.nav-link').on('click', function(){
+    $('.nav-link').removeClass('selected');
+    $(this).addClass('selected');
+})
+
 $(function(){
-  $('#all').click(function(){
-    $('.postall').show();
-  });
-  $('.dropdown-item').click(function(){
+  // $('.all').click(function(){
+  //   $('.postall').show();
+  //   $('tr').not('tr.post'+$(this).attr('target')).hide();          
+  // });
+  $('.single').click(function(){
     $('.postall').hide();
     $('tr').not('tr.post'+$(this).attr('target')).hide();      
     $('.post'+$(this).attr('target')).show();
   });
 });
 
+// if params[:category] != nil 
+//   $(this).attr('target == category').addClass('selected');
  </script>

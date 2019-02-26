@@ -4,16 +4,26 @@
 
 
 //--- 2. index 검색전
-.index-contents, .result-contents{
+.index-contents{
     margin-top: 6rem;
     margin-bottom: 6rem;
     width: 100%;
 }
+.result-contents{
+    margin-top: 1rem;
+    margin-bottom: 6rem;
+    width: 100%;
+}
 .rtnt{
-    padding: 6% 7% 6%;
+    padding: 3% 7% 6%;
     background-color:#F8F8F8;
 }
 
+.rtnt2{
+    margin-top:3%;
+    padding:3% 7% 6%;
+    background-color:#F8F8F8;
+}
 .index2-contents{
     margin-top: 8rem;
     margin-bottom: 6rem;    

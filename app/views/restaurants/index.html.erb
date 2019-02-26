@@ -15,7 +15,7 @@
 
 
 
-<!--- 3. index-식당으로 검색 -->
+<!--- 3. index-식당으로 검색  // 이용방법 안내로 통일하기로
 <div class="index2-contents container" style="display:none;">
 <p> 총 <%=Zizuminfo.count%> 건 </p>
     <div class="index-rtnt-box d-flex justify-content-center">
@@ -24,10 +24,8 @@
                 <div class="today-rtnt-imgbox"><%=link_to image_tag("beige-logo.PNG",class:"today-rtnt-img"),zizum%></div>
                 <%if user_signed_in?%>
                         <% if zizum.followed_by?(current_user) %>
-                            <!-- 좋아요를 했다면 -->
                             <i class="fas fa-bookmark zizum"></i>
                             <div class="zizum-id-like"><%=zizum.id%></div>
-                            <!-- 좋아요를 안 했다면 -->
                         <% else %>
                             <i class="far fa-bookmark zizum"></i>
                             <div class="zizum-id-like"><%=zizum.id%></div>
@@ -49,10 +47,8 @@
                 <div class="today-rtnt-imgbox"><%=link_to image_tag("beige-logo.PNG",class:"today-rtnt-img"),zizum%></div>
                  <%if user_signed_in?%>
                         <% if zizum.followed_by?(current_user) %>
-                            <!-- 좋아요를 했다면 -->
                             <i class="fas fa-bookmark zizum"></i>
                             <div class="zizum-id-like"><%=zizum.id%></div>
-                            <!-- 좋아요를 안 했다면 -->
                         <% else %>
                             <i class="far fa-bookmark zizum"></i>
                             <div class="zizum-id-like"><%=zizum.id%></div>
@@ -74,10 +70,8 @@
                 <div class="today-rtnt-imgbox"><%=link_to image_tag("beige-logo.PNG",class:"today-rtnt-img"),zizum%></div>
                  <%if user_signed_in?%>
                         <% if zizum.followed_by?(current_user) %>
-                            <!-- 좋아요를 했다면 -->
                             <i class="fas fa-bookmark zizum"></i>
                             <div class="zizum-id-like"><%=zizum.id%></div>
-                            <!-- 좋아요를 안 했다면 -->
                         <% else %>
                             <i class="far fa-bookmark zizum"></i>
                             <div class="zizum-id-like"><%=zizum.id%></div>
@@ -94,7 +88,7 @@
         <%end%>
     </div>
 </div>
-
+-->
 
 <script>
     //메뉴 show
@@ -116,7 +110,6 @@
             $(".restaurant-search").addClass("nodisplay");
             $(".allergy-search").removeClass("nodisplay");
             $(".index-contents").css("display","block");
-            $(".index2-contents").css("display","none");
         
     });
 
@@ -132,8 +125,7 @@
 
             $(".restaurant-search").removeClass("nodisplay");
             $(".allergy-search").addClass("nodisplay");
-            $(".index-contents").css("display","none");
-            $(".index2-contents").css("display","block");
+            $(".index-contents").css("display","block");
         
     });
 

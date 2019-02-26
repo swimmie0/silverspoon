@@ -9,17 +9,24 @@ class FreeboardsController < ApplicationController
     #   flash[:warning] ='닉네임을 설정해주세요'
     #   redirect_to edit_user_registration_path
     # end
-    @free_daily = Freeboard.where(category: "일상글")
-    @free_information = Freeboard.where(category: "정보글")
-    @free_qna = Freeboard.where(category: "질문글")
-    @free_adv = Freeboard.where(category: "홍보글")      
-    @free_crowd = Freeboard.where(category: "제보글")  
+    # @free_daily = Freeboard.where(category: "일상글").order("created_at DESC")
+    @free_daily=Kaminari.paginate_array(Freeboard.where(category: "일상글").order("created_at DESC")).page(params[:page]).per(12)
+    @free_information=Kaminari.paginate_array(Freeboard.where(category: "정보글").order("created_at DESC")).page(params[:page]).per(12)
+    @free_qna=Kaminari.paginate_array(Freeboard.where(category: "질문글").order("created_at DESC")).page(params[:page]).per(12)
+    @free_adv=Kaminari.paginate_array(Freeboard.where(category: "홍보글").order("created_at DESC")).page(params[:page]).per(12)
+    @free_crowd=Kaminari.paginate_array(Freeboard.where(category: "제보글").order("created_at DESC")).page(params[:page]).per(12)
+  
     @recipe = Recipe.all
     
     @freeboards = if params[:search]
-      @freeboards = Freeboard.search(params[:search]).order("created_at DESC") + Recipe.search(params[:search]).order("created_at DESC")
-    else
-      @freeboards = Freeboard.all.order("created_at DESC") + Recipe.all.order("created_at DESC")
+      @result = Freeboard.search(params[:search]).order("created_at DESC") + Recipe.search(params[:search]).order("created_at DESC")
+      @freeboards = Kaminari.paginate_array(@result).page(params[:page]).per(12)
+    elsif params[:category]
+      @result = Freeboard.search(params[:category]).order("created_at DESC")
+      @freeboards = Kaminari.paginate_array(@result).page(params[:page]).per(12)
+    else  
+      @result = Freeboard.all.order("created_at DESC") + Recipe.all.order("created_at DESC")
+      @freeboards = Kaminari.paginate_array(@result).page(params[:page]).per(12)      
     end
   end
 

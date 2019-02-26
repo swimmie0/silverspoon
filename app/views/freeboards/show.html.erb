@@ -1,32 +1,82 @@
-<p>
-  <strong>Title:</strong>
-  <%= @freeboard.title %>
-  <%= @freeboard.impressionist_count(:filter=>:session_hash) %>
-</p>
+<div class="post-contents container">
+  <nav class="nav"> <!--나중에수정하기-->
+    <a class="nav-link all" href="/freeboards" target="_self" >전체</a >  
+      <%= form_tag(freeboards_path, :method => "get") do %>
+      <%= text_field_tag :category, params[:category], value:"일상글", style:"display:none;"%>
+          <% if @freeboard.category == "일상글" %><%=submit_tag "일상글", class:"nav-link selected"%>
+          <% else%><%=submit_tag "일상글", class:"nav-link"%><% end %> 
+      <% end %> 
+      <%= form_tag(freeboards_path, :method => "get") do %>
+      <%= text_field_tag :category, params[:category], value:"정보글", style:"display:none;"%>
+          <% if @freeboard.category == "정보글" %><%=submit_tag "정보글", class:"nav-link selected"%>
+          <% else%><%=submit_tag "정보글", class:"nav-link"%><% end %> 
+      <% end %> 
+      <%= form_tag(freeboards_path, :method => "get") do %>
+      <%= text_field_tag :category, params[:category], value:"질문글", style:"display:none;"%>
+          <% if @freeboard.category == "질문글" %><%=submit_tag "질문글", class:"nav-link selected"%>
+          <% else%><%=submit_tag "질문글", class:"nav-link"%><% end %> 
+      <% end %> 
+      <%= form_tag(freeboards_path, :method => "get") do %>
+      <%= text_field_tag :category, params[:category], value:"홍보글", style:"display:none;"%>
+          <% if @freeboard.category == "홍보글" %><%=submit_tag "홍보글", class:"nav-link selected"%>
+          <% else%><%=submit_tag "홍보글", class:"nav-link"%><% end %> 
+      <% end %>       
+      <%= form_tag(freeboards_path, :method => "get") do %>
+      <%= text_field_tag :category, params[:category], value:"제보글", style:"display:none;"%>
+          <% if @freeboard.category == "제보글" %><%=submit_tag "제보글", class:"nav-link selected"%>
+          <% else%><%=submit_tag "일상글", class:"nav-link"%><% end %> 
+      <% end %> 
+  </nav>             
+</div>
 
-<p>
-  <strong>Content:</strong>
-  <%= @freeboard.content %>
-</p>
+<div class ="contents">
+  <div class="back container"><%= link_to '뒤로가기', freeboards_path, class:"post-linkto"%></div>
+  <div class="container">
+    <div class="post-view">
+        <p style="color:#FF5400;"><%= @freeboard.category%></p>
+        <h5 class="post-title"> <%= @freeboard.title %></h5>
+        <div class="form-inline">
+         <%=image_tag("beige-logo.PNG", class:"post-profile-img")%>        
+         <div><%= @freeboard.name %></div> 
+         <div style="font-weight:lighter;margin-left:2rem;"><%= @freeboard.created_at.strftime("%Y-%m-%d") %> </div>
+         <div style="margin-left:auto;"> 조회수: <%= @freeboard.impressionist_count(:filter=>:session_hash) %></div>
+        </div>  
+         <%# <%= link_to @freeboard.name,  profile_path(@writer.profile.id) %>       
 
-<p>
-  <strong>Content:</strong>
-  <%= @freeboard.content %>
-</p>
+      <hr/>
+      <p>
+        <%= @freeboard.content %>
+                <% if current_user == @freeboard.user%>
+          <%= link_to 'Edit', edit_freeboard_path(@freeboard) %>
+        <%end%>
+      </p>
+    </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @freeboard.name %>
-  <%= link_to @freeboard.name,  profile_path(@writer.profile.id) %>
-</p>
+    <p> 댓글 <%=@freeboard.comment_threads.count%>개</p>    
+    <%= render partial: "comments/form", locals: {new_comment: @new_comment} %>
+    <div class="comment-view">
+      <%= render partial: "comments/template", locals: {commentable: @freeboard, new_comment: @comment} %>
+    </div>
+        <%# template은 댓글틀 / reply는 댓글list, 안에 답글reply_end , 안에 form이 댓글작성box %>
+                <%# / 질문글은 answer이 댓글리스트(추천수기능) %> 
+  </div>                
+</div>                
 
+<script>
+$('.nav-link').on('click', function(){
+    $('.nav-link').removeClass('selected');
+    $(this).addClass('selected');
+})
 
-<% if current_user == @freeboard.user%>
-  <%= link_to 'Edit', edit_freeboard_path(@freeboard) %> |
-  <%= link_to 'Back', freeboards_path %>
-<%end%>
-
-  <%= render partial: "comments/template", locals: {commentable: @freeboard, new_comment: @comment} %>
-
-<%# template은 댓글틀 / reply는 댓글list, 안에 답글reply_end , 안에 form이 댓글작성box %>
-                <%# / 질문글은 answer이 댓글리스트(추천수기능) %>
+$(function(){
+  $('.all').click(function(){
+    $('.postall').show();
+    $('tr').not('tr.post'+$(this).attr('target')).hide();          
+  });
+  $('.single').click(function(){
+    $('.postall').hide();
+    $('tr').not('tr.post'+$(this).attr('target')).hide();      
+    $('.post'+$(this).attr('target')).show();
+  });
+});
+</script>
