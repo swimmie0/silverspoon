@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   resources :recipes
   resources :conversations do
     resources :messages
-  end 
+  end
+
+  #PROFILE------FOLLOW/UNFOLLOW
+  get 'profiles/:id/follow' => 'follows#profile_follow', as: 'profile_follow'
   
   ##SEARCH------resources :zizuminfos 보다 위에
   get 'zizuminfos/search/' => "zizuminfos#search"
