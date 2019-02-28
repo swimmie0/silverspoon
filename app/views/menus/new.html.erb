@@ -1,5 +1,14 @@
-<h1>New Menu</h1>
+<%if user_signed_in? && current_user.admin?%>
+      
+    <h1>New Menu</h1>
 
-<%= render 'form', menu: @menu %>
+    <%= render 'form', menu: @menu %>
 
-<%= link_to 'Back', menus_path %>
+    <%= link_to 'Back', menus_path %>
+
+
+<%else%>
+    <div class="admin-index-inner container">
+        접근 권한이 없습니다.
+    </div>
+<%end%>

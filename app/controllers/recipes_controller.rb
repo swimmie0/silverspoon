@@ -5,10 +5,25 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = Recipe.all
+
     @recipe_key = params[:recipe_word]
     @allergy_tags=["난류", "우유", "복숭아", "토마토", "메밀", "밀", "대두(콩)", "닭고기", "쇠고기", "돼지고기", "새우", "고등어", "홍합", "전복", "굴", "조개류", "게", "오징어", "호두", "땅콩", "아황산류"]
-    
+    @recipes ||= []
+
+    if params[:recipe_word]
+      key_del = @recipe_key.delete"#"
+      @recipe_keys = key_del.split(' ')
+      
+      @recipe_keys.each do |key|
+        result = Recipe.where("#{:allergyfor} like ? OR #{:title} like ? OR #{:explain} like ?", "%#{key}%",  "%#{key}%",  "%#{key}%")
+        puts "&&&&&&&&&&&&&&&"
+        
+        @recipes << result
+      end
+    else
+      @recipes = Recipe.all.order("created_at DESC")
+    end
+
     # @recipes = if params[:recipe_word]
     #   @recipes = Recipe.search(params[:recipe_word]).order("created_at DESC")
     # else
@@ -19,8 +34,7 @@ class RecipesController < ApplicationController
     #   @recipe_key.gsub("#","")
     # end
     puts "^^^^^^^^^^^^^^^^^^"
-    puts @recipe_key
-  
+    puts @recipes
   end
 
   # GET /recipes/1

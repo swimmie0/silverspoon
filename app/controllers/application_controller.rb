@@ -5,7 +5,11 @@ class ApplicationController < ActionController::Base
     # protect_from_forgery with: :exception
     protect_from_forgery prepend: true
     protected
-   
+
+    def authorize_admin
+      redirect_to root_path, alert: 'Access Denied' unless current_user.admin?
+    end
+    
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :gender, :email, :IDe, :password,:profileimg, :ages, :isExpert, :allergy_etc, allergy:[] ] )
       devise_parameter_sanitizer.permit(:account_update, keys: [:name, :gender, :email, :IDe, :password,:profileimg, :ages, :isExpert, :allergy_etc, allergy:[] ])
