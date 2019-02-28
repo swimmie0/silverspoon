@@ -24,8 +24,8 @@
   <div class="recipe-index-body row">
     <% @recipes.each do |recipe|%>
       <div class="recipe-index-outbox col-4">
-        <%=link_to recipe do%>
-          <div class="recipe-index-box">
+        <div class="recipe-index-box">
+          <%=link_to recipe do%>
             <div class="recipe-index-imgbox">
               <% if recipe.recipeimage0.blank?%>
                 <%=image_tag("beige-logo.PNG",class:"recipe-index-img")%>
@@ -33,39 +33,41 @@
                 <%=image_tag recipe.recipeimage0.url, class:"recipe-index-img"%>
               <%end %>
             </div>
-            <div class="d-flex justify-content-end recipe-index-bookmark-area">
-              <%if user_signed_in?%>
-                  <% if recipe.followed_by?(current_user) %>
-                      <!-- 좋아요를 했다면 -->
-                      <i class="fas fa-bookmark recipe-index-bookmark"></i>
-                      <div class="recipe-index-id-bookmark"><%= recipe.id%></div>
-                  <% else %>
-                      <!-- 좋아요를 안 했다면 -->
-                      <i class="far fa-bookmark recipe-index-bookmark recipe-index-nobookmark"></i>
-                      <div class="recipe-index-id-bookmark"><%= recipe.id%></div>
-                  <% end %>
-              <%else%>
-              <i class="far fa-bookmark recipe-index-bookmark recipe-index-nobookmark" data-toggle="modal" data-target="#loginModal"></i>
-              <%end%>
-            </div>
+          <%end%>
+          <div class="d-flex justify-content-end recipe-index-bookmark-area">
+            <%if user_signed_in?%>
+                <% if recipe.followed_by?(current_user) %>
+                    <!-- 좋아요를 했다면 -->
+                    <i class="fas fa-bookmark recipe-index-bookmark"></i>
+                    <div class="recipe-index-id-bookmark"><%= recipe.id%></div>
+                <% else %>
+                    <!-- 좋아요를 안 했다면 -->
+                    <i class="far fa-bookmark recipe-index-bookmark recipe-index-nobookmark"></i>
+                    <div class="recipe-index-id-bookmark"><%= recipe.id%></div>
+                <% end %>
+            <%else%>
+            <i class="far fa-bookmark recipe-index-bookmark recipe-index-nobookmark" data-toggle="modal" data-target="#loginModal"></i>
+            <%end%>
+          </div>
 
-            <div class="recipe-index-textbox">
+          <div class="recipe-index-textbox">
+              <%=link_to recipe do%>
                 <div class="recipe-index-title"><%=recipe.title%></div>
-                <div class="recipe-index-text">
-                  <div class="recipe-index-text-allergy"><%=recipe.allergyfor%></div>
-                  
-                  <div class="d-flex justify-content-between">
-                    <div class="recipe-index-text-2">알레르기 보유자를 위한 <%=recipe.title%></div>
-                    <div class="recipe-index-user">
-                    by <%=recipe.name%>
-                    </div>
+              <%end%>
+              <div class="recipe-index-text">
+                <div class="recipe-index-text-allergy"><%=recipe.allergyfor%></div>
+                
+                <div class="d-flex justify-content-between">
+                  <div class="recipe-index-text-2">알레르기 보유자를 위한 <%=recipe.title%></div>
+                  <div class="recipe-index-user">
+                  by <%=recipe.name%>
                   </div>
                 </div>
-                
-            </div>
+              </div>
+              
           </div>
         </div>
-      <%end%>
+      </div>
     <%end%>
   </div>
 </div>
@@ -97,7 +99,11 @@
         <%= render 'layouts/loginModal'%>
 <%end%>
 
-<%= link_to 'New Recipe', new_recipe_path %>
+<%if user_signed_in?%>
+    <%= link_to 'New Recipe', new_recipe_path%>
+<%else%>
+    <span data-toggle="modal" data-target="#loginModal">New Recipe</span>
+<%end%>
 
 <script>
 

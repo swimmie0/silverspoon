@@ -1,0 +1,17 @@
+<div class="admin-body">
+    <%if user_signed_in? && current_user.admin?%>
+       <%=render partial: 'admincontrol/category'%>
+
+        
+
+    <%else%>
+        <div class="admin-index-inner container">
+            접근 권한이 없습니다.
+        </div>
+    <%end%>
+</div>
+
+<script>
+    $(".admin-index-zizum-ct").addClass("admin-index-activebtn")
+    $(".admin-index-category").not(".admin-index-zizum-ct").removeClass("admin-index-activebtn")
+</script>

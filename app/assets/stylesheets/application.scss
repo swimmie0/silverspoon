@@ -8,6 +8,23 @@
 @import "restaurants.scss";
 @import "zizuminfos.scss";
 @import "footer.scss";
+@import "admincontrol.scss";
+
+
+.small-title{
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.middle-title{
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.big-title{
+    font-size: 1.4rem;
+    font-weight: 700;
+}
 
 a:hover{
     text-decoration: none;

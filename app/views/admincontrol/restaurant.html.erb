@@ -1,0 +1,41 @@
+<div class="admin-body">
+    <%if user_signed_in? && current_user.admin?%>
+       <%=render partial: 'admincontrol/category'%>
+        <div class="admin-index-content-stretch">
+            <div class="admin-index-content-box container">
+                <div class="admin-index-content-title middle-title">식당 관리</div>
+                
+                <div class="d-flex justify-content-center">
+                    <div class="admin-index-recent-container">
+                        <div class="admin-res-list">
+                            <%@restaurants.each do |restaurant|%>
+                                <div class="admin-res-box">
+                                    <%=restaurant.id%>&nbsp;<%=link_to restaurant.restaurant_name, restaurant_path(restaurant)%>
+                                    <%=link_to "수정", edit_restaurant_path(restaurant)%>
+                                    <%=link_to "삭제", restaurant, method: :delete, data: { confirm: 'Are you sure?' }%>
+                                </div>
+                            <%end%>  
+                        </div>
+
+                        <div class="admin-res-subfunc">
+                            <%=link_to "레스토랑 추가", new_restaurant_path%>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+        
+
+    <%else%>
+        <div class="admin-index-inner container">
+            접근 권한이 없습니다.
+        </div>
+    <%end%>
+</div>
+
+<script>
+    $(".admin-index-res-ct").addClass("admin-index-activebtn")
+    $(".admin-index-category").not(".admin-index-res-ct").removeClass("admin-index-activebtn")
+   
+</script>

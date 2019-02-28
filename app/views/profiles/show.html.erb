@@ -14,6 +14,10 @@
 <!-- <h1 class="jeju" style="text-align: left; font-weight: bold;">My Page</h1> -->
 <!--<br> <br>-->
 
+<%if user_signed_in? && current_user.admin? %>
+  <%=link_to "관리페이지", admincontrol_index_path%>
+<%end%>
+
 <div class="jeju">
   <div class="row">
     <!-- 프로필 이미지 -->

@@ -27,9 +27,16 @@ Rails.application.routes.draw do
   get 'menus/index' => "menus#index", as: 'menus'
   #--------------------------------------------------------------------------
 
-  #좋아요 ajax
+  #-----------------좋아요 ajax
   get 'follows/zizumfollow' => "follows#zizumfollow"
   get 'follows/recipefollow' => "follows#recipefollow"
+  
+  #-----------admin 관리 페이지
+  get 'admincontrol/index' => "admincontrol#index"
+  get 'admincontrol/zizuminfo' => "admincontrol#zizuminfo"
+  get 'admincontrol/user' => "admincontrol#user"
+  get 'admincontrol/restaurant' => "admincontrol#restaurant"
+  
  #===============메뉴별 제보 요청==============
  get 'userrequests/index'
 
