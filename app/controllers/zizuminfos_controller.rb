@@ -90,11 +90,11 @@ class ZizuminfosController < ApplicationController
   # POST /zizuminfos
   # POST /zizuminfos.json
   def create
-    @zizuminfo = Zizuminfo.new(zizuminfo_params)
-    
+
+
     respond_to do |format|
       if @zizuminfo.save
-        format.html { redirect_to @zizuminfo, notice: 'Zizuminfo was successfully created.' }
+        format.html { redirect_to admincontrol_zizuminfo_path, notice: 'Zizuminfo was successfully created.' }
         format.json { render :show, status: :created, location: @zizuminfo }
       else
         format.html { render :new }
@@ -106,9 +106,10 @@ class ZizuminfosController < ApplicationController
   # PATCH/PUT /zizuminfos/1
   # PATCH/PUT /zizuminfos/1.json
   def update
+
     respond_to do |format|
       if @zizuminfo.update(zizuminfo_params)
-        format.html { redirect_to @zizuminfo, notice: 'Zizuminfo was successfully updated.' }
+        format.html { redirect_to admincontrol_zizuminfo_path, notice: 'Zizuminfo was successfully updated.' }
         format.json { render :show, status: :ok, location: @zizuminfo }
       else
         format.html { render :edit }

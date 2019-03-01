@@ -7,18 +7,30 @@
                 
                 <div class="d-flex justify-content-center">
                     <div class="admin-index-recent-container">
-                        <div class="admin-res-list">
+                        <table class="table admin-res-list">
+                            <thead>
+                                <tr>
+                                    <th width="15%">식당 번호</th>
+                                    <th width="35%">식당 이름</th>
+                                    <th width="25%">식당 정보수정</th>
+                                    <th width="25%">지점업데이트</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                             <%@restaurants.each do |restaurant|%>
-                                <div class="admin-res-box">
-                                    <%=restaurant.id%>&nbsp;<%=link_to restaurant.restaurant_name, restaurant_path(restaurant)%>
-                                    <%=link_to "수정", edit_restaurant_path(restaurant)%>
-                                    <%=link_to "삭제", restaurant, method: :delete, data: { confirm: 'Are you sure?' }%>
-                                </div>
-                            <%end%>  
-                        </div>
+                                <tr class="admin-res-box">
+                                    <td><%=restaurant.id%></td>
+                                    <td><%=link_to restaurant.restaurant_name, restaurant_path(restaurant)%></td>
+                                    <td><%=link_to "식당정보수정", edit_restaurant_path(restaurant)%></td>
+                                    <td><span class="res-zizum-update" id="<%=restaurant.restaurant_name%>">지점정보업데이트</span></td>
+                                </tr>
+                            <%end%>
+                            </tbody>  
+                        </table>
 
                         <div class="admin-res-subfunc">
                             <%=link_to "레스토랑 추가", new_restaurant_path%>
+                            <%=link_to "식당 전체 크롤링", admincontrol_resupdate_path, class:"resall"%>
                         </div>
                     </div>
                 </div>
@@ -37,5 +49,33 @@
 <script>
     $(".admin-index-res-ct").addClass("admin-index-activebtn")
     $(".admin-index-category").not(".admin-index-res-ct").removeClass("admin-index-activebtn")
+   
+    $(".resall").click(function () {
+        $res = $(this).attr("class")
+
+        $.ajax({
+        async : true,
+        data : {res : $res},
+        type : "GET",
+        url : "resupdate",
+        success : function(data){
+
+        }
+        });  
+    })
+
+    $(".res-zizum-update").click(function () {
+        $res = $(this).attr("id")
+
+        $.ajax({
+        async : true,
+        data : {res : $res},
+        type : "GET",
+        url : "resupdate",
+        success : function(data){
+
+        }
+        });  
+    })
    
 </script>
