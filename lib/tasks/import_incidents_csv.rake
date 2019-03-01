@@ -15,10 +15,10 @@ namespace :import_restaurants_csv do
     end  
   end
 
-  namespace :import_posts_csv do
-    task :create_posts => :environment do
-      CSV.foreach("public/Post.csv", :headers => true) do |row|
-        Post.create!(row.to_hash)
-      end
-    end  
-  end
+  # namespace :import_posts_csv do
+  #   task :create_posts => :environment do
+  #     CSV.foreach("public/Post.csv", :headers => true) do |row|
+  #       Post.create!(row.to_hash)
+  #     end
+  #   end  
+  # end

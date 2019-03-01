@@ -36,7 +36,8 @@ Rails.application.routes.draw do
   get 'admincontrol/zizuminfo' => "admincontrol#zizuminfo"
   get 'admincontrol/user' => "admincontrol#user"
   get 'admincontrol/restaurant' => "admincontrol#restaurant"
-  
+  get 'admincontrol/zizumupdate' => "admincontrol#zizumupdate"
+  get 'admincontrol/resupdate' => "admincontrol#resupdate"
  #===============메뉴별 제보 요청==============
  get 'userrequests/index'
 
