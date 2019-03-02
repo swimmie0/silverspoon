@@ -93,7 +93,6 @@
     <%= paginate @zizum_array, window:3 %>
 </div>
 
-
    <%# 로그인 하지 않았을 때 custom 기능 누르면 modal view 뜨도록 %>
     <%if !user_signed_in?%>
         <%= render 'layouts/loginModal'%>
@@ -232,36 +231,6 @@
         });
     }
     //에러 수정 끝
-
-     $(".btn-allergy").click(function(){
-        
-            $(this).children('.btn-searchtype-circle').addClass("active-btn");
-            $(this).children('.btn-searchtype-circle').children('div').addClass("active-btn-inside");
-            $(this).children('.category-name').addClass('active-typename');
-            
-            $(".btn-restaurant").children('.btn-searchtype-circle').removeClass("active-btn");
-            $(".btn-restaurant").children('.btn-searchtype-circle').children('div').removeClass("active-btn-inside");
-            $(".btn-restaurant").children('.category-name').removeClass('active-typename');
-            
-            $(".restaurant-search").addClass("nodisplay");
-            $(".allergy-search").removeClass("nodisplay");
-        
-    });
-
-    $(".btn-restaurant").click(function(){
-        
-            $(this).children('.btn-searchtype-circle').addClass("active-btn");
-            $(this).children('.btn-searchtype-circle').children('div').addClass("active-btn-inside");
-            $(this).children('.category-name').addClass('active-typename');
-            
-            $(".btn-allergy").children('.btn-searchtype-circle').removeClass("active-btn");
-            $(".btn-allergy").children('.btn-searchtype-circle').children('div').removeClass("active-btn-inside");
-            $(".btn-allergy").children('.category-name').removeClass('active-typename');
-
-            $(".restaurant-search").removeClass("nodisplay");
-            $(".allergy-search").addClass("nodisplay");
-        
-    });
 
      //내 정보 불러오기 script
     $(".custom-btn-original").click(function(){

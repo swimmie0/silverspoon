@@ -4,12 +4,17 @@ Rails.application.routes.draw do
   resources :recipes
   resources :conversations do
     resources :messages
-  end 
+  end
+
+  #PROFILE------FOLLOW/UNFOLLOW
+  get 'profiles/:id/follow' => 'follows#profile_follow', as: 'profile_follow'
   
   ##SEARCH------resources :zizuminfos 보다 위에
   get 'zizuminfos/search/' => "zizuminfos#search"
   post 'zizuminfos/getZizum' => "zizuminfos#getZizum"
   get 'zizuminfos/getGungu' => "menus#getGungu"
+  get 'zizuminfos/zizummenus' => "zizuminfos#zizummenus"
+  get 'zizuminfos/:id/show' => "zizuminfos#show"
   #밑에 꺼 꼭 넣어야함.
   get 'zizuminfos/index' => "zizuminfos#index", as: 'zizuminfos'
   ##-------------------------------------
@@ -25,8 +30,17 @@ Rails.application.routes.draw do
   get 'menus/index' => "menus#index", as: 'menus'
   #--------------------------------------------------------------------------
 
-  #좋아요 ajax
+  #-----------------좋아요 ajax
   get 'follows/zizumfollow' => "follows#zizumfollow"
+  get 'follows/recipefollow' => "follows#recipefollow"
+  
+  #-----------admin 관리 페이지
+  get 'admincontrol/index' => "admincontrol#index"
+  get 'admincontrol/zizuminfo' => "admincontrol#zizuminfo"
+  get 'admincontrol/user' => "admincontrol#user"
+  get 'admincontrol/restaurant' => "admincontrol#restaurant"
+  get 'admincontrol/zizumupdate' => "admincontrol#zizumupdate"
+  get 'admincontrol/resupdate' => "admincontrol#resupdate"
  #===============메뉴별 제보 요청==============
  get 'userrequests/index'
 

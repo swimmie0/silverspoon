@@ -1,6 +1,7 @@
 class ZizuminfosController < ApplicationController
   #before_action :authenticate_user!
   before_action :set_zizuminfo, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_admin, except: [:index, :show, :getGungu, :getZizum]
   helper_method :value2icon
 
   # GET /zizuminfos
@@ -64,6 +65,19 @@ class ZizuminfosController < ApplicationController
   # GET /zizuminfos/1.json
   def show
     @allergy_tags=["난류","우유","복숭아","토마토","메밀","밀","대두(콩)","닭고기","쇠고기","돼지고기","새우","고등어","홍합","전복","굴","조개류","게","오징어","호두","땅콩","아황산류"]
+    
+    @res_id = params[:res_id]
+
+    @res = Restaurant.where(:id => @res_id)
+    puts "=++++++show++++++++++++++++"
+  
+    @zizum_menus = Menu.where(:restaurant_name => @res.map(&:restaurant_name))
+    puts @zizum_menus[0]
+    @menus = @zizum_menus.paginate(page: params[:page], per_page: 10)
+  end
+
+  def zizummenus
+    
   end
 
   # GET /zizuminfos/new
@@ -78,11 +92,11 @@ class ZizuminfosController < ApplicationController
   # POST /zizuminfos
   # POST /zizuminfos.json
   def create
-    @zizuminfo = Zizuminfo.new(zizuminfo_params)
-    
+
+
     respond_to do |format|
       if @zizuminfo.save
-        format.html { redirect_to @zizuminfo, notice: 'Zizuminfo was successfully created.' }
+        format.html { redirect_to admincontrol_zizuminfo_path, notice: 'Zizuminfo was successfully created.' }
         format.json { render :show, status: :created, location: @zizuminfo }
       else
         format.html { render :new }
@@ -94,9 +108,10 @@ class ZizuminfosController < ApplicationController
   # PATCH/PUT /zizuminfos/1
   # PATCH/PUT /zizuminfos/1.json
   def update
+
     respond_to do |format|
       if @zizuminfo.update(zizuminfo_params)
-        format.html { redirect_to @zizuminfo, notice: 'Zizuminfo was successfully updated.' }
+        format.html { redirect_to admincontrol_zizuminfo_path, notice: 'Zizuminfo was successfully updated.' }
         format.json { render :show, status: :ok, location: @zizuminfo }
       else
         format.html { render :edit }
@@ -123,7 +138,7 @@ class ZizuminfosController < ApplicationController
       return '<span class="allergy-i allergy-star">△</span>'.html_safe
     #제공 안함
     elsif value == -1
-      return '　'.html_safe
+      return '<span class="allergy-i allergy-null">·</span>'.html_safe
     #없음
     elsif value == 0
       return '<i class="fas fa-times allergy-i allergy-none"></i>'.html_safe

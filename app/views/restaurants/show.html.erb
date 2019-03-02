@@ -1,4 +1,25 @@
 <p id="notice"><%= notice %></p>
 
+<%=@restaurant.id%>
+<%=@restaurant.restaurant_name%>
+
+<div>
+    <div>지점 목록</div>
+    <ul>
+        <%@restaurant.zizuminfos.each do|zizum|%>
+            <li><%=zizum.zizum_name%></li>
+        <%end%>
+    </ul>
+</div>
+
+<div>
+    <div>메뉴 목록</div>
+    <ul>
+        <%@restaurant.menus.each do|menu|%>
+            <li><%=menu.menu_name%></li>
+        <%end%>
+    </ul>
+</div>
+
 <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
 <%= link_to 'Back', restaurants_path %>
