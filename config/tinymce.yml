@@ -1,0 +1,5 @@
+toolbar: undo redo | forecolor | bold italic | alignleft aligncenter alignright | fontselect | code | link | table |
+plugins:
+  - link
+  - code
+  - table

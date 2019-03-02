@@ -44,26 +44,32 @@
                     <div class="card shop-card">
                         <div class="card-body"> 
                             <p class="seeMenu" style="display:none;"><%= zizum.restaurant_name%></p> <!--for js-->                        
+                            <div class="rtnt-check">
+                                <i class="fas fa-check-square" style="display:none;"></i>
+                                <i class="far fa-square"></i>     
+                            </div>
                             <div class="rtnt-info container"> <!--식당card-->
                                      <%if user_signed_in?%>
                                         <% if zizum.followed_by?(current_user) %>
                                             <!-- 좋아요를 했다면 -->
                                             <i class="fas fa-bookmark menu"></i>
-                                            <div class="zizum-id-like"><%=zizum.id%></div>   
+                                            <div class="zizum-id-bookmark"><%=zizum.id%></div>   
                                         <% else %>
                                             <!-- 좋아요를 안 했다면 -->
                                             <i class="far fa-bookmark menu"></i>
-                                            <div class="zizum-id-like"><%=zizum.id%></div>
+                                            <div class="zizum-id-bookmark"><%=zizum.id%></div>
                                         <% end %>
                                     <%else%><i class="far fa-bookmark menu" data-toggle="modal" data-target="#loginModal"></i>
                                     <%end%>   
-                                <%=image_tag("subway.jpg",class:"rtnt-img1")%>                                           
+                                <%=image_tag("subway.jpg",class:"rtnt-img1")%>
+
                                 <div class="about-rtnt">
                                     <p class="rtnt-name"><%= zizum.restaurant_name%>&nbsp;<%= zizum.zizum_name%></p>
                                     <p class="rtnt-intro">신선한 샌드위치를 만드는 서브웨이입니다.</p>                                
                                     <p class="rtnt-adress"><%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
                                 </div>
                             </div>    
+
                             <!--메뉴안내-->
 
                             <div class="hideMenu">
@@ -142,8 +148,7 @@
             <div id="Box">
             <div id="card2"></div>
             <div id="menuBox">
-            (해당 메뉴 뜨는 자리) 
-            즐거운 한끼식사 걱정없식
+            <p style="display:flex;justify-content:center;">원하시는 식당을 누르면 해당 메뉴가 이곳에 보여집니다</p>
              <%# <%= paginate @menu_array, window: 2 %>    
             </div>
         </div> <!-- around --> 
@@ -155,14 +160,20 @@
 <%end%>
 
 
+
 <script>
     $(".sido-select").val('<%=params[:sido]%>');
     $(".sigungu-select").val('<%=params[:sigungu]%>');
 
     //메뉴 show
-    $(".card-body").click(function() {
+    $(".card-body").on('click',function() {
         $("#menuBox").html($(this).children(".seeMenu").siblings('.hideMenu').html());
         $("#card2").html($(this).children(".seeMenu").siblings('.hideCard').html());
+        $(this).children('.rtnt-check').children('.fa-square').css("display","none");      
+        $(this).children('.rtnt-check').children('.fa-check-square').css("display","block");              
+        $('.fa-check-square').not($(this).children('.rtnt-check').children()).css("display","none");   
+        $('.fa-square').not($(this).children('.rtnt-check').children()).css("display","block");          
+               
     });
 
     //검색탭 전환
@@ -379,7 +390,7 @@
     //ajax 좋아요 구현
     if('<%=user_signed_in?%>'==="true"){
         $(".fa-bookmark").click(function(){
-            $zizumid = $(this).siblings("div.zizum-id-like").html();
+            $zizumid = $(this).siblings("div.zizum-id-bookmark").html();
             $likeicon = $(this);
             $.ajax({
                 async : true,
@@ -389,20 +400,8 @@
                 success : function(data){
                     followType = data["follow"];
                     console.log("이제"+data["zizumid"]+"를 follow"+followType);
-                    
-                    //followType 은 좋아요 버튼 누른 후의 status
-                    if (followType === false) //follow하고 있다면
-                    {
-                        console.log("follow 하고 있으니까 이제 안할거야");
-                        $likeicon.removeClass("like");
-                        $likeicon.addClass("unlike");
-                    }
-                    else if (followType === true)
-                    {
-                         console.log("follow 안하고 있으니까 이제 할거야");
-                        $likeicon.removeClass("unlike");
-                        $likeicon.addClass("like");
-                    }    
+                     $likeicon.toggleClass('far');
+                     $likeicon.toggleClass('fas');
                 }
             })
         });

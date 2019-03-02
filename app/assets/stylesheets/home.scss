@@ -504,4 +504,38 @@
     background-color: white;
 }
 
-
+//로그인
+.session{
+    margin-top: 3rem;
+    // margin-bottom: 6rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+}
+.form-control.id,.form-control.pw{
+    margin-bottom:1rem;
+}
+.form-control.id:focus,.form-control.pw:focus{
+    border-color:#FF5400;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+}
+.session-form{
+    width:23%;
+}
+.session-btn{
+    background-color:#FF5400;
+    text-align: center;
+    width: 100%;
+    height: 2.2rem;
+    color:white;
+    margin-bottom:0.3rem;
+}
+.signup-btn{
+    border:1px solid  #FF5400;
+    color:#FF5400;
+    width: 23%;
+    height: 2.2rem;
+    background-color:white;    
+}

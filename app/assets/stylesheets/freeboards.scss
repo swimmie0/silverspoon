@@ -10,6 +10,17 @@
     justify-content:center;
     align-items:center;
 }
+.post-edit{
+    float:right;
+    margin-bottom:1rem;
+    font-weight:lighter;
+}
+// .post2-contents{
+//     display:flex;
+//     flex-direction:column;
+//     justify-content:center;
+//     background-color:#F8F8F8;    
+// }
 // category nav
 .nav-link{
     cursor:pointer;
@@ -53,6 +64,9 @@
     width: 80%;
     text-align:center;
 }
+#post-table td.title{
+    cursor:pointer;
+}
 .post-table th{
     font-size: 0.8rem;
     // background-color: rgba(100, 133, 184, 0.966);
@@ -89,11 +103,11 @@ td.title{
 .postpost-btn
 {  
     display:flex;
-    justify-content:right;
+    justify-content:flex-end;
     align-items: right;    
 }
 .new-linkto{
-    color:white;
+    color:white !important;
 }
 .post-linkto{
     // margin-right: auto;
@@ -126,12 +140,16 @@ td.title{
     font-size:0.7rem;
 }
 
-
+.back-btn{
+    margin-top: -1.5rem;
+    text-align: end;
+}
 ///////view페이지///////////
 .post-view{
     background-color:white;
     border: 0.1px solid rgba(201, 200, 200, 0.438);
-    padding: 1.5rem;
+    padding: 2.5rem;
+    padding-bottom:3rem;
     margin-bottom:3.5rem;
 }
 .post-profile-img{
@@ -192,4 +210,10 @@ td.title{
     transform: rotateZ(90deg);
     margin: 0rem 0.7rem;
     color:rgb(173, 173, 173);
+}
+a.vote-btn{
+    color:#FF5400;
+}
+a.disabled.vote-btn{
+    color:rgb(150, 150, 150);
 }

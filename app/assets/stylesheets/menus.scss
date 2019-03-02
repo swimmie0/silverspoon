@@ -19,7 +19,7 @@
     background-color:#F8F8F8;
 }
 
-.rtnt2{
+.rtnt2{ 
     margin-top:3%;
     padding:3% 7% 6%;
     background-color:#F8F8F8;
@@ -120,6 +120,7 @@
     width: 22rem;
     height: 23rem;
     border-radius:0px;
+    margin-bottom:1.5rem;
     // background-color: rgba(255, 253, 253, 0.801);
     // -webkit-box-shadow: 0px 3px 4px 0px rgba(11, 36, 4, 0.315);
     // -moz-box-shadow: 0px 3px 4px 0px rgba(11, 36, 4, 0.315);
@@ -140,13 +141,37 @@
     height:65%;
     margin:auto;
 }
-
+.rtnt-check{
+    position:absolute;
+    height:1.2rem;
+    width:1.2rem;
+    background-color:White;
+    // margin-left:-0.8rem;
+    z-index:1;
+}
+.fa-check-square{
+    // position:absolute;
+    color:#FF5400;
+    font-size:1.6rem;
+    margin-left: -0.1rem;
+    margin-top: -0.2rem;
+    // background-color:white;
+}
+.fa-square{
+    // position:absolute;
+    color:white;
+    font-size:1.5rem;
+    margin-left: -0.1rem;
+    margin-top: -0.2rem;
+    // background-color:white;
+}
 .fa-bookmark.menu{
     position: absolute;
     bottom: 26.5%;
     right: 5%;
     font-size: 2rem;
     color: #FF5400;
+    cursor: pointer;
 }
 .fa-bookmark.zizum{
     position: relative;
@@ -155,6 +180,7 @@
     font-size: 2rem;
     color: #FF5400;
     line-height: 90%;
+    cursor: pointer;
     // z-index: -1;
 }
 .about-rtnt {
@@ -323,3 +349,4 @@ span.current {
 .index-today-rtntbox:hover .today-rtnt-img {
     opacity: 0.5;
 }
+

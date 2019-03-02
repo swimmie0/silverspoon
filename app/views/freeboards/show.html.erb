@@ -1,32 +1,5 @@
 <div class="post-contents container">
-  <nav class="nav"> <!--나중에수정하기-->
-    <a class="nav-link all" href="/freeboards" target="_self" >전체</a >  
-      <%= form_tag(freeboards_path, :method => "get") do %>
-      <%= text_field_tag :category, params[:category], value:"일상글", style:"display:none;"%>
-          <% if @freeboard.category == "일상글" %><%=submit_tag "일상글", class:"nav-link selected"%>
-          <% else%><%=submit_tag "일상글", class:"nav-link"%><% end %> 
-      <% end %> 
-      <%= form_tag(freeboards_path, :method => "get") do %>
-      <%= text_field_tag :category, params[:category], value:"정보글", style:"display:none;"%>
-          <% if @freeboard.category == "정보글" %><%=submit_tag "정보글", class:"nav-link selected"%>
-          <% else%><%=submit_tag "정보글", class:"nav-link"%><% end %> 
-      <% end %> 
-      <%= form_tag(freeboards_path, :method => "get") do %>
-      <%= text_field_tag :category, params[:category], value:"질문글", style:"display:none;"%>
-          <% if @freeboard.category == "질문글" %><%=submit_tag "질문글", class:"nav-link selected"%>
-          <% else%><%=submit_tag "질문글", class:"nav-link"%><% end %> 
-      <% end %> 
-      <%= form_tag(freeboards_path, :method => "get") do %>
-      <%= text_field_tag :category, params[:category], value:"홍보글", style:"display:none;"%>
-          <% if @freeboard.category == "홍보글" %><%=submit_tag "홍보글", class:"nav-link selected"%>
-          <% else%><%=submit_tag "홍보글", class:"nav-link"%><% end %> 
-      <% end %>       
-      <%= form_tag(freeboards_path, :method => "get") do %>
-      <%= text_field_tag :category, params[:category], value:"제보글", style:"display:none;"%>
-          <% if @freeboard.category == "제보글" %><%=submit_tag "제보글", class:"nav-link selected"%>
-          <% else%><%=submit_tag "일상글", class:"nav-link"%><% end %> 
-      <% end %> 
-  </nav>             
+  <%= render 'category' %>           
 </div>
 
 <div class ="contents">
@@ -39,20 +12,26 @@
          <%=image_tag("beige-logo.PNG", class:"post-profile-img")%>        
          <div><%= @freeboard.name %></div> 
          <div style="font-weight:lighter;margin-left:2rem;"><%= @freeboard.created_at.strftime("%Y-%m-%d") %> </div>
-         <div style="margin-left:auto;"> 조회수: <%= @freeboard.impressionist_count(:filter=>:session_hash) %></div>
+         <div style="margin-left:auto;font-size:0.8rem;"> 조회수: <%= @freeboard.impressionist_count(:filter=>:session_hash) %></div>
         </div>  
          <%# <%= link_to @freeboard.name,  profile_path(@writer.profile.id) %>       
 
       <hr/>
-      <p>
-        <%= @freeboard.content %>
-                <% if current_user == @freeboard.user%>
-          <%= link_to 'Edit', edit_freeboard_path(@freeboard) %>
-        <%end%>
-      </p>
+        <p><%= @freeboard.content.html_safe  %></p>
+        <div class="post-edit">
+          <% if current_user == @freeboard.user%>
+            <%= link_to '수정', edit_freeboard_path(@freeboard), class:"linkto" %>
+            <%= link_to '삭제', method: :delete, class:"linkto"%>      
+          <%end%>
+        </div>
     </div>
 
-    <p> 댓글 <%=@freeboard.comment_threads.count%>개</p>    
+    <% if @freeboard.category == "질문글"%>
+      <p> 답변 <%=@freeboard.comment_threads.count%>개</p>       
+    <% else %>
+      <p> 댓글 <%=@freeboard.comment_threads.count%>개</p>   
+    <% end %>
+     
     <%= render partial: "comments/form", locals: {new_comment: @new_comment} %>
     <div class="comment-view">
       <%= render partial: "comments/template", locals: {commentable: @freeboard, new_comment: @comment} %>

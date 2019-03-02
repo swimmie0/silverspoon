@@ -51,7 +51,7 @@ class CommentsController < ApplicationController
     end
 
   #추천기능
-  def vote 
+  def like
     @comment = Comment.find_by(id: params[:id])
     @comment.liked_by(current_user)
     redirect_back fallback_location: root_path
@@ -60,6 +60,17 @@ class CommentsController < ApplicationController
   def unvote
     @comment = Comment.find_by(id: params[:id])
     @comment.unvote_by(current_user)
+    redirect_back fallback_location: root_path           
+    # respond_to do |format|
+    #   format.js {
+    #     render "comments/votes"
+    #   }
+    # end
+  end
+
+  def dislike
+    @comment = Comment.find_by(id: params[:id])
+    @comment.dislike_by(current_user)
     redirect_back fallback_location: root_path           
     # respond_to do |format|
     #   format.js {
