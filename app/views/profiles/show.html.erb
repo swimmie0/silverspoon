@@ -9,210 +9,241 @@
 <!-- <p id="notice"><%= notice %></p> -->
 
 <!-- My Page : Open-->
-<body class="jeju">
+<body style="font-family: 'NanumBarunGothic',serif;">
 
-<!-- <h1 class="jeju" style="text-align: left; font-weight: bold;">My Page</h1> -->
-<!--<br> <br>-->
 
-<%if user_signed_in? && current_user.admin? %>
-  <%=link_to "관리페이지", admincontrol_index_path%>
-<%end%>
 
-<div class="jeju">
-  <div class="row">
-    <!-- 프로필 이미지 -->
-    <div class="col-6">
-      <p align="center">
-        <br>
-        <% if @profile.user.profileimg.url != nil %>
-          <%= image_tag @profile.user.profileimg.url, style: "width: 40%;", class: "img-circle" %> <br> 
-        <% elsif @profile.user.gender == "여" && @profile.user.ages == "10대이하"%>
-          <%= image_tag("https://cdn.iconscout.com/icon/free/png-256/avatar-379-456331.png", style: "width: 40%") %><br>
-        <% elsif @profile.user.gender == "여" && @profile.user.ages == "20-30대"%>
-          <%= image_tag("https://cdn.iconscout.com/icon/free/png-256/avatar-373-456325.png", style: "width: 40%") %><br>
-        <% elsif @profile.user.gender == "여" && @profile.user.ages == "40-50대"%>
-          <%= image_tag("https://cdn.iconscout.com/icon/free/png-256/avatar-369-456321.png", style: "width: 40%") %><br>
-        <% elsif @profile.user.gender == "여" && @profile.user.ages == "60대이상"%>
-          <%= image_tag("https://cdn.iconscout.com/icon/free/png-256/avatar-377-456329.png", style: "width: 40%") %><br>
-
-        <% elsif @profile.user.gender == "남" && @profile.user.ages == "10대이하"%>
-          <%= image_tag("https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png") %><br>
-        <% elsif @profile.user.gender == "남" && @profile.user.ages == "20-30대"%>
-          <%= image_tag("https://cdn.iconscout.com/icon/free/png-256/avatar-380-456332.png", style: "width: 40%") %><br>
-        <% elsif @profile.user.gender == "남" && @profile.user.ages == "40-50대"%>
-          <%= image_tag("https://cdn.iconscout.com/icon/free/png-256/avatar-372-456324.png", style: "width: 40%") %><br>
-        <% elsif @profile.user.gender == "남" && @profile.user.ages == "60대이상"%>
-          <%= image_tag("https://cdn.iconscout.com/icon/free/png-256/avatar-376-456328.png", style: "width: 40%") %><br>
+<!-- 상단 섹션 끝 -->
+<div style="height: 35rem; width: 1300px; margin-left: 71px; justify-content: center">
+  
+    <div style="height: 12rem;" class="ProfileUpperBanner">
+      <div class="container">
+        <% if @profile.id == current_user.id %>
+          <%= link_to(fa_icon("cog", class: "ProfileEditButton"), edit_user_registration_path) %>
         <% end %>
-      </p>
-    </div>
-
-    <!-- 개인 정보 창 -->
-    <div class="col-6">
-      <br><br>
-      <p style = "font-size: 250%;">  <!-- user name -->
-        <strong> <%= @profile.user.name %>님 </strong>
-        <%# (<%= @profile.user.nickname%>
-      </p>
-
-      <p style = "font-size: 150%;">  <!-- user ages -->
-        <strong>연령 : </strong>
-        <%= @profile.user.ages %> 
-      </p>
-
-      <p style = "font-size: 110%;">  <!-- user allergy -->
-        <strong>주의해야 할 음식 : </strong>
-        <%# <%= @profile.user.allergy.gsub(',','') %>  
-      </p>
-      
-      <div align="right">
-        <%= link_to "쪽지 화면 가기 | ", conversations_path, method: :get, style: "text-decoration: none; color: #454338;"%>
-        <%= link_to " Log Out | ", destroy_user_session_path, method: :delete, class:"headerfont", :style=>"text-decoration: none; color: #454338;" %>
-        <button class="fill mbutton">  <!-- 수정 버튼 위치 2 -->
-          <%= link_to '개인정보 변경', edit_user_registration_path, :style=> "color:black; text-decoration: none;" %>
-        </button>
-        
-      </div>
-    </div>
-  </div>
-</div> <!-- My Page : Close -->
-
-
-
-<!-- user activities -->
-<hr />  
-
-<div>
-  <h3 id="spreadBtn1" class= "jeju" style="text-align:center;"><i id="spreadBtn1" class="fas fa-utensils"></i> <strong>'좋아요'</strong>한 최근 <strong >식당 리스트</strong> <i id="spreadBtn1" class="fas fa-utensils"></i></h3>
-  <hr />
-    <div id="hiddenList1" class="rounded">
-      <div class="row">
-            <% @profile.user.following_by_type('Zizuminfo').order("id").limit(8).each do |zizum| %>
-              <div class="col-3 jeju"> 
-                <% if zizum.followed_by?(@profile.user) %>
-                    <%= link_to(image_tag("defaultImg.jpg", class: "round", style: "width: 100%; height:auto"), zizuminfo_path(zizum.id))%>
-                     <hr />
-                  <div class="row">
-                    <div class="col-6" align = left>
-                        <%= link_to "#{zizum.restaurant_name}", zizuminfo_path(zizum.id), :style=> "color:black; text-decoration: none; font-size: 150%" %>                    
-                    </div>
-                    <div class="col-6" align = right>
-                        <strong style="font-size: 129%;"> <%= zizum.followers_count %></strong>
-                          <%= fa_icon('heart', class: "like icon fa-lg", style: "margin-right: 5%") %>
-                    </div>    
-                  </div>
-                  <div class = "row">
-                    <div class="col-9" align = left>
-                        <%= link_to "#{zizum.zizum_name}", zizuminfo_path(zizum.id), :style=> "color:black; text-decoration: none; font-size: 105%"%>
-                    </div>
-                    <div class="col-3" align = right>    
-                        <% if @profile.user == current_user %>
-                          <%= link_to fa_icon('trash', class: "fa-lg", style: "margin-right: 15%"), profile_follow_destroy_path(zizum.id), data: {confirm: '라이크를 취소하시겠습니까?'} %>
-                        <% end %>
-                    </div>
-                  </div>
-                  <hr />
-                <% end %>
-              </div>
+        <br>
+        <div style="margin-top: 7.5rem; height: 2.5rem">
+          <span style="font-size: 1.5rem; color: white; margin-left: 11.3rem; margin-top: 0.7rem; float: left"><%= @profile.user.name%></span>
+          <% if @profile.id == current_user.id %>
+          
+          <% else %>
+            <% if !current_user.following?(@profile) %>
+              <%= link_to "팔로우하기", profile_follow_path(@profile.id), class: "profilebanner-button", style: "color: white;", method: "get" %>
+            <% else %>
+              <%= link_to "팔로우하기", profile_follow_path(@profile.id), class: "profilebanner-unbutton", style: "color: white;", method: "get" %>
             <% end %>
+            <%= link_to "쪽지보내기", conversations_path(sender_id: current_user.id, recipient_id: @profile.user.id), style: "color: white;", method: "post", class: 'profilebanner-button' %>
+          <% end %>
+        </div>
       </div>
     </div>
-    <hr />
-</div>
 
-<!-- 내가쓴글관리 본인만 볼수 있게!-->
-<% if current_user == @profile.user %>
-<div>
-  <h3 id="spreadBtn1" class= "jeju" style="text-align:center;"> 내가 쓴 글 </h3>
-  <hr/>
-    <div id="hiddenList1" class="rounded">
-      <div class="row">
+    <% if @profile.user.profileimg.url != nil %>
+      <%= image_tag @profile.user.profileimg.url, style: "border: 1px solid rgb(226, 226, 226); position: relative; top: -4.75rem; margin-left: 7.5%; width: 10rem; height: 10rem; border-radius: 50%; float:left;" %>
+    <% elsif %>
+      <%= image_tag "defaultImg3", style: "border: 1px solid rgb(226, 226, 226); position: relative; top: -4.75rem; margin-left: 7.5%; width: 10rem; height: 10rem; border-radius: 50%; float:left;" %>
+    <% end %>
 
-        <div class="col-8 jeju"> 
-          <% @user_posts.each do |post|%>
-            <div class="row">
-              <div class="col-6" align = left>
-                <%= link_to post.title, post, :style=> "color:black; text-decoration: none; font-size: 120%" %>                    
-              </div>
-              <div class="col-3" align = right>
-                <%= post.created_at %>                    
-              </div>
-              <div class="col-3" align = right>
-                <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }   %>             
-              </div>
-            </div>
-          <% end %>  
-        </div>    
-
-        <div class="col-8 jeju"> 
-          내가 쓴 총 댓글 수: <%= @user_commentnum %>
-        </div>  
-
-      </div>
-    </div>
-    <hr />
-</div>
-
-<div class= "jeju">
-  <h3 id="spreadBtn2" style="text-align:center;"> <i id="spreadBtn1" class="fas fa-question-circle"></i> <strong>'수정 요청'</strong> 현황 <strong>확인</strong> <i id="spreadBtn1" class="fas fa-question-circle"></i> </h3>
-  <hr />
-
-    <div id="hiddenList2">
-
-      <% i = 0%>
-      <% @user_requests.each do |r| %>
-      <% i = i + 1%>
-      
-      <div class="accordion" id="accordionExample">
-
-        <div class="card">
-
-          <div class="card-header" id="heading<%= i %>">
-            <h5 class="mb-0">
-              <div class= "row">
-
-                <div class= "col-6" align = left>
-                <button style="color:black; text-decoration: none; font-size: 115%; margin-top: 2%" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%= i %>" aria-expanded="true" aria-controls="collapse<%= i %>">
-                    <%= i %> : <%= r.request_type %> 요청에 대한 현황: <strong><%=r.status%></strong>
-                </button>
-                </div>
-
-                <div class= "col-6" style="font-size:90%" align = right>
-                  <%= r.updated_at.to_s.split(" ").first.split("-").first%>년
-                  <%= r.updated_at.to_s.split(" ").first.split("-").second%>월
-                  <%= r.updated_at.to_s.split(" ").first.split("-").third%>일 |
-                  <%= r.updated_at.to_s.split(" ").second.split("-").first.split(":").first%>시
-                  <%= r.updated_at.to_s.split(" ").second.split("-").first.split(":").second%>분
-                  <br><br><%= r.restaurant_name%> | <%= r.menu_name%>
-                </div>
-
-              </div>
-
-            </h5>
-          </div>
-<!-- 
-          <div id="collapse<%= i %>" class="collapse show" aria-labelledby="heading<%= i %>" data-parent="#accordionExample">
-            <div class="card-body">
-              <p>식당 : <%= r.restaurant_name%> </p>
-              <p>변경 메뉴 : <%= r.menu_name%> </p>
-              <% if !r.memo.nil? %>
-                <p>메모 내용 : <%= r.memo%> </p>
+    <div style="height: 23rem; background-color: #F8F8F8">
+      <div class="container">
+        <p style="font-size: 1rem; color: black; margin-left: 1rem; margin-top: 0.7rem; float: left"><strong>성별  </strong> <%= @profile.user.gender %>성 <br> <strong>나이  </strong> <%= @profile.user.ages %>대 <br> <%= link_to " Log Out ", destroy_user_session_path, method: :delete, class:"headerfont", :style=>"text-decoration: none; color: #454338;" %></p>
+        <div style="height: 10.5rem"></div>
+        
+        <div style="position: absolute; margin-top: -3rem; width: 77.5%;">
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a style="color: black" class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
+                알레르기 정보
+              </a>
+              <% if @profile.id != current_user.id%>
               <% else %>
+              <a style="text-decoration: none; color: black" class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
+                MESSAGE
+              <span style="padding-top: 0.4rem;" class="badge badge-danger badge-pill"><%= @conversations.where(recipient_id: current_user.id).count %></span>
+              </a>
+              <a style="text-decoration: none; color: black" class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">
+                FOLLOW
+              </a>
               <% end %>
             </div>
+          </nav>
+
+          <div style="border: 1px solid rgb(226, 226, 226); height: 10rem; background-color: white;">
+              <div style="margin-left: 2rem;margin-top: 2rem;" class="tab-content" id="nav-tabContent">
+                
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                  <%if @profile.user.allergy.include?("난류") %>
+                    <div style="float: left; height: 6rem; width: 5rem; border: 1px solid rgb(226, 226, 226); background-color: white;"><%= image_tag "profile_egg.png", style: "margin-top: 0.5rem; margin-bottom: 0.5rem; display: block; margin-left: auto; margin-right: auto; width: 50%; width: 2.5rem" %></div>
+                  <% end %>
+                  <% if @profile.user.allergy.include?("복숭아") %>
+                    <div style="float: left; height: 6rem; width: 5rem; border: 1px solid rgb(226, 226, 226); background-color: white;"><%= image_tag "profile_tomato.png", style: "margin-top: 0.5rem; margin-bottom: 0.5rem; display: block; margin-left: auto; margin-right: auto; width: 50%; width: 2.5rem" %></div>
+                  <% end %>
+                  <% if @profile.user.allergy.include?("토마토") %>
+                    <div style="float: left; height: 6rem; width: 5rem; border: 1px solid rgb(226, 226, 226); background-color: white;"><%= image_tag "profile_peach.png", style: "margin-top: 0.5rem; margin-bottom: 0.5rem; display: block; margin-left: auto; margin-right: auto; width: 50%; width: 2.5rem" %></div>
+                  <% end %>
+                  <% if @profile.user.allergy.include?("닭고기") %>
+                    <div style="float: left; height: 6rem; width: 5rem; border: 1px solid rgb(226, 226, 226); background-color: white;"><%= image_tag "profile_beef.png", style: "margin-top: 0.5rem; margin-bottom: 0.5rem; display: block; margin-left: auto; margin-right: auto; width: 50%; width: 2.5rem" %></div>
+                  <% end %>
+                </div>
+
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                  <table class="table" style="font-size: 0.8rem;">
+                    <tbody>
+                      <% i = 0 %>
+                      <% @conversations.reverse_order.each do |conversation| %>
+                          <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+                              <% if conversation.sender_id == current_user.id %>
+                              <% recipient = User.find(conversation.recipient_id) %>
+                              <% else %>
+                              <% recipient = User.find(conversation.sender_id) %>
+                              <% end %>
+                          <tr style="line-height: 29.5px; border-bottom: 1px solid #dee2e6;">
+                          <th scope = "row"><%= link_to " #{i+=1} 번", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %> </th>
+                              <td><%= link_to "#{recipient.name}님", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %>  </td>
+                              <td><%= link_to " #{conversation.messages.last.body.first(22)}...", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %>  </td>
+                              <td><%= link_to " #{conversation.messages.last.message_time} ", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %></td>
+                          </tr>
+                          <% end %> 
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                  <% @profile.user.following_profiles.each do |profile| %>
+                    <%= link_to profile.user.name, profile_url(profile.id), style: "color: black;" %>
+                  <% end %>
+                </div>
+
+              </div>
           </div>
--->
         </div>
+        
+
 
       </div>
-
-      <% end %>
-        <p align= right>현재 관리자가 확인 및 수정 절차를 진행하고 있습니다. 통상적으로 1~2주 안에 결과가 반영됩니다. 좋은 의견 항상 감사합니다.    </p>
-      <hr />
     </div>
-   <% end %> 
-  </div>
+  
+</div>
+<!-- 상단 섹션 끝 -->
 
+
+<!-- 나의 레시피를 확인하세요 섹션 -->
+<div style="height: 31rem; width: 1300px; margin-left: 71px; justify-content: center; background-color: white;">
+  <p style="text-align: center; font-size: 1.4rem; padding-top: 2rem; padding-bottom: 1.5rem;">나의 레시피를 확인하세요!</p>
+  <div class="container" style="padding: 0px; background-color: white; height: 350px; width: 1200px">
+    <p style="font-size: 1rem; float: left; position: relative; margin-top: -2rem;">총 3건</p>
+    <div style="margin-left: -2.6rem; margin-right: 0.5rem; float: left; height: 100%; width: 32.86%; border: 1px solid rgb(226, 226, 226); background-color: white;">
+      <%= image_tag "https://st2.depositphotos.com/1889887/5668/i/950/depositphotos_56689941-stock-photo-banana-cake.jpg", style: "margin: 0rem; width: 100%; height: 70%; border: 1px solid rgb(226, 226, 226);" %>
+      <div class="container">
+        <p style="margin-bottom: 0.5rem; margin-top: 1rem;"> 식빵 </p>
+        <div style="font-size: 0.8rem"> 우유, 난류 </div>
+        <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> 알레르기 보유자를 위한 식빵 </div>
+      </div>
+    </div>
+    <div style="margin-right: 0.5rem; float: left; height: 100%; width: 32.86%; border: 1px solid rgb(226, 226, 226); background-color: white;">
+      <%= image_tag "https://st2.depositphotos.com/1889887/5668/i/950/depositphotos_56689941-stock-photo-banana-cake.jpg", style: "margin: 0rem; width: 100%; height: 70%; border: 1px solid rgb(226, 226, 226);" %>
+      <div class="container">
+        <p style="margin-bottom: 0.5rem; margin-top: 1rem;"> 식빵 </p>
+        <div style="font-size: 0.8rem"> 우유, 난류 </div>
+        <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> 알레르기 보유자를 위한 식빵 </div>
+      </div>
+    </div>
+    <div style="margin-right: 0rem; float: left; height: 100%; width: 32.86%; border: 1px solid rgb(226, 226, 226); background-color: white;">
+      <%= image_tag "https://st2.depositphotos.com/1889887/5668/i/950/depositphotos_56689941-stock-photo-banana-cake.jpg", style: "margin: 0rem; width: 100%; height: 70%; border: 1px solid rgb(226, 226, 226);" %>
+      <div class="container">
+        <p style="margin-bottom: 0.5rem; margin-top: 1rem;"> 식빵 </p>
+        <div style="font-size: 0.8rem"> 우유, 난류 </div>
+        <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> 알레르기 보유자를 위한 식빵 </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 나의 레시피를 확인하세요 섹션 끝 -->
+
+<!-- 작성한 게시글 & 댓글단 게시글 -->
+<div class="main-contents-boardwrap">
+    <div class="main-contents-board">
+        <div class="main-board-container container d-flex justify-content-between">
+            <div class="main-board-section">
+                <div class="main-board-upper d-flex justify-content-between">
+                    <span class="main-board-title">작성한 게시글</span>
+                    <span><%=link_to '전체보기', freeboards_path, class: "main-board-more"%></span>
+                </div>
+                <table class="table main-board-box">
+                    <thead>
+                        <tr>
+                            <th width="15%">NO</th>
+                            <th width="50%">제목</th>
+                            <th width="20%">작성자</th>
+                            <th width="15%">조회수</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%#=render partial: "board"%>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="main-board-section">
+                <div class="main-board-upper d-flex justify-content-between">
+                    <span class="main-board-title">댓글단 게시글</span>
+                     <span><%=link_to '전체보기', freeboards_path, class: "main-board-more"%></span>
+                </div>
+                <table class="table main-board-box">
+                    <thead>
+                        <tr>
+                            <th width="15%">NO</th>
+                            <th width="50%">제목</th>
+                            <th width="20%">작성자</th>
+                            <th width="15%">조회수</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <%#=render partial: "board"%>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 작성한 게시글 & 댓글단 게시글 끝 -->
+
+<!-- 수정 요청 현황확인 섹션 -->
+<div style="height: 22rem; width: 1300px; margin-left: 71px; justify-content: center; background-color: white;">
+  <p style="text-align: center; font-size: 1.4rem; padding-top: 2rem; padding-bottom: 1.5rem;">수정 요청 현황 확인</p>
+  <div class="container" style="padding: 0px; background-color: white; height: 150px; width: 1200px">
+    <p style="font-size: 1rem; float: left; position: relative; margin-top: -2rem;">총 3건</p>
+    <div style="margin-left: -2.6rem; margin-right: 0.5rem; float: left; height: 100%; width: 32.86%; border: 1px solid rgb(226, 226, 226); background-color: white;">
+      <div class="container">
+        <div style="margin-bottom: 0rem; margin-top: 1rem;"> 1번 수정요청에 대한 현황 </div>
+        <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> 2018-09-16 15:02 </div>
+        <div style="border-radius: 30%; margin-top: 6%; padding: 0.8% 1% 0.5% 1%; border: 1px solid #FF5400; color: #FF5400; width: 3.3rem; height 2rem; font-size: 0.8rem; text-align: center;">미처리</div>
+      </div>
+    </div>
+    <div style="margin-right: 0.5rem; float: left; height: 100%; width: 32.86%; border: 1px solid rgb(226, 226, 226); background-color: white;">
+      <div class="container">
+        <div style="margin-bottom: 0rem; margin-top: 1rem;"> 2번 수정요청에 대한 현황 </div>
+        <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> 2018-09-16 15:02 </div>
+        <div style="border-radius: 30%; margin-top: 6%; padding: 0.8% 1% 0.5% 1%; border: 1px solid #1E285D; color: #1E285D; width: 3.3rem; height 2rem; font-size: 0.8rem; text-align: center;">완료</div>
+      </div>
+    </div>
+    <div style="margin-right: 0rem; float: left; height: 100%; width: 32.86%; border: 1px solid rgb(226, 226, 226); background-color: white;">
+      <div class="container">
+        <div style="margin-bottom: 0rem; margin-top: 1rem;"> 3번 수정요청에 대한 현황 </div>
+        <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> 2018-09-16 15:02 </div>
+        <div style="border-radius: 30%; margin-top: 6%; padding: 0.8% 1% 0.5% 1%; border: 1px solid #FF5400; color: #FF5400; width: 3.3rem; height 2rem; font-size: 0.8rem; text-align: center;">미처리</div>
+      </div>
+    </div>
+    <p style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0.5rem; float: left; position: relative;">현재 관리자가 확인 및 수정 절차를 진행하고 있습니다. 통상적으로 1~2주 안에 결과가 반영됩니다. 좋은 의견 항상 감사합니다.</p>
+  </div>
+</div>
+<!-- 수정 요청 현황확인 섹션 끝-->
+
+<!-- 
 <script>
 
     $(document).ready(function(){
@@ -239,3 +270,4 @@
       });
     }); 
 </script>
+-->
