@@ -15,7 +15,7 @@
 }
 
 .zizum-about-sec{
-    width: 1300px;
+    width: 100%;
     height: 100%;
     background-color: #F8F8F8;
     font-family:  'NanumBarunGothic',serif;
@@ -118,6 +118,7 @@
 .zizum-allergy{
     font-family: 'NanumBarunGothic',serif;
     margin-top: 4rem;
+    margin-bottom: 7rem;
 }
 
 
@@ -186,6 +187,8 @@
     width: 21%;
 }
 
+
+
 .zizum-menu-header-cp{
     width: 79%;
 }
@@ -206,6 +209,7 @@
 
 
 .zizum-menu-title{
+    padding: 2px;
     font-size: 0.9rem;
     font-weight: 600;
     //line-height: 4rem;
@@ -220,6 +224,10 @@
     background-color: #F8F8F8;
 }
 
+.zizum-menu-title span{
+    text-align: center;
+}
+
 .zizum-menu-cpbox{
     padding-left: 2.5rem;
     padding-right: 2.5rem;
@@ -232,6 +240,7 @@
     flex-wrap: wrap;
     align-items: center;
 }
+
 
 .zizum-menu-cp{
     margin: 0.35rem !important;
@@ -248,6 +257,7 @@
     border-width: 1.1px;
 }
 
+
 .zizum-table-header{
     font-size: 0.8rem;
     color: white;
@@ -256,6 +266,9 @@
     min-height: 2rem;
 }
 
+.page{
+    display: none;
+}
 
 
 .zizum-table-header-title{
@@ -285,12 +298,45 @@
     border-right-width: 0.6px; 
 }
 
+
 .zizum-table-body{
+    overflow: hidden;
+    max-height: 26rem;
+    //overflow-y: scroll;
     width: 100%;
     border-style: solid;
     border-color: rgb(226, 226, 226);
     border-width: 0.6px;
+    position: relative;
 }
+
+.zizum-overlay{
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0, 0, 0.26);
+    position: absolute;
+    top: 0;
+    left: 0;
+    align-items: center;
+}
+
+.zizum-overlay-text{
+    font-family:  'NanumBarunGothic',serif;
+    color: white;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.zizum-table-body:hover{
+    scroll-behavior: smooth;
+
+    overflow: overlay;
+}
+
+
 
 
 .zizum-table-row{
@@ -302,6 +348,7 @@
 
 
 .zizum-table-body-title{
+    padding: 2px;
     background-color: #F8F8F8;
     width: 13%;
     font-size: 0.8rem;
@@ -314,6 +361,10 @@
     border-right-style: solid;
     border-right-color:rgb(226, 226, 226);
     border-right-width: 0.6px; 
+}
+
+.zizum-table-body-title span{
+    text-align: center;
 }
 
 .zizum-table-body-cpbox{
@@ -342,6 +393,10 @@
     font-size: 1rem;
 }
 
+.allergy-null{
+    color: rgb(215, 215, 215);
+}
+
 .allergy-circle{
     font-weight: 800;
     color: #1E285D;
@@ -354,9 +409,5 @@
 
 .allergy-none{
     font-weight: 300;
-    color: rgb(226, 226, 226);
-}
-
-.color-navy{
-    color: #1E285D;
+    color: rgb(215, 215, 215);
 }

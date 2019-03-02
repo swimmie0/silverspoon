@@ -14,6 +14,7 @@ class ProfilesController < ApplicationController
     @user_requests = Userrequest.where(uid: current_user.id)
     @user_posts = Freeboard.where(user: current_user)
     @user_commentnum = Comment.where(user: current_user).count
+    @conversations = Conversation.all
   end
 
   # GET /profiles/new

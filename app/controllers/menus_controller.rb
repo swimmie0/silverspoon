@@ -1,6 +1,8 @@
 class MenusController < ApplicationController
   #before_action :authenticate_user!
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_admin, except: [:index, :show, :getGungu]
+
   require 'open-uri'
   require 'json'
   # GET /menus
@@ -93,7 +95,6 @@ class MenusController < ApplicationController
      #default 값
      @temp = @temp.order(restaurant_name: :asc).order(zizum_name: :asc)
      
-     
      if sido == "전체"
       @zizums = @temp
      elsif sigungu == "전체"
@@ -120,9 +121,6 @@ class MenusController < ApplicationController
     $result["sigungu_name"]=@sigungu_name
     
     $result = $result.to_json
-    puts "실험실험실험============================================="
-    puts $result
-    puts "싫끝====================================================="
 
     respond_to do |format|
       format.json {render json: $result}

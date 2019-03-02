@@ -1,5 +1,18 @@
 class FollowsController < ApplicationController
 
+    def profile_follow
+        @profile = Profile.find(params[:id])
+
+        if !@profile.followed_by?(current_user)
+            current_user.follow(@profile)
+        else
+            current_user.stop_following(@profile)
+        end 
+
+        redirect_to profile_url(@profile.id)
+    end 
+
+
     def article_destroy
         @article = Article.find(params[:id])
         @article.destroy
@@ -78,24 +91,44 @@ class FollowsController < ApplicationController
         end
     end
 
-  def getGungu
-    #받아오기
-    @locations = JSON.parse(File.read(File.join('sigungu.json')))
+    def recipefollow
+        @recipe_s = Recipe.find(params[:id])
+        followtype = false
+        
+        if @recipe_s.followed_by?(current_user)
+            current_user.stop_following(@recipe_s)
+        else
+            current_user.follow(@recipe_s)
+            followtype = true
+        end
 
-    @sido_name = params[:sido]
-    @sigungu_name = @locations["data"][0][@sido_name]
+        $result = {"zizumid" => nil, "follow" => nil}
+        $result["zizumid"] = @recipe_s.id
+        $result["follow"] = followtype
 
-    $result={"sido_name" => nil, "sigungu_name"=>nil}
-    $result["sido_name"]=@sido_name
-    $result["sigungu_name"]=@sigungu_name
-    
-    $result = $result.to_json
-    puts "실험실험실험============================================="
-    puts $result
-    puts "싫끝====================================================="
-
-    respond_to do |format|
-      format.json {render json: $result}
+        respond_to do |format|
+            format.json {render json: $result}
+        end
     end
-  end
+
+    def getGungu
+        #받아오기
+        @locations = JSON.parse(File.read(File.join('sigungu.json')))
+
+        @sido_name = params[:sido]
+        @sigungu_name = @locations["data"][0][@sido_name]
+
+        $result={"sido_name" => nil, "sigungu_name"=>nil}
+        $result["sido_name"]=@sido_name
+        $result["sigungu_name"]=@sigungu_name
+        
+        $result = $result.to_json
+        puts "실험실험실험============================================="
+        puts $result
+        puts "싫끝====================================================="
+
+        respond_to do |format|
+        format.json {render json: $result}
+        end
+    end
 end
