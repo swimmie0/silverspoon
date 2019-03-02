@@ -145,7 +145,7 @@
     
    //ajax 좋아요 구현
     if('<%=user_signed_in?%>'==="true"){
-        $(".zizum").click(function(){
+        $(".fa-bookmark").click(function(){
             $zizumid = $(this).siblings("div.zizum-id-like").html();
             $likeicon = $(this);
             $.ajax({
@@ -156,20 +156,8 @@
                 success : function(data){
                     followType = data["follow"];
                     console.log("이제"+data["zizumid"]+"를 follow"+followType);
-                    
-                    //followType 은 좋아요 버튼 누른 후의 status
-                    if (followType === false) //follow하고 있다면
-                    {
-                        console.log("follow 하고 있으니까 이제 안할거야");
-                        $likeicon.removeClass("like");
-                        $likeicon.addClass("unlike");
-                    }
-                    else if (followType === true)
-                    {
-                         console.log("follow 안하고 있으니까 이제 할거야");
-                        $likeicon.removeClass("unlike");
-                        $likeicon.addClass("like");
-                    }    
+                    $likeicon.toggleClass('far');
+                    $likeicon.toggleClass('fas');
                 }
             })
         });

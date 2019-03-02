@@ -26,7 +26,7 @@
       '전체' 총 <%=Freeboard.all.count%>건
     </div>
   <div class="post-table">    
-    <table class="table table-hover">
+    <table class="table table-hover" id="post-table">
       <thead>
         <tr class= "postall postd posti postq posta postc">
           <%# <th>Category</th> %>
@@ -44,7 +44,7 @@
           <tr class = "postall" >
             <td> <%= freeboard.comment_threads.count %></td>
             <%# <td><%= freeboard.category %>
-            <td  class="title"><%= link_to freeboard.title, freeboard, {:class => "linkto"} %></td>
+            <td class="title form-inline"><div class="ctg"style="font-weight:lighter;font-size:0.6rem;">[<%=freeboard.category%>]</div>&nbsp;<%= link_to freeboard.title, freeboard, {:class => "linkto",:style=>"font-size:0.8rem;"} %></td>
             <td><%= freeboard.name %><% if freeboard.locked %>LOCKED<% end %></td>
             <td><%= freeboard.time(freeboard)%></td>                
             <td> <%= freeboard.impressionist_count(:filter=>:session_hash) %></td>
@@ -110,9 +110,9 @@
 </div>
 
 <div class="postpost-btn container"> 
-  <div class="post-btn">
-   <% if user_signed_in? %><%= link_to '새 글 작성', new_freeboard_path, {:class => "new-linkto"} %> <% end %>
-  </div>
+  <% if user_signed_in? %>
+    <div class="post-btn"><%= link_to '새 글 작성', new_freeboard_path, {:class => "new-linkto"} %></div>
+  <% end %>
 </div>
 
 <div class="post-table">
@@ -157,4 +157,15 @@ $(function(){
 
 // if params[:category] != nil 
 //   $(this).attr('target == category').addClass('selected');
+
+// 행 clickable 
+$(document).ready(function() {
+    $('#post-table tr').click(function() {
+        var href = $(this).find("a").attr("href");
+
+        if(href) {
+            window.location = href;
+        }
+    });
+});
  </script>

@@ -2,29 +2,48 @@
 <% comments.each do |comment| %>  
   <div class="comments-show">
     <div class="comment">
-      <%= link_to comment.user.name, profile_path(comment.user.profile.id) %> / <%= time_ago_in_words(comment.created_at) %>전 [ <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %> ] /
-      <% if current_user == comment.user %>
-        <%= link_to "지우기", comment_path(comment), method: :delete, remote: false, data: { confirm: "정말로 지우시겠습니까?" }, style: "color: red; font-weight: bold" %>
-      <% end %>  
-      <%= content_tag(:div, comment.body, style: "white-space: pre-wrap;") %>
 
-    <!--추천기능 only in 질문글-->
-    추천수: <%= comment.votes_for.size %>
-        <% if current_user %>    
-        <% if current_user.voted_for? (comment)%>    
-        <%= link_to "취소", unlike_comment_path(comment), method: :put %>
-        <% else %>
-        <%= link_to "추천", like_comment_path(comment), method: :put %>
-        <% end %>
-        <% end %>
-
-      <div class="comment-nav" align="right">
-        <button onclick="showHide('comment_<%= comment.id %>')" onfocus="this.blur()">답글</button>
+      <div class="comment-profile form-inline"> <!--프로필-->
+        <%=image_tag("beige-logo.PNG", class:"post-profile-img")%>        
+        <%= link_to comment.user.name, profile_path(comment.user.profile.id) ,class:"linkto"%> 
+        <div style="font-weight:lighter;margin-left:1rem;"> <%= time_ago_in_words(comment.created_at) %>전 [ <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %> ] </div> 
+        <% if current_user == comment.user %>
+          /<%= link_to "삭제", comment_path(comment), method: :delete, remote: false, data: { confirm: "정말로 지우시겠습니까?" }, style: "color: black;" %>
+        <% end %>  
       </div>
 
-      <div id="comment_<%= comment.id %>" style="display:none;"> <!--답글창-->
+      <div class="comment-content" style="margin:0.6rem 0rem 0rem 0.4rem;">  <!--댓글내용-->
+        <div style="display:flex;">
+        
+                          <!--추천기능 only in 질문글-->
+          <div class="comment-vote" style="text-align:center;margin-top:0.5rem;margin-left:0.5rem;">
+            <% if current_user %>    
+              <% if current_user.disliked? (comment) %>
+                <%= link_to "▲", unvote_comment_path(comment), method: :put,class:"vote-btn" %> <br><% else %>
+                <%= link_to "▲", like_comment_path(comment), method: :put,class:"vote-btn"  %> <br>
+              <% end %>
+              <%= comment.weighted_score%><br>      
+              <% if current_user.liked? (comment) %>
+                <%= link_to "▼", unvote_comment_path(comment), method: :put,class:"vote-btn"  %><br><% else %>
+                <%= link_to "▼", dislike_comment_path(comment), method: :put,class:"vote-btn"  %> <br>
+              <% end %>
+              <% else %>
+                <a class="disabled vote-btn"style="cursor:pointer;">▲ </a><br>
+                <%= comment.weighted_score%><br>      
+                <a class="disabled vote-btn"style="cursor:pointer;"> ▼</a>
+            <% end %>
+          </div>
+
+          <%= content_tag(:div, comment.body, style:"white-space: pre-wrap;margin:1rem 3rem 0rem 3rem;align-items:center;") %>
+
+        </div>  
+      <% if user_signed_in? && current_user.name != nil %> <!--답글창-->
+      <%# <div class="comment-nav" > %>
+        <button onclick="showHide('comment_<%= comment.id %>')" onfocus="this.blur()" class="reply-btn">답글</button>
+      </div>
+
+      <div id="comment_<%= comment.id %>" style="display:none;margin:0.3rem;"> 
         <div class="reply-form">
-         <% if user_signed_in? %>
           <%= form_for @new_comment do |f| %>
             <%= f.hidden_field :commentable_id, value: @new_comment.commentable_id %>
             <%= f.hidden_field :commentable_type, value: @new_comment.commentable_type %>
@@ -34,17 +53,23 @@
               <%= f.text_area :body, class: 'form-control' %>
             </div>
             <div class="field form-group">
-              <%= submit_tag "답댓글 작성", style: "float: right;" %>
+              <%= submit_tag "답댓글 작성", class:"reply-btn", style:"float:right;" %>
             </div>
           <% end %>
-         <% end %> 
         </div>
       </div>
-    </div>
-    <div style="margin-left: 20px;">
+      <%end%>  <!--//답글창-->
+      <br/> <hr style="border-top: 1px dashed rgb(201, 200, 200);width:95%;">
+    </div> <!--//comment-->
+    <%# <div style="margin-left: 20px;"> %>
+    <div>    
       <%= render partial: "comments/reply_end", locals: {comments: comment.children} %>
     </div>
+
   </div>
-  <hr/>
+<hr>
+  
 <% end %>
+
  
+  

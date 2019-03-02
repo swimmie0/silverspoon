@@ -26,7 +26,8 @@ gem 'omniauth-naver'
 gem "omniauth-google-oauth2"
 gem 'omniauth-kakao', :git => 'https://github.com/hcn1519/omniauth-kakao'
 gem 'impressionist'
-
+gem 'tinymce-rails', '~> 4.1', '>= 4.1.10'
+gem 'tinymce-rails-langs', '~> 4.20180103'
 # 알림
 gem 'unread'
 
@@ -100,3 +101,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+	
+
