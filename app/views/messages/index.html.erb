@@ -22,9 +22,9 @@
                     <p style="line-height: 66px; font-size: 1.2rem; margin: 0px; color: white">TALES MESSAGE</p>
                 </div>
                 <div style="background-color: #1E285D; position: absolute; height: 89%; width: 100%"> 
-                    <p style="line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white"><i class="fas fa-question-circle"></i> 전체 쪽지함</p>
-                    <p style="line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white"><i class="fas fa-question-circle"></i> 쪽지 보관함</p>
-                    <p style="line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white"><i class="fas fa-question-circle"></i> 삭제 쪽지함</p>
+                    <p style="line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white"><%= link_to "전체 쪽지함", conversations_path, style: "text-decoration: none; color: white" %> </p>
+                    <p style="line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white"> </p>
+                    <p style="line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white"> </p>
                 </div>
             </div>
 
@@ -34,7 +34,7 @@
                 </div>
                 <div  style="background-color: white; border-right: 0.05px solid #bfbebe; height: 74%; width: 100%; margin: 0px">
                     
-                    <div  style="background-color: white; height: 100%; padding: 0px;">
+                    <div  style="background-color: white; border-right: 0.05px solid #bfbebe; height: 100%; padding: 0px;">
                         <div class="row" style="margin-left: 0.5rem;">
                         <% @messages.each do |message|%>
                         <% if message.body %>
