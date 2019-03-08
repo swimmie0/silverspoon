@@ -2,66 +2,295 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.ProfileUpperBanner{
-  background-image: image-url("FakeBanner.png")
+body {
+  font-family: 'NanumBarunGothic';
 }
 
-.ProfileEditButton {
-  color: white; 
-  float: right; 
-  margin-top: 1.2rem; 
-  margin-right: 0.5rem;
+// 상단 섹션
+  .ProfileUpperSection {
+    height: 35rem; 
+    width: 100%; 
+    justify-content: center;
+  }
+
+  .ProfileUpperBannerSection{
+    height: 12rem;
+    background-image: image-url("FakeBanner.png");
+  }
+
+  .ProfileEditButton {
+    color: white;
+    float: right; 
+    margin-top: 1.2rem; 
+    margin-right: 0.5rem;
+  }
+
+  .ProfileEditButton:hover {
+    color: #FF5400;
+
+  }
+
+  .ProfileUpperNameSection {
+    margin-top: 7.5rem; 
+    height: 2.5rem;
+  }
+
+  .ProfileUpperName {
+    float: left;
+    top: -4.75rem;
+    margin-left: 10.5%;
+    font-size: 1.5rem; 
+    color: white; 
+  }
+
+  .ProfileBanner-Unbutton {
+    margin-right: 0.5rem;
+    float: right;
+    text-align: center;
+    width: 10rem;
+    height: 2.5rem;
+    background-color: #FF5400;
+    border: none;
+    color: white;
+    border-width: 0.3px;
+    font-family: 'NanumBarunGothic',serif;
+    font-size: 0.8rem;
+    line-height: 2.5rem;
+    
+  }
+
+  .ProfileBanner-Button{
+    //position: absolute;
+    //bottom: 0;
+    //right: 0;
+    width: 10rem;
+    height: 2.5rem;
+    text-align: center;
+    float: right;
+    margin-right: 0.5rem;
+    border-style: solid;
+    border-color:white;
+    color: white;
+    border-width: 0.3px;
+    font-family: 'NanumBarunGothic',serif;
+    font-size: 0.8rem;
+    line-height: 2.5rem;
+
+    -moz-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+  }
+
+  .ProfileBanner-Button:hover{
+    background-color: #FF5400;
+    border: none;
+    color: white;
+  }
+
+  .ProfileImg {
+    position: relative; 
+    float:left;
+    top: -4.75rem; 
+    margin-left: 7.5%; 
+    width: 10rem; 
+    height: 10rem; 
+    border: 1px solid rgb(226, 226, 226); 
+    border-radius: 50%; 
+    
+  }
+
+  .ProfileDefaultImg {
+    position: relative; 
+    float:left;
+    top: -4.75rem; 
+    margin-left: 7.5%; 
+    width: 10rem; 
+    height: 10rem; 
+    border: 1px solid rgb(226, 226, 226); 
+    border-radius: 50%; 
+
+  }
+
+  .ProfileDownInfoSection {
+    background-color: #F8F8F8;
+    height: 23rem; 
+  }
+
+  .ProfileInfoSection {
+    height: 10.5rem;
+  }
+
+  .ProfileInfo {
+    float: left;
+    margin-top: -2.2rem; 
+    margin-left: 1rem;
+    font-size: 1rem; 
+    color: black; 
+    
+  }
+
+  .ProfileName {
+    margin-bottom: 0rem; 
+    font-size: 1.6rem; 
+    color: white;
+
+  }
+
+  .ProfileTabInfo {
+    position: absolute;
+    margin-top: -3rem; 
+    width: 70%;
+  }
+// 상단 섹션 끝
+
+// 나의 레시피를 확인하세요 섹션
+
+.ProfileRecipeSection {
+  background-color: white;
+  justify-content: center; 
+  width: 100%; 
+  height: 100%;
+  margin-bottom: 1.5rem;
 }
 
-.ProfileEditButton:hover {
-  color: #FF5400;
-
+.ProfileTitle {
+  text-align: center; 
+  font-size: 1.4rem; 
+  margin-top: 2rem; 
+  margin-bottom: 1rem;
 }
 
-.profilebanner-unbutton {
-  margin-right: 0.5rem;
-  float: right;
-  text-align: center;
-  width: 10rem;
-  height: 2.5rem;
-  background-color: #FF5400;
-  border: none;
-  color: white;
-  border-width: 0.3px;
-  font-family: 'NanumBarunGothic',serif;
-  font-size: 0.8rem;
-  line-height: 2.5rem;
+.ProfileRecipeSection {
+  background-color: white; 
+  height: 100%; 
+  width: 100%;
+  padding: 0px;
+}
+
+.ProfileRecipeCount {
+  float: left; 
+  //position: relative; 
+  margin-left: 0.8rem; 
   
 }
 
-.profilebanner-button{
-  //position: absolute;
-  //bottom: 0;
-  //right: 0;
-  margin-right: 0.5rem;
-  float: right;
+.ProfileRecipeImgSection {
+  width: 100%;
+  display: flex;
+  //flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ProfileRecipeImgBlock {
+  background-color: white;
+  //float: left; 
+  height: 100%; 
+  width: 50%; 
+  margin-left: 0.5rem;
+  margin-right: 0.5rem; 
+  border: 1px solid rgb(226, 226, 226); 
+  
+}
+
+.ProfileRecipeImg {
+  width: 100%; 
+  height: 70%; 
+  margin: 0rem; 
+  border: 1px solid rgb(226, 226, 226);
+}
+// 나의 레시피를 확인하세요 섹션 끝
+
+// 작성한 게시글 & 댓글단 게시글
+.ProfilePostingSection {
+  height: 100%;
+  width: 100%;
+  background-color: #F8F8F8;
   text-align: center;
-  width: 10rem;
-  height: 2.5rem;
-  border-style: solid;
-  border-color:white;
-  color: white;
-  border-width: 0.3px;
-  font-family: 'NanumBarunGothic',serif;
-  font-size: 0.8rem;
-  line-height: 2.5rem;
-
-  -moz-transition: all .1s ease-in;
-  -o-transition: all .1s ease-in;
-  -webkit-transition: all .1s ease-in;
-  transition: all .1s ease-in;
 }
 
-.profilebanner-button:hover{
-  background-color: #FF5400;
-  border: none;
-  color: white;
+.ProfilePostingTable {
+  margin-top: 2rem;
 }
+// 작성한 게시글 & 댓글단 게시글 끝
+
+// 수정 요청 현황확인 섹션
+
+.ProfileRequestEditSection {
+  background-color: white;
+  height: 100%; 
+  width: 100%; 
+}
+
+.ProfileRequestEditList {
+  width: 100%;
+  display: flex;
+  //flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ProfileRequestEditBlock {
+  background-color: white;
+  //float: left; 
+  height: 100%; 
+  width: 33%; 
+  margin-left: 1rem;
+  margin-right: 1rem; 
+  border: 1px solid rgb(226, 226, 226); 
+}
+
+.ProfileRequestEditBlock-title {
+  margin-bottom: 0rem; 
+  margin-top: 1rem;
+}
+
+.ProfileRequestEditBlock-date {
+  color: rgb(165, 164, 164); 
+  font-size: 0.8rem; 
+  margin-top: 0rem;
+}
+
+.ProfileRequestEditBlock-button_X {
+  color: #FF5400; 
+  text-align: center;
+  font-size: 0.8rem; 
+  width: 3.3rem; 
+  height: 1.5rem; 
+  margin-top: 6%;
+  margin-bottom: 6%; 
+  padding: 0.8% 1% 0.5% 1%; 
+  border: 1px solid #FF5400; 
+  border-radius: 30%; 
+
+}
+
+.ProfileRequestEditBlock-button_O {
+  color: #1E285D; 
+  text-align: center;
+  font-size: 0.8rem; 
+  width: 3.3rem; 
+  height: 1.5rem; 
+  margin-top: 6%;
+  margin-bottom: 6%; 
+  padding: 0.8% 1% 0.5% 1%; 
+  border: 1px solid #1E285D; 
+  border-radius: 30%; 
+
+}
+
+.ProfileRequestEditGuide {
+  //position: relative;
+  //float: left; 
+  color: rgb(165, 164, 164); 
+  height: 2rem;
+  font-size: 0.8rem; 
+  margin-top: 1rem; 
+
+}
+// 수정 요청 현황확인 섹션 끝
+
 
 //제주명조
 @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css); .jejumyeongjo * { font-family: 'Jeju Myeongjo', serif; }
