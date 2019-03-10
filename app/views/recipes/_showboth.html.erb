@@ -1,0 +1,169 @@
+<%if !(@recipe.content1.blank? && @recipe.recipeimage1.blank?)%>
+<div class="recipe-show-content-steps d-flex">
+    <% if @recipe.recipeimage1.blank?%>
+        <%=image_tag("beige-logo.PNG", class:"recipe-show-step-img")%>
+    <%else%>
+        <%=image_tag @recipe.recipeimage1_url, class:"recipe-show-step-img"%>
+    <%end%>
+
+    <div class="recipe-show-step-content">
+    <div class="recipe-show-step-title">STEP 01.</div>
+    <div class="recipe-show-step-detail">
+        <%= simple_format(@recipe.content1)%>
+    </div>
+    </div>
+</div>
+<%end%>
+
+<%if !(@recipe.content2.blank? && @recipe.recipeimage2.blank?)%>
+<div class="recipe-show-content-steps d-flex">
+    <% if @recipe.recipeimage2.blank?%>
+        <%=image_tag("beige-logo.PNG", class:"recipe-show-step-img")%>
+    <%else%>
+        <%=image_tag @recipe.recipeimage2_url, class:"recipe-show-step-img"%>
+    <%end%>
+
+    <div class="recipe-show-step-content">
+    <div class="recipe-show-step-title">STEP 02.</div>
+    <div class="recipe-show-step-detail">
+        <%= simple_format(@recipe.content2)%>
+    </div>
+    </div>
+</div>
+<%end%>
+
+<%if !(@recipe.content3.blank? && @recipe.recipeimage3.blank?)%>
+<div class="recipe-show-content-steps d-flex">
+    <% if @recipe.recipeimage3.blank?%>
+        <%=image_tag("beige-logo.PNG", class:"recipe-show-step-img")%>
+    <%else%>
+        <%=image_tag @recipe.recipeimage3_url, class:"recipe-show-step-img"%>
+    <%end%>
+
+    <div class="recipe-show-step-content">
+    <div class="recipe-show-step-title">STEP 03.</div>
+    <div class="recipe-show-step-detail">
+        <%= simple_format(@recipe.content3)%>
+    </div>
+    </div>
+</div>
+<%end%>
+
+<%if !(@recipe.content4.blank? && @recipe.recipeimage4.blank?)%>
+<div class="recipe-show-content-steps d-flex">
+    <% if @recipe.recipeimage4.blank?%>
+        <%=image_tag("beige-logo.PNG", class:"recipe-show-step-img")%>
+    <%else%>
+        <%=image_tag @recipe.recipeimage4_url, class:"recipe-show-step-img"%>
+    <%end%>
+
+    <div class="recipe-show-step-content">
+    <div class="recipe-show-step-title">STEP 04.</div>
+    <div class="recipe-show-step-detail">
+        <%= simple_format(@recipe.content4)%>
+    </div>
+    </div>
+</div>
+<%end%>
+
+<%if !(@recipe.content5.blank? && @recipe.recipeimage5.blank?)%>
+<div class="recipe-show-content-steps d-flex">
+    <% if @recipe.recipeimage5.blank?%>
+        <%=image_tag("beige-logo.PNG", class:"recipe-show-step-img")%>
+    <%else%>
+        <%=image_tag @recipe.recipeimage5_url, class:"recipe-show-step-img"%>
+    <%end%>
+
+    <div class="recipe-show-step-content">
+    <div class="recipe-show-step-title">STEP 05.</div>
+    <div class="recipe-show-step-detail">
+        <%= simple_format(@recipe.content5)%>
+    </div>
+    </div>
+</div>
+<%end%>
+
+<%if !(@recipe.content6.blank? && @recipe.recipeimage6.blank?)%>
+<div class="recipe-show-content-steps d-flex">
+    <% if @recipe.recipeimage6.blank?%>
+        <%=image_tag("beige-logo.PNG", class:"recipe-show-step-img")%>
+    <%else%>
+        <%=image_tag @recipe.recipeimage6_url, class:"recipe-show-step-img"%>
+    <%end%>
+
+    <div class="recipe-show-step-content">
+    <div class="recipe-show-step-title">STEP 06.</div>
+    <div class="recipe-show-step-detail">
+        <%= simple_format(@recipe.content6)%>
+    </div>
+    </div>
+</div>
+<%end%>
+
+<%if !(@recipe.content7.blank? && @recipe.recipeimage7.blank?)%>
+<div class="recipe-show-content-steps d-flex">
+    <% if @recipe.recipeimage7.blank?%>
+        <%=image_tag("beige-logo.PNG", class:"recipe-show-step-img")%>
+    <%else%>
+        <%=image_tag @recipe.recipeimage7_url, class:"recipe-show-step-img"%>
+    <%end%>
+
+    <div class="recipe-show-step-content">
+    <div class="recipe-show-step-title">STEP 07.</div>
+    <div class="recipe-show-step-detail">
+        <%= simple_format(@recipe.content7)%>
+    </div>
+    </div>
+</div>
+<%end%>
+
+<%if !(@recipe.content8.blank? && @recipe.recipeimage8.blank?)%>
+<div class="recipe-show-content-steps d-flex">
+    <% if @recipe.recipeimage8.blank?%>
+        <%=image_tag("beige-logo.PNG", class:"recipe-show-step-img")%>
+    <%else%>
+        <%=image_tag @recipe.recipeimage8_url, class:"recipe-show-step-img"%>
+    <%end%>
+
+    <div class="recipe-show-step-content">
+    <div class="recipe-show-step-title">STEP 08.</div>
+    <div class="recipe-show-step-detail">
+        <%= simple_format(@recipe.content8)%>
+    </div>
+    </div>
+</div>
+<%end%>
+
+<%if !(@recipe.content9.blank? && @recipe.recipeimage9.blank?)%>
+<div class="recipe-show-content-steps d-flex">
+    <% if @recipe.recipeimage9.blank?%>
+        <%=image_tag("beige-logo.PNG", class:"recipe-show-step-img")%>
+    <%else%>
+        <%=image_tag @recipe.recipeimage9_url, class:"recipe-show-step-img"%>
+    <%end%>
+
+    <div class="recipe-show-step-content">
+    <div class="recipe-show-step-title">STEP 09.</div>
+    <div class="recipe-show-step-detail">
+        <%= simple_format(@recipe.content9)%>
+    </div>
+    </div>
+</div>
+<%end%>
+
+<%if !(@recipe.content10.blank? && @recipe.recipeimage10.blank?)%>
+<div class="recipe-show-content-steps d-flex">
+    <% if @recipe.recipeimage10.blank?%>
+        <%=image_tag("beige-logo.PNG", class:"recipe-show-step-img")%>
+    <%else%>
+        <%=image_tag @recipe.recipeimage10_url, class:"recipe-show-step-img"%>
+    <%end%>
+
+    <div class="recipe-show-step-content">
+    <div class="recipe-show-step-title">STEP 10.</div>
+    <div class="recipe-show-step-detail">
+        <%= simple_format(@recipe.content10)%>
+    </div>
+    </div>
+</div>
+<%end%>

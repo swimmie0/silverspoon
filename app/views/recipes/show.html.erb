@@ -1,7 +1,7 @@
 <%# 지점과 동일한 방식의 css 적용이라서 class 따로 바꾸지 않음 %>
 
 <div class="zizum-about-wrap">
-  <div class="zizum-about-sec">
+  <div class="recipe-about-sec">
     <div class="zizum-about-container container">
       <div class="zizum-about-box d-flex">
         <div class="zizum-about-imgbox">
@@ -53,7 +53,7 @@
               <div class="zizum-about-mi-row recipe-about-mi-row">
                 <div class="zizum-about-stitle"><i class="far fa-bookmark zizum-i-bookmark"></i>북마크</div>
                 <div class="recipe-about-spec">
-                  <div class="recipe-about-spec-bookmark">사용자 보기</div>
+                  <div class="recipe-about-spec-bookmark" data-toggle="modal" data-target="#loginModal">사용자 보기</div>
                 </div>
               </div>
 
@@ -75,11 +75,44 @@
   </div>
 </div>
 
-<div class="recipe-show-title"><%=@recipe.allergyfor%> 알레르기 성분 보유자를 위한,  <%=@recipe.title%></div>
-<div class="recipe-show-explain">레시피 설명: <%=@recipe.explanation%></div>
-<div class="recipe-show-ingredients">레시피 재료: <%=simple_format(@recipe.ingredients)%></div>
-<div class="recipe-show-tag">레시피 알레르기 성분 주의: <%=@recipe.tag%></div>
+<div class="recipe-show-content-area container">
+  <div class="recipe-show-content-box">
+    <div class="recipe-show-content-how">
+      <div></div>
+      <div class="recipe-show-how-btnbox">
+        <div class="recipe-show-how-btn recipe-show-how-both recipe-show-how-active">
+          <i class="far fa-newspaper"></i>
+        </div>
+        <div class="recipe-show-how-btn recipe-show-how-img">
+          <i class="far fa-image"></i>
+        </div>
+        <div class="recipe-show-how-btn recipe-show-how-txt">
+          <i class="fas fa-align-left"></i>
+        </div>
 
+      </div>
+    </div>
+
+    <div class="recipe-show-content-both">
+      <%=render partial: 'recipes/showboth'%>
+    </div>
+
+    <div class="recipe-show-content-img nodisplay">
+      <%=render partial: 'recipes/showimg'%>
+    </div>
+
+    <div class="recipe-show-content-txt nodisplay">
+      <%=render partial: 'recipes/showtxt'%>
+    </div>
+
+  </div>
+</div>
+
+<%if !user_signed_in?%>
+    <%= render 'layouts/loginModal'%>
+<%end%>
+
+<%= render 'recipes/bookmarkModal'%>
 
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>
@@ -101,4 +134,28 @@
         })
     });
   }
+
+  $(".recipe-show-how-btn").click(function(){
+    $(this).siblings().removeClass("recipe-show-how-active");
+    $(this).addClass("recipe-show-how-active");
+
+    if($(this).hasClass("recipe-show-how-both")){
+      $(".recipe-show-content-both").removeClass("nodisplay");
+      $(".recipe-show-content-img").addClass("nodisplay");
+      $(".recipe-show-content-txt").addClass("nodisplay");
+    }
+
+    if($(this).hasClass("recipe-show-how-img")){
+      $(".recipe-show-content-img").removeClass("nodisplay");
+      $(".recipe-show-content-both").addClass("nodisplay");
+      $(".recipe-show-content-txt").addClass("nodisplay");
+    }
+
+    if($(this).hasClass("recipe-show-how-txt")){
+      $(".recipe-show-content-txt").removeClass("nodisplay");
+      $(".recipe-show-content-img").addClass("nodisplay");
+      $(".recipe-show-content-both").addClass("nodisplay");
+    }
+  })
+
 </script>
