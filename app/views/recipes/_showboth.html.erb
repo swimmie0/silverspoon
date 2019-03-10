@@ -1,4 +1,5 @@
 <%if !(@recipe.content1.blank? && @recipe.recipeimage1.blank?)%>
+<%@count = 0%>
 <div class="recipe-show-content-steps d-flex">
     <% if @recipe.recipeimage1.blank?%>
         <%=image_tag("beige-logo.PNG", class:"recipe-show-step-img")%>
@@ -16,6 +17,7 @@
 <%end%>
 
 <%if !(@recipe.content2.blank? && @recipe.recipeimage2.blank?)%>
+<%@count = @count + 1%>
 <div class="recipe-show-content-steps d-flex">
     <% if @recipe.recipeimage2.blank?%>
         <%=image_tag("beige-logo.PNG", class:"recipe-show-step-img")%>
@@ -33,6 +35,7 @@
 <%end%>
 
 <%if !(@recipe.content3.blank? && @recipe.recipeimage3.blank?)%>
+<%@count = @count + 1%>
 <div class="recipe-show-content-steps d-flex">
     <% if @recipe.recipeimage3.blank?%>
         <%=image_tag("beige-logo.PNG", class:"recipe-show-step-img")%>
@@ -50,6 +53,7 @@
 <%end%>
 
 <%if !(@recipe.content4.blank? && @recipe.recipeimage4.blank?)%>
+<%@count = @count + 1%>
 <div class="recipe-show-content-steps d-flex">
     <% if @recipe.recipeimage4.blank?%>
         <%=image_tag("beige-logo.PNG", class:"recipe-show-step-img")%>
@@ -67,6 +71,7 @@
 <%end%>
 
 <%if !(@recipe.content5.blank? && @recipe.recipeimage5.blank?)%>
+<%@count = @count + 1%>
 <div class="recipe-show-content-steps d-flex">
     <% if @recipe.recipeimage5.blank?%>
         <%=image_tag("beige-logo.PNG", class:"recipe-show-step-img")%>
@@ -84,6 +89,7 @@
 <%end%>
 
 <%if !(@recipe.content6.blank? && @recipe.recipeimage6.blank?)%>
+<%@count = @count + 1%>
 <div class="recipe-show-content-steps d-flex">
     <% if @recipe.recipeimage6.blank?%>
         <%=image_tag("beige-logo.PNG", class:"recipe-show-step-img")%>
@@ -101,6 +107,7 @@
 <%end%>
 
 <%if !(@recipe.content7.blank? && @recipe.recipeimage7.blank?)%>
+<%@count = @count + 1%>
 <div class="recipe-show-content-steps d-flex">
     <% if @recipe.recipeimage7.blank?%>
         <%=image_tag("beige-logo.PNG", class:"recipe-show-step-img")%>
@@ -118,6 +125,7 @@
 <%end%>
 
 <%if !(@recipe.content8.blank? && @recipe.recipeimage8.blank?)%>
+<%@count = @count + 1%>
 <div class="recipe-show-content-steps d-flex">
     <% if @recipe.recipeimage8.blank?%>
         <%=image_tag("beige-logo.PNG", class:"recipe-show-step-img")%>
@@ -135,6 +143,7 @@
 <%end%>
 
 <%if !(@recipe.content9.blank? && @recipe.recipeimage9.blank?)%>
+<%@count = @count + 1%>
 <div class="recipe-show-content-steps d-flex">
     <% if @recipe.recipeimage9.blank?%>
         <%=image_tag("beige-logo.PNG", class:"recipe-show-step-img")%>
@@ -152,6 +161,7 @@
 <%end%>
 
 <%if !(@recipe.content10.blank? && @recipe.recipeimage10.blank?)%>
+<%@count = @count + 1%>
 <div class="recipe-show-content-steps d-flex">
     <% if @recipe.recipeimage10.blank?%>
         <%=image_tag("beige-logo.PNG", class:"recipe-show-step-img")%>

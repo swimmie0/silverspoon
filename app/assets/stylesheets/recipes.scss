@@ -383,6 +383,7 @@
     border-color: rgb(226,226,226);
     border-style: solid;
     border-width: 0.6px;
+    margin-bottom: 5rem;
 }
 
 .recipe-show-content-how{
@@ -426,6 +427,11 @@
     height: 17rem;
 }
 
+.recipe-show-content-txt {
+    //text 형식일 때
+    margin-bottom: 2rem;
+}
+
 .recipe-show-step-img{
     height: 15rem;
     width: 17rem;
@@ -448,6 +454,42 @@
     margin-top: 1.2rem;
     font-size: 0.9rem;
 }
+
+//img 만 보여지는 형식일 때
+
+.recipe-bd-example{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.recipe-carousel-inner{
+    width: 35rem;
+    height: 30rem;
+}
+
+.carousel-item{
+    height: 100%;
+    font-family:  'NanumBarunGothic',serif;
+}
+.carousel-item img{
+    height: 100%;
+}
+
+.recipe-carousel-caption{
+   background-color: rgba(100, 100, 100, 0.363)
+}
+
+.recipe-show-step-title-img{
+    font-size: 1.1rem;
+    color: white;
+    font-weight: 600;
+}
+
+.recipe-show-step-detail-img{
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
 //-------------------------------------
 
 //-------------modal-------------------
