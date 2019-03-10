@@ -107,6 +107,8 @@
 
 //=================index search 끝========
 
+
+
 //-----------------index main 시작========
 .recipe-index-main{
     font-family: 'NanumBarunGothic',serif;
@@ -240,7 +242,118 @@
     color: rgb(165, 164, 164); 
 }
 
+//------------------------------------
 
+//================recipe show==========
+
+.recipe-bookmark{
+    cursor: pointer;
+    color: #FF5400;
+    font-size: 2.2rem;
+    font-weight: 200;
+}
+
+
+
+
+.recipe-id-like, .recipe-id-bookmark{
+    display: none;
+}
+
+.recipe-show-allergyfor{
+    color: #FF5400;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.recipe-about-upper{
+    height: 46%;
+}
+
+.recipe-about-title1{
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.recipe-about-title2{
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+}
+
+.recipe-about-explain{
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: rgb(165, 164, 164); 
+}
+
+.recipe-about-user{
+    margin-top: 0.7rem;
+    width: 100%;
+    align-items: center;
+}
+
+.recipe-about-writer-imgbox{
+    border-radius:50%;
+    width:2.5rem;
+    height:2.5rem;
+    margin-right: 0.8rem;
+    overflow: hidden;
+}
+
+.recipe-about-writer-imgbox img{
+    width: 100%;
+    height: 100%;
+}
+
+.recipe-about-writer{
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+
+.recipe-about-moreinfo{
+    width: 100%;
+    height: 54%;
+    padding-top: 1.4rem;
+    font-size: 0.9rem;
+}
+
+.recipe-about-mi-row{
+    align-items: center;
+}
+
+
+
+.recipe-about-spec-bookmark{
+    width: 6rem; 
+    height: 75%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.9rem;
+    border-style: solid;
+    border-color: #FF5400;
+    border-width: 1.2px;
+    padding: 0.2rem 0.75rem;
+    font-size: 0.9rem;
+}
+
+.recipe-about-spec{
+    width: 84%;
+}
+
+.recipe-about-spec-ingr{
+    font-size: 0.8rem;
+}
+
+.recipe-i-ingr{
+    color: #1E285D;
+}
+
+
+//-------------------------------------
 
 .recipe-new-upper{
     margin-top: 1.5rem;
@@ -299,6 +412,14 @@
     border-width: 0.4px;
     border-color: #707070;
     width: 13rem;
+}
+
+.recipe-new-intro-input-ingr{
+    border-style: solid;
+    border-width: 0.4px;
+    border-color: #707070;
+    width: 20rem;
+    height: 15rem;
 }
 
 

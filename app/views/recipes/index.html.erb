@@ -20,7 +20,7 @@
 </div>
 
 <div class="recipe-index-main container">
-  <div class="recipe-index-main-count">총 <%=@recipes.length%>건</div>
+  <div class="recipe-index-main-count">총 <%=@recipes.total_count%>건</div>
   <div class="recipe-index-body row">
     <% @recipes.each do |recipe|%>
       <div class="recipe-index-outbox col-4">
@@ -70,28 +70,12 @@
       </div>
     <%end%>
   </div>
+
+  <div>   
+    <%= paginate @recipes%>
+  </div>
 </div>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @recipes.each do |recipe| %>
-      <tr>
-        <td><%#= image_tag recipe.recipeimage0, class: "recipe-index-img"%>대표 사진 왜 안됨?</td>
-        <td><%= link_to 'Show', recipe %></td>
-        <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
-        <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
 
 
 

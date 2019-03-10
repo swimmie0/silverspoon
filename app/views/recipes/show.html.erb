@@ -1,10 +1,104 @@
-<p id="notice"><%= notice %></p>
+<%# 지점과 동일한 방식의 css 적용이라서 class 따로 바꾸지 않음 %>
 
-<div class="recipe-show-title">레시피 제목: <%=@recipe.allergyfor%> 알레르기 성분 보유자를 위한,  <%=@recipe.title%></div>
-<div class="recipe-show-explain">레시피 설명: <%=@recipe.explain%></div>
-<div class="recipe-show-ingredients">레시피 재료: <%=@recipe.ingredients%></div>
+<div class="zizum-about-wrap">
+  <div class="zizum-about-sec">
+    <div class="zizum-about-container container">
+      <div class="zizum-about-box d-flex">
+        <div class="zizum-about-imgbox">
+          <% if @recipe.recipeimage0.blank?%>
+            <%=image_tag("white-logo.PNG", class:"zizum-about-img")%>
+          <%else%>
+            <%=image_tag @recipe.recipeimage0_url, class:"zizum-about-img"%>
+          <%end %>
+        </div>
+        <div class="zizum-about-txtbox">
+          <div class="d-flex justify-content-end zizum-about-bookmark">
+            <%if user_signed_in?%>
+                <% if @recipe.followed_by?(current_user) %>
+                    <!-- 좋아요를 했다면 -->
+                    <i class="fas fa-bookmark recipe-bookmark"></i>
+                    <div class="recipe-id-bookmark"><%= @recipe.id%></div>
+                <% else %>
+                    <!-- 좋아요를 안 했다면 -->
+                    <i class="far fa-bookmark recipe-bookmark recipe-nobookmark"></i>
+                    <div class="recipe-id-bookmark"><%= @recipe.id%></div>
+                <% end %>
+            <%else%>
+            <i class="far fa-bookmark recipe-bookmark recipe-nobookmark" data-toggle="modal" data-target="#loginModal"></i>
+            <%end%>
+          </div>
+
+          <div class="zizum-about-txtbox-in">
+            <div class="recipe-about-upper">
+              <div class="recipe-about-title1"><span class="recipe-show-allergyfor"><%= @recipe.allergyfor%></span>&nbsp;알레르기 보유자를 위한</div>
+              <div class="recipe-about-title2"><%=@recipe.title%></div>
+              <div class="recipe-about-explain"><%=@recipe.explanation%></div>
+
+              <div class="recipe-about-user d-flex">
+                <div class="recipe-about-writer-imgbox">
+                  <% if @recipe.user.profileimg.url != nil%>
+                    <%=image_tag @recipe.user.profileimg.url%>
+                  <%elsif%>
+                    <%= image_tag "beige-logo.PNG"%>
+                  <%end%>
+                </div>
+
+                <div class="recipe-about-writer">
+                  <%= @recipe.name%>
+                </div>
+              </div>
+            </div>
+
+            <div class="recipe-about-moreinfo">
+              <div class="zizum-about-mi-row recipe-about-mi-row">
+                <div class="zizum-about-stitle"><i class="far fa-bookmark zizum-i-bookmark"></i>북마크</div>
+                <div class="recipe-about-spec">
+                  <div class="recipe-about-spec-bookmark">사용자 보기</div>
+                </div>
+              </div>
+
+              <div class="zizum-about-mi-row">
+                <div class="zizum-about-stitle"><i class="fas fa-book-open recipe-i-ingr"></i>재료</div>
+                <div class="recipe-about-spec recipe-about-spec-ingr row">
+                  <%@ingredients.each do |ingredient|%>
+                    <div class="col-6"><%=ingredient%></div>
+                  <%end%>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="recipe-show-title"><%=@recipe.allergyfor%> 알레르기 성분 보유자를 위한,  <%=@recipe.title%></div>
+<div class="recipe-show-explain">레시피 설명: <%=@recipe.explanation%></div>
+<div class="recipe-show-ingredients">레시피 재료: <%=simple_format(@recipe.ingredients)%></div>
 <div class="recipe-show-tag">레시피 알레르기 성분 주의: <%=@recipe.tag%></div>
 
 
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>
+
+<script>
+  if('<%=user_signed_in?%>'==="true"){
+    $(".recipe-bookmark").click(function(){
+        $recipeid = $(this).siblings("div.recipe-id-bookmark").html();
+        $likeicon = $(this);
+        $.ajax({
+            async : true,
+            data : {id: $recipeid},
+            type : "GET",
+            url : "/follows/recipefollow",
+            success : function(data){
+                $likeicon.toggleClass('far');
+                $likeicon.toggleClass('fas');
+            }
+        })
+    });
+  }
+</script>

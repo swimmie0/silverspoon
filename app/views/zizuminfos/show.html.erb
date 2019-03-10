@@ -216,8 +216,6 @@
               type : "GET",
               url : "/follows/zizumfollow",
               success : function(data){
-                  followType = data["follow"];
-                  console.log("이제"+data["zizumid"]+"를 follow"+followType);
                   $likeicon.toggleClass('far');
                   $likeicon.toggleClass('fas');
               }
