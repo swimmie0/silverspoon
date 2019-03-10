@@ -48,18 +48,25 @@
     height: 100%;
     border-style: solid;
     border-color:  #FF5400;
-    border-width: 0.6px;
+    border-width: 0.8px;
+
+}
+
+.zizum-about-txtbox-in:hover{
+    scroll-behavior: smooth;
+    overflow: overlay;
 }
 
 .zizum-about-bookmark{
-    height: 7%;
+    height: 5%;
 }
 
 .zizum-about-txtbox-in{
-    height: 93%;
+    height: 95%;
     padding: 2rem;
     padding-top: 1rem;
-    overflow-y: auto;
+    overflow-y: hidden;
+    
 }
 
 
@@ -82,7 +89,7 @@
 .zizum-about-title{
     height: 42%;
     font-size: 1.3rem;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .zizum-about-moreinfo{
@@ -99,19 +106,22 @@
 }
 
 .zizum-about-stitle{
-    width: 15%;
+    width: 16%;
     font-weight: bold;
-    margin-right: 4rem;
+    margin-right: 2rem;
+}
+
+.zizum-about-stitle i{
+    width: 16%;
+    margin-right: 0.7rem;
 }
 
 .zizum-i-adr, .zizum-i-phone{
     color: #1E285D;
-    margin-right: 0.7rem;
 }
 
 .zizum-i-time, .zizum-i-bookmark{
     color: #FF5400;
-    margin-right: 0.7rem;
 }
 
 
