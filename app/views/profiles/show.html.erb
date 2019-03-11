@@ -1,5 +1,5 @@
 <!-- My Page : Open-->
-<body>
+
 
 <!-- 상단 섹션 -->
   <div class="ProfileUpperSection">
@@ -26,7 +26,6 @@
         </div>
     <!-- 상단 섹션 중 상단 배너 이미지 끝 -->
 
-<<<<<<< HEAD
     <!-- 상단 섹션 중 프로필 이미지 -->
         <% if @profile.user.profileimg.url != nil %>
           <%= image_tag @profile.user.profileimg.url, class: "ProfileImg" %> 
@@ -62,26 +61,7 @@
                   <a style="text-decoration: none; color: black" class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">
                     FOLLOW
                   </a>
-=======
-          <div style="border: 1px solid rgb(226, 226, 226); height: 10rem; background-color: white;">
-              <div style="margin-left: 2rem;margin-top: 2rem;" class="tab-content" id="nav-tabContent">
-                
-                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                  <%if @profile.user.allergy != nil %>
-                  <%if @profile.user.allergy.include?("난류") %>
-                    <div style="float: left; height: 6rem; width: 5rem; border: 1px solid rgb(226, 226, 226); background-color: white;"><%= image_tag "profile_egg.png", style: "margin-top: 0.5rem; margin-bottom: 0.5rem; display: block; margin-left: auto; margin-right: auto; width: 50%; width: 2.5rem" %></div>
                   <% end %>
-                  <% if @profile.user.allergy.include?("복숭아") %>
-                    <div style="float: left; height: 6rem; width: 5rem; border: 1px solid rgb(226, 226, 226); background-color: white;"><%= image_tag "profile_tomato.png", style: "margin-top: 0.5rem; margin-bottom: 0.5rem; display: block; margin-left: auto; margin-right: auto; width: 50%; width: 2.5rem" %></div>
-                  <% end %>
-                  <% if @profile.user.allergy.include?("토마토") %>
-                    <div style="float: left; height: 6rem; width: 5rem; border: 1px solid rgb(226, 226, 226); background-color: white;"><%= image_tag "profile_peach.png", style: "margin-top: 0.5rem; margin-bottom: 0.5rem; display: block; margin-left: auto; margin-right: auto; width: 50%; width: 2.5rem" %></div>
-                  <% end %>
-                  <% if @profile.user.allergy.include?("닭고기") %>
-                    <div style="float: left; height: 6rem; width: 5rem; border: 1px solid rgb(226, 226, 226); background-color: white;"><%= image_tag "profile_beef.png", style: "margin-top: 0.5rem; margin-bottom: 0.5rem; display: block; margin-left: auto; margin-right: auto; width: 50%; width: 2.5rem" %></div>
->>>>>>> 444b5c44af32d7fd5ec1458025ce6befa7ed2c88
-                  <% end %>
-                  <% end %>                  
                 </div>
               </nav>
 
@@ -303,7 +283,6 @@
               </div>
             <!-- 수정 요청 현황확인 건 2 끝 -->
 
-<<<<<<< HEAD
             <!-- 수정 요청 현황확인 건 3 -->
               <div class= "ProfileRequestEditBlock">
                 <div class="container">
@@ -322,59 +301,6 @@
       </div>
     <!-- 수정 요청 현황확인 내역 끝 -->
   </div>
-=======
-<!-- 수정 요청 현황확인 섹션 -->
-<div style="height: 22rem; margin-left: 71px; justify-content: center; background-color: white;">
-  <p style="text-align: center; font-size: 1.4rem; padding-top: 2rem; padding-bottom: 1.5rem;">수정 요청 현황 확인</p>
-  <div class="container" style="padding: 0px; background-color: white; height: 150px; width: 1200px">
-    <p style="font-size: 1rem; float: left; position: relative; margin-top: -2rem;">총 <%=@user_requests.count%>건</p>
-   
-    <%# <div style="margin-left: -2.6rem; margin-right: 0.5rem; float: left; height: 100%; width: 32.86%; border: 1px solid rgb(226, 226, 226); background-color: white;">
-      <div class="container">
-        <div style="margin-bottom: 0rem; margin-top: 1rem;"> 1번 수정요청에 대한 현황 </div>
-        <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> 2018-09-16 15:02 </div>
-        <div style="border-radius: 30%; margin-top: 6%; padding: 0.8% 1% 0.5% 1%; border: 1px solid #FF5400; color: #FF5400; width: 3.3rem; height 2rem; font-size: 0.8rem; text-align: center;">미처리</div>
-      </div>
-    </div>
-
-    <div style="margin-right: 0.5rem; float: left; height: 100%; width: 32.86%; border: 1px solid rgb(226, 226, 226); background-color: white;">
-      <div class="container">
-        <div style="margin-bottom: 0rem; margin-top: 1rem;"> 2번 수정요청에 대한 현황 </div>
-        <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> 2018-09-16 15:02 </div>
-        <div style="border-radius: 30%; margin-top: 6%; padding: 0.8% 1% 0.5% 1%; border: 1px solid #1E285D; color: #1E285D; width: 3.3rem; height 2rem; font-size: 0.8rem; text-align: center;">완료</div>
-      </div>
-    </div>
-
-    <div style="margin-right: 0rem; float: left; height: 100%; width: 32.86%; border: 1px solid rgb(226, 226, 226); background-color: white;">
-      <div class="container">
-        <div style="margin-bottom: 0rem; margin-top: 1rem;"> 3번 수정요청에 대한 현황 </div>
-        <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> 2018-09-16 15:02 </div>
-        <div style="border-radius: 30%; margin-top: 6%; padding: 0.8% 1% 0.5% 1%; border: 1px solid #FF5400; color: #FF5400; width: 3.3rem; height 2rem; font-size: 0.8rem; text-align: center;">미처리</div>
-      </div>
-    </div> %>
-
-    <div class="profile-request container d-flex"> <%n=1%>
-      <%@user_requests.each do |request|%>
-      <div class="request-box">
-        <%# <div class="container"> %>
-        <div style="margin-bottom: 0rem; margin-top: 1rem;"> <%=n%><%n=n+1%>번 수정요청에 대한 현황 </div>
-        <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> <%=request.created_at.strftime('%Y-%m-%d %H:%M')%> </div>
-          <% if request.completed== true %>   
-        <div class="request-completed">완료
-          <% else %>
-        <div class="request-uncompleted">미처리
-          <%end%>
-        </div>
-        <%# </div> %>
-      </div>
-      <%end%>   
-    </div> 
-    
-    <p style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0.5rem; float: left; position: relative;">현재 관리자가 확인 및 수정 절차를 진행하고 있습니다. 통상적으로 1~2주 안에 결과가 반영됩니다. 좋은 의견 항상 감사합니다.</p>
-  </div>    
-</div>
-
->>>>>>> 444b5c44af32d7fd5ec1458025ce6befa7ed2c88
 <!-- 수정 요청 현황확인 섹션 끝-->
 
 
@@ -382,7 +308,6 @@
 
 <!-- 
 <script>
-
     $(document).ready(function(){
       $("#spreadBtn1").click(function(){
           if($("#hiddenList1").is(":visible")){
@@ -394,7 +319,6 @@
           }
       });
     });
-
     $(document).ready(function(){
       $("#spreadBtn2").click(function(){
           if($("#hiddenList2").is(":visible")){
@@ -407,4 +331,3 @@
       });
     }); 
 </script>
--->

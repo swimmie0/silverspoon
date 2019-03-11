@@ -466,13 +466,24 @@
 }
 
 .main-board-box{
-    width: 32rem;
-    height: 16rem;
+    width: 100%;
+    // width: 32rem;
+    //height: 16rem;
     border-style: solid;
     border-color:  rgb(226, 226, 226);
     border-width:  1px;
 }
 
+.main-board-container div{
+    width: 100%;
+}
+.main-board-section1{
+    margin-right: 2rem;
+}
+
+.main-board-section2{
+    margin-left: 2rem;
+}
 .main-board-upper{
     margin-bottom: 1rem;   
 }
@@ -499,9 +510,20 @@
     text-align: center;
 }
 
+.main-board-tr{
+    cursor: pointer;
+}
+
+.main-board-tr:hover{
+    background-color: rgb(243, 243, 243);
+}
+
 .main-board-box tbody{
+    font-family: 'NanumBarunGothic',serif;
+    font-size: 0.8rem;
     background-color: white;
 }
+
 
 //로그인
 .session{

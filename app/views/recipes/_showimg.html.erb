@@ -2,8 +2,10 @@
   <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-      <%for x in 1..@count%>
-        <li data-target="#carouselExampleCaptions" data-slide-to="<%=x%>"></li>
+      <%if !@count.nil?%>
+        <%for x in 1..@count%>
+            <li data-target="#carouselExampleCaptions" data-slide-to="<%=x%>"></li>
+        <%end%>
       <%end%>
     </ol>
 
@@ -15,11 +17,8 @@
             <%else%>
                 <%=image_tag @recipe.recipeimage1_url, class:"d-block w-100"%>
             <%end%>
-            <div class="carousel-caption d-none d-md-block recipe-carousel-caption">
+            <div class="carousel-caption d-none d-md-block ">
                 <div class="recipe-show-step-title-img">STEP 01.</div>
-                <div class="recipe-show-step-detail-img">
-                    <%= simple_format(@recipe.content1)%>
-                </div>
             </div>
         </div>
         <%end%>
@@ -31,11 +30,9 @@
             <%else%>
                 <%=image_tag @recipe.recipeimage2_url, class:"d-block w-100"%>
             <%end%>
-            <div class="carousel-caption d-none d-md-block recipe-carousel-caption">
+            <div class="carousel-caption d-none d-md-block ">
                 <div class="recipe-show-step-title-img">STEP 02.</div>
-                <div class="recipe-show-step-detail-img">
-                    <%= simple_format(@recipe.content2)%>
-                </div>
+               
             </div>
         </div>
         <%end%>
@@ -47,11 +44,9 @@
             <%else%>
                 <%=image_tag @recipe.recipeimage3_url, class:"d-block w-100"%>
             <%end%>
-            <div class="carousel-caption d-none d-md-block recipe-carousel-caption">
+            <div class="carousel-caption d-none d-md-block ">
                 <div class="recipe-show-step-title-img">STEP 03.</div>
-                <div class="recipe-show-step-detail-img">
-                    <%= simple_format(@recipe.content3)%>
-                </div>
+                
             </div>
         </div>
         <%end%>
@@ -63,11 +58,9 @@
             <%else%>
                 <%=image_tag @recipe.recipeimage4_url, class:"d-block w-100"%>
             <%end%>
-            <div class="carousel-caption d-none d-md-block recipe-carousel-caption">
+            <div class="carousel-caption d-none d-md-block ">
                 <div class="recipe-show-step-title-img">STEP 04.</div>
-                <div class="recipe-show-step-detail-img">
-                    <%= simple_format(@recipe.content4)%>
-                </div>
+                
             </div>
         </div>
         <%end%>
@@ -79,11 +72,9 @@
             <%else%>
                 <%=image_tag @recipe.recipeimage5_url, class:"d-block w-100"%>
             <%end%>
-            <div class="carousel-caption d-none d-md-block recipe-carousel-caption">
+            <div class="carousel-caption d-none d-md-block ">
                 <div class="recipe-show-step-title-img">STEP 05.</div>
-                <div class="recipe-show-step-detail-img">
-                    <%= simple_format(@recipe.content5)%>
-                </div>
+                
             </div>
         </div>
         <%end%>
@@ -95,11 +86,9 @@
             <%else%>
                 <%=image_tag @recipe.recipeimage6_url, class:"d-block w-100"%>
             <%end%>
-            <div class="carousel-caption d-none d-md-block recipe-carousel-caption">
+            <div class="carousel-caption d-none d-md-block ">
                 <div class="recipe-show-step-title-img">STEP 06.</div>
-                <div class="recipe-show-step-detail-img">
-                    <%= simple_format(@recipe.content6)%>
-                </div>
+               
             </div>
         </div>
         <%end%>
@@ -111,11 +100,9 @@
             <%else%>
                 <%=image_tag @recipe.recipeimage7_url, class:"d-block w-100"%>
             <%end%>
-            <div class="carousel-caption d-none d-md-block recipe-carousel-caption">
+            <div class="carousel-caption d-none d-md-block ">
                 <div class="recipe-show-step-title-img">STEP 07.</div>
-                <div class="recipe-show-step-detail-img">
-                    <%= simple_format(@recipe.content7)%>
-                </div>
+                
         </div>
         <%end%>
 
@@ -126,11 +113,9 @@
             <%else%>
                 <%=image_tag @recipe.recipeimage8_url, class:"d-block w-100"%>
             <%end%>
-            <div class="carousel-caption d-none d-md-block recipe-carousel-caption">
+            <div class="carousel-caption d-none d-md-block ">
                 <div class="recipe-show-step-title-img">STEP 08.</div>
-                <div class="recipe-show-step-detail-img">
-                    <%= simple_format(@recipe.content8)%>
-                </div>
+                
             </div>
         </div>
         <%end%>
@@ -142,11 +127,9 @@
             <%else%>
                 <%=image_tag @recipe.recipeimage9_url, class:"d-block w-100"%>
             <%end%>
-            <div class="carousel-caption d-none d-md-block recipe-carousel-caption">
+            <div class="carousel-caption d-none d-md-block ">
                 <div class="recipe-show-step-title-img">STEP 09.</div>
-                <div class="recipe-show-step-detail-img">
-                    <%= simple_format(@recipe.content9)%>
-                </div>
+                
             </div>
         </div>
         <%end%>
@@ -158,11 +141,9 @@
             <%else%>
                 <%=image_tag @recipe.recipeimage10_url, class:"d-block w-100"%>
             <%end%>
-            <div class="carousel-caption d-none d-md-block recipe-carousel-caption">
+            <div class="carousel-caption d-none d-md-block ">
                 <div class="recipe-show-step-title-img-img">STEP 10.</div>
-                <div class="recipe-show-step-detail-img">
-                    <%= simple_format(@recipe.content10)%>
-                </div>
+                
             </div>
         </div>
         <%end%>

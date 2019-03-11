@@ -58,6 +58,7 @@
     color: white;
     font-size: 0.8rem;
 }
+
 .rolling-banner ul li div{
     height: 30px;
 }
@@ -73,6 +74,11 @@
 .headerfont{
     text-decoration: none;
     color:#454338;
+}
+
+.headerlogo{
+    width: 100%;
+    height: 100%;
 }
 
 .navbarstyle {
@@ -92,10 +98,20 @@
     justify-content: space-between;
 }
 
+
 .header-title{
-    font-family: 'Jeju Myeongjo', serif;
-    font-size: 1.3rem;
-    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.header-title a{
+    width: 100%;
+    height: 100%;
+}
+
+.headerlogo{
+    width: 9.4rem;
+    height: 1.7rem;
 }
 
 .header-menu{
