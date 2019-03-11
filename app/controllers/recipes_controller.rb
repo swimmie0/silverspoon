@@ -8,38 +8,38 @@ class RecipesController < ApplicationController
 
     @recipe_key = params[:recipe_word]
     @allergy_tags=["난류", "우유", "복숭아", "토마토", "메밀", "밀", "대두(콩)", "닭고기", "쇠고기", "돼지고기", "새우", "고등어", "홍합", "전복", "굴", "조개류", "게", "오징어", "호두", "땅콩", "아황산류"]
-    @recipes ||= []
 
-    if params[:recipe_word]
+    recipes = if params[:recipe_word]
+      if params[:recipe_word] == ""
+        @recipes = Kaminari.paginate_array(Recipe.all.order("created_at DESC")).page(params[:page]).per(9)
+        return
+      end
       key_del = @recipe_key.delete"#"
       @recipe_keys = key_del.split(' ')
-      
-      @recipe_keys.each do |key|
-        result = Recipe.where("#{:allergyfor} like ? OR #{:title} like ? OR #{:explain} like ?", "%#{key}%",  "%#{key}%",  "%#{key}%")
-        puts "&&&&&&&&&&&&&&&"
+      count = @recipe_keys.length()
+      for idx in 0...count
+        key = "%#{@recipe_keys[idx]}%"
         
-        @recipes << result
+        recipe = Recipe.where("title  LIKE (?) || explanation LIKE (?) || allergyfor LIKE (?) ", key, key, key).order("created_at DESC")
+        if idx == 0
+          @recipes = recipe
+        else
+          @recipes = @recipes & recipe
+        end
       end
+      @recipes = Kaminari.paginate_array(@recipes.uniq).page(params[:page]).per(9)
     else
-      @recipes = Recipe.all.order("created_at DESC")
+      @recipes = Kaminari.paginate_array(Recipe.all.order("created_at DESC")).page(params[:page]).per(9)
     end
-
-    # @recipes = if params[:recipe_word]
-    #   @recipes = Recipe.search(params[:recipe_word]).order("created_at DESC")
-    # else
-    #   @recipes  = Recipe.all.order("created_at DESC")
-    # end
-
-    # if params[:recipe_word]
-    #   @recipe_key.gsub("#","")
-    # end
-    puts "^^^^^^^^^^^^^^^^^^"
-    puts @recipes
+    
   end
 
   # GET /recipes/1
   # GET /recipes/1.json
   def show
+    @ingredients = @recipe.ingredients
+    @ingredients = @ingredients.split("\n")
+    puts @ingredients
   end
 
   # GET /recipes/new
@@ -108,7 +108,7 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:allergyfor, :recipeimage0, :title, :explain, :ingredients, :tag, :content1, :content2, :content3, :content4, :content5, :content6, :content7, :content8, :content9, :content10,
+      params.require(:recipe).permit(:allergyfor, :recipeimage0, :title, :explanation, :ingredients, :tag, :content1, :content2, :content3, :content4, :content5, :content6, :content7, :content8, :content9, :content10,
          :recipeimage1, :recipeimage2, :recipeimage3, :recipeimage4, :recipeimage5, :recipeimage6, :recipeimage7, :recipeimage8, :recipeimage9, :recipeimage10)
     end
 end
