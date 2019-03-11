@@ -11,7 +11,7 @@
 
 <div id="main-contents-allergy" class="container">
     <div id="allergy-filtering" class="d-flex justify-content-center">
-        <div class="alg-filt-title">알레르기 성분 검색</div>
+        <div class="alg-filt-title">식당 찾기</div>
     </div>
 
     <div class="search-full-box">
@@ -41,11 +41,11 @@
             <div class="main-popular-recipebox">
                 <%# 등록된 사진 오류남. 해결 해야함. %>
                 <div class="popular-recipe-imgbox">
-                    <%=image_tag("beige-logo.PNG",class:"popular-recipe-img")%>
+                    <%=image_tag("contents-ready-beige.PNG",class:"popular-recipe-img")%>
                 </div>
                 <div class="popular-recipe-textbox">
-                    <span class="popular-recipe-title"><%=popular_rcp.title%></span><br>
-                    <span class="popular-recipe-text">커밍.쑨.</span>
+                    <span class="popular-recipe-title"><%#=popular_rcp.title%></span><br>
+                    <span class="popular-recipe-text">인기 레시피 컨텐츠 준비중입니다</span>
                 </div>
                 
             </div>
@@ -55,59 +55,77 @@
 
 <div class="main-contents-boardwrap">
     <div class="main-contents-board">
-        <div class="main-board-container container d-flex justify-content-between">
-            <div class="main-board-section">
-                <div class="main-board-upper d-flex justify-content-between">
-                    <span class="main-board-title">・식당 정보 공유 게시판</span>
-                    <span><%=link_to '전체보기', freeboards_path, class: "main-board-more"%></span>
+        <div class="main-board-container container d-flex">
+            <div class="row">
+                <div class="main-board-section1 col">
+                    <div class="main-board-upper d-flex justify-content-between">
+                        <span class="main-board-title">・식당 정보 공유 게시판</span>
+                        <span><%=link_to '전체보기', freeboards_path, class: "main-board-more"%></span>
+                    </div>
+                    <table class="table main-board-box">
+                        <thead>
+                            <tr>
+                                <th width="15%">댓글</th>
+                                <th width="50%">제목</th>
+                                <th width="20%">작성자</th>
+                                <th width="15%">조회수</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%@recent_res.each do |post|%>
+                                <tr class="main-board-tr" data-href="freeboards/<%=post.id%>">
+                                    <td style="text-align: center;"><%=post.comment_threads.count %></td>
+                                    <td><%=post.title%></td>
+                                    <td style="text-align: center;"><%= post.name %></td>
+                                    <td style="text-align: center;"><%=post.impressionist_count(:filter=>:session_hash) %></td>
+                                </tr>
+                            <%end%>
+                        </tbody>
+                    </table>
                 </div>
-                <table class="table main-board-box">
-                    <thead>
-                        <tr>
-                            <th width="15%">댓글</th>
-                            <th width="50%">제목</th>
-                            <th width="20%">작성자</th>
-                            <th width="15%">조회수</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <%=render partial: "board"%>
-                    </tbody>
-                </table>
-            </div>
 
-            <div class="main-board-section">
-                <div class="main-board-upper d-flex justify-content-between">
-                    <span class="main-board-title">・자유 홍보 게시판</span>
-                     <span><%=link_to '전체보기', freeboards_path, class: "main-board-more"%></span>
+                <div class="main-board-section2 col">
+                    <div class="main-board-upper d-flex justify-content-between">
+                        <span class="main-board-title">・일상 공유 게시판</span>
+                        <span><%=link_to '전체보기', freeboards_path, class: "main-board-more"%></span>
+                    </div>
+                    <table class="table main-board-box">
+                        <thead>
+                            <tr>
+                                <th width="15%">댓글</th>
+                                <th width="50%">제목</th>
+                                <th width="20%">작성자</th>
+                                <th width="15%">조회수</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <div class="recent-board">
+                                <%@recent_daily.each do |post|%>
+                                <tr class="main-board-tr" data-href="freeboards/<%=post.id%>">
+                                    <td style="text-align: center;"><%=post.comment_threads.count %></td>
+                                    <td><%=post.title%></td>
+                                    <td style="text-align: center;"><%= post.name %></td>
+                                    <td style="text-align: center;"><%=post.impressionist_count(:filter=>:session_hash) %></td>
+                                </tr>
+                                <%end%>
+                            </div>
+
+                        </tbody>
+                    </table>
+
                 </div>
-                <table class="table main-board-box">
-                    <thead>
-                        <tr>
-                            <th width="15%">댓글</th>
-                            <th width="50%">제목</th>
-                            <th width="20%">작성자</th>
-                            <th width="15%">조회수</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <%=render partial: "board"%>
-                    </tbody>
-                </table>
-
             </div>
         </div>
     </div>
 </div>
 
-<div><%= link_to "크롤링 업데이트", "/crawling"%></div>
-
-
 <%#= javascript_include_tag('searchmain.js') %>
 <script>
 
-
+    $(".main-board-tr").click(function() {
+        window.location = $(this).data("href")  
+    })
     
     $(".btn-allergy").click(function(){
         

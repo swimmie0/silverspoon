@@ -1,23 +1,19 @@
 <div class="holder">
     <div id="banner1" class="rolling-banner">
         <ul id="rolling-list" class="rolling container">
-            
-            <li><div>첫번째 공지</div></li>
-            <li><div>두번째 공지</div></li>
-            <li><div>세번째 공지</div></li>
-            <li><div>네번째 공지</div></li>
+            <li><div>[OPEN] SILVER SPOON 베타 버전 3/13-3/19 오픈</div></li>
         </ul>
     </div>
 
     <div class="navbarstyle"> 
         <div class="navbarcontent container">
             <div class="row"> 
-                <div class="header-title col-4"><%= link_to "Spoon Tales", root_path, class: "headerfont"%></div>        
+                <div class="header-title col-4"><%= link_to image_tag("logo-letter.png", class: "headerlogo"), root_path%></div>        
                 <div class="header-menu col-4">
                     <%= link_to "공지사항", notices_path, class: "headerfont"%>
-                    <%= link_to "레시피", recipes_path, class: "headerfont"%>
-                    <%= link_to "커뮤니티", freeboards_path, class: "headerfont"%>
                     <%= link_to "식당찾기", restaurants_path, class: "headerfont"%>
+                    <%= link_to "커뮤니티", freeboards_path, class: "headerfont"%>
+                    <%= link_to "레시피", recipes_path, class: "headerfont"%>
                 </div>
                 <div class="col-2"></div>
                 <div id="header-right" class="header-personal col-2 d-flex">

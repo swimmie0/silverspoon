@@ -33,23 +33,23 @@
     <%= form.text_field :title, :class =>"form-control" ,:style=>"width:95%;margin-left:10px;margin-top:10px;", :required=>'true'%>
   </div><br/>
 
-  <div class="field">
+   <div class="field">
       <%= form.label '내용' %>
-<<<<<<< HEAD
-      <%= tinymce :language => "ko" %>    
-<<<<<<< HEAD
-=======
       <%= tinymce :language => "en" %>    
->>>>>>> 444b5c44af32d7fd5ec1458025ce6befa7ed2c88
       <%= form.text_area :content, :class => "form-control tinymce", :rows=> "10"%>
-=======
-      <%= form.text_area :content, :class => "form-control tinymce", :rows=> "10" %>
->>>>>>> a3258d3e896d8fcc4fbcf3a4a127b5c5e0557f40
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  
+  <div class="freeboard-new-btnbox">
+    <div class="back-btn">
+        <%= link_to '취소', freeboard, class: "linkto-cancel"%>
+    </div>
+
+    <div class="freeboard-submit-btnbox">
+        <button type="submit" class="btn btn-search">글 등록하기</button>
+    </div>
   </div>
+
 
 
 <% end %>
