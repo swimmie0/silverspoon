@@ -16,16 +16,16 @@ class FreeboardsController < ApplicationController
     @free_adv=Kaminari.paginate_array(Freeboard.where(category: "홍보글").order("created_at DESC")).page(params[:page]).per(12)
     @free_crowd=Kaminari.paginate_array(Freeboard.where(category: "제보글").order("created_at DESC")).page(params[:page]).per(12)
   
-    @recipe = Recipe.all
+    # @recipe = Recipe.all
     
     @freeboards = if params[:search]
-      @result = Freeboard.search(params[:search]).order("created_at DESC") + Recipe.search(params[:search]).order("created_at DESC")
+      @result = Freeboard.search(params[:search]).order("created_at DESC") 
       @freeboards = Kaminari.paginate_array(@result).page(params[:page]).per(12)
     elsif params[:category]
       @result = Freeboard.search(params[:category]).order("created_at DESC")
       @freeboards = Kaminari.paginate_array(@result).page(params[:page]).per(12)
     else  
-      @result = Freeboard.all.order("created_at DESC") + Recipe.all.order("created_at DESC")
+      @result = Freeboard.all.order("created_at DESC")
       @freeboards = Kaminari.paginate_array(@result).page(params[:page]).per(12)      
     end
   end
