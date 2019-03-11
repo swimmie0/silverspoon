@@ -85,3 +85,38 @@ body{
 //      display: none; 
 // }
 
+//회원가입 CSS 임시로 여기서!
+
+.RegisterSection {
+    font-family: 'NanumBarunGothic'; 
+    background-color: #F8F8F8;
+    height: 100%;
+    width: 100%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    //text-align: center;
+}
+
+.RegisterForm {
+    background-color: white;
+    height: 100%;
+    width: 800px;
+    border: 2px solid #1E285D; 
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.RegisterFormHeader {
+    margin-top: 2rem; 
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.RegisterFormMust {
+    text-align: "right";
+}
