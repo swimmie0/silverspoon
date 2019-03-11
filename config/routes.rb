@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :notices
-  resources :recipes
+
   resources :conversations do
     resources :messages
   end
@@ -37,11 +37,12 @@ Rails.application.routes.draw do
   #-----------admin 관리 페이지
   get 'admincontrol/index' => "admincontrol#index"
   get 'admincontrol/zizuminfo' => "admincontrol#zizuminfo"
-  get 'admincontrol/user' => "admincontrol#user"
+  get 'admincontrol/menu' => "admincontrol#menu"
   get 'admincontrol/restaurant' => "admincontrol#restaurant"
   get 'admincontrol/zizumupdate' => "admincontrol#zizumupdate"
   get 'admincontrol/resupdate' => "admincontrol#resupdate"
- #===============메뉴별 제보 요청==============
+  get 'admincontrol/menuupdate' => "admincontrol#menuupdate"
+  #===============메뉴별 제보 요청==============
  get 'userrequests/index'
 
  get 'userrequests/new'
@@ -73,6 +74,7 @@ Rails.application.routes.draw do
   # post '/menus/index/params', to: 'follows#zizum_front_follow_toggle', as: 'zizum_front_follow'
 
   # get '/freeboards/'
+  resources :recipes
   resources :freeboards
   resources :userrequests
   resources :zizuminfos

@@ -18,8 +18,8 @@ class Recipe < ApplicationRecord
     mount_uploader :recipeimage10, S3Uploader
 
 
-    def self.search(search)
+    def self.search(key)
         # for i in 1..10
-        where("allergyfor LIKE ? OR explain LIKE ? OR title LIKE ? ", "%#{search}%")     
+        where("allergyfor || title|| explain LIKE ?", "%#{key}%")    
     end
 end

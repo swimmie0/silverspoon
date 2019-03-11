@@ -102,8 +102,8 @@ class FollowsController < ApplicationController
             followtype = true
         end
 
-        $result = {"zizumid" => nil, "follow" => nil}
-        $result["zizumid"] = @recipe_s.id
+        $result = {"recipeid" => nil, "follow" => nil}
+        $result["recipeid"] = @recipe_s.id
         $result["follow"] = followtype
 
         respond_to do |format|

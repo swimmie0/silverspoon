@@ -107,6 +107,8 @@
 
 //=================index search 끝========
 
+
+
 //-----------------index main 시작========
 .recipe-index-main{
     font-family: 'NanumBarunGothic',serif;
@@ -240,7 +242,273 @@
     color: rgb(165, 164, 164); 
 }
 
+//------------------------------------
 
+//================recipe show==========
+.recipe-about-sec{
+    width: 100%;
+    height: 100%;
+    font-family:  'NanumBarunGothic',serif;
+}
+
+.recipe-bookmark{
+    cursor: pointer;
+    color: #FF5400;
+    font-size: 2.2rem;
+    font-weight: 200;
+}
+
+
+
+
+.recipe-id-like, .recipe-id-bookmark{
+    display: none;
+}
+
+.recipe-show-allergyfor{
+    color: #FF5400;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.recipe-about-upper{
+    height: 46%;
+}
+
+.recipe-about-title1{
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.recipe-about-title2{
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+}
+
+.recipe-about-explain{
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: rgb(165, 164, 164); 
+}
+
+.recipe-about-user{
+    margin-top: 0.7rem;
+    width: 100%;
+    align-items: center;
+}
+
+.recipe-about-writer-imgbox{
+    border-radius:50%;
+    width:2.5rem;
+    height:2.5rem;
+    margin-right: 0.8rem;
+    overflow: hidden;
+}
+
+.recipe-about-writer-imgbox img{
+    width: 100%;
+    height: 100%;
+}
+
+.recipe-about-writer{
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+
+.recipe-about-moreinfo{
+    margin-top: 0.4rem;
+    width: 100%;
+    height: 54%;
+    padding-top: 1.4rem;
+    font-size: 0.9rem;
+}
+
+.recipe-about-mi-row{
+    align-items: center;
+}
+
+
+
+.recipe-about-spec-bookmark{
+    width: 6rem; 
+    height: 75%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.9rem;
+    border-style: solid;
+    border-color: #FF5400;
+    border-width: 1.2px;
+    padding: 0.2rem 0.75rem;
+    font-size: 0.9rem;
+
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+.recipe-about-spec-bookmark:hover{
+    background-color: #FF5400;
+    color: white;
+}
+
+.recipe-about-spec{
+    width: 84%;
+}
+
+.recipe-about-spec-ingr{
+    font-size: 0.8rem;
+}
+
+.recipe-i-ingr{
+    color: #1E285D;
+}
+
+
+//recipe show 과정---------------
+.recipe-show-content-area{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.recipe-show-content-box{
+    width: 100%;
+    padding-top: 0.5rem;
+    padding: 2rem;
+    border-color: rgb(226,226,226);
+    border-style: solid;
+    border-width: 0.6px;
+    margin-bottom: 5rem;
+}
+
+.recipe-show-content-how{
+    height: 1.6rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.3rem;
+}
+
+.recipe-show-how-btnbox{
+    width: 5rem;
+    height: 100%;
+    display: flex;
+}
+
+.recipe-show-how-btn{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-color: rgb(226,226,226);
+    border-style: solid;
+    border-width: 0.5px;
+
+    color:  rgb(202, 202, 202);
+}
+.recipe-show-how-btn i {
+    font-size: 1rem;
+}
+
+.recipe-show-how-active{
+    background-color: rgb(202, 202, 202);
+    color: white;
+}
+
+.recipe-show-content-steps{
+    width: 100%;
+    height: 17rem;
+}
+
+.recipe-show-content-txt {
+    //text 형식일 때
+    margin-bottom: 2rem;
+}
+
+.recipe-show-step-img{
+    height: 15rem;
+    width: 17rem;
+    border-color: rgb(226,226,226);
+    border-style: solid;
+    border-width: 0.5px;
+}
+
+.recipe-show-step-content{
+    padding: 0rem 2.5rem;
+}
+
+.recipe-show-step-title{
+    font-size: 1.1rem;
+    color: #1E285D;
+    font-weight: 600;
+}
+
+.recipe-show-step-detail{
+    margin-top: 1.2rem;
+    font-size: 0.9rem;
+}
+
+//img 만 보여지는 형식일 때
+
+.recipe-bd-example{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.recipe-carousel-inner{
+    width: 35rem;
+    height: 30rem;
+}
+
+.carousel-item{
+    height: 100%;
+    font-family:  'NanumBarunGothic',serif;
+}
+.carousel-item img{
+    height: 100%;
+}
+
+.recipe-carousel-caption{
+   background-color: rgba(100, 100, 100, 0.363)
+}
+
+.recipe-show-step-title-img{
+    font-size: 1.1rem;
+    color: white;
+    font-weight: 600;
+}
+
+.recipe-show-step-detail-img{
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+//-------------------------------------
+
+//-------------modal-------------------
+
+.recipe-modal-body{
+    padding-top: 0.5rem;
+    height: 17rem;
+    overflow-y: auto;
+}
+.recipe-modal-dialog{
+    width: 23rem;
+}
+
+.recipe-about-follower{
+    margin: 1rem 0.5rem;
+    width: 100%;
+    align-items: center;
+}
+//-------------------------------------
 
 .recipe-new-upper{
     margin-top: 1.5rem;
@@ -299,6 +567,14 @@
     border-width: 0.4px;
     border-color: #707070;
     width: 13rem;
+}
+
+.recipe-new-intro-input-ingr{
+    border-style: solid;
+    border-width: 0.4px;
+    border-color: #707070;
+    width: 20rem;
+    height: 15rem;
 }
 
 
