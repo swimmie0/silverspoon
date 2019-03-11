@@ -16,7 +16,10 @@
 
   <div class = "field">
     <%= f.label "이름" %><br/>
-    <%= f.text_field :name, class: "form-control", id: "checkname", :required => true %>
+    <div class="form-inline">
+    <%= f.text_field :name, class: "form-control", id: "checkname", :required => true, :validates => { :uniqueness => true } %>
+    <button type = "button" id="checkDouble">중복확인</button>
+    </div>
     <p class = "mt-4 mb-2" id = "check-warning"></p>
   </div>
   <hr>
@@ -79,11 +82,23 @@
 
 
 <script>
- document.getElementById("submitButton").disabled = true;
+//document.getElementById("submitButton").disabled = true;
+$('#checkname').each(function(){
+  var elem =$(this)
+   // Save current value of element
+  elem.data('oldVal',elem.val())
+  
+  // Look for changes in the value
+   elem.bind("change keyup paste", function(event){
+      if (elem.data('oldVal') != elem.val()) {
+      // Updated stored value
+      //  elem.data('oldVal', elem.val());
 
-// document.getElementById("checkButton").addEventListener("click", function(){
- $(document).ready(function(){  
-     $("#checkname").keyup(function(){                           
+       // Do action
+      document.getElementById("submitButton").disabled = true;
+      document.getElementById("check-warning").innerHTML = "닉네임 중복확인을 해주세요!";
+      
+      document.getElementById("checkDouble").addEventListener("click", function(){             
       var nameIn = document.getElementById("checkname").value;
         $.ajax({    //checkid와같이x
           async : true,
@@ -95,7 +110,7 @@
             
             console.log(data);
           
-            if (data["ableName"] == 1){
+            if (data["ableName"] == 1&& elem.data('oldVal') != elem.val()){
                 document.getElementById("check-warning").innerHTML = "해당 닉네임은 이미 사용중입니다";
                  document.getElementById("submitButton").disabled = true;
             }
@@ -105,7 +120,11 @@
             }
           }
         })
-    })
- })
+      })
+     }
+   });
+
+ });
+
 
 </script>

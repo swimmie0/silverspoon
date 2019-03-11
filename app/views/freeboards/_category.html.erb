@@ -14,11 +14,6 @@
       <%= text_field_tag :category, params[:category], value:"질문글", style:"display:none;"%>
           <% if @freeboard.category == "질문글" %><%=submit_tag "질문글", class:"nav-link selected"%>
           <% else%><%=submit_tag "질문글", class:"nav-link"%><% end %> 
-      <% end %> 
-      <%= form_tag(freeboards_path, :method => "get") do %>
-      <%= text_field_tag :category, params[:category], value:"홍보글", style:"display:none;"%>
-          <% if @freeboard.category == "홍보글" %><%=submit_tag "홍보글", class:"nav-link selected"%>
-          <% else%><%=submit_tag "홍보글", class:"nav-link"%><% end %> 
       <% end %>       
       <%= form_tag(freeboards_path, :method => "get") do %>
       <%= text_field_tag :category, params[:category], value:"제보글", style:"display:none;"%>

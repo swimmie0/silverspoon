@@ -5,7 +5,7 @@
 <div class="comments-container">  
     <% if @freeboard.category == "질문글" %>
         <%= render partial: "comments/answer",  locals: {comments: commentable.root_comments} %>
-    <% else %>
+    <% else %>    
         <%= render partial: "comments/reply",  locals: {comments: commentable.root_comments} %>
     <% end %>
 </div>
