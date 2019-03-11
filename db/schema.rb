@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_02_164455) do
+ActiveRecord::Schema.define(version: 2019_03_11_042211) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2019_02_02_164455) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "completed", default: false
     t.index ["user_id"], name: "index_freeboards_on_user_id"
   end
 
@@ -81,6 +82,14 @@ ActiveRecord::Schema.define(version: 2019_02_02_164455) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_identities_on_user_id"
+  end
+
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "alt"
+    t.string "hint"
+    t.string "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "impressions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -164,6 +173,8 @@ ActiveRecord::Schema.define(version: 2019_02_02_164455) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_notices_on_user_id"
   end
 
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -333,11 +344,13 @@ ActiveRecord::Schema.define(version: 2019_02_02_164455) do
     t.string "restaurant_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "explain"
     t.index ["restaurant_id"], name: "index_zizuminfos_on_restaurant_id"
   end
 
   add_foreign_key "freeboards", "users"
   add_foreign_key "identities", "users"
+  add_foreign_key "notices", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "recipes", "users"
 end

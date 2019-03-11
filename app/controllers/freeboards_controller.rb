@@ -1,4 +1,4 @@
-class FreeboardsController < ApplicationController
+class FreeboardsController < ApplicationController  
   before_action :set_freeboard, only: [:show, :edit, :update, :destroy]
   # 조회수
   impressionist actions: [:show]
@@ -13,19 +13,18 @@ class FreeboardsController < ApplicationController
     @free_daily=Kaminari.paginate_array(Freeboard.where(category: "일상글").order("created_at DESC")).page(params[:page]).per(12)
     @free_information=Kaminari.paginate_array(Freeboard.where(category: "정보글").order("created_at DESC")).page(params[:page]).per(12)
     @free_qna=Kaminari.paginate_array(Freeboard.where(category: "질문글").order("created_at DESC")).page(params[:page]).per(12)
-    @free_adv=Kaminari.paginate_array(Freeboard.where(category: "홍보글").order("created_at DESC")).page(params[:page]).per(12)
+    # @free_adv=Kaminari.paginate_array(Freeboard.where(category: "홍보글").order("created_at DESC")).page(params[:page]).per(12)
     @free_crowd=Kaminari.paginate_array(Freeboard.where(category: "제보글").order("created_at DESC")).page(params[:page]).per(12)
   
-    @recipe = Recipe.all
     
     @freeboards = if params[:search]
-      @result = Freeboard.search(params[:search]).order("created_at DESC") + Recipe.search(params[:search]).order("created_at DESC")
+      @result = Freeboard.search(params[:search]).order("created_at DESC") 
       @freeboards = Kaminari.paginate_array(@result).page(params[:page]).per(12)
     elsif params[:category]
       @result = Freeboard.search(params[:category]).order("created_at DESC")
       @freeboards = Kaminari.paginate_array(@result).page(params[:page]).per(12)
     else  
-      @result = Freeboard.all.order("created_at DESC") + Recipe.all.order("created_at DESC")
+      @result = Freeboard.all.order("created_at DESC")
       @freeboards = Kaminari.paginate_array(@result).page(params[:page]).per(12)      
     end
   end
@@ -36,6 +35,9 @@ class FreeboardsController < ApplicationController
     @freeboard = Freeboard.find(params[:id]) 
     @writer = @freeboard.user
 
+    if params[:completed] == 'true'
+      @freeboard.completed = true
+    end
     # 로그인 및 닉네임설정해야 글 볼 수 있도록
     # if user_signed_in? && current_user.name != nil
     #   @new_comment  = Comment.build_from(@freeboard, current_user.id, "") 
@@ -101,6 +103,10 @@ class FreeboardsController < ApplicationController
         format.json { render json: @freeboard.errors, status: :unprocessable_entity }
       end
     end
+    # @freeboard = Freeboard.find(params[:id]) 
+    # if params[:completed] == 'true'
+    #   @freeboard.completed = 'true'
+    # end
   end
 
   # DELETE /freeboards/1
@@ -121,6 +127,6 @@ class FreeboardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def freeboard_params
-      params.require(:freeboard).permit(:title, :content, :name, :category, :locked, :user_id)
+      params.require(:freeboard).permit(:title, :content, :name, :category, :locked,:completed, :user_id)
     end
 end

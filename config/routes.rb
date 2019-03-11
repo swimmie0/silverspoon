@@ -72,6 +72,7 @@ Rails.application.routes.draw do
   # post '/zizuminfos/:id/follow', to: 'follows#zizum_back_follow_toggle', as: 'zizum_back_follow'
   # post '/menus/index/params', to: 'follows#zizum_front_follow_toggle', as: 'zizum_front_follow'
 
+  # get '/freeboards/'
   resources :freeboards
   resources :userrequests
   resources :zizuminfos
@@ -84,7 +85,7 @@ Rails.application.routes.draw do
   #============크롤링===============
   get '/crawling' => 'restaurants#crawling'
   #================================
-
+  post '/tinymce_assets' => 'tinymce_assets#create'
   # user
   # post '/users/checkDouble' => 'user/registrations#checkDouble'
   # post "/users/checkDouble" => "user/registrations#checkDouble" 

@@ -11,10 +11,13 @@ class ProfilesController < ApplicationController
   # GET /profiles/1.json
   def show
     params[:id] = current_user.id
-    @user_requests = Userrequest.where(uid: current_user.id)
+    # @user_requests = Userrequest.where(uid: current_user.id)
     @user_posts = Freeboard.where(user: current_user)
     @user_commentnum = Comment.where(user: current_user).count
     @conversations = Conversation.all
+
+    @user_requests = Freeboard.where(:user_id => current_user.id, :category => '제보글')
+    @requests_array = Kaminari.paginate_array(@user_requests).page(params[:page]).per(3)
   end
 
   # GET /profiles/new

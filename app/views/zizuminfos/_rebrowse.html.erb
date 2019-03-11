@@ -126,107 +126,107 @@
             <%# script 합쳐버리면 오류 뜸. %>
             <script>
                 $(".custom-btn").click(function(){
-                if('<%=current_user.allergy.include?('난류')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('난류')%>' === "true"){
                     $("#a9_nanryu").prop('checked', true);
                     $("#a9").addClass("allergy-cp-active");
                     $("#a9").children('img').addClass('allergy-cp-img-active');
                 }
-                if('<%=current_user.allergy.include?('우유')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('우유')%>' === "true"){
                     $("#a10_milk").prop('checked', true);
                     $("#a10").addClass("allergy-cp-active");
                     $("#a10").children('img').addClass('allergy-cp-img-active');
                 }
-                if('<%=current_user.allergy.include?('복숭아')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('복숭아')%>' === "true"){
                     $("#a6_peach").prop('checked', true);
                     $("#a6").addClass("allergy-cp-active");
                     $("#a6").children('img').addClass('allergy-cp-img-active');
                 }
-                if('<%=current_user.allergy.include?('토마토')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('토마토')%>' === "true"){
                     $("#a7_tomato").prop('checked', true);
                     $("#a7").addClass("allergy-cp-active");
                     $("#a7").children('img').addClass('allergy-cp-img-active');
                 }
-                if('<%=current_user.allergy.include?('메밀')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('메밀')%>' === "true"){
                     $("#a2_maemil").prop('checked', true);
                     $("#a2").addClass("allergy-cp-active");
                     $("#a2").children('img').addClass('allergy-cp-img-active');
                 }
-                if('<%=current_user.allergy.include?('밀')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('밀')%>' === "true"){
                     $("#a1_mil").prop('checked', true);
                     $("#a1").addClass("allergy-cp-active");
                     $("#a1").children('img').addClass('allergy-cp-img-active');
                 }
-                if('<%=current_user.allergy.include?('대두(콩)')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('대두(콩)')%>' === "true"){
                     $("#a3_daedu").prop('checked', true);
                     $("#a3").addClass("allergy-cp-active");
                     $("#a3").children('img').addClass('allergy-cp-img-active');
                 }
-                if('<%=current_user.allergy.include?('닭고기')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('닭고기')%>' === "true"){
                     $("#a11_ddakgogi").prop('checked', true);
                     $("#a11").addClass("allergy-cp-active");
                     $("#a11").children('img').addClass('allergy-cp-img-active');
                 }
-                if('<%=current_user.allergy.include?('쇠고기')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('쇠고기')%>' === "true"){
                     $("#a12_shoigogi").prop('checked', true);
                     $("#a12").addClass("allergy-cp-active");
                     $("#a12").children('img').addClass('allergy-cp-img-active');
                 }
-                if('<%=current_user.allergy.include?('돼지고기')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('돼지고기')%>' === "true"){
                     $("#a8_piggogi").prop('checked', true);
                     $("#a8").addClass("allergy-cp-active");
                     $("#a8").children('img').addClass('allergy-cp-img-active');
                 }
-                if('<%=current_user.allergy.include?('새우')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('새우')%>' === "true"){
                     $("#a13_saewoo").prop('checked', true);
                     $("#a13").addClass("allergy-cp-active");
                     $("#a13").children('img').addClass('allergy-cp-img-active');
                 }
-                if('<%=current_user.allergy.include?('고등어')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('고등어')%>' === "true"){
                     $("#a14_godeungeoh").prop('checked', true);
                     $("#a14").addClass("allergy-cp-active");
                     $("#a14").children('img').addClass('allergy-cp-img-active');
                 }
-                if('<%=current_user.allergy.include?('홍합')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('홍합')%>' === "true"){
                     $("#a15_honghap").prop('checked', true);
                     $("#a15").addClass("allergy-cp-active");
                     $("#a15").children('img').addClass('allergy-cp-img-active');
                 }
-                if('<%=current_user.allergy.include?('전복')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('전복')%>' === "true"){
                     $("#a16_junbok").prop('checked', true);
                     $("#a16").addClass("allergy-cp-active");
                     $("#a16").children('img').addClass('allergy-cp-img-active');
                 }
-                if('<%=current_user.allergy.include?('굴')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('굴')%>' === "true"){
                     $("#a17_gul").prop('checked', true);
                     $("#a17").addClass("allergy-cp-active");
                     $("#a17").children('img').addClass('allergy-cp-img-active');
                 }
-                if('<%=current_user.allergy.include?('조개류')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('조개류')%>' === "true"){
                     $("#a18_jogaeryu").prop('checked', true);
                     $("#a18").addClass("allergy-cp-active");
                     $("#a18").children('img').addClass('allergy-cp-img-active');
                 }
-                if('<%=current_user.allergy.include?('게')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('게')%>' === "true"){
                     $("#a19_gye").prop('checked', true);
                     $("#a19").addClass("allergy-cp-active");
                     $("#a19").children('img').addClass('allergy-cp-img-active');
                 }
-                if('<%=current_user.allergy.include?('오징어')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('오징어')%>' === "true"){
                     $("#a20_ohjingeoh").prop('checked', true);
                     $("#a20").addClass("allergy-cp-active");
                     $("#a20").children('img').addClass('allergy-cp-img-active');
                 }
-                if('<%=current_user.allergy.include?('호두')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('호두')%>' === "true"){
                     $("#a4_hodu").prop('checked', true);
                     $("#a4").addClass("allergy-cp-active");
                     $("#a4").children('img').addClass('allergy-cp-img-active');
                 }
-                if('<%=current_user.allergy.include?('땅콩')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('땅콩')%>' === "true"){
                     $("#a5_ddangkong").prop('checked', true);
                     $("#a5").addClass("allergy-cp-active");
                     $("#a5").children('img').addClass('allergy-cp-img-active');
                 }
-                if('<%=current_user.allergy.include?('아황산류')%>' === "true"){
+                if('<%=current_user.allergy!=nil&&current_user.allergy.include?('아황산류')%>' === "true"){
                     $("#a21_ahwangsan").prop('checked', true);
                     $("#a21").addClass("allergy-cp-active");
                     $("#a21").children('img').addClass('allergy-cp-img-active');

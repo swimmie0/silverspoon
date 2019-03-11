@@ -334,6 +334,9 @@ GEM
     tilt (2.0.8)
     tinymce-rails (4.9.3)
       railties (>= 3.1.1)
+    tinymce-rails-imageupload (4.0.17.beta.3)
+      railties (>= 3.2, < 6)
+      tinymce-rails (~> 4.0)
     tinymce-rails-langs (4.20180103)
       tinymce-rails (~> 4.1, >= 4.1.10)
     turbolinks (5.2.0)
@@ -401,6 +404,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   sqlite3
   tinymce-rails (~> 4.1, >= 4.1.10)
+  tinymce-rails-imageupload (~> 4.0.0.beta)
   tinymce-rails-langs (~> 4.20180103)
   turbolinks (~> 5)
   tzinfo-data
