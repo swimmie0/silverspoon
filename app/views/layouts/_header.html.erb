@@ -22,7 +22,7 @@
                 <div class="col-2"></div>
                 <div id="header-right" class="header-personal col-2 d-flex">
                     <%#= link_to "Inbox", conversations_path, class: "headerfont" %>
-                <!-- 알림창 -->
+               
                     <% if user_signed_in? %>
                         <div class="header-mypage">
                              <% if current_user.profile.nil? %> 
@@ -31,32 +31,32 @@
                             <div><%= link_to "마이페이지", profile_path(current_user.profile.id), class:"headerfont"%></div>
                             <% end %>
                         </div>
-
-                        <button onclick="showHide('info_html')" onfocus="this.blur()" style="background:none;border:none;">
+                     <!-- 알림창 -->
+                        <%# <button onclick="showHide('info_html')" onfocus="this.blur()" style="background:none;border:none;">
                             <%if current_user.new_alarms.unread_by(current_user).count ==0 %>
-                            <a class="fa fa-globe" style="color:black;"></a> 
+                            <%# <a class="fa fa-globe" style="color:black;"></a> 
                             <% else %> 
-                            <a class="fa fa-globe" style="color:black;">
+                            <%# <a class="fa fa-globe" style="color:black;">
                                 <span class="fa fa-comment"></span>
-                                <span class="num"> <%= current_user.new_alarms.unread_by(current_user).count %> </span>
-                            </a>  
+                                <span class="num"> <%= current_user.new_alarms.unread_by(current_user).count %> 
+                            <%# </a>  
                             <%end%>
-                        </button>
+                        <%# </button>
                         <div id="info_html" class="modal">
                             <div class="inborder">
                                 <div class="noti_title"><b>알림창</b></div><hr>
-                                <%= render partial: "new_alarms/new_alarm", collection: current_user.new_alarms.unread_by(current_user) %><br>
-                                <%= link_to '<b>모두 읽기</b>'.html_safe, new_alarms_read_all_path, {:style=>'color:black;margin-left:80%;'}%>
-                            </div>
-                        </div>  
-                    <% end %>   
+                                <%= render partial: "new_alarms/new_alarm", collection: current_user.new_alarms.unread_by(current_user) %>
+                                <%# <%= link_to '<b>모두 읽기</b>'.html_safe, new_alarms_read_all_path, {:style=>'color:black;margin-left:80%;'}%>
+                            <%# </div>
+                        </div>   %> 
+                    <% end %>    
                     
                     <!-- 로그인/로그아웃 -->
                     <div>
                         <% if !user_signed_in? %> 
-                            <%= link_to "Log In", new_user_session_path, class:"headerfont", :style=>"text-decoration: none; color: #454338;" %>
+                            <%= link_to "로그인", new_user_session_path, class:"headerfont", :style=>"text-decoration: none; color: #454338;" %>
                         <% elsif user_signed_in?%>
-                            <%#= link_to "Log Out", destroy_user_session_path, method: :delete, class:"headerfont", :style=>"text-decoration: none; color: #454338;" %>
+                            <%= link_to "로그아웃", destroy_user_session_path, method: :delete, class:"headerfont", :style=>"text-decoration: none; color: #454338;"%>
                         <% end %>
                     </div>
                 </div>

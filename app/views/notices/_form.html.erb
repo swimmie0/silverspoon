@@ -1,14 +1,38 @@
-
+<%# 
 <%= simple_form_for(@notice) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <%# <%= f.error_notification %>
+  <%# <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %> 
 
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :content %>
+
+<%= form_with(model:  notice, local: true) do |form| %>
+
+  <% if  notice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize( notice.errors.count, "error") %> prohibited this  notice from being saved:</h2>
+
+      <ul>
+      <%  notice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <div class="field form-inline">
+      <%= form.label '제목' %>
+      <%= form.text_field :title, :class =>"form-control" ,:style=>"width:95%;margin-left:10px;margin-top:10px;", :required=>'true'%>
+    </div><br/>
+
+    <div class="field">
+        <%= form.label '내용' %>
+        <%= tinymce :language => "en" %>    
+        <%= form.text_area :content, :class => "form-control tinymce", :rows=> "10"%>
+    </div>
+
+  <div class="actions">
+    <%= form.submit %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+
 <% end %>

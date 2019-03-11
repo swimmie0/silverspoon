@@ -1,14 +1,29 @@
-<p id="notice"><%= notice %></p>
+<div class="post-contents container">
+ 공지사항           
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @notice.title %>
-</p>
+<div class ="contents">
+  <div class="back container"><%= link_to '뒤로가기',  notices_path, class:"post-linkto"%></div>
+  <div class="container">
+    <div class="post-view">
+        <p style="color:#FF5400;">공지사항</p>
+        <h5 class="post-title"> <%= @notice.title %></h5>
+        <div class="form-inline">
+         <%=image_tag("beige-logo.PNG", class:"post-profile-img")%>        
+         <div>관리자</div> 
+         <div style="font-weight:lighter;margin-left:2rem;"><%= @notice.created_at.strftime("%Y-%m-%d") %> </div>
+         <%# <div style="margin-left:auto;font-size:0.8rem;"> 조회수: <%= @ notice.impressionist_count(:filter=>:session_hash) %>
+        </div>      
 
-<p>
-  <strong>Content:</strong>
-  <%= @notice.content %>
-</p>
-
-<%= link_to 'Edit', edit_notice_path(@notice) %> |
-<%= link_to 'Back', notices_path %>
+      <hr/>
+        <p><%= @notice.content.html_safe  %></p>
+        <div class="post-edit">
+          <% if user_signed_in? && current_user.admin?%>
+            <%= link_to '수정', edit_notice_path(@notice), class:"linkto" %>
+            <%= link_to '삭제', method: :delete, class:"linkto"%>      
+          <%end%>  
+        </div>
+    </div>
+ 
+  </div>                
+</div>                

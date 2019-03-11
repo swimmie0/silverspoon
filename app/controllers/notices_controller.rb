@@ -1,6 +1,8 @@
 class NoticesController < ApplicationController
   before_action :set_notice, only: [:show, :edit, :update, :destroy]
-
+  before_action :authorize_admin, except: [:index, :show]
+  # 조회수
+  impressionist actions: [:show]
   # GET /notices
   # GET /notices.json
   def index
@@ -25,7 +27,9 @@ class NoticesController < ApplicationController
   # POST /notices.json
   def create
     @notice = Notice.new(notice_params)
-
+    if current_user.admin?
+      @notice.user = current_user
+    end
     respond_to do |format|
       if @notice.save
         format.html { redirect_to @notice, notice: 'Notice was successfully created.' }
@@ -69,6 +73,6 @@ class NoticesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def notice_params
-      params.require(:notice).permit(:title, :content)
+      params.require(:notice).permit(:title, :content,:user)
     end
 end
