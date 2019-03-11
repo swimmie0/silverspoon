@@ -7,6 +7,12 @@ class Freeboard < ApplicationRecord
     where("title || content LIKE ?", "%#{search}%") 
   end
   
+  # def self.completed(completed)
+  #   if params[:completed] == true
+  #       Free.completed == true
+  #   end
+  # end
+
   def self.category(category)
     where("category LIKE ?", "%#{category}%") 
   end

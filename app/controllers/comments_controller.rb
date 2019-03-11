@@ -5,6 +5,8 @@ class CommentsController < ApplicationController
       commentable = commentable_type.constantize.find(commentable_id)
       @comment = Comment.build_from(commentable, current_user.id, body)
       @comment.user = current_user
+      @category = commentable_type.constantize.find(commentable_id).category
+      @post = Freeboard.find(commentable_id)
       
       respond_to do |format|
         if @comment.save
@@ -24,6 +26,7 @@ class CommentsController < ApplicationController
             format.html  { redirect_to(request.referrer, :alert => '댓글 내용을 작성해주세요.') }
         end
       end
+
 ## 수정해야할부분 내작성글에 댓글달았을 때 거기에 답글다는경우(작성글댓글로알림)/내작성글에 a유저의 댓글에 b유저가 답글다는경우(나에게는 작성글댓글, a유저에겐 답글알림)
       if @comment.parent == nil && commentable.user != current_user 
         # puts "테스트 #{NewAlarm.where(link: freeboard_path(:id=>commentable)).count}끝"
@@ -82,9 +85,13 @@ class CommentsController < ApplicationController
     private
     def comment_params
       params[:comment][:user_id] = current_user.id
-      params.require(:comment).permit(:body, :commentable_id, :commentable_type, :comment_id, :user_id, :name)
+      params.require(:comment).permit(:body, :commentable_id, :commentable_type, :comment_id, :post, :user_id, :name)
     end
    
+    def post
+      Freeboard.find(commentable_id)
+    end
+
     def commentable_type
       comment_params[:commentable_type]
     end

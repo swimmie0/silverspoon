@@ -11,7 +11,6 @@ class MenusController < ApplicationController
   #로그인 팝업창
   #메뉴로 검색
   def search
-    
   end
 
   def index

@@ -9,20 +9,27 @@
         <p style="color:#FF5400;"><%= @freeboard.category%></p>
         <h5 class="post-title"> <%= @freeboard.title %></h5>
         <div class="form-inline">
-         <%=image_tag("beige-logo.PNG", class:"post-profile-img")%>        
-         <div><%= @freeboard.name %></div> 
+         <%=link_to( image_tag("beige-logo.PNG",class:"post-profile-img"), profile_path(@writer.profile.id))%>   
+         <div> <%= link_to @freeboard.name,  profile_path(@writer.profile.id), class:"linkto" %> </div> 
          <div style="font-weight:lighter;margin-left:2rem;"><%= @freeboard.created_at.strftime("%Y-%m-%d") %> </div>
          <div style="margin-left:auto;font-size:0.8rem;"> 조회수: <%= @freeboard.impressionist_count(:filter=>:session_hash) %></div>
         </div>  
-         <%# <%= link_to @freeboard.name,  profile_path(@writer.profile.id) %>       
+        
 
       <hr/>
-        <p><%= @freeboard.content.html_safe  %></p>
+        <p><%= content_tag(:div, @freeboard.content.html_safe, :class=>"post-body")  %></p>
         <div class="post-edit">
           <% if current_user == @freeboard.user%>
             <%= link_to '수정', edit_freeboard_path(@freeboard), class:"linkto" %>
             <%= link_to '삭제', method: :delete, class:"linkto"%>      
           <%end%>
+          <% if @freeboard.category=='제보글'&&user_signed_in? && current_user.admin? %>
+            <%# <%= form_tag(freeboard_path, :method => "get") do %> 
+            <%= form_for(@freeboard)  do |form| %>
+                <%= form.check_box :completed, class:'checked' , style: 'display:none;'%>
+                <%=submit_tag "승인", class:'result' %>
+            <% end %>   
+          <% end %>       
         </div>
     </div>
 
@@ -57,5 +64,16 @@ $(function(){
     $('tr').not('tr.post'+$(this).attr('target')).hide();      
     $('.post'+$(this).attr('target')).show();
   });
+});
+
+$(document).ready(function() {
+  if($('p.comp').text() == "false"){
+    $('.checked').prop('checked',true);
+    // $('.result').val() = '완료';
+  }
+  else{
+    $('.checked').prop('checked',false);
+    // $('.result').val() = '미처리';
+  }
 });
 </script>

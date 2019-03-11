@@ -77,7 +77,7 @@
     height: 100%;
 }
 .about-rtnt2 {
-    margin-left: 10%;
+    margin-left: 6%;
 }
 ///
 .nodisplay{
@@ -216,7 +216,7 @@ p.rtnt-adress{
 }
 
 #Box{
-    margin-top: 20px;
+    // margin-top: 20px;
     width: 600px;
     height: 23*3rem;
     padding: 20px;
@@ -300,17 +300,17 @@ p.menu-intro{
 
 ////---- pagination-----//// 
 .p_window{
-    width: 400px;
+    // width: 400px;
     height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;    
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;    
 }
 
-.pagination {
-  display: inline-block;
-  padding: 8px 16px;
-}
+// .pagination {
+//   display: inline-block;
+//   padding: 8px 16px;
+// }
 //--prev, next 
 .pagination span.bar {  
     background-color: rgb(243, 243, 243);
@@ -324,7 +324,7 @@ span.bar a{
 }
 //--page_font
 span.pagination a{ 
-  color: rgb(32, 39, 75);
+  color: rgb(32, 39, 75) !important;
   font-size: 0.8rem;
 }
 //--간격&크기
