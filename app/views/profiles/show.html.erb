@@ -1,5 +1,4 @@
 <!-- My Page : Open-->
-<body>
 
 <!-- 상단 섹션 -->
   <div class="ProfileUpperSection">
@@ -14,11 +13,13 @@
               <% if @profile.id == current_user.id %>
               
               <% else %>
+              <!--
                 <% if !current_user.following?(@profile) %>
                   <%= link_to "팔로우하기", profile_follow_path(@profile.id), class: "ProfileBanner-Button", style: "color: white;", method: "get" %>
                 <% else %>
                   <%= link_to "팔로우하기", profile_follow_path(@profile.id), class: "ProfileBanner-Unbutton", style: "color: white;", method: "get" %>
                 <% end %>
+              -->
                 <%= link_to "쪽지보내기", conversations_path(sender_id: current_user.id, recipient_id: @profile.user.id), style: "color: white;", method: "post", class: 'ProfileBanner-Button' %>
               <% end %>
             </div>
@@ -46,7 +47,7 @@
             </div>
           
             <div class="ProfileTabInfo">
-              <nav style="">
+              <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                   <a style="color: black" class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
                     알레르기 정보
@@ -66,7 +67,7 @@
                 </div>
               </nav>
 
-              <div style="border: 1px solid rgb(226, 226, 226); height: 10rem; background-color: white; width: 100%">
+              <div class="scroll" style="overflow-y: scroll; border: 1px solid rgb(226, 226, 226); height: 10rem; background-color: white; width: 100%">
                   <div style="margin-left: 2rem;margin-top: 2rem;" class="tab-content" id="nav-tabContent">
                     
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -247,7 +248,7 @@
   </div>
 <!-- 작성한 게시글 & 댓글단 게시글 섹션 끝 -->
 
-
+<% if current_user.id == @profile.id %>
 <!-- 수정 요청 현황확인 섹션 -->
   <div class="ProfileRequestEditSection">
     <!-- 수정 요청 현황확인 제목 -->
@@ -305,4 +306,10 @@
     <!-- 수정 요청 현황확인 내역 끝 -->
   </div>
 <!-- 수정 요청 현황확인 섹션 끝-->
+<% else %>
+<% end %>
 
+<script>
+  var scroll = document.getElementsByClassName("scroll")[0];
+  scroll.scrollTop = scroll.scrollHeight;
+</script>
