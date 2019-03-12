@@ -23,9 +23,9 @@
       <option value="홍보글">홍보글</option>               
       <option value="제보글">제보글</option>     
     </select> %>
-      <%# <div class="field locked" style="display:none;margin-left:1rem;">
-      <%= form.radio_button :locked, true  비밀글<br/>
-      </div> %>
+      <div class="field locked" style="display:none;margin-left:1rem;">
+      <%= form.radio_button :locked, true%>  비밀글<br/>
+      </div>
   </div>
 
   <div class="field form-inline">
@@ -49,13 +49,13 @@
 <script>
     
 //비밀글
-  // $('select').on('change',function(){
-  //   if ($(this).val() == "제보글") {
-  //      $(".locked").css('display','block');
-  //   }  
-  //    else 
-  //   $(".locked").css('display','none');
-  // });
+  $('select').on('change',function(){
+    if ($(this).val() == "제보글") {
+       $(".locked").css('display','block');
+    }  
+     else 
+    $(".locked").css('display','none');
+  });
 
 // $(document).ready(locking);
 // $('option').change(locking);

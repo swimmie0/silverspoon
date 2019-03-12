@@ -53,8 +53,12 @@
           <tr class = "postall" >
             <td> <%= freeboard.comment_threads.count %></td>
             <%# <td><%= freeboard.category %>
-            <td class="title form-inline"><div class="ctg"style="font-weight:lighter;font-size:0.6rem;">[<%=freeboard.category%>]</div>&nbsp;<%= link_to freeboard.title, freeboard, {:class => "linkto",:style=>"font-size:0.8rem;"} %></td>
-            <td><%= freeboard.name %><% if freeboard.locked %>LOCKED<% end %></td>
+            <td class="title form-inline">
+              <div class="ctg"style="font-weight:lighter;font-size:0.6rem;">[<%=freeboard.category%>]</div>
+              &nbsp;<%= link_to freeboard.title, freeboard, {:class => "linkto",:style=>"font-size:0.8rem;"} %>
+              &nbsp;<% if freeboard.locked %><i class="fas fa-lock"></i><% end %>  
+            </td>
+            <td><%= freeboard.name %></td>
             <td><%= freeboard.time(freeboard)%></td>                
             <td> <%= freeboard.impressionist_count(:filter=>:session_hash) %></td>
           </tr>
