@@ -81,7 +81,7 @@
       </div>
 
       <%if user_signed_in?%>
-        <%= button_to '레시피 작성', new_recipe_path, :class => "btn btn-search",:method=>'get' %>
+        <%= button_to '레시피 작성', new_recipe_path, :class => "btn btn-search", :method=>'get' %>
       <%else %>
         <span data-toggle="modal" data-target="#loginModal" class="btn btn-search">레시피 작성</span>
       <%end%>

@@ -1,5 +1,5 @@
 <!-- My Page : Open-->
-
+<body>
 
 <!-- 상단 섹션 -->
   <div class="ProfileUpperSection">
@@ -14,11 +14,13 @@
               <% if @profile.id == current_user.id %>
               
               <% else %>
+              <!--
                 <% if !current_user.following?(@profile) %>
                   <%= link_to "팔로우하기", profile_follow_path(@profile.id), class: "ProfileBanner-Button", style: "color: white;", method: "get" %>
                 <% else %>
                   <%= link_to "팔로우하기", profile_follow_path(@profile.id), class: "ProfileBanner-Unbutton", style: "color: white;", method: "get" %>
                 <% end %>
+              -->
                 <%= link_to "쪽지보내기", conversations_path(sender_id: current_user.id, recipient_id: @profile.user.id), style: "color: white;", method: "post", class: 'ProfileBanner-Button' %>
               <% end %>
             </div>
@@ -41,8 +43,7 @@
             <div class="ProfileInfoSection">
               <div class="ProfileInfo">
                 <p class="ProfileName"> <%= @profile.user.name %> </p>
-                <p> <strong> 성별  </strong> <%= @profile.user.gender %>성 <br> <strong>나이  </strong> <%= @profile.user.ages %>대 </p>
-               
+                <p> <strong> 성별  </strong> <%= @profile.user.gender %>성 <br> <strong>나이  </strong> <%= @profile.user.ages %> </p>
               </div>
             </div>
           
@@ -54,14 +55,16 @@
                   </a>
                   <% if @profile.id != current_user.id%>
                   <% else %>
-                  <a style="text-decoration: none; color: black" class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
-                    MESSAGE
-                  <span style="padding-top: 0.4rem;" class="badge badge-danger badge-pill"><%= @conversations.where(recipient_id: current_user.id).count %></span>
-                  </a>
-                  <a style="text-decoration: none; color: black" class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">
-                    FOLLOW
-                  </a>
-                  <% end %>
+                    <a style="text-decoration: none; color: black" class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
+                      MESSAGE
+                    <span style="padding-top: 0.4rem;" class="badge badge-danger badge-pill"><%= @conversations.where(recipient_id: current_user.id).count %></span>
+                    </a>
+                    <!--
+                    <a style="text-decoration: none; color: black" class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">
+                      FOLLOW
+                    </a>
+                    -->
+                  <% end %>              
                 </div>
               </nav>
 
@@ -110,11 +113,13 @@
                       </table>
                     </div>
 
+                    <!--
                     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                       <% @profile.user.following_profiles.each do |profile| %>
                         <%= link_to profile.user.name, profile_url(profile.id), style: "color: black;" %>
                       <% end %>
                     </div>
+                    -->
 
                   </div>
               </div>
@@ -302,32 +307,3 @@
     <!-- 수정 요청 현황확인 내역 끝 -->
   </div>
 <!-- 수정 요청 현황확인 섹션 끝-->
-
-
-
-
-<!-- 
-<script>
-    $(document).ready(function(){
-      $("#spreadBtn1").click(function(){
-          if($("#hiddenList1").is(":visible")){
-            // $("#spreadBtn1").toggleClass("fas fa-arrow-alt-circle-right fas fa-arrow-alt-circle-down");
-              $("#hiddenList1").slideUp();
-          }else{
-              // $("#spreadBtn1").toggleClass("fas fa-arrow-alt-circle-down fas fa-arrow-alt-circle-right");
-              $("#hiddenList1").slideDown();
-          }
-      });
-    });
-    $(document).ready(function(){
-      $("#spreadBtn2").click(function(){
-          if($("#hiddenList2").is(":visible")){
-            // $("#spreadBtn1").toggleClass("fas fa-arrow-alt-circle-right fas fa-arrow-alt-circle-down");
-              $("#hiddenList2").slideUp();
-          }else{
-              // $("#spreadBtn1").toggleClass("fas fa-arrow-alt-circle-down fas fa-arrow-alt-circle-right");
-              $("#hiddenList2").slideDown();
-          }
-      });
-    }); 
-</script>
