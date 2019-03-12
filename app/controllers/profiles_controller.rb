@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :set_profile, only: [:show, :edit, :update, :destroy,:myposts]
 
   # GET /profiles
   # GET /profiles.json
@@ -71,6 +71,11 @@ class ProfilesController < ApplicationController
       format.html { redirect_to profiles_url, notice: 'Profile was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def myposts
+    params[:id]= @profile.id
+    @user_requests = Freeboard.where(:user_id => current_user.id, :category => '제보글')    
   end
 
   private

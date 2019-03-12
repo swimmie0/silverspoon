@@ -69,7 +69,7 @@
 
   <div class="field">
     <%= f.label :profileimg, "프로필 사진" %><br />
-    <%= f.file_field :profileimg, accept: 'image/png, image/gif, image/jpeg' %>
+    <%= f.file_field :profileimg, type: "file", accept: 'image/png, image/gif, image/jpeg' %>
   </div>
   
   <div class="actions">

@@ -1,0 +1,56 @@
+<div class="post-contents container">
+나의 수정 요청 진행현황
+</div>
+<div class ="contents">
+    <div class="post-num">
+      '전체' 총 <%=@user_requests.all.count%>건
+    </div>
+  <div class="post-table">    
+    <table class="table table-hover" id="post-table">
+      <thead>
+        <tr class= "postall postd posti postq posta postc">
+          <%# <th>Category</th> %>
+          <th style="width:8%;">진행</th>          
+          <th style="width:60%;" class="title">제목</th>
+          <th>작성자</th>
+          <th style="width:10%;">작성일</th>
+          <th style="width:8%;">조회수</th>      
+        </tr>
+      </thead>
+
+      <tbody>
+    </div>
+        <% @user_requests.each do |request| %>
+          <tr >
+            <td> 
+             <% if request.completed==true %>
+             <div class="completed"style="font-weight:lighter;color:#1E285D; ">[완료]</div>
+            <% else %>
+             <div class="completed"style="font-weight:lighter;color:#FF5400;">[미처리]</div>
+            <% end %>   
+            </td>
+            <td class="title form-inline">
+                <%= link_to request.title, request, {:class => "linkto",:style=>"font-size:0.8rem;"} %>             
+            </td>
+            <td><%= request.name %></td>
+            <td><%= request.time(request)%></td>                
+            <td> <%= request.impressionist_count(:filter=>:session_hash) %></td>
+          </tr>
+        <% end %>
+    </tbody>
+    </table>
+</div>
+
+<script>
+
+// 행 clickable 
+$(document).ready(function() {
+    $('#post-table tr').click(function() {
+        var href = $(this).find("a").attr("href");
+
+        if(href) {
+            window.location = href;
+        }
+    });
+});
+ </script>
