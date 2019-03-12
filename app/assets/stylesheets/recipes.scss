@@ -78,6 +78,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    
 }
 
 .recipe-index-search-tag{
@@ -508,6 +509,10 @@
     width: 100%;
     align-items: center;
 }
+
+.recipe-new-button{
+    margin-right: 0.7rem;
+}
 //-------------------------------------
 
 .recipe-new-upper{
@@ -659,4 +664,9 @@
     border-width: 0.5px;
     border-radius: 8px;
     text-align: center;
+}
+
+
+.recipe-ready-pic{
+    width: 65%;
 }

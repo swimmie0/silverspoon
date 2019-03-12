@@ -58,6 +58,7 @@
     color: white;
     font-size: 0.8rem;
 }
+
 .rolling-banner ul li div{
     height: 30px;
 }
@@ -73,6 +74,11 @@
 .headerfont{
     text-decoration: none;
     color:#454338;
+}
+
+.headerlogo{
+    width: 100%;
+    height: 100%;
 }
 
 .navbarstyle {
@@ -92,10 +98,20 @@
     justify-content: space-between;
 }
 
+
 .header-title{
-    font-family: 'Jeju Myeongjo', serif;
-    font-size: 1.3rem;
-    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.header-title a{
+    width: 100%;
+    height: 100%;
+}
+
+.headerlogo{
+    width: 9.4rem;
+    height: 1.7rem;
 }
 
 .header-menu{
@@ -143,24 +159,235 @@
     border: 1px solid rgb(41, 153, 116);
 }
 
-a.fa-globe {
-    position: relative;
-    top: 3px;
-    font-size: 1em;
-    color: rgba(24, 2, 2, 0);
-    cursor: pointer;
-  }
-  span.fa-comment {
-    position: absolute;
-    font-size: 1em;
-    top: -9px;
-    color: rgb(41, 153, 116);
-    right: -12px;
-  }
-  span.num {
-    position: absolute;
-    font-size: 0.6em;
-    top: -7px;
-    color: #fff;
-    right: -7px;
-  }
+// a.fa-globe {
+//     position: relative;
+//     top: 3px;
+//     font-size: 1em;
+//     color: rgba(24, 2, 2, 0);
+//     cursor: pointer;
+//   }
+//   span.fa-comment {
+//     position: absolute;
+//     font-size: 1em;
+//     top: -9px;
+//     color: rgb(41, 153, 116);
+//     right: -12px;
+//   }
+//   span.num {
+//     position: absolute;
+//     font-size: 0.6em;
+//     top: -7px;
+//     color: #fff;
+//     right: -7px;
+//   }
+
+
+
+//   @media screen and (min-width: 730px) {
+//     .nav-toggle{
+//       visibility: hidden;
+//     }
+//     .head-title{
+//       height: 4rem;
+//     }
+//   }
+  
+//   .nav {
+//       -webkit-transition: left 0.5s ease;
+//       -moz-transition: left 0.5s ease;
+//       -ms-transition: left 0.5s ease;
+//       -o-transition: left 0.5s ease;
+//       transition: left 0.5s ease;
+//       background:rgb(255, 255, 255);
+//       cursor: pointer;
+//       height: 100%;
+//       left: -100%;
+//       position: fixed;
+//       top: 0;
+//       width: 100%;
+//       z-index: 10;
+//       border-right-style: solid;
+//       border-right-color: #77777780;
+//       border-right-width: 0.6px;
+//     }
+    
+//     .nav.expanded { left: 0; }
+    
+//     // .nav ul {
+//     //   top: 50%;
+//     //   position: absolute;
+//     //   -webkit-transform: translateY(-50%);
+//     //   -ms-transform: translateY(-50%);
+//     //   transform: translateY(-50%);
+//     //   list-style: none;
+//     //   margin: 0;
+//     //   padding: 0;
+//     // }
+  
+//     .nav-toggle {
+//       -webkit-user-select: none;
+//       -moz-user-select: none;
+//       user-select: none;
+//       cursor: pointer;
+//       // height: 2rem;
+//       // left: 2rem;
+//       // position: fixed;
+//       //top: 0.3em;
+//       z-index: 15;
+//     }
+  
+  
+//   $buttonWidth: 24px;
+//   $buttonHeight: 20px;
+//   $buttonColor: white;
+//   $lineThickness: 1.9px;
+//   $transitionSpeed: .25s;
+//   $transitionEasing: ease-in-out;
+  
+//   // Demo
+//   .nav-toggle {
+//     position: relative;
+//     display: block;
+//     width: $buttonWidth;
+//     height: $buttonHeight;
+    
+//     background: transparent;
+//     border-top: $lineThickness solid;
+//     border-bottom: $lineThickness solid;
+    
+//     color: $buttonColor;
+//     font-size: 0;
+    
+//     transition: all $transitionSpeed $transitionEasing;
+  
+//     &:before,
+//     &:after {
+//       content: '';
+//       display: block;
+//       width: 100%;
+//       height: $lineThickness;
+      
+//       position: absolute;
+//       top: 50%;
+//       left: 50%;
+      
+//       background: currentColor;
+      
+//       transform: translate(-50%, -50%);
+//       transition: transform $transitionSpeed $transitionEasing;
+//     } 
+//   }
+  
+//   .nav-toggle.is-active {
+//     border-color: transparent;
+//     color:white;
+//     &:before {
+//       transform: translate(-50%, -50%) rotate(45deg);
+//     }
+  
+//     &:after {
+//       transform: translate(-50%, -50%) rotate(-45deg);
+//     }
+//   }
+  
+  
+//   button {
+//     border: none;
+//     cursor: pointer;
+//     outline: none;
+//   }
+  
+//   button:focus {outline:0;}
+  
+  
+// .nav-profile{
+//     height: 270px;
+//     width: 100%;
+//     background-color: rgba(0, 171, 108, 0.719);
+//   }
+  
+//   .nav-right-top{
+//     position: absolute;
+//     right: 0;
+//     color: white;
+//     padding-top: 0.8em;
+    
+//     font-size: 20px;
+//     margin-right: 1rem;
+//     //text-align: end;
+//   }
+  
+//   .nav-login-button{
+//     color: white;
+//   }
+  
+//   .nav-profile-content{
+//     width: 100%;
+//     margin-top: 2.6rem;
+//   }
+  
+//   .nav-profile-imgbox{
+//     left: 0;
+//     right: 0;
+//     margin-left: auto;
+//     margin-right: auto;
+//     border-radius: 100%;
+//     width: 8.4rem;
+//     height: 8.4rem;
+//     overflow: hidden;
+//   }
+  
+//   .nav-profile-img{
+//     width: 100%;
+//     height: 100%;
+//   }
+  
+//   .nav-profile-info{
+//     margin-top: 0.7rem;
+//     text-align: center;
+//     font-size: 18px;  
+//   }
+  
+//   .web-category-box{
+//     margin-top: 0.5em;
+//     //margin-bottom: 0.5em;
+//     //height: 2.8em;
+    
+//     width: 100%;
+//     border-bottom-style: solid;
+//     border-bottom-color: rgba(112, 112, 112, 0.22);
+//     border-bottom-width: 0.6px;
+//   }
+  
+//   .web-category-box{
+//     display: none;
+//   }
+//   @media screen and (min-width: 560px) and ( max-width:734px){
+//     .nav-profile{
+//       height: 47%;
+//     }
+    
+//     .nav-profile-content{
+//       display: flex;
+//       justify-content: space-around;
+//       margin-top: 2.3rem;
+//     }
+  
+//     .nav-profile-imgbox{
+//       left: initial;
+//       right: initial;
+//       margin-left: initial;
+//       margin-right: initial;
+//       width: 6.5rem;
+//       height: 6.5rem;
+//     }
+//   }
+  
+//   @media screen and (min-width: 733px){
+//     .web-category-box{
+//       display: block;
+//     }
+//     .nav{
+//       display: none;
+//     }
+//   }

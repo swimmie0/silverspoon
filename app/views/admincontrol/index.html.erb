@@ -2,6 +2,7 @@
     <%if user_signed_in? && current_user.admin?%>
        <%=render partial: 'admincontrol/category'%>
 
+        <div><%= link_to "전체 크롤링 업데이트", "/crawling"%></div>
         <div class="admin-index-content-stretch">
             <div class="admin-index-content-box container">
                 <div class="admin-index-content-title middle-title">최근 관리 항목</div>

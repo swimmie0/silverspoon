@@ -41,8 +41,10 @@
 
             <div class="ProfileInfoSection">
               <div class="ProfileInfo">
-                <p class="ProfileName"> <%= @profile.user.name %> </p>
+                <p class="ProfileName big-title"> <%= @profile.user.name %> </p>
+                <div class="profile-specific">
                 <p> <strong> 성별  </strong> <%= @profile.user.gender %>성 <br> <strong>나이  </strong> <%= @profile.user.ages %> </p>
+                </div>
               </div>
             </div>
           
@@ -135,45 +137,39 @@
 <!-- 프로필 레시피 섹션 -->
   <div class="ProfileRecipeSection">
     <!-- 프로필 레시피 제목 섹션 -->
-      <p class="ProfileTitle">즐겨찾는 레시피를 확인해보세요!</p>
+      <p class="ProfileTitle big-title">즐겨찾는 레시피</p>
     <!-- 프로필 레시피 제목 섹션 끝 -->
     <!-- 프로필 레시피 사진 섹션 -->
       <div class="ProfileRecipeSection container">
         <nav style="font-size: 0.9rem;">
-          <p class="ProfileRecipeCount">최신 3건</p>
-          <p style="float: right;">더 보기</p>
+          <%# <p class="ProfileRecipeCount">최신 3건</p>
+          <p style="float: right;">더 보기</p> %>
         </nav>
         <!-- 프로필 레시피 사진 섹션 중 이미지 나열 섹션 -->
           <div class="ProfileRecipeImgSection">
             <!-- 프로필 레시피 사진 섹션 중 이미지 1 -->
               <div class="ProfileRecipeImgBlock">
-                <%= image_tag "https://st2.depositphotos.com/1889887/5668/i/950/depositphotos_56689941-stock-photo-banana-cake.jpg", class:"ProfileRecipeImg"%>
-                <div class="container">
-                  <p style="margin-bottom: 0.5rem; margin-top: 1rem;"> 식빵 </p>
-                  <div style="font-size: 0.8rem"> 우유, 난류 </div>
-                  <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> 알레르기 보유자를 위한 식빵 </div>
+                <%= image_tag "contents-ready-beige.PNG", class:"ProfileRecipeImg"%>
+                <div class="container"  style="height:5rem;">
+                   <span class="popular-recipe-text">레시피 컨텐츠 준비중입니다</span>
                 </div>
               </div>
             <!-- 프로필 레시피 사진 섹션 중 이미지 1 끝 -->
 
             <!-- 프로필 레시피 사진 섹션 중 이미지 2 -->
               <div class="ProfileRecipeImgBlock">
-                <%= image_tag "https://st2.depositphotos.com/1889887/5668/i/950/depositphotos_56689941-stock-photo-banana-cake.jpg", class:"ProfileRecipeImg"%>
-                <div class="container">
-                  <p style="margin-bottom: 0.5rem; margin-top: 1rem;"> 식빵 </p>
-                  <div style="font-size: 0.8rem"> 우유, 난류 </div>
-                  <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> 알레르기 보유자를 위한 식빵 </div>
+                <%= image_tag "contents-ready-beige.PNG", class:"ProfileRecipeImg"%>
+                <div class="container"  style="height:5rem;">
+                   <span class="popular-recipe-text">레시피 컨텐츠 준비중입니다</span>
                 </div>
               </div>
             <!-- 프로필 레시피 사진 섹션 중 이미지 2 끝 -->
 
             <!-- 프로필 레시피 사진 섹션 중 이미지 3 -->
               <div class="ProfileRecipeImgBlock">
-                <%= image_tag "https://st2.depositphotos.com/1889887/5668/i/950/depositphotos_56689941-stock-photo-banana-cake.jpg", class:"ProfileRecipeImg"%>
-                <div class="container">
-                  <p style="margin-bottom: 0.5rem; margin-top: 1rem;"> 식빵 </p>
-                  <div style="font-size: 0.8rem"> 우유, 난류 </div>
-                  <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> 알레르기 보유자를 위한 식빵 </div>
+                <%= image_tag "contents-ready-beige.PNG", class:"ProfileRecipeImg"%>
+                <div class="container" style="height:5rem;">
+                  <span class="popular-recipe-text">레시피 컨텐츠 준비중입니다</span>
                 </div>
               </div>
             <!-- 프로필 레시피 사진 섹션 중 이미지 3 끝 -->
@@ -252,7 +248,7 @@
 <!-- 수정 요청 현황확인 섹션 -->
   <div class="ProfileRequestEditSection">
     <!-- 수정 요청 현황확인 제목 -->
-      <p class="ProfileTitle">수정 요청 현황 확인</p>
+      <p class="ProfileTitle big-title">수정 요청 현황 확인</p>
     <!-- 수정 요청 현황확인 제목 끝 -->
 
     <!-- 수정 요청 현황확인 내역 -->
