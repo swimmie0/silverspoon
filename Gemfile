@@ -28,6 +28,7 @@ gem 'omniauth-kakao', :git => 'https://github.com/hcn1519/omniauth-kakao'
 gem 'impressionist'
 gem 'tinymce-rails', '~> 4.1', '>= 4.1.10'
 gem 'tinymce-rails-langs', '~> 4.20180103'
+gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
 # 알림
 gem 'unread'
 

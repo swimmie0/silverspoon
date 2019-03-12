@@ -23,10 +23,9 @@
       <option value="홍보글">홍보글</option>               
       <option value="제보글">제보글</option>     
     </select> %>
-      <div class="field locked" style="display:none;margin-left:1rem;">
-      <%= form.radio_button :locked, true %> 비밀글<br/>
-  </div>
-  
+      <%# <div class="field locked" style="display:none;margin-left:1rem;">
+      <%= form.radio_button :locked, true  비밀글<br/>
+      </div> %>
   </div>
 
   <div class="field form-inline">
@@ -36,12 +35,23 @@
 
   <div class="field">
       <%= form.label '내용' %>
+<<<<<<< HEAD
       <%= tinymce :language => "ko" %>    
+<<<<<<< HEAD
 <<<<<<< HEAD
       <%= form.text_area :content, :class => "form-control tinymce", :rows=> "10" %>
 =======
       <%= form.text_area :content, :class => "form-control tinymce", :rows=> "10"%>
 >>>>>>> c009fe780271b8ff6f4106854ace8cb197f82754
+=======
+=======
+      <%= tinymce :language => "en" %>    
+>>>>>>> 444b5c44af32d7fd5ec1458025ce6befa7ed2c88
+      <%= form.text_area :content, :class => "form-control tinymce", :rows=> "10"%>
+=======
+      <%= form.text_area :content, :class => "form-control tinymce", :rows=> "10" %>
+>>>>>>> a3258d3e896d8fcc4fbcf3a4a127b5c5e0557f40
+>>>>>>> 549cd0a965abc0017bd8ac1ee0a762860ef355ba
   </div>
 
   <div class="actions">
@@ -53,21 +63,14 @@
 
 <script>
     
-// locking = function(){
-//   if ($("option").val() == "제보글") {
-//     $(".locked").css('display','block');
-//   }
-//   else 
-//     $(".locked").css('display','none');
-// }
-
-  $('select').on('change',function(){
-    if ($(this).val() == "제보글") {
-       $(".locked").css('display','block');
-    }  
-     else 
-    $(".locked").css('display','none');
-  });
+//비밀글
+  // $('select').on('change',function(){
+  //   if ($(this).val() == "제보글") {
+  //      $(".locked").css('display','block');
+  //   }  
+  //    else 
+  //   $(".locked").css('display','none');
+  // });
 
 // $(document).ready(locking);
 // $('option').change(locking);

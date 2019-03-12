@@ -1,4 +1,4 @@
-<% if user_signed_in? && current_user.name != nil %>
+<% if user_signed_in? && current_user.name != nil &&  @new_comment.commentable.category != "제보글"%>
   <%= form_for @new_comment do |f| %>  
     <%= f.hidden_field :commentable_id, value: @new_comment.commentable_id %>
     <%= f.hidden_field :commentable_type, value: @new_comment.commentable_type %>
@@ -11,6 +11,16 @@
     </div>
   <% end %>
 
+<% elsif  user_signed_in? && current_user.admin? &&@new_comment.commentable.category == "제보글" %>
+  <%= form_for @new_comment do |f| %>  
+    <%= f.hidden_field :commentable_id, value: @new_comment.commentable_id %>
+    <%= f.hidden_field :commentable_type, value: @new_comment.commentable_type %>
+    <%# <%= form_for @new_comment.commentable do |p| %>     
+    <div class="field form-group form-inline">
+      <%= f.text_area :body, class: 'comment form-control',placeholder:"관리자용" %>    
+      <%= submit_tag "등록", class:"comment-btn" %><br/>
+    </div>
+  <% end %>
 
 <% else %>
     <div class="field form-group">

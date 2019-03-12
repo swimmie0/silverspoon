@@ -15,6 +15,10 @@
     margin-bottom:1rem;
     font-weight:lighter;
 }
+.post-body img{
+    max-width:100%;
+    max-height:100%;
+}
 // .post2-contents{
 //     display:flex;
 //     flex-direction:column;
@@ -83,9 +87,10 @@ td.title{
     text-align:left;
 }
 .post-btn{
+    margin-top:2rem;
     margin-left: auto;
     text-align: center;
-    width: 7rem;
+    width: 5rem;
     height: 2.2rem;
     // border-style: solid;
     // border-color: rgb(83, 83, 83);
@@ -96,9 +101,11 @@ td.title{
     font-family: 'NanumBarunGothic',serif;
     font-size: 0.8rem;
     line-height: 2.2rem;
+    color:white;
 }
 .post-btn:hover{
     background-color:rgba(168, 168, 168, 0.425);
+    cursor:pointer;
 }
 .postpost-btn
 {  
@@ -107,8 +114,11 @@ td.title{
     align-items: right;    
 }
 .new-linkto{
-    color:white !important;
+    color:#FF5400;
 }
+// .new-linkto:hover{
+//     color:white!important;
+// }
 .post-linkto{
     // margin-right: auto;
     color:rgb(4, 30, 73);
@@ -131,10 +141,16 @@ td.title{
     color: #FF5400;
     border-radius:0px;
     font-size:0.8rem;
+    width:7rem;
+}
+.btn-search:hover{
+    background-color:#FF5400; 
+    color:white;   
 }
 .search.form-control{
     border-radius:0px;   
-    border:0.3px solid rgba(201, 200, 200, 0.438);        
+    border:0.3px solid rgba(201, 200, 200, 0.7);  
+    width:20rem;      
 }
 .search.form-control::placeholder{
     font-size:0.7rem;
@@ -212,8 +228,11 @@ td.title{
     color:rgb(173, 173, 173);
 }
 a.vote-btn{
-    color:#FF5400;
+    color:rgb(0,48,124);
+    font-size:1.2rem;
 }
 a.disabled.vote-btn{
     color:rgb(150, 150, 150);
+    font-size:1.2rem;
+    
 }

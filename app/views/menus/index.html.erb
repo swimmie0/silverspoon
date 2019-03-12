@@ -74,6 +74,7 @@
 
                             <div class="hideMenu">
                                 <!--메뉴 hidden-->
+                                <div style="display:flex;justify-content:flex-end;"><%=link_to '자세히 보기',zizuminfo_path(id: zizum.id), class:"linkto",style:"font-size:0.9rem;"%></div>
                                 <% @menus.where(:restaurant_name => zizum.restaurant_name).each do |menu|%>
                                 <div class="card menu-card">
                                     <div class="card-body">
@@ -146,7 +147,6 @@
             </div> <!--shop-->
             <!-- 메뉴 -->
             <div id="Box">
-            <div id="card2"></div>
             <div id="menuBox">
             <p style="display:flex;justify-content:center;">원하시는 식당을 누르면 해당 메뉴가 이곳에 보여집니다</p>
              <%# <%= paginate @menu_array, window: 2 %>    
@@ -165,6 +165,7 @@
     $(".sido-select").val('<%=params[:sido]%>');
     $(".sigungu-select").val('<%=params[:sigungu]%>');
 
+    
     //메뉴 show
     $(".card-body").on('click',function() {
         $("#menuBox").html($(this).children(".seeMenu").siblings('.hideMenu').html());
