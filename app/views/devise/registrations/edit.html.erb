@@ -10,7 +10,7 @@
         <hr><h6 class="RegisterFormMust" style="text-align: right;"> **필수 항목 </h6> 
 
         <div class = "field">
-          <%= f.label "이름" %><br/>
+          <span style="color:red;">*&nbsp;</span><%= f.label "이름" %><br/>
           <div class="form-inline">
           <%= f.text_field :name, class: "form-control", id: "checkname", :required => true, :validates => { :uniqueness => true } %>
           <button type = "button" id="checkDouble">중복확인</button>
@@ -19,7 +19,7 @@
         </div>
 
         <div class="field">
-          <%= f.label :email %><br />
+          <span style="color:red;">*&nbsp;</span><%= f.label "이메일" %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email" , class: "form-control" %>
         </div>
         <!-- 필수항목 기입 섹션 끝 -->
