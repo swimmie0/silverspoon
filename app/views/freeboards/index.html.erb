@@ -12,14 +12,23 @@
     <% if params[:category] == "질문글" %>
       <a class="nav-link single selected" id="showSingle" target="q">질문글</a><% else %>  
       <a class="nav-link single" id="showSingle" target="q">질문글</a><% end %> 
-    <% if params[:category] == "홍보글" %>
-      <a class="nav-link single selected" id="showSingle" target="a">홍보글</a><% else %>  
-      <a class="nav-link single" id="showSingle" target="a">홍보글</a><% end %> 
     <% if params[:category] == "제보글" %>
       <a class="nav-link single selected" id="showSingle" target="c">제보글</a><% else %>  
       <a class="nav-link single" id="showSingle" target="c">제보글</a><% end %>
   </nav>             
 </div>
+
+<div class="post-table">
+  <div class="post-search form-inline">
+    <%= form_tag(freeboards_path, :method => "get") do %>
+      <%= text_field_tag :search, params[:search], class: 'search form-control', placeholder:'검색어 입력'%>
+      <span class="input-group-btn">
+        <button class="post-btn" type="button"><i class="fa fa-search fa-fw"></i>검색</button>
+      </span>
+      <%# <%= submit_tag "검색", class: 'btn btn-outline-primary my-2 my-sm-0' %> 
+    <% end %> 
+  </div>  
+
 
 <div class ="contents">
     <div class="post-num">
@@ -83,17 +92,6 @@
           <td> <%= q.impressionist_count(:filter=>:session_hash) %></td>              
           </tr>
         <% end %>
-        
-        <% @free_adv.each do |a| %>
-          <tr class="posta" style= "display:none">
-            <td> <%= a.comment_threads.count %></td>
-            <%# <td><%= a.category %>
-            <td   class="title"><%= link_to a.title, a, {:class => "linkto"} %></td>
-            <td><%= a.name %></td>
-          <td><%= a.time(a) %></td>                         
-          <td> <%= a.impressionist_count(:filter=>:session_hash) %></td>          
-          </tr>
-        <% end %>
 
         <% @free_crowd.each do |c| %>
           <tr class="postc" style= "display:none">
@@ -111,20 +109,9 @@
 
 <div class="postpost-btn container"> 
   <% if user_signed_in? %>
-    <div class="post-btn"><%= link_to '새 글 작성', new_freeboard_path, {:class => "new-linkto"} %></div>
+    <%= button_to '새글작성', new_freeboard_path, :class => "btn btn-search",:method=>'get' %>
   <% end %>
 </div>
-
-<div class="post-table">
-  <div class="post-search form-inline">
-    <%= form_tag(freeboards_path, :method => "get") do %>
-      <%= text_field_tag :search, params[:search], class: 'search form-control', placeholder:'검색어 입력'%>
-      <span class="input-group-btn">
-        <button class="btn btn-search" type="button"><i class="fa fa-search fa-fw"></i>검색</button>
-      </span>
-      <%# <%= submit_tag "검색", class: 'btn btn-outline-primary my-2 my-sm-0' %> 
-    <% end %> 
-  </div>  
 
   <div class = "p_window">   
     <%= paginate @freeboards%>

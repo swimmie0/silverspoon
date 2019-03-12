@@ -1,5 +1,12 @@
-<h1>New Notice</h1>
-
-<%= render 'form', notice: @notice %>
-
-<%= link_to 'Back', notices_path %>
+<% if user_signed_in?&& current_user.admin?%>
+<div class= "post index-contents rtnt">
+    <div class="new-post" > 
+        <b>공지사항 등록</b>  
+        <p style = "font-weight:lighter;">관리자만 공지사항을 등록할 수 있습니다.</p>
+    </div>
+        <%= render 'form', notice: @notice %>
+        <div class="back-btn">
+            <%= link_to '취소', @notice, class:"linkto" %>
+        </div>
+</div>
+<% end %>

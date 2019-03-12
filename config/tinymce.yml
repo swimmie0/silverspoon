@@ -1,5 +1,6 @@
-toolbar: undo redo | forecolor | bold italic | alignleft aligncenter alignright | fontselect | code | link | table |
+toolbar: undo redo | forecolor | bold italic | alignleft aligncenter alignright | fontselect | uploadimage | table | code | link |
 plugins:
   - link
   - code
   - table
+  - uploadimage

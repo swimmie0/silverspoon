@@ -12,6 +12,7 @@
 
 <div class="result-contents rtnt2">
 <div class=" container" >
+<% if @zizums.length != 0 %>
 <p> <strong><%=params[:sido]%>/<%=params[:sigungu]%>의 <%=params[:restaurant_name]%></strong> 로 검색 결과
    : <strong><%=@zizums.length%>개의 식당</strong>을 찾았습니다.</p> <br>
 </div>
@@ -35,7 +36,7 @@
                 <div class="about-rtnt2">
                     <p class="rtnt-name"><%= zizum.restaurant_name%>&nbsp;<%= zizum.zizum_name%></p>
                     <p class="rtnt-intro">신선한 샌드위치를 만드는 서브웨이입니다.</p>                                
-                    <p class="rtnt-adress"><%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
+                    <p class="rtnt-adress"><i class="fas fa-map-marker-alt"></i>&nbsp;<%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
                 </div>
             </div>
         <%end%>
@@ -60,7 +61,7 @@
                 <div class="about-rtnt2">
                     <p class="rtnt-name"><%= zizum.restaurant_name%>&nbsp;<%= zizum.zizum_name%></p>
                     <p class="rtnt-intro">신선한 샌드위치를 만드는 서브웨이입니다.</p>                                
-                    <p class="rtnt-adress"><%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
+                    <p class="rtnt-adress"><i class="fas fa-map-marker-alt"></i>&nbsp;<%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
                 </div>
             </div>
         <%end%>
@@ -85,13 +86,18 @@
                 <div class="about-rtnt2">
                     <p class="rtnt-name"><%= zizum.restaurant_name%>&nbsp;<%= zizum.zizum_name%></p>
                     <p class="rtnt-intro">신선한 샌드위치를 만드는 서브웨이입니다.</p>                                
-                    <p class="rtnt-adress"><%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
+                    <p class="rtnt-adress"><i class="fas fa-map-marker-alt"></i>&nbsp;<%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
                 </div>
             </div>
         <%end%>
     </div>
-    <%= paginate @zizum_array, window:3 %>
+    <div class="container d-flex justify-content-center"style="margin-top:2rem;"><%= paginate @zizum_array%></div>
 </div>
+<%else%>
+<p> <strong><%=params[:sido]%>/<%=params[:sigungu]%>의 <%=params[:restaurant_name]%></strong> 로 검색 결과
+   : <strong>검색결과가 없습니다. 다른 식당을 검색해보세요! </p> <br>
+<%end%>
+
 
    <%# 로그인 하지 않았을 때 custom 기능 누르면 modal view 뜨도록 %>
     <%if !user_signed_in?%>
