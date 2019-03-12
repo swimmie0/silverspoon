@@ -1,4 +1,162 @@
- <!--//////////////// 알레르기 정보 수정 필요/////////////-->
+<!-- 회원가입 수정 섹션 -->
+  <div class="RegisterSection">
+    <div class="RegisterForm container">
+      <div>
+
+        <!-- 회원가입 Form 섹션 -->
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <h3 class="RegisterFormHeader"> 수정사항 안내 </h3>
+        <!-- 필수항목 기입 섹션 -->
+        <hr><h6 class="RegisterFormMust" style="text-align: right;"> **필수 항목 </h6> 
+
+        <div class = "field">
+          <%= f.label "이름" %><br/>
+          <div class="form-inline">
+          <%= f.text_field :name, class: "form-control", id: "checkname", :required => true, :validates => { :uniqueness => true } %>
+          <button type = "button" id="checkDouble">중복확인</button>
+          </div>
+          <p class = "mt-4 mb-2" id = "check-warning"></p>
+        </div>
+
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" , class: "form-control" %>
+        </div>
+        <!-- 필수항목 기입 섹션 끝 -->
+
+
+        <!-- 선택항목 기입 섹션 -->
+        <hr><h6 class="RegisterFormMust" style="text-align: right;"> **선택 항목 </h6>
+        
+        <div class="field">
+
+          <h5 style="padding-bottom: 1%"> 알레르기정보 </h5>
+          
+          <div> 유제품 및 난류:
+            <%= check_box_tag 'user[allergy][]', '난류' %> 난류
+            <%= check_box_tag 'user[allergy][]', '우유' %> 우유 
+          </div><br/>
+
+          <div> 과채류 및 곡류: 
+            <%= check_box_tag 'user[allergy][]', '복숭아'%> 복숭아
+            <%= check_box_tag 'user[allergy][]', '토마토'%> 토마토
+            <%= check_box_tag 'user[allergy][]', '대두(콩)' %> 대두(콩) 
+            <%= check_box_tag 'user[allergy][]', '밀'%> 밀
+            <%= check_box_tag 'user[allergy][]', '메밀'%> 메밀 
+          </div><br/>
+
+          <div> 육류:
+            <%= check_box_tag 'user[allergy][]', '닭고기' %> 닭고기 
+            <%= check_box_tag 'user[allergy][]', '돼지고기'%>돼지고기 
+            <%= check_box_tag 'user[allergy][]', '쇠고기'%>쇠고기
+          </div><br/> 
+
+          <div> 어패류:
+            <%= check_box_tag 'user[allergy][]', '고등어' %>고등어
+            <%= check_box_tag 'user[allergy][]', '오징어' %>오징어
+            <%= check_box_tag 'user[allergy][]', '게' %> 게
+            <%= check_box_tag 'user[allergy][]', '새우' %> 새우 
+            <%= check_box_tag 'user[allergy][]', '조개류' %>조개류
+            <%= check_box_tag 'user[allergy][]', '홍합' %>홍합
+            <%= check_box_tag 'user[allergy][]', '전복' %>전복
+            <%= check_box_tag 'user[allergy][]', '굴' %>굴
+          </div><br/>
+
+          <div> 견과류,아황산:
+            <%= check_box_tag 'user[allergy][]', '땅콩' %> 땅콩
+            <%= check_box_tag 'user[allergy][]', '호두 ' %> 호두 
+            <%= check_box_tag 'user[allergy][]', '아황산류 ' %> 아황산류 
+          </div><br>
+        </div>
+
+        <hr>
+
+        <div class="row">
+
+          <div class="col-3 field">
+            <h5> 성별 </h5>
+            <%= f.radio_button :gender, "남" %> 남자
+            <%= f.radio_button :gender, "여" %> 여자 <br/>
+          </div>
+
+          <div class="col-4 field">
+            <h5> 나이 </h5>
+            <%= f.select :ages, options_for_select([["10대이하", "10대이하"], ["10대","10대"], ["20-30대","20-30대"], ["40-50대","40-50대"],["60대이상","60대이상"]]), { prompt: '나이를 선택해주세요' } %>  
+          </div>
+
+          <div class="col-4 field">
+            <h5> 프로필 사진 </h5>
+            <%#= f.label :profileimg, "프로필 사진" %>
+            <%= f.file_field :profileimg, accept: 'image/png, image/gif, image/jpeg' %>
+          </div>
+
+        </div><br/>      
+        <!-- 선택항목 기입 섹션 끝 -->
+
+        <div class="actions">
+          <%= f.submit "회원가입 수정", class: "btn btn-primary", id: "submitButton" %>
+        </div>
+        <% end %>  
+        <!-- 회원가입 Form 섹션 끝 -->
+        <br>
+
+      </div>
+    </div>
+  </div>
+<!-- 회원가입 수정 섹션 끝 -->
+
+
+
+<script>
+//document.getElementById("submitButton").disabled = true;
+$('#checkname').each(function(){
+  var elem =$(this)
+   // Save current value of element
+  elem.data('oldVal',elem.val())
+  
+  // Look for changes in the value
+   elem.bind("change keyup paste", function(event){
+      if (elem.data('oldVal') != elem.val()) {
+      // Updated stored value
+      //  elem.data('oldVal', elem.val());
+
+       // Do action
+      document.getElementById("submitButton").disabled = true;
+      document.getElementById("check-warning").innerHTML = "닉네임 중복확인을 해주세요!";
+      
+      document.getElementById("checkDouble").addEventListener("click", function(){             
+      var nameIn = document.getElementById("checkname").value;
+        $.ajax({    //checkid와같이x
+          async : true,
+          type : "POST",
+          data : {name : nameIn},
+          url : "checkDouble",
+          dataType : "json",
+          success : function(data){
+            
+            console.log(data);
+          
+            if (data["ableName"] == 1&& elem.data('oldVal') != elem.val()){
+                document.getElementById("check-warning").innerHTML = "해당 닉네임은 이미 사용중입니다";
+                 document.getElementById("submitButton").disabled = true;
+            }
+            else{
+                document.getElementById("check-warning").innerHTML = "사용가능한 닉네임입니다";
+                 document.getElementById("submitButton").disabled = false;
+            }
+          }
+        })
+      })
+     }
+   });
+
+ });
+
+
+</script>
+
+<!-- 
+
 <h2>세부정보를 입력해주세요 </h2>
 <%# <%= resource_name.to_s.humanize %> 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -81,50 +239,4 @@
 <%= link_to "Back", :back %>
 
 
-<script>
-//document.getElementById("submitButton").disabled = true;
-$('#checkname').each(function(){
-  var elem =$(this)
-   // Save current value of element
-  elem.data('oldVal',elem.val())
-  
-  // Look for changes in the value
-   elem.bind("change keyup paste", function(event){
-      if (elem.data('oldVal') != elem.val()) {
-      // Updated stored value
-      //  elem.data('oldVal', elem.val());
-
-       // Do action
-      document.getElementById("submitButton").disabled = true;
-      document.getElementById("check-warning").innerHTML = "닉네임 중복확인을 해주세요!";
-      
-      document.getElementById("checkDouble").addEventListener("click", function(){             
-      var nameIn = document.getElementById("checkname").value;
-        $.ajax({    //checkid와같이x
-          async : true,
-          type : "POST",
-          data : {name : nameIn},
-          url : "checkDouble",
-          dataType : "json",
-          success : function(data){
-            
-            console.log(data);
-          
-            if (data["ableName"] == 1&& elem.data('oldVal') != elem.val()){
-                document.getElementById("check-warning").innerHTML = "해당 닉네임은 이미 사용중입니다";
-                 document.getElementById("submitButton").disabled = true;
-            }
-            else{
-                document.getElementById("check-warning").innerHTML = "사용가능한 닉네임입니다";
-                 document.getElementById("submitButton").disabled = false;
-            }
-          }
-        })
-      })
-     }
-   });
-
- });
-
-
-</script>
+-->
