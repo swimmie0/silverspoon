@@ -35,8 +35,9 @@ class User::RegistrationsController < Devise::RegistrationsController
   def editsns
   end  
 
+  protected
   ## for 회원가입정보에 알레르기 필수 (소셜로그인)
-  # protected
+  
 
   # def after_update_path_for(resource)
   #   if @user.allergy ==  ''
@@ -46,6 +47,14 @@ class User::RegistrationsController < Devise::RegistrationsController
   #   else 
   #     root_path
   #   end   
+  # end
+
+  # def after_sign_up_path_for(resource)
+  #   signed_in_root_path(resource)
+  # end
+
+  # def after_update_path_for(resource)
+  #   signed_in_root_path(resource)
   # end
 
   # GET /resource/sign_up
@@ -103,6 +112,7 @@ class User::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  
    ## 유저네임 중복검사
  
 end
