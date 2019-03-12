@@ -1,7 +1,3 @@
-// Place all the styles related to the Profiles controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 body {
   font-family: 'NanumBarunGothic';
 }
@@ -113,8 +109,6 @@ body {
   }
 
   .ProfileDownInfoSection {
-    width: 70%;
-   
     background-color: #F8F8F8;
     height: 23rem; 
   }
@@ -142,7 +136,7 @@ body {
   .ProfileTabInfo {
     position: absolute;
     margin-top: -3rem; 
-    width: 100%;
+    width: 70%;
   }
 // 상단 섹션 끝
 
@@ -438,4 +432,8 @@ $colors: (
   // height: 2rem; 
   font-size: 0.8rem; 
   text-align: center;
+}
+
+.RegisterSection .RegisterForm{
+  font-family: 'NanumBarunGothic',serif;
 }
