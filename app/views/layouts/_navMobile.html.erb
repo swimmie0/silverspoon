@@ -1,0 +1,39 @@
+<div class="nav-profile">
+    <div class="nav-right-top">
+        <%if user_signed_in? %>
+            <% if current_user.profile.nil? %> 
+                <%= link_to "My Page", new_profile_path(@profile), :style => "color: white;"%>
+            <% elsif !current_user.profile.nil? %>
+                <%= link_to "My Page", profile_path(current_user.profile.id), :style => "color: white;"%>
+            <% end %>
+        <%else%>
+            <%=link_to "로그인", new_user_session_path, class: "nav-login-button"%>
+        <%end%>
+    </div>
+
+    <div class="nav-profile-content">
+        <div class="nav-profile-imgbox">
+.
+                <%=image_tag "sky-logo.PNG", class:" nav-profile-img"%>
+ 
+        </div>
+
+        <div class="nav-profile-info">
+            <%if user_signed_in? %>
+                <%= current_user.name%><br>
+                <%= current_user.allergy%>
+            <%else%>
+                로그인이 필요합니다.
+            <%end%>
+        </div>
+    </div>
+</div>
+
+<div class="nav-menus">
+    <ul class="nav-item-family">
+        <li class="nav-item"><%=link_to "레시피", recipes_path%></li>
+        <li class="nav-item">식당 정보 공유</li>
+        <li class="nav-item">식품 정보 공유</li>
+        <li class="nav-item"><%=link_to "자유 게시판", freeboards_path%></li>
+    </ul>
+</div>
