@@ -64,6 +64,7 @@
     align-items:center;
     flex-direction: column;
 }
+
 .post-table table{
     background-color:white;    
     width: 80%;
@@ -108,12 +109,26 @@ td.title{
     background-color:rgba(168, 168, 168, 0.425);
     cursor:pointer;
 }
+
 .postpost-btn
 {  
+    width: 100%;
     display:flex;
-    justify-content:flex-end;
-    align-items: right;    
+    justify-content: center;
 }
+
+.postpost-btn-width{
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.freeboard-new-graybox{
+    width: 100%;
+    margin-top: 6rem;
+    margin-bottom: 0rem;
+}
+
 .new-linkto{
     color:#FF5400;
 }
@@ -128,26 +143,44 @@ td.title{
     display:flex;
     justify-content: flex-end
 }
-.linkto{
-    color:black!important;
+
+.linkto, .linkto-cancel{
+    color:black;
 }
+
 .linkto:hover{
     color:black;
+}
+
+.freeboard-new-btnbox{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.freeboard-submit-btnbox{
+    margin:0rem 1rem;
 }
 //search tab
 .btn-search{
     background-color:transparent;
     border-style: solid;
+    border-width: 0.3px;
     border-color: #FF5400;
     color: #FF5400;
     border-radius:0px;
     font-size:0.8rem;
-    width:7rem;
+    width: 7rem;
+    height: 2.2rem;
 }
+
 .btn-search:hover{
     background-color:#FF5400; 
     color:white;   
 }
+
 .search.form-control{
     border-radius:0px;   
     border:0.3px solid rgba(201, 200, 200, 0.7);  
@@ -158,9 +191,40 @@ td.title{
 }
 
 .back-btn{
-    margin-top: -1.5rem;
-    text-align: end;
+    margin: 0rem 1rem;
+    text-decoration: none;
+    -webkit-appearance: none;
+    text-align: center;
+    width: 7rem;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    border-style: solid;
+    border-color: rgb(83, 83, 83);
+    color: rgb(83, 83, 83);
+    border-width: 0.3px;
+    font-family: 'NanumBarunGothic',serif;
+    font-size: 0.8rem;
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
 }
+
+
+
+.back-btn:hover{
+
+    .linkto-cancel{
+        -webkit-appearance: none;
+        text-decoration: none;
+        color: white;
+    }
+
+    text-decoration: none;
+    background-color: rgb(83, 83, 83);
+    color: white !important;
+}
+
 ///////view페이지///////////
 .post-view{
     background-color:white;
@@ -237,3 +301,4 @@ a.disabled.vote-btn{
     font-size:1.2rem;
     
 }
+

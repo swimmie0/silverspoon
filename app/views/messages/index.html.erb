@@ -1,95 +1,111 @@
-<style>
-    .glyphicon {
-        float: right;
-        margin-top: 2px;
-        margin-right: -6px;
-    }
-    
-    .glyphicon.glyphicon-log-out {
-        font-size: 20px;
-    }
-</style>
+<!-- 메세지창 페이지 -->
+    <body class="MessagePage">
+        <!-- 메세지 섹션 -->
+            <div class="MessageSection container">
+                <div class="MessageSectionForm row">
+                
+                    <!-- 메세지 섹션 왼쪽칸 -->
+                        <div class="MessageSectionLeftColumn col-2">
+                        
+                        <!-- 메세지 섹션 왼쪽칸 위-->
+                            <div class="MessageSectionLeftTop">
+                                <div class="MessageSectionLeftTopText">TALES Message</div>
+                            </div>
+                        <!-- 메세지 섹션 왼쪽칸 위 끝-->
+                        
+                        <!-- 메세지 섹션 왼쪽칸 아래-->
+                            <div class="MessageSectionLeftBottom"> 
+                                <p class="MessageSectionLeftBottomText"><%= link_to "전체 쪽지함", conversations_path, style: "text-decoration: none; color: white" %> </p>
+                            </div>
+                        <!-- 메세지 섹션 왼쪽칸 아래 끝-->
+                        
+                        </div>
+                    <!-- 메세지 섹션 왼쪽칸 끝 -->
 
-<style type="text/scss">
-  body { font-family: 'Jeju Myeongjo', serif; }
-  h1 { font-weight: bold; }
-</style>
-<body style="background-color: #F8F8F8">
-    <div class="container" style="margin-right: 2rem; margin-left: 5.7rem;">
-        <div class="row" style="margin-top: 5%; height: 600px; width: 1250px;" >
-            <div class="col-2" style="text-align: center; padding: 0px;height: 100%">
-                <div style="background-color: #141b40; height: 11%; width: 100%">
-                    <p style="line-height: 66px; font-size: 1.2rem; margin: 0px; color: white">TALES MESSAGE</p>
-                </div>
-                <div style="background-color: #1E285D; position: absolute; height: 89%; width: 100%"> 
-                    <p style="line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white"><%= link_to "전체 쪽지함", conversations_path, style: "text-decoration: none; color: white" %> </p>
-                    <p style="line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white"> </p>
-                    <p style="line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white"> </p>
+                    <!-- 메세지 섹션 오른쪽칸 -->
+                        <div class="MessageSectionRightColumn col-10">
+                            <!-- 메세지 섹션 오른쪽칸 위 섹션-->
+                                <div class="MessageSectionRightTop">
+                                    <p class="MessageSectionRightTopText">발신자 : <%= @conversation.sender.name %> 님 </p>
+                                </div>
+                            <!-- 메세지 섹션 오른쪽칸 위 섹션 끝 -->
+
+                            <!-- 메세지 섹션 오른쪽칸 중간 섹션 -->
+                                <div class="MessageSectionRightMiddle scrollbar scrollbar-primary container">
+                                    <!-- 메세지 섹션 채팅창 -->
+                                        <div class="row">
+                                            <% @messages.each do |message|%>
+                                            <% if message.body %>
+                                                <% user = User.find(message.user_id) %>
+                                                <!-- 메세지 섹션 채팅창 왼쪽(본인) -->
+                                                    <% if current_user == user %>
+                                                        <div class="MessageLeftUser col-1">
+                                                            <p class="MessageLeftUserName"><%= user.name %></p>
+                                                        </div>
+                                                        <div class="MessageLeftUserChat col-4 card bg-light">
+                                                            <div class="MessageLeftUserChatContent card-body">
+                                                                <%= message.body %>
+                                                            </div>
+                                                        </div>
+                                                        <div class="MessageLeftUserDate">
+                                                            <%= message.message_time %>
+                                                        </div>
+                                                <!-- 메세지 섹션 채팅창 왼쪽(본인) 끝 -->
+
+                                                <!-- 메세지 섹션 채팅창 오른쪽(타인) -->
+                                                    <% else %>
+                                                        <div class="MessageRightUser col-7">
+                                                            <p class="MessageRightUserName"><%= user.name %></p>
+                                                        </div>
+                                                        <div class="MessageRightUserChat col-4 card bg-light">
+                                                            <div class="MessageRightUserChatContent card-body">
+                                                                <%= message.body %>
+                                                            </div>
+                                                        </div>
+                                                        <div class="MessageRightUserDate" >
+                                                            <%= message.message_time %>
+                                                        </div>
+                                                    <% end %>
+                                                <!-- 메세지 섹션 채팅창 오른쪽(타인) 끝 -->
+                                            <% end %> 
+                                            <% end %>
+                                        </div>
+                                    <!-- 메세지 섹션 채팅창 끝 -->
+
+                                </div>
+                            <!-- 메세지 섹션 오른쪽칸 중간 섹션 끝 -->
+
+                            <!-- 메세지 섹션 오른쪽칸 아래 섹션 -->
+                                <div class="MessageSectionRightBottom row">
+                                    <div class="MessageBottomLeft col-10">
+                                    <%= form_for [@conversation, @message], style: "padding: 0px; margin: 0px" do |f| %>
+                                            <%= f.text_field :body, class: "MessageBottomLeftField", placeholder: " 해당 칸에 보내실 메세지를 입력해주세요 "%>
+                                    
+                                            <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+                                    </div>
+                                        <div class="MessageBottomRight col-2">
+                                            <%= f.submit "쪽지 보내기", class: "MessageBottomRightButton" %>
+                                        </div>
+                                        <% end %>
+                                    </div>
+
+                                    <!-- <p style="line-height: 66px; text-align: right; padding-right: 2rem; border: 0.05px solid #bfbebe; font-size: 1rem; margin: 0px; color: black"> 쪽지 보내기</p> -->
+                                </div>
+                            <!-- 메세지 섹션 오른쪽칸 아래 섹션 -->
+                        </div>
+                    <!-- 메세지 섹션 오른쪽칸 -->
+
                 </div>
             </div>
+        <!-- 메세지 섹션 끝 -->
+    </body>
+<!-- 메세지창 끝 -->
 
-            <div class="col-10" style="border: 0.05px solid #bfbebe; padding: 0px; height: 100%">
-                <div style="background-color: #F8F8F8; height: 11%; width: 100%">
-                    <p style="line-height: 66px; padding-left: 2rem; border: 0.05px solid #bfbebe; font-size: 1rem; margin: 0px; color: black">발신자 : <%= @conversation.sender.name %> 님 </p>
-                </div>
-                <div  style="background-color: white; border-right: 0.05px solid #bfbebe; height: 74%; width: 100%; margin: 0px">
-                    
-                    <div  style="background-color: white; border-right: 0.05px solid #bfbebe; height: 100%; padding: 0px;">
-                        <div class="row" style="margin-left: 0.5rem;">
-                        <% @messages.each do |message|%>
-                        <% if message.body %>
-                            <% user = User.find(message.user_id) %>
-                            <% if current_user == user %>
-                                <div class="col-1" style="line-height: 2.3rem; font-size: 0.8rem; padding: 0px; margin-right: 0px">
-                                    <p style="margin-left: 2rem"><%= user.name %></p>
-                                </div>
-                                <div class="col-4 card bg-light" style="margin-top: 0.5rem; margin-bottom: 0.5rem; padding: 0px; border: 1px solid #bfbebe; border-radius: 0.5rem ">
-                                    <div class="card-body" style="font-size: 0.8rem; padding-top: 0.5rem; padding-bottom: 0.5rem">
-                                        <%= message.body %>
-                                    </div>
-                                </div>
-                                <div style="color: #a9a9a9; font-size: 0.8rem; margin-left: 7rem; width: 100%" >
-                                <%= message.message_time %>
-                                </div>
-                            <% else %>
-                                <div class="col-6" style="line-height: 2.3rem; font-size: 0.8rem; padding: 0px; margin-right: 0px">
-                                    <p style="margin-right: 2rem; text-align: right;"><%= user.name %></p>
-                                </div>
-                                <div class="col-5 card bg-light" style="margin-top: 0.5rem; margin-bottom: 0.5rem; padding: 0px; border: 1px solid #bfbebe; border-radius: 0.5rem ">
-                                    <div class="card-body" style="font-size: 0.8rem; padding-top: 0.5rem; padding-bottom: 0.5rem">
-                                        <%= message.body %>
-                                    </div>
-                                </div>
-                                <div style="text-align: right; color: #a9a9a9; font-size: 0.8rem; margin-right: 7rem; width: 100%" >
-                                <%= message.message_time %>
-                                </div>
-                            <% end %>
-                        <% end %> 
-                        <% end %>
-                        </div>
-                    </div>
+<script>
+    var scroll = document.getElementsByClassName("MessageSectionRightMiddle")[0];
+    scroll.scrollTop = scroll.scrollHeight;
+</script>
 
-                </div>
-                <div class="row" style="border: 0.05px solid #bfbebe; margin: 0px; height: 15%; width: 100%">
-                    <div class="col-10" style="background-color: #F8F8F8; padding: 0px; margin: 0px">
-                    <%= form_for [@conversation, @message], style: "padding: 0px; margin: 0px" do |f| %>
-                            <%= f.text_field :body, style: "background-color: white; width: 100%; height: 5.65rem; padding: 0px; margin: 0px" %>
-                    
-                            <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
-                    </div>
-                        <div class="col-2" style="background-color: #141b40; padding: 0px; margin: 0px; height: 100%">
-                            <%= f.submit "쪽지 보내기", style: "color: white; background-color: #141b40; width: 100%; height: 100%" %>
-                        </div>
-                        <% end %>
-                    </div>
-
-                    <!-- <p style="line-height: 66px; text-align: right; padding-right: 2rem; border: 0.05px solid #bfbebe; font-size: 1rem; margin: 0px; color: black"> 쪽지 보내기</p> -->
-                </div>
-            </div>
-
-        </div>
-    </div>
-</body>
 
 <!-- 
 <div class="panel panel-default">

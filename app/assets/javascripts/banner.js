@@ -1,10 +1,10 @@
 
-function tick(){
-    $("#rolling-list li:first").slideUp(function (){
-        $(this).appendTo($('#rolling-list')).slideDown();
-    });
-}
-setInterval(function(){tick()}, 3500);
+// function tick(){
+//     $("#rolling-list li:first").slideUp(function (){
+//         $(this).appendTo($('#rolling-list')).slideDown();
+//     });
+// }
+// setInterval(function(){tick()}, 3500);
 
 
 // $(window).on('scroll', function(){
