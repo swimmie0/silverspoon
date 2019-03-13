@@ -1,16 +1,16 @@
 <div class="post-contents container">
-나의 작성글 확인
+나의 수정 요청 진행현황
 </div>
 <div class ="contents">
     <div class="post-num">
-      <%# '전체' 총 <%=@user_posts.all.count건 %> 
+      '전체' 총 <%=@user_requests.all.count%>건
     </div>
   <div class="post-table">    
     <table class="table table-hover" id="post-table">
       <thead>
         <tr class= "postall postd posti postq posta postc">
           <%# <th>Category</th> %>
-          <th style="width:10%;">댓글</th>          
+          <th style="width:10%;">진행</th>          
           <th style="width:60%;" class="title">제목</th>
           <th>작성자</th>
           <th style="width:10%;">작성일</th>
@@ -20,15 +20,21 @@
 
       <tbody>
     </div>
-        <% @user_posts.each do |post| %>
+        <% @user_requests.each do |request| %>
           <tr >
-            <td><%=post.comment_threads.count%></td>
-            <td class="title form-inline">
-                <%= link_to post.title, post, {:class => "linkto",:style=>"font-size:0.8rem;"} %>             
+            <td> 
+             <% if request.completed==true %>
+             <div class="completed"style="font-weight:lighter;color:#1E285D; ">[완료]</div>
+            <% else %>
+             <div class="completed"style="font-weight:lighter;color:#FF5400;">[미처리]</div>
+            <% end %>   
             </td>
-            <td><%= post.name %></td>
-            <td><%= post.time(post)%></td>                
-            <td> <%= post.impressionist_count(:filter=>:session_hash) %></td>
+            <td class="title form-inline">
+                <%= link_to request.title, request, {:class => "linkto",:style=>"font-size:0.8rem;"} %>             
+            </td>
+            <td><%= request.name %></td>
+            <td><%= request.time(request)%></td>                
+            <td> <%= request.impressionist_count(:filter=>:session_hash) %></td>
           </tr>
         <% end %>
     </tbody>
