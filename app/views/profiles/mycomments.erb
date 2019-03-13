@@ -1,9 +1,9 @@
 <div class="post-contents container">
-나의 작성글 확인
+내가 댓글 단 게시글
 </div>
 <div class ="contents">
     <div class="post-num">
-      <%# '전체' 총 <%=@user_posts.all.count건 %> 
+      '전체' 총 <%=@user_comments.all.count%>건
     </div>
   <div class="post-table">    
     <table class="table table-hover" id="post-table">
@@ -20,15 +20,15 @@
 
       <tbody>
     </div>
-        <% @user_posts.each do |post| %>
+        <% @user_comments.each do |comment| %>
           <tr >
-            <td><%=post.comment_threads.count%></td>
+            <td>  <%=comment.comment_threads.count%> </td>            
             <td class="title form-inline">
-                <%= link_to post.title, post, {:class => "linkto",:style=>"font-size:0.8rem;"} %>             
+                <%= link_to comment.title, comment, {:class => "linkto",:style=>"font-size:0.8rem;"} %>             
             </td>
-            <td><%= post.name %></td>
-            <td><%= post.time(post)%></td>                
-            <td> <%= post.impressionist_count(:filter=>:session_hash) %></td>
+            <td><%= comment.name %></td>
+            <td><%= comment.time(comment)%></td>                
+            <td> <%= comment.impressionist_count(:filter=>:session_hash) %></td>
           </tr>
         <% end %>
     </tbody>

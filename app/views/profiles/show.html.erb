@@ -217,8 +217,8 @@
                 <tr style="color: white">
                   <th width="10%">NO</th>
                   <th width="20%">제목</th>
+                  <th width="10%">작성자</th>
                   <th width="10%">댓글</th>
-                  <th width="10%">조회수</th>
                 </tr>
               </thead>
               <tbody><% n = 1%>
@@ -226,8 +226,8 @@
                    <tr style="line-height:15px; border-bottom: 1px solid #dee2e6;background-color:white;">
                     <td> <%= n %><%n=n+1%></td>
                     <td style="text-align: left;"><%= link_to post.title, post, {:class => "linkto"} %></td>
+                    <td><%= post.name %></td>                                        
                     <td><%= post.comment_threads.count %></td>
-                    <td> <%= post.impressionist_count(:filter=>:session_hash) %></td>
                   </tr>
                 <% end %>
               </tbody>
@@ -239,7 +239,7 @@
           <div class="col">
             <nav style="margin-top: 2rem;">
               <p style="float: left;"><b>댓글 단 게시글</b></p>
-              <p style="float: right;font-size: 0.9rem;"><%=link_to '전체 보기', myposts_path(@profile), class:"linkto", target: :_blank %></p> 
+              <p style="float: right;font-size: 0.9rem;"><%=link_to '전체 보기', mycomments_path(id:@profile), class:"linkto", target: :_blank %></p>  
             </nav>
             <table class="ProfilePostingTable table" style="font-size: 0.8rem;">
               <thead style="background-color: #1E285D">
@@ -279,7 +279,7 @@
       <div class="container">
         <!-- 수정 요청 현황확인 네브바 내역 -->
           <nav style="font-size: 0.8rem;">
-            <p style="float: right"><%=link_to '더 보기', myposts_path(@profile), class:"linkto", target: :_blank %></p> 
+            <p style="float: right"><%=link_to '더 보기', myrequests_path(@profile), class:"linkto", target: :_blank %></p> 
           </nav>
           
         <!-- 수정 요청 현황확인 네브바 내역 끝 -->

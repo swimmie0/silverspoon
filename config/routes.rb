@@ -70,6 +70,8 @@ Rails.application.routes.draw do
   # post '/profiles/:id/myposts' => 'profiles#myposts'
   scope 'profiles/:id' do
     get 'myposts', :to => 'profiles#myposts'
+    get 'mycomments', :to => 'profiles#mycomments'
+    get 'myrequests', :to => 'profiles#myrequests'    
   end
   get '/zizuminfos/:id/follow_destroy', to: 'follows#profile_follow_destroy_toggle', as: 'profile_follow_destroy'
 
