@@ -10,8 +10,7 @@
             <% end %>
             <br>
             <div class="ProfileUpperButtonSection">
-              <% if @profile.id == current_user.id %>
-              
+              <% if @profile.id == current_user.id %>          
               <% else %>
               <!--
                 <% if !current_user.following?(@profile) %>
@@ -73,7 +72,7 @@
                   <div style="margin-left: 2rem;margin-top: 2rem;" class="tab-content" id="nav-tabContent">
                     
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                      <%if @profile.nil? == 'true' %>
+                      <%# <%if @profile.nil? == 'true' %>
                       
                       <%# <% elsif @profile.nil? == 'false' %>
                         <%# <%if @profile.user.allergy.include?("난류") %>
@@ -263,7 +262,6 @@
           </nav>
           
         <!-- 수정 요청 현황확인 네브바 내역 끝 -->
-    
   <!-- 수정 요청 현황확인 섹션 -->
     <div class="profile-request container d-flex"> <%n=1%>
       <%@user_requests.each do |request|%>
@@ -288,7 +286,7 @@
 
 <!-- 수정 요청 현황확인 섹션 끝-->
 <% else %>
-<% end %>
+<% end %>                     
 
 <script>
 
