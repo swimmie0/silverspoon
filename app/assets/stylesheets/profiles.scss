@@ -141,7 +141,7 @@ body {
   .ProfileTabInfo {
     position: absolute;
     margin-top: -3rem; 
-    width: 70%;
+    width: 77.2%;
   }
 // 상단 섹션 끝
 
@@ -222,6 +222,7 @@ body {
   background-color: white;
   height: 100%; 
   width: 100%; 
+  margin-bottom: 5rem;
 }
 
 .ProfileRequestEditList {
@@ -268,7 +269,7 @@ body {
 }
 
 .ProfileRequestEditBlock-button_O {
-  color: #1E285D; 
+  color: #00307C; 
   text-align: center;
   font-size: 0.8rem; 
   width: 3.3rem; 
@@ -276,7 +277,7 @@ body {
   margin-top: 6%;
   margin-bottom: 6%; 
   padding: 0.8% 1% 0.5% 1%; 
-  border: 1px solid #1E285D; 
+  border: 1px solid #00307C; 
   border-radius: 30%; 
 
 }
@@ -419,8 +420,8 @@ $colors: (
   border-radius: 30%; 
   margin-top: 6%; 
   padding: 0.8% 1% 0.5% 1%; 
-  border: 1px solid #1E285D; 
-  color: #1E285D; 
+  border: 1px solid #00307C; 
+  color: #00307C; 
   width: 3.3rem; 
   // height: 2rem; 
   font-size: 0.8rem; 
@@ -441,4 +442,11 @@ $colors: (
 
 .RegisterSection .RegisterForm{
   font-family: 'NanumBarunGothic',serif;
+}
+
+.profile-message-tr{
+  cursor: pointer;
+}
+.profile-message-tr:hover{
+  background-color: rgb(243, 243, 243);
 }
