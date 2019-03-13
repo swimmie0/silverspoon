@@ -69,6 +69,12 @@ Rails.application.routes.draw do
   
   # 나만의 페이지
   resources :profiles
+  # post '/profiles/:id/myposts' => 'profiles#myposts'
+  scope 'profiles/:id' do
+    get 'myposts', :to => 'profiles#myposts'
+    get 'mycomments', :to => 'profiles#mycomments'
+    get 'myrequests', :to => 'profiles#myrequests'    
+  end
   get '/zizuminfos/:id/follow_destroy', to: 'follows#profile_follow_destroy_toggle', as: 'profile_follow_destroy'
 
   # # Follow 기능
@@ -98,7 +104,7 @@ Rails.application.routes.draw do
      post "/checkDouble" => "user/registrations#checkDouble"
      get "/users" => 'user/registrations#new'
   end
-  devise_for :users, :controllers => { omniauth_callbacks: 'user/omniauth_callbacks', registrations: 'user/registrations' }
+  devise_for :users, :controllers => {registrations: 'user/registrations' }
   devise_scope :user do
     get 'editsns', :to => 'devise/registrations#editsns'
   end

@@ -11,8 +11,7 @@
             <% end %>
             <br>
             <div class="ProfileUpperButtonSection">
-              <% if @profile.id == current_user.id %>
-              
+              <% if @profile.id == current_user.id %>          
               <% else %>
                 <!--
                 <% if !current_user.following?(@profile) %>
@@ -57,7 +56,7 @@
                   <% else %>
                     <a style="text-decoration: none; color: black" class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
                       MESSAGE
-                    <span style="padding-top: 0.4rem;" class="badge badge-danger badge-pill"><%= @conversations.where(recipient_id: current_user.id).count %></span>
+                    <span style="padding-top: 0.4rem;" class="badge badge-danger badge-pill"><%= @conversations.where('sender_id=? OR recipient_id=?', current_user.id, current_user.id).count %></span>
                     </a>
                     <!--
                     <a style="text-decoration: none; color: black" class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">
@@ -68,7 +67,7 @@
                 </div>
               
 
-              <div style="border: 1px solid rgb(226, 226, 226); height: 10rem; background-color: white; width: 100%">
+              <div class="scroll" style="overflow-y: scroll; border: 1px solid rgb(226, 226, 226); height: 10rem; background-color: white; width: 100%">
                   <div class="tab-content" id="nav-tabContent">
                     
                     <div style=" margin-left: 2rem; margin-top: 2rem;" class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -193,9 +192,9 @@
       <div class="row" style="margin-bottom: 1rem;">
         <!-- 작성한 게시판 -->
           <div class="col">
-            <nav style="margin-top: 2rem; font-size: 0.9rem;">
-              <p style="float: left">작성한 게시글</p>
-              <p style="float: right">전체 보기</p>
+            <nav style="margin-top: 2rem; ">
+              <p style="float: left"><b>작성한 게시글</b></p>
+              <p style="float: right;font-size: 0.9rem;"><%=link_to '전체 보기', myposts_path(@profile), class:"linkto", target: :_blank %></p> 
             </nav>
             <table class="ProfilePostingTable table" style="font-size: 0.8rem;">
               <thead style="background-color: #00307C">
@@ -203,16 +202,18 @@
                   <th width="10%">NO</th>
                   <th width="20%">제목</th>
                   <th width="10%">작성자</th>
-                  <th width="10%">조회수</th>
+                  <th width="10%">댓글</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr style="line-height: 29.5px; border-bottom: 1px solid #dee2e6;">
-                  <th scope = "row"></th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
+              <tbody><% n = 1%>
+                <%  @user_posts.each do |post| %>
+                   <tr style="line-height:15px; border-bottom: 1px solid #dee2e6;background-color:white;">
+                    <td> <%= n %><%n=n+1%></td>
+                    <td style="text-align: left;"><%= link_to post.title, post, {:class => "linkto"} %></td>
+                    <td><%= post.name %></td>                                        
+                    <td><%= post.comment_threads.count %></td>
+                  </tr>
+                <% end %>
               </tbody>
             </table>
           </div>
@@ -220,26 +221,28 @@
 
         <!-- 댓글단 게시판 -->
           <div class="col">
-            <nav style="margin-top: 2rem; font-size: 0.9rem;">
-              <p style="float: left">작성한 게시글</p>
-              <p style="float: right">전체 보기</p>
+            <nav style="margin-top: 2rem;">
+              <p style="float: left;"><b>댓글 단 게시글</b></p>
+              <p style="float: right;font-size: 0.9rem;"><%=link_to '전체 보기', mycomments_path(id:@profile), class:"linkto", target: :_blank %></p>  
             </nav>
             <table class="ProfilePostingTable table" style="font-size: 0.8rem;">
               <thead style="background-color: #00307C">
                 <tr style="color: white">
-                  <th width="10%">NO</th>
-                  <th width="20%">제목</th>
-                  <th width="10%">작성자</th>
-                  <th width="10%">조회수</th>
+                  <th width="8%">NO</th>
+                  <th width="26%">제목</th>
+                  <th width="8%">작성자</th>
+                  <th width="8%">댓글</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr style="line-height: 29.5px; border-bottom: 1px solid #dee2e6;">
-                  <th scope = "row"></th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
+               <tbody><% n = 1%>
+                <%  @user_comments.each do |comment| %>
+                   <tr style="line-height:15px; border-bottom: 1px solid #dee2e6;background-color:white;">
+                    <td> <%= n %><%n=n+1%></td>
+                    <td style="text-align: left;"><%= link_to comment.title, comment, {:class => "linkto"} %></td>
+                    <td><%= comment.name %></td>                    
+                    <td><%= comment.comment_threads.count %></td>            
+                  </tr>
+                <% end %>
               </tbody>
             </table>
           </div>
@@ -251,7 +254,7 @@
 
 
 <!-- 수정 요청 현황확인 섹션 -->
-  <div class="ProfileRequestEditSection">
+  <div class="ProfileRequestEditSection" style="margin-bottom:5rem;">
     <!-- 수정 요청 현황확인 제목 -->
       <p class="ProfileTitle">수정 요청 현황 확인</p>
     <!-- 수정 요청 현황확인 제목 끝 -->
@@ -260,57 +263,39 @@
       <div class="container">
         <!-- 수정 요청 현황확인 네브바 내역 -->
           <nav style="font-size: 0.8rem;">
-            <p style="float: left;">최근 3건</p>
-            <p style="float: right">더 보기</p>
+            <p style="float: right"><%=link_to '더 보기', myrequests_path(@profile), class:"linkto", target: :_blank %></p> 
           </nav>
           
         <!-- 수정 요청 현황확인 네브바 내역 끝 -->
-
-        <!-- 수정 요청 현황확인 건 리스트 -->
-          <div class="ProfileRequestEditList">
-            <!-- 수정 요청 현황확인 건 1 -->
-              <div class= "ProfileRequestEditBlock">
-                <div class="container">
-                  <div class="ProfileRequestEditBlock-title"> 1번 수정요청에 대한 현황 </div>
-                  <div class="ProfileRequestEditBlock-date">2018-09-16 15:02 </div>
-                  <div class="ProfileRequestEditBlock-button_X">미처리</div>
-                </div>
-              </div>
-            <!-- 수정 요청 현황확인 건 1 끝 -->
-
-            <!-- 수정 요청 현황확인 건 2 -->
-              <div class= "ProfileRequestEditBlock">
-                <div class="container">
-                  <div class="ProfileRequestEditBlock-title"> 2번 수정요청에 대한 현황 </div>
-                  <div class="ProfileRequestEditBlock-date">2018-09-16 15:02 </div>
-                  <div class="ProfileRequestEditBlock-button_O">완료</div>
-                </div>
-              </div>
-            <!-- 수정 요청 현황확인 건 2 끝 -->
-
-            <!-- 수정 요청 현황확인 건 3 -->
-              <div class= "ProfileRequestEditBlock">
-                <div class="container">
-                  <div class="ProfileRequestEditBlock-title"> 3번 수정요청에 대한 현황 </div>
-                  <div class="ProfileRequestEditBlock-date">2018-09-16 15:02 </div>
-                  <div class="ProfileRequestEditBlock-button_X">미처리</div>
-                </div>
-              </div>
-            <!-- 수정 요청 현황확인 건 3 끝 -->
-          </div>
-        <!-- 수정 요청 현황확인 건 리스트 끝 -->
-
-        <!-- 안내문 -->
-          <div class="ProfileRequestEditGuide">현재 관리자가 확인 및 수정 절차를 진행하고 있습니다. 통상적으로 1~2주 안에 결과가 반영됩니다. 좋은 의견 항상 감사합니다.</div>
-        <!-- 안내문 -->
+  <!-- 수정 요청 현황확인 섹션 -->
+    <div class="profile-request container d-flex"> <%n=1%>
+      <%@user_requests.each do |request|%>
+      <div class="request-box">
+        <%=link_to request do %>        
+        <div style="margin-bottom: 0rem; margin-top: 1rem;color:black;"> <%=n%><%n=n+1%>번 수정요청에 대한 현황 </div>        
+        <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> <%=request.created_at.strftime('%Y-%m-%d %H:%M')%> </div>
+          <% if request.completed== true %>   
+        <div class="request-completed">완료
+          <% else %>
+        <div class="request-uncompleted">미처리
+          <%end%>
+        </div>
       </div>
-    <!-- 수정 요청 현황확인 내역 끝 -->
-  </div>
+      <%end%>  
+      <%end%>                       
+    </div> 
+    
+    <p style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0.5rem; float: left; position: relative;">현재 관리자가 확인 및 수정 절차를 진행하고 있습니다. 통상적으로 1~2주 안에 결과가 반영됩니다. 좋은 의견 항상 감사합니다.</p>
+  </div>    
+</div>
+
 <!-- 수정 요청 현황확인 섹션 끝-->
 
 <script>
   $(".profile-message-tr").click(function() {
         window.location = $(this).data("href")  
     })
-    
+  
+  var scroll = document.getElementsByClassName("scroll")[0];
+  scroll.scrollTop = scroll.scrollHeight;
 </script>

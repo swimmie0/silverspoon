@@ -21,6 +21,7 @@ gem 'fog-aws'
 # 회원관리
 gem 'rails_admin'
 gem 'devise'
+gem 'devise-i18n'
 gem 'omniauth'
 gem 'omniauth-naver'
 gem "omniauth-google-oauth2"

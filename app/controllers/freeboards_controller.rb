@@ -54,9 +54,11 @@ class FreeboardsController < ApplicationController
        @new_comment  = Comment.build_from(@freeboard, current_user.id, "") 
     end
 
-    if @freeboard.locked && @writer != current_user
-      flash[:warning] = '비밀글은 작성자와 관리자만 볼 수 있습니다.'
-      redirect_to freeboards_path
+    if @freeboard.locked && @writer != current_user 
+      if !user_signed_in? || !current_user.admin?  
+        flash.now[:warning] = '비밀글은 작성자와 관리자만 볼 수 있습니다.'
+      # redirect_to freeboards_path
+      end
     end
 
   end
