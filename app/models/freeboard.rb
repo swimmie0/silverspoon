@@ -4,7 +4,7 @@ class Freeboard < ApplicationRecord
   is_impressionable
 
   def self.search(search)
-    where("title || content LIKE ?", "%#{search}%") 
+    where("title || content || name LIKE ?", "%#{search}%") 
   end
   
   # def self.completed(completed)

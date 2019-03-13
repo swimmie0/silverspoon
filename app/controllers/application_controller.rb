@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller?
-    #after_action :store_location
+    after_action :store_location
 
     # protect_from_forgery with: :exception
     protect_from_forgery prepend: true
@@ -16,16 +16,24 @@ class ApplicationController < ActionController::Base
     end
     
     #######로그인 한 이후 원래 머무르던 창으로 되돌아가기 #######
-    # def store_location
-    #   session[:previous_urls] ||= []
-    #   # store unique urls only
-    #   session[:previous_urls].prepend request.fullpath if session[:previous_urls].first != request.fullpath
-    #   # For Rails < 3.2
-    #   # session[:previous_urls].unshift request.fullpath if session[:previous_urls].first != request.fullpath 
-    #   session[:previous_urls].pop if session[:previous_urls].count > 2
-    # end
+    def store_location
+      session[:previous_urls] ||= []
+      # store unique urls only
+      session[:previous_urls].prepend request.fullpath if session[:previous_urls].first != request.fullpath
+      # For Rails < 3.2
+      # session[:previous_urls].unshift request.fullpath if session[:previous_urls].first != request.fullpath 
+      session[:previous_urls].pop if session[:previous_urls].count > 2
+    end
+    def after_sign_in_path_for(resource)
+      session[:previous_urls].last || root_path
+    end
     # def after_sign_in_path_for(resource)
-    #   session[:previous_urls].last || root_path
+    #   sign_in_url = new_user_session_url
+    #   if request.referer == sign_in_url
+    #     super
+    #   else
+    #     stored_location_for(resource) || request.referer || root_path
+    #   end
     # end
     ###########################################################
 

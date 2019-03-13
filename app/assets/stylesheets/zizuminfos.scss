@@ -6,7 +6,12 @@
     cursor: pointer;
 }
 
-
+.zizum-about-explain{
+    margin-top:0.6rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: rgb(165, 164, 164); 
+}
 .zizum-about-wrap{
     height: 500px;
     width: 100%;
@@ -116,11 +121,11 @@
     margin-right: 0.7rem;
 }
 
-.zizum-i-adr, .zizum-i-phone{
+.zizum-i-adr, .zizum-i-bookmark{
     color: #1E285D;
 }
 
-.zizum-i-time, .zizum-i-bookmark{
+.zizum-i-time, .zizum-i-phone{
     color: #FF5400;
 }
 

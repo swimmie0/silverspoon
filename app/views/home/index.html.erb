@@ -11,7 +11,7 @@
 
 <div id="main-contents-allergy" class="container">
     <div id="allergy-filtering" class="d-flex justify-content-center">
-        <div class="alg-filt-title">식당 찾기</div>
+        <div class="alg-filt-title">식당 검색하기</div>
     </div>
 
     <div class="search-full-box">
@@ -37,7 +37,7 @@
         </div>
     </div>
     <div class="main-recipes-box d-flex justify-content-between">
-        <%@popular_recipes.each do |popular_rcp|%>
+        <%for idx in 1..3%>
             <div class="main-popular-recipebox">
                 <%# 등록된 사진 오류남. 해결 해야함. %>
                 <div class="popular-recipe-imgbox">
