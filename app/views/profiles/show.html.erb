@@ -56,7 +56,7 @@
                 <% else %>
                   <a style="text-decoration: none; color: black" class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
                     MESSAGE
-                  <span style="padding-top: 0.4rem;" class="badge badge-danger badge-pill"><%= @conversations.where('sender_id=? OR recipient_id=?', current_user.id, current_user.id).count %></span>
+                  <span style="padding-top: 0.2rem; padding-bottom: 0.2rem;" class="badge badge-danger badge-pill"><%= @conversations.where('sender_id=? OR recipient_id=?', current_user.id, current_user.id).count %></span>
                   </a>
                   <!--
                   <a style="text-decoration: none; color: black" class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">
