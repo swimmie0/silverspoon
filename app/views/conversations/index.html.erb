@@ -4,14 +4,17 @@
         <div class="row" style="margin-top: 5%; height: 600px" >
 
             <div class="col-3" style="text-align: center; padding: 0px;height: 100%">
-                <div style="background-color: #141b40; height: 11%; width: 100%">
+                <div style="background-color: #1a2352; height: 11%; width: 100%">
                     <p style="line-height: 66px; font-size: 1.2rem; margin: 0px; color: white">TALES MESSAGE</p>
                 </div>
-                <div style="background-color: #1E285D; height: 89%; width: 100%"> 
-                    <p style="line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white"> <%= link_to "전체 편지함", conversations_path, style: "text-decoration: none; color: white" %> </p>
-                    <p style="line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white"></p>
-                    <p style="line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white"></p>
+
+                
+                <div style="background-color: #00307C; height: 89%; width: 100%"> 
+                    <%= link_to conversations_path do %>
+                        <p style="text-decoration: none; color: white; line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white">전체 편지함</p>
+                    <% end %>
                 </div>
+                
             </div>
 
             <div class="col-9" style="border: 0.05px solid #bfbebe; padding: 0px; height: 100%">
@@ -39,7 +42,7 @@
                                     <% else %>
                                     <% recipient = User.find(conversation.sender_id) %>
                                     <% end %>
-                                <tr style="line-height: 29.5px; border-bottom: 1px solid #dee2e6;">
+                                <tr class="profile-message-tr" data-href="/conversations/<%=conversation.id%>/messages" style="line-height: 29.5px; border-bottom: 1px solid #dee2e6;">
                                 <th scope = "row"><%= link_to " #{i+=1} 번", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338; font-size: 0.9rem;" %> </th>
                                     <td><%= link_to "#{recipient.name}님", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338; font-size: 0.9rem;" %>  </td>
                                     <td><%= link_to " #{conversation.messages.last.body.first(22)}...", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338; font-size: 0.9rem;" %>  </td>
@@ -67,7 +70,12 @@
 <script>
     var scroll = document.getElementsByClassName("ConversationContent")[0];
     scroll.scrollTop = scroll.scrollHeight;
+
+    $(".profile-message-tr").click(function() {
+        window.location = $(this).data("href")  
+    })
 </script>
+
 <!-- 
 <div class="list-group col-md-3">
     <ul class="nav nav-pills nav-stacked">
