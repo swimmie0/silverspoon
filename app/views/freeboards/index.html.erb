@@ -111,10 +111,12 @@
     </table>
 </div>
 
-<div class="postpost-btn container"> 
-  <% if user_signed_in? %>
-    <%= button_to '새글작성', new_freeboard_path, :class => "btn btn-search",:method=>'get' %>
-  <% end %>
+<div class="postpost-btn">
+  <div class="postpost-btn-width">
+    <% if user_signed_in? %>
+      <%= button_to '새 글 작성', new_freeboard_path, :class => "btn btn-search",:method=>'get' %>
+    <% end %>
+  </div>
 </div>
 
   <div class = "p_window">   

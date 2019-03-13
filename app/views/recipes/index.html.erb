@@ -71,9 +71,23 @@
     <%end%>
   </div>
 
-  <div>   
-    <%= paginate @recipes%>
+
+  <div class="d-flex justify-content-center container">
+    <div class="recipe-new-button w-100 d-flex justify-content-between">
+      <div></div>
+
+      <div>   
+      <%= paginate @recipes%>
+      </div>
+
+      <%if user_signed_in?%>
+        <%= button_to '레시피 작성', new_recipe_path, :class => "btn btn-search", :method=>'get' %>
+      <%else %>
+        <span data-toggle="modal" data-target="#loginModal" class="btn btn-search">레시피 작성</span>
+      <%end%>
+    </div>
   </div>
+
 </div>
 
 
@@ -83,11 +97,9 @@
         <%= render 'layouts/loginModal'%>
 <%end%>
 
-<%if user_signed_in?%>
-    <%= link_to 'New Recipe', new_recipe_path%>
-<%else%>
-    <span data-toggle="modal" data-target="#loginModal">New Recipe</span>
-<%end%>
+
+
+
 
 <script>
 

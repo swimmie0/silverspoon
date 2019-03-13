@@ -1,5 +1,4 @@
 <!-- My Page : Open-->
-<body>
 
 <!-- 상단 섹션 -->
   <div class="ProfileUpperSection">
@@ -14,11 +13,13 @@
               <% if @profile.id == current_user.id %>
               
               <% else %>
+              <!--
                 <% if !current_user.following?(@profile) %>
                   <%= link_to "팔로우하기", profile_follow_path(@profile.id), class: "ProfileBanner-Button", style: "color: white;", method: "get" %>
                 <% else %>
                   <%= link_to "팔로우하기", profile_follow_path(@profile.id), class: "ProfileBanner-Unbutton", style: "color: white;", method: "get" %>
                 <% end %>
+              -->
                 <%= link_to "쪽지보내기", conversations_path(sender_id: current_user.id, recipient_id: @profile.user.id), style: "color: white;", method: "post", class: 'ProfileBanner-Button' %>
               <% end %>
             </div>
@@ -40,52 +41,35 @@
 
             <div class="ProfileInfoSection">
               <div class="ProfileInfo">
-                <p class="ProfileName"> <%= @profile.user.name %> </p>
-                <p> <strong> 성별  </strong> <%= @profile.user.gender %>성 <br> <strong>나이  </strong> <%= @profile.user.ages %>대 </p>
-                <p> <%= link_to " Log Out ", destroy_user_session_path, method: :delete, class:"headerfont", :style=>"text-decoration: none; color: #454338;" %> </p>
+                <p class="ProfileName big-title"> <%= @profile.user.name %> </p>
+                <div class="profile-specific">
+                <p> <strong> 성별  </strong> <%= @profile.user.gender %>성 <br> <strong>나이  </strong> <%= @profile.user.ages %> </p>
+                </div>
               </div>
             </div>
           
             <div class="ProfileTabInfo">
-              <nav style="">
+              <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                   <a style="color: black" class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
                     알레르기 정보
                   </a>
                   <% if @profile.id != current_user.id%>
                   <% else %>
-                  <a style="text-decoration: none; color: black" class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
-                    MESSAGE
-                  <span style="padding-top: 0.4rem;" class="badge badge-danger badge-pill"><%= @conversations.where(recipient_id: current_user.id).count %></span>
-                  </a>
-                  <a style="text-decoration: none; color: black" class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">
-                    FOLLOW
-                  </a>
-          <div style="border: 1px solid rgb(226, 226, 226); height: 10rem; background-color: white;">
-              <div style="margin-left: 2rem;margin-top: 2rem;" class="tab-content" id="nav-tabContent">
-                
-                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                  <%if @profile.user.allergy != nil %>
-                  <%if @profile.user.allergy.include?("난류") %>
-                    <div style="float: left; height: 6rem; width: 5rem; border: 1px solid rgb(226, 226, 226); background-color: white;"><%= image_tag "profile_egg.png", style: "margin-top: 0.5rem; margin-bottom: 0.5rem; display: block; margin-left: auto; margin-right: auto; width: 50%; width: 2.5rem" %></div>
-                  <% end %>
-                  <% if @profile.user.allergy.include?("복숭아") %>
-                    <div style="float: left; height: 6rem; width: 5rem; border: 1px solid rgb(226, 226, 226); background-color: white;"><%= image_tag "profile_tomato.png", style: "margin-top: 0.5rem; margin-bottom: 0.5rem; display: block; margin-left: auto; margin-right: auto; width: 50%; width: 2.5rem" %></div>
-                  <% end %>
-                  <% if @profile.user.allergy.include?("토마토") %>
-                    <div style="float: left; height: 6rem; width: 5rem; border: 1px solid rgb(226, 226, 226); background-color: white;"><%= image_tag "profile_peach.png", style: "margin-top: 0.5rem; margin-bottom: 0.5rem; display: block; margin-left: auto; margin-right: auto; width: 50%; width: 2.5rem" %></div>
-                  <% end %>
-                  <% if @profile.user.allergy.include?("닭고기") %>
-                    <div style="float: left; height: 6rem; width: 5rem; border: 1px solid rgb(226, 226, 226); background-color: white;"><%= image_tag "profile_beef.png", style: "margin-top: 0.5rem; margin-bottom: 0.5rem; display: block; margin-left: auto; margin-right: auto; width: 50%; width: 2.5rem" %></div>
-                  <% end %>
-                  <% end %>  
-                  <% end %>                  
-                                  
+                    <a style="text-decoration: none; color: black" class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
+                      MESSAGE
+                    <span style="padding-top: 0.4rem;" class="badge badge-danger badge-pill"><%= @conversations.where(recipient_id: current_user.id).count %></span>
+                    </a>
+                    <!--
+                    <a style="text-decoration: none; color: black" class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">
+                      FOLLOW
+                    </a>
+                    -->
+                  <% end %>              
                 </div>
               </nav>
 
-              <!--보성오빠확인필요-->
-              <%# <div style="border: 1px solid rgb(226, 226, 226); height: 10rem; background-color: white; width: 100%">
+              <div class="scroll" style="overflow-y: scroll; border: 1px solid rgb(226, 226, 226); height: 10rem; background-color: white; width: 100%">
                   <div style="margin-left: 2rem;margin-top: 2rem;" class="tab-content" id="nav-tabContent">
                     
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -130,11 +114,13 @@
                       </table>
                     </div>
 
+                    <!--
                     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                       <% @profile.user.following_profiles.each do |profile| %>
                         <%= link_to profile.user.name, profile_url(profile.id), style: "color: black;" %>
                       <% end %>
                     </div>
+                    -->
 
                   </div>
               </div>
@@ -151,45 +137,39 @@
 <!-- 프로필 레시피 섹션 -->
   <div class="ProfileRecipeSection">
     <!-- 프로필 레시피 제목 섹션 -->
-      <p class="ProfileTitle">즐겨찾는 레시피를 확인해보세요!</p>
+      <p class="ProfileTitle big-title">즐겨찾는 레시피</p>
     <!-- 프로필 레시피 제목 섹션 끝 -->
     <!-- 프로필 레시피 사진 섹션 -->
       <div class="ProfileRecipeSection container">
         <nav style="font-size: 0.9rem;">
-          <p class="ProfileRecipeCount">최신 3건</p>
-          <p style="float: right;">더 보기</p>
+          <%# <p class="ProfileRecipeCount">최신 3건</p>
+          <p style="float: right;">더 보기</p> %>
         </nav>
         <!-- 프로필 레시피 사진 섹션 중 이미지 나열 섹션 -->
           <div class="ProfileRecipeImgSection">
             <!-- 프로필 레시피 사진 섹션 중 이미지 1 -->
               <div class="ProfileRecipeImgBlock">
-                <%= image_tag "https://st2.depositphotos.com/1889887/5668/i/950/depositphotos_56689941-stock-photo-banana-cake.jpg", class:"ProfileRecipeImg"%>
-                <div class="container">
-                  <p style="margin-bottom: 0.5rem; margin-top: 1rem;"> 식빵 </p>
-                  <div style="font-size: 0.8rem"> 우유, 난류 </div>
-                  <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> 알레르기 보유자를 위한 식빵 </div>
+                <%= image_tag "contents-ready-beige.PNG", class:"ProfileRecipeImg"%>
+                <div class="container"  style="height:5rem;">
+                   <span class="popular-recipe-text">레시피 컨텐츠 준비중입니다</span>
                 </div>
               </div>
             <!-- 프로필 레시피 사진 섹션 중 이미지 1 끝 -->
 
             <!-- 프로필 레시피 사진 섹션 중 이미지 2 -->
               <div class="ProfileRecipeImgBlock">
-                <%= image_tag "https://st2.depositphotos.com/1889887/5668/i/950/depositphotos_56689941-stock-photo-banana-cake.jpg", class:"ProfileRecipeImg"%>
-                <div class="container">
-                  <p style="margin-bottom: 0.5rem; margin-top: 1rem;"> 식빵 </p>
-                  <div style="font-size: 0.8rem"> 우유, 난류 </div>
-                  <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> 알레르기 보유자를 위한 식빵 </div>
+                <%= image_tag "contents-ready-beige.PNG", class:"ProfileRecipeImg"%>
+                <div class="container"  style="height:5rem;">
+                   <span class="popular-recipe-text">레시피 컨텐츠 준비중입니다</span>
                 </div>
               </div>
             <!-- 프로필 레시피 사진 섹션 중 이미지 2 끝 -->
 
             <!-- 프로필 레시피 사진 섹션 중 이미지 3 -->
               <div class="ProfileRecipeImgBlock">
-                <%= image_tag "https://st2.depositphotos.com/1889887/5668/i/950/depositphotos_56689941-stock-photo-banana-cake.jpg", class:"ProfileRecipeImg"%>
-                <div class="container">
-                  <p style="margin-bottom: 0.5rem; margin-top: 1rem;"> 식빵 </p>
-                  <div style="font-size: 0.8rem"> 우유, 난류 </div>
-                  <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> 알레르기 보유자를 위한 식빵 </div>
+                <%= image_tag "contents-ready-beige.PNG", class:"ProfileRecipeImg"%>
+                <div class="container" style="height:5rem;">
+                  <span class="popular-recipe-text">레시피 컨텐츠 준비중입니다</span>
                 </div>
               </div>
             <!-- 프로필 레시피 사진 섹션 중 이미지 3 끝 -->
@@ -268,11 +248,11 @@
   </div>
 <!-- 작성한 게시글 & 댓글단 게시글 섹션 끝 -->
 
-
+<% if current_user.id == @profile.id %>
 <!-- 수정 요청 현황확인 섹션 -->
   <div class="ProfileRequestEditSection" style="margin-bottom:5rem;">
     <!-- 수정 요청 현황확인 제목 -->
-      <p class="ProfileTitle">수정 요청 현황 확인</p>
+      <p class="ProfileTitle big-title">수정 요청 현황 확인</p>
     <!-- 수정 요청 현황확인 제목 끝 -->
 
     <!-- 수정 요청 현황확인 내역 -->
@@ -307,38 +287,11 @@
 </div>
 
 <!-- 수정 요청 현황확인 섹션 끝-->
-
-
-
-
+<% else %>
+<% end %>
 
 <script>
-    //수정요청 show
-    $(".request-box").on('click',function() {
-        $()                 
-    });
-    // $(document).ready(function(){
-    //   $("#spreadBtn1").click(function(){
-    //       if($("#hiddenList1").is(":visible")){
-    //         // $("#spreadBtn1").toggleClass("fas fa-arrow-alt-circle-right fas fa-arrow-alt-circle-down");
-    //           $("#hiddenList1").slideUp();
-    //       }else{
-    //           // $("#spreadBtn1").toggleClass("fas fa-arrow-alt-circle-down fas fa-arrow-alt-circle-right");
-    //           $("#hiddenList1").slideDown();
-    //       }
-    //   });
-    // });
 
-    // $(document).ready(function(){
-    //   $("#spreadBtn2").click(function(){
-    //       if($("#hiddenList2").is(":visible")){
-    //         // $("#spreadBtn1").toggleClass("fas fa-arrow-alt-circle-right fas fa-arrow-alt-circle-down");
-    //           $("#hiddenList2").slideUp();
-    //       }else{
-    //           // $("#spreadBtn1").toggleClass("fas fa-arrow-alt-circle-down fas fa-arrow-alt-circle-right");
-    //           $("#hiddenList2").slideDown();
-    //       }
-    //   });
-    // }); 
-
+  var scroll = document.getElementsByClassName("scroll")[0];
+  scroll.scrollTop = scroll.scrollHeight;
 </script>

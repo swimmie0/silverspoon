@@ -1,13 +1,10 @@
 <div class="post-contents container">
     <%= render 'category' %>           
 </div>
-<div class= "post index-contents rtnt">
+<div class= "post freeboard-new-graybox rtnt">
     <div class="new-post" > 
         <b>새로운 글 등록</b>  
         <p style = "font-weight:lighter;">새로운 글을 작성해주세요!</p>
     </div>
-        <%= render 'form', freeboard: @freeboard %>
-        <div class="back-btn">
-            <%= link_to '취소', @freeboard, class:"linkto" %>
-        </div>
+    <%= render 'form', freeboard: @freeboard %>  
 </div>

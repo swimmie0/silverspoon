@@ -1,7 +1,3 @@
-// Place all the styles related to the Profiles controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 body {
   font-family: 'NanumBarunGothic';
 }
@@ -67,6 +63,7 @@ body {
     height: 2.5rem;
     text-align: center;
     float: right;
+    margin-top: 7rem;
     margin-right: 0.5rem;
     border-style: solid;
     border-color:white;
@@ -123,11 +120,15 @@ body {
 
   .ProfileInfo {
     float: left;
-    margin-top: -2.2rem; 
+    margin-top: -3rem; 
     margin-left: 1rem;
     font-size: 1rem; 
     color: black; 
     
+  }
+
+  .profile-specific{
+    margin-top: 1.5rem;
   }
 
   .ProfileName {
@@ -157,8 +158,8 @@ body {
 .ProfileTitle {
   text-align: center; 
   font-size: 1.4rem; 
-  margin-top: 2rem; 
-  margin-bottom: 1rem;
+  margin-top: 4rem; 
+  margin-bottom: 2.5rem;
 }
 
 .ProfileRecipeSection {
@@ -436,4 +437,8 @@ $colors: (
   // height: 2rem; 
   font-size: 0.8rem; 
   text-align: center;
+}
+
+.RegisterSection .RegisterForm{
+  font-family: 'NanumBarunGothic',serif;
 }
