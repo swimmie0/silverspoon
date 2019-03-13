@@ -86,9 +86,8 @@ body {
   }
 
   .ProfileImg {
-    position: relative; 
-    float:left;
-    top: -4.75rem; 
+    position: absolute;
+    top: 12rem;
     margin-left: 7.5%; 
     width: 10rem; 
     height: 10rem; 
@@ -98,9 +97,8 @@ body {
   }
 
   .ProfileDefaultImg {
-    position: relative; 
-    float:left;
-    top: -4.75rem; 
+    position: absolute; 
+    top: 12rem; 
     margin-left: 7.5%; 
     width: 10rem; 
     height: 10rem; 
@@ -115,13 +113,14 @@ body {
   }
 
   .ProfileInfoSection {
-    height: 10.5rem;
+    //height: 10.5rem;
+    height: 8.1rem;
   }
 
   .ProfileInfo {
     float: left;
-    margin-top: -3rem; 
-    margin-left: 1rem;
+    margin-top: -2.3rem; 
+    margin-left: 7.4rem;
     font-size: 1rem; 
     color: black; 
     
@@ -139,9 +138,10 @@ body {
   }
 
   .ProfileTabInfo {
-    position: absolute;
-    margin-top: -3rem; 
-    width: 77.2%;
+    //position: absolute;
+    //margin-top: -3rem; 
+    //width: 77.2%;
+    width: 100%;
   }
 // 상단 섹션 끝
 
