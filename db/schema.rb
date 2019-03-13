@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_03_12_080953) do
+=======
+ActiveRecord::Schema.define(version: 2019_03_11_042211) do
+ActiveRecord::Schema.define(version: 2019_03_10_082341) do
+>>>>>>> e77e8f03bc4f78b7af177df02ba6dcefb8bf606e
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
