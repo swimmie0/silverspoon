@@ -2,6 +2,10 @@
   <div class="big-title">로그인</div>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => { :class => "session-form" }) do |f| %>
+  <%- flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, id: "flash_#{name}", style:'font-style:italic;text-align:center;' %>
+  <%- end -%>
+ 
   <%# <div class="field">
     <%= f.label :email %><br />
     <%# <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -29,3 +33,9 @@
 
 <%= render "devise/shared/links" %>
 </div>
+
+<%# <script>
+  var msg = $('.devise-alert').innerHTML;
+  alert(msg);
+
+</script> %>

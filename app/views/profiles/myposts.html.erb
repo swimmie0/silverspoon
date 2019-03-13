@@ -1,0 +1,50 @@
+<div class="post-contents container">
+나의 작성글 확인
+</div>
+<div class ="contents">
+    <div class="post-num">
+      <%# '전체' 총 <%=@user_posts.all.count건 %> 
+    </div>
+  <div class="post-table">    
+    <table class="table table-hover" id="post-table">
+      <thead>
+        <tr class= "postall postd posti postq posta postc">
+          <%# <th>Category</th> %>
+          <th style="width:10%;">댓글</th>          
+          <th style="width:60%;" class="title">제목</th>
+          <th>작성자</th>
+          <th style="width:10%;">작성일</th>
+          <th style="width:8%;">조회수</th>      
+        </tr>
+      </thead>
+
+      <tbody>
+    </div>
+        <% @user_posts.each do |post| %>
+          <tr >
+            <td><%=post.comment_threads.count%></td>
+            <td class="title form-inline">
+                <%= link_to post.title, post, {:class => "linkto",:style=>"font-size:0.8rem;"} %>             
+            </td>
+            <td><%= post.name %></td>
+            <td><%= post.time(post)%></td>                
+            <td> <%= post.impressionist_count(:filter=>:session_hash) %></td>
+          </tr>
+        <% end %>
+    </tbody>
+    </table>
+</div>
+
+<script>
+
+// 행 clickable 
+$(document).ready(function() {
+    $('#post-table tr').click(function() {
+        var href = $(this).find("a").attr("href");
+
+        if(href) {
+            window.location = href;
+        }
+    });
+});
+ </script>
