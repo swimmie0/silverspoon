@@ -8,18 +8,19 @@ class User::RegistrationsController < Devise::RegistrationsController
   def checkDouble
     puts "double checking"
     @name = params[:name]
-    @IDe = params[:IDe]
+    # @IDe = params[:IDe]
     puts @name
   
-    $result = {"ableID"=> 0,"ableName" => 0}
+    # $result = {"ableID"=> 0,"ableName" => 0}
+    $result = {"ableName" => 0}
     
       if User.exists?(:name => @name) || @name == ""
         $result[:ableName] = 1
       end
   
-      if User.exists?(:IDe => @IDe) || @IDe == ""
-        $result[:ableID] = 1
-      end
+      # if User.exists?(:IDe => @IDe) || @IDe == ""
+      #   $result[:ableID] = 1
+      # end
 
       $result = $result.to_json
       puts $result
@@ -103,6 +104,9 @@ class User::RegistrationsController < Devise::RegistrationsController
   #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
   # end
 
+  def after_update_path_for(resource)
+    signed_in_root_path(resource)
+  end
   # The path used after sign up.
   def after_sign_up_path_for(resource)
     new_profile_path
