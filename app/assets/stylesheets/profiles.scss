@@ -86,9 +86,8 @@ body {
   }
 
   .ProfileImg {
-    position: relative; 
-    float:left;
-    top: -4.75rem; 
+    position: absolute;
+    top: 12rem;
     margin-left: 7.5%; 
     width: 10rem; 
     height: 10rem; 
@@ -98,9 +97,8 @@ body {
   }
 
   .ProfileDefaultImg {
-    position: relative; 
-    float:left;
-    top: -4.75rem; 
+    position: absolute; 
+    top: 12rem; 
     margin-left: 7.5%; 
     width: 10rem; 
     height: 10rem; 
@@ -115,13 +113,14 @@ body {
   }
 
   .ProfileInfoSection {
-    height: 10.5rem;
+    //height: 10.5rem;
+    height: 8.1rem;
   }
 
   .ProfileInfo {
     float: left;
-    margin-top: -3rem; 
-    margin-left: 1rem;
+    margin-top: -2.3rem; 
+    margin-left: 7.4rem;
     font-size: 1rem; 
     color: black; 
     
@@ -139,9 +138,10 @@ body {
   }
 
   .ProfileTabInfo {
-    position: absolute;
-    margin-top: -3rem; 
-    width: 70%;
+    //position: absolute;
+    //margin-top: -3rem; 
+    //width: 77.2%;
+    width: 100%;
   }
 // 상단 섹션 끝
 
@@ -222,6 +222,7 @@ body {
   background-color: white;
   height: 100%; 
   width: 100%; 
+  margin-bottom: 5rem;
 }
 
 .ProfileRequestEditList {
@@ -268,7 +269,7 @@ body {
 }
 
 .ProfileRequestEditBlock-button_O {
-  color: #1E285D; 
+  color: #00307C; 
   text-align: center;
   font-size: 0.8rem; 
   width: 3.3rem; 
@@ -276,7 +277,7 @@ body {
   margin-top: 6%;
   margin-bottom: 6%; 
   padding: 0.8% 1% 0.5% 1%; 
-  border: 1px solid #1E285D; 
+  border: 1px solid #00307C; 
   border-radius: 30%; 
 
 }
@@ -419,8 +420,8 @@ $colors: (
   border-radius: 30%; 
   margin-top: 6%; 
   padding: 0.8% 1% 0.5% 1%; 
-  border: 1px solid #1E285D; 
-  color: #1E285D; 
+  border: 1px solid #00307C; 
+  color: #00307C; 
   width: 3.3rem; 
   // height: 2rem; 
   font-size: 0.8rem; 
@@ -441,4 +442,11 @@ $colors: (
 
 .RegisterSection .RegisterForm{
   font-family: 'NanumBarunGothic',serif;
+}
+
+.profile-message-tr{
+  cursor: pointer;
+}
+.profile-message-tr:hover{
+  background-color: rgb(243, 243, 243);
 }
