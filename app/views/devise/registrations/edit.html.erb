@@ -5,18 +5,19 @@
 
         <!-- 회원가입 Form 섹션 -->
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= devise_error_messages! %>
         <div class="RegisterFormHeader big-title"> 개인정보 수정 </div>
         <!-- 필수항목 기입 섹션 -->
-        <hr><h6 class="RegisterFormMust" style="text-align: right;"> **필수 항목 </h6> 
+        <%# <hr><h6 class="RegisterFormMust" style="text-align: right;"> **필수 항목 </h6>  %>
 
-        <div class = "field">
-          <span style="color:red;">*&nbsp;</span><%= f.label "닉네임" %><br/>
-          <div class="form-inline">
-          <%= f.text_field :name, class: "form-control", id: "checkname", :required => true, :validates => { :uniqueness => true } %>
-          <button type = "button" id="checkDouble">중복확인</button>
+        <%# <div class = "field">
+          <span style="color:red;">*&nbsp;</span><%= f.label "닉네임" %>
+          <%# <div class="form-inline">
+          <%# <%= f.text_field :name, class: "form-control", id: "checkname", :required => true, :validates => { :uniqueness => true } %>
+          <%# <button type = "button" id="checkDouble">중복확인</button>
           </div>
           <p class = "mt-4 mb-2" id = "check-warning"></p>
-        </div>
+        </div> %> 
 
         <%# <div class="field">
           <span style="color:red;">*&nbsp;</span><%= f.label "이메일" %>
@@ -26,7 +27,7 @@
 
 
         <!-- 선택항목 기입 섹션 -->
-        <hr><h6 class="RegisterFormMust" style="text-align: right;"> **선택 항목 </h6>
+        <h6 class="RegisterFormMust" style="text-align: right;"> **선택 항목 </h6>
         
         <div class="field">
 
@@ -98,21 +99,24 @@
         <div class="field"> 
           <h5> 비밀번호 수정&nbsp;<i style="font-size:0.9rem;">(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i></h5>
           <%# <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>
-          <div class="field" style="margin-top:1rem;">
-            <%= f.label :password, style:"margin-right:35%;"%> 
-            <%= f.label :password_confirmation %><br />
-            <div class="form-inline">
-            <%= f.password_field :password, autocomplete: "off",class: "form-control", style:"margin-right:15%;" %>
+          <div class="row" style="margin-top:1rem;">
+            <div class="col field">
+            <%= f.label :password%> 
+            <%= f.password_field :password, autocomplete: "off",class: "form-control" %>            
+            </div>
+            <div class="col field">
+            <%= f.label :password_confirmation %><br />            
             <%= f.password_field :password_confirmation, autocomplete: "off",class: "form-control" %>
+            </div>
             <%# <% if @minimum_password_length %>
               <%# <br />
               <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %>
             <%# <% end %> 
-          </div></div><br/>
+          </div><br/>
 
           <div class="field">
             <%= f.label :current_password %> <br />
-            <%= f.password_field :current_password, autocomplete: "off",class: "form-control",style:"width:75%;" %>
+            <%= f.password_field :current_password, autocomplete: "off",class: "form-control"%>
           </div><br/>
         </div>
           

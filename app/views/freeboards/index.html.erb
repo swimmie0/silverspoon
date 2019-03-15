@@ -1,20 +1,20 @@
 <div class="post-contents container">
-  <nav class="nav">  <!--나중에수정하기-->
+  <nav class="nav">  <!---->
     <% if params[:category] == nil %>
-      <a class="nav-link all selected" href="/freeboards" target="_self">전체</a ><% else %>  
-      <a class="nav-link all" href="/freeboards" target="_self">전체</a><% end %>  
+      <a class="nav-link all single selected" target="all">전체</a ><% else %>        
+      <a class="nav-link all single" href="/freeboards" target="_self">전체</a><% end %>  
     <% if params[:category] == "일상글" %>
-      <a class="nav-link single selected" id="showSingle" target="d">일상글</a><% else %>  
-      <a class="nav-link single" id="showSingle" target="d">일상글</a><% end %>
+      <a class="nav-link single selected" id="showSingle" target="일상글">일상글</a><% else %>  
+      <a class="nav-link single" id="showSingle" target="일상글">일상글</a><% end %>
     <% if params[:category] == "정보글" %>
-      <a class="nav-link single selected" id="showSingle" target="i">정보글</a><% else %>  
-      <a class="nav-link single" id="showSingle" target="i">정보글</a><% end %> 
+      <a class="nav-link single selected" id="showSingle" target="정보글">정보글</a><% else %>  
+      <a class="nav-link single" id="showSingle" target="정보글">정보글</a><% end %> 
     <% if params[:category] == "질문글" %>
-      <a class="nav-link single selected" id="showSingle" target="q">질문글</a><% else %>  
-      <a class="nav-link single" id="showSingle" target="q">질문글</a><% end %> 
+      <a class="nav-link single selected" id="showSingle" target="질문글">질문글</a><% else %>  
+      <a class="nav-link single" id="showSingle" target="질문글">질문글</a><% end %> 
     <% if params[:category] == "제보글" %>
-      <a class="nav-link single selected" id="showSingle" target="c">제보글</a><% else %>  
-      <a class="nav-link single" id="showSingle" target="c">제보글</a><% end %>
+      <a class="nav-link single selected" id="showSingle" target="제보글">제보글</a><% else %>  
+      <a class="nav-link single" id="showSingle" target="제보글">제보글</a><% end %>
   </nav>             
 </div>
 
@@ -32,14 +32,14 @@
 
 <div class ="contents">
     <div class="post-num">
-      '전체' 총 <%=Freeboard.all.count%>건
+      총 <%=Freeboard.all.count%>건
     </div>
   <div class="post-table">    
     <table class="table table-hover" id="post-table">
       <thead>
-        <tr class= "postall postd posti postq posta postc">
+        <tr class= "postall post일상글 post정보글 post질문글 post제보글">
           <%# <th>Category</th> %>
-          <th style="width:8%;">댓글</th>          
+          <th class="change" style="width:8%;">댓글</th>          
           <th style="width:60%;" class="title">제목</th>
           <th>작성자</th>
           <th style="width:10%;">작성일</th>
@@ -65,10 +65,10 @@
         <% end %>
 
         <% @free_daily.each do |d| %>
-          <tr class="postd" style= "display:none">
+          <tr class="post일상글" style= "display:none">
             <td> <%= d.comment_threads.count %></td>
             <%# <td><%= d.category %>
-            <td   class="title"><%= link_to d.title, d, {:class => "linkto"} %></td>
+            <td class="title"><%= link_to d.title, d, {:class => "linkto"} %></td>
             <td><%= d.name %></td>
             <td><%= d.time(d)%></td>                
             <td> <%= d.impressionist_count(:filter=>:session_hash) %></td>            
@@ -76,7 +76,7 @@
         <% end %>   
       
         <% @free_information.each do |i| %>
-        <tr class="posti" style= "display:none">
+        <tr class="post정보글" style= "display:none">
           <td> <%= i.comment_threads.count %></td>
           <%# <td><%= i.category %>
           <td   class="title"><%= link_to i.title, i, {:class => "linkto"} %></td>
@@ -87,7 +87,7 @@
         <% end %>
 
         <% @free_qna.each do |q| %>
-          <tr class="postq" style= "display:none">
+          <tr class="post질문글" style= "display:none">
           <td> <%= q.comment_threads.count %></td>
             <%# <td><%= q.category %>
             <td   class="title"><%= link_to q.title, q, {:class => "linkto"} %></td>
@@ -98,10 +98,16 @@
         <% end %>
 
         <% @free_crowd.each do |c| %>
-          <tr class="postc" style= "display:none">
-            <td> <%= c.comment_threads.count %></td>
+          <tr class="post제보글" style= "display:none">
+            <td> 
+            <% if c.completed==true %>
+             <div class="completed"style="font-weight:lighter;color:#1E285D; ">[완료]</div>
+            <% else %>
+             <div class="completed"style="font-weight:lighter;color:#FF5400;">[미처리]</div>
+            <% end %> 
+            </td>
             <%# <td><%= c.category %>
-            <td   class="title"><%= link_to c.title, c, {:class => "linkto"} %></td>
+            <td class="title"><%= link_to c.title, c, {:class => "linkto"} %></td>
             <td><%= c.name %></td>
             <td><%= c.time(c)%></td>                                            
           <td> <%= c.impressionist_count(:filter=>:session_hash) %></td>        
@@ -127,15 +133,14 @@
 </div> <!--contents-->
 
 <script>
-// $("#showSingle").click(function() {
-//   $("#showSingle").toggleClass('nav-clicked');
-// });
 
+// nav selected 
 $('.nav-link').on('click', function(){
     $('.nav-link').removeClass('selected');
     $(this).addClass('selected');
 })
 
+// 카테고리별 show (params전)
 $(function(){
   // $('.all').click(function(){
   //   $('.postall').show();
@@ -145,17 +150,41 @@ $(function(){
     $('.postall').hide();
     $('tr').not('tr.post'+$(this).attr('target')).hide();      
     $('.post'+$(this).attr('target')).show();
+    if($(this).attr('target')=='제보글'){
+      $('.change').html('진행')
+    }else{
+      $('.change').html('댓글')
+    };
   });
 });
 
-// if params[:category] != nil 
-//   $(this).attr('target == category').addClass('selected');
+// url Params받기 (위에)
+$.urlParam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null){
+       return null;
+    }else{
+       return results[1] || 0;
+    }
+}
+// 카테고리별 show (params 후)
+ var category = decodeURIComponent($.urlParam('category'));
+ console.log(category)
+    if(category=='제보글'){
+      $('.change').html('진행');      
+      $('.postall').hide();
+      $('tr').not('tr.post제보글').hide();      
+      $('.post제보글').show();
+    }else if(category!='null' && category!='제보글'){
+      $('.postall').hide();
+      $('tr').not('tr.post'+category).hide();   
+      $('tr.post'+category).show();
+    }
 
 // 행 clickable 
 $(document).ready(function() {
     $('#post-table tr').click(function() {
         var href = $(this).find("a").attr("href");
-
         if(href) {
             window.location = href;
         }

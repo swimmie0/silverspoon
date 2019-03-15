@@ -104,24 +104,23 @@ Rails.application.routes.draw do
      post "/checkDouble" => "user/registrations#checkDouble"
      get "/users" => 'user/registrations#new'
   end
-  devise_for :users, :controllers => {registrations: 'user/registrations' }
-  devise_scope :user do
-    get 'editsns', :to => 'devise/registrations#editsns'
-  end
+  devise_for :users, :controllers => {registrations: 'user/registrations',passwords: 'users/passwords' }
+  # devise_scope :user do
+  #   get 'editsns', :to => 'devise/registrations#editsns'
+  # end
   # resources :comments, only: [:create, :destroy]
   resources :comments do
     member do
       put "like", to: "comments#like"
       put "unvote", to: "comments#unvote" 
-      put "dislike", to: "comments#dislike" 
-      
+      put "dislike", to: "comments#dislike"    
     end    
   end
 
 
   # 알림
-  get '/new_alarms/read_all' => 'new_alarms#read_all'
-  resources :new_alarms #순서이대로
+  # get '/new_alarms/read_all' => 'new_alarms#read_all'
+  # resources :new_alarms #순서이대로
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'# 맨아래에 둬주세요
   
   # concern :paginatable do
