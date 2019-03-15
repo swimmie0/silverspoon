@@ -119,7 +119,7 @@ body{
         width: 800px;
         padding-right: 5%;
         padding-left: 5%;
-        border: 2px solid #1E285D; 
+        border: 2px solid #00307C; 
         border-radius: 25px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
@@ -147,13 +147,13 @@ body{
 }
 
 .MessageSectionLeftColumn {
-    background-color: #1E285D; 
+    background-color: #00307C; 
     text-align: center;
     padding: 0;
 }
 
 .MessageSectionLeftTop {
-    background-color: #141b40; 
+    background-color: #1a2352; 
     height: 4.15rem;
     display: flex;
     justify-content:center;
@@ -181,6 +181,8 @@ body{
     color: white; 
     font-size: 1rem; 
     border-bottom: 0.5px solid #ffffff8c; 
+    text-decoration: none; 
+    color: white;
     
 }
 
@@ -305,12 +307,13 @@ body{
     background-color: white; 
     width: 100%; 
     height: 5.65rem; 
-    padding: 0px; 
+    padding: 0px;
+    padding-left: 1rem; 
     margin: 0px;
 }
 
 .MessageBottomRight {
-    background-color: #141b40; 
+    background-color: #1a2352; 
     padding: 0px; 
     margin: 0px; 
     height: 100%;
@@ -324,7 +327,7 @@ body{
 
 .MessageBottomRightButton {
     color: white; 
-    background-color: #141b40; 
+    background-color: #1a2352;
     width: 100%; 
     height: 5.65rem
 }
@@ -332,7 +335,6 @@ body{
 /* 채팅 페이지 CSS 끝 */
 
 /* 쪽지 뷰 페이지 CSS */
-
 
 
 /* 쪽지 뷰 페이지 CSS 끝*/
