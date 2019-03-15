@@ -19,7 +19,6 @@ class ZizuminfosController < ApplicationController
   end
   
   def index
-    
     sido = params[:sido]
     sigungu = params[:sigungu]
     if params[:restaurant_name] == ""
@@ -39,6 +38,7 @@ class ZizuminfosController < ApplicationController
     end
     
     @zizum_array = Kaminari.paginate_array(@zizums).page(params[:page]).per(9)
+    @zizum_ = @zizum_array.first
     # @zizums = @zizums[0]
   end
 

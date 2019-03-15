@@ -9,6 +9,14 @@ class Menu < ApplicationRecord
     validates :menu_name, :uniqueness => true
    
 
+    def image(zizum)
+        if zizum.image.url == nil
+            zizum.image.url = 'defaultImg3.jpg'  
+        else
+            zizum.image.url
+        end
+    end
+
     def self.Subway
         #서브웨이
         url = "http://subway.co.kr/sandwichAllergy"

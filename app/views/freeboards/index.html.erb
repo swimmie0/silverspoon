@@ -52,7 +52,6 @@
         <% @freeboards.each do |freeboard| %>
           <tr class = "postall" >
             <td> <%= freeboard.comment_threads.count %></td>
-            <%# <td><%= freeboard.category %>
             <td class="title form-inline">
               <div class="ctg"style="font-weight:lighter;font-size:0.6rem;">[<%=freeboard.category%>]</div>
               &nbsp;<%= link_to freeboard.title, freeboard, {:class => "linkto",:style=>"font-size:0.8rem;"} %>
@@ -67,7 +66,6 @@
         <% @free_daily.each do |d| %>
           <tr class="post일상글" style= "display:none">
             <td> <%= d.comment_threads.count %></td>
-            <%# <td><%= d.category %>
             <td class="title"><%= link_to d.title, d, {:class => "linkto"} %></td>
             <td><%= d.name %></td>
             <td><%= d.time(d)%></td>                
@@ -169,7 +167,7 @@ $.urlParam = function(name){
 }
 // 카테고리별 show (params 후)
  var category = decodeURIComponent($.urlParam('category'));
- console.log(category)
+//  console.log(category)
     if(category=='제보글'){
       $('.change').html('진행');      
       $('.postall').hide();
@@ -179,7 +177,7 @@ $.urlParam = function(name){
       $('.postall').hide();
       $('tr').not('tr.post'+category).hide();   
       $('tr.post'+category).show();
-    }
+    };
 
 // 행 clickable 
 $(document).ready(function() {

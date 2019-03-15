@@ -18,14 +18,16 @@ class ApplicationController < ActionController::Base
     #######로그인 한 이후 원래 머무르던 창으로 되돌아가기 #######
     def store_location
       session[:previous_urls] ||= []
-      # store unique urls only
-      session[:previous_urls].prepend request.fullpath if session[:previous_urls].first != request.fullpath
-      # For Rails < 3.2
-      # session[:previous_urls].unshift request.fullpath if session[:previous_urls].first != request.fullpath 
-      session[:previous_urls].pop if session[:previous_urls].count > 2
+      if request.fullpath != new_user_registration_path  ##회원가입페이지 저장x(redirect오류)
+        # store unique urls only      
+        session[:previous_urls].prepend request.fullpath if session[:previous_urls].first != request.fullpath
+        # For Rails < 3.2
+        # session[:previous_urls].unshift request.fullpath if session[:previous_urls].first != request.fullpath 
+        session[:previous_urls].pop if session[:previous_urls].count > 2
+      end
     end
     def after_sign_in_path_for(resource)
-      session[:previous_urls].last || root_path
+        session[:previous_urls].last || root_path
     end
     # def after_sign_in_path_for(resource)
     #   sign_in_url = new_user_session_url
