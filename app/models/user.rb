@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :recipes
   has_many :notices
   
-  # acts_as_follower
+  acts_as_follower
   acts_as_reader
   acts_as_voter
   
