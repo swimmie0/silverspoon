@@ -61,6 +61,9 @@ class FreeboardsController < ApplicationController
       end
     end
 
+    # if @freeboard.user.profileimg.url == nil
+    #   @freeboard.user.profileimg = 'defaultImg3.jpg'
+    # end
   end
 
   # GET /freeboards/new

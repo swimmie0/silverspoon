@@ -1,5 +1,7 @@
 class Freeboard < ApplicationRecord
   belongs_to :user
+  # validates :user_id, uniqueness: true
+
   acts_as_commentable
   is_impressionable
   
@@ -9,6 +11,14 @@ class Freeboard < ApplicationRecord
 
   def self.search(search)
     where("title || content || name LIKE ?", "%#{search}%") 
+  end
+
+  def image(writer)
+    if writer.profileimg.url == nil
+      writer.profileimg = 'defaultImg3.jpg'  
+    else
+      writer.profileimg.url
+    end
   end
 
   def time(post)

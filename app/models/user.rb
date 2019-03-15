@@ -5,13 +5,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable, :omniauthable, authentication_keys: [:login]
   
-  has_one :profile
-  has_many :freeboards
+  has_one :profile,  dependent: :destroy
+  has_many :freeboards, dependent: :destroy
   has_many :new_alarms
   has_many :recipes
   has_many :notices
   
-  acts_as_follower
+  # acts_as_follower
   acts_as_reader
   acts_as_voter
   

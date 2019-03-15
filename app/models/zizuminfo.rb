@@ -358,7 +358,8 @@ class Zizuminfo < ApplicationRecord
                 else 
                     split_juso = juso.split(':')[2].split(" ")  #[]
                     extra = juso.split(':')[1].split(" ").reverse.drop(1).reverse.join(" ") #도로명주소select
-                    sangse_juso = split_juso.drop(2).join(" ") + " (도로명 주소: " + extra + ")" #시군구빼고 + 도로명주소                
+                    # sangse_juso = split_juso.drop(2).join(" ") + " (도로명 주소: " + extra + ")" #시군구빼고 + 도로명주소
+                    sangse_juso = split_juso.drop(2).join(" ") #도로명주소안할겨
                 end
 
                 zizum.sangse_juso = sangse_juso

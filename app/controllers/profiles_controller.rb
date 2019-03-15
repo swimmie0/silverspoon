@@ -9,7 +9,7 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1
   # GET /profiles/1.json
-  def show
+  def show    
     # params[:id] = current_user.id
     # @user_requests = Userrequest.where(uid: current_user.id)
     @conversations = Conversation.all

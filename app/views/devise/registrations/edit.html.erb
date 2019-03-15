@@ -119,6 +119,11 @@
             <%= f.password_field :current_password, autocomplete: "off",class: "form-control"%>
           </div><br/>
         </div>
+
+        <hr>
+        <h5>  회원탈퇴 </h5>
+        <p><%= t('.unhappy') %> <%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %></p>
+
           
           <div class="actions">
             <%# <%= f.submit "Sign up" , id: "submitButton" %> 
@@ -128,13 +133,13 @@
                 </div>
           </div>
         <% end %>  
-        <!-- 회원가입 Form 섹션 끝 -->
+        <!-- 수정 Form 섹션 끝 -->
         <br>
 
       </div>
     </div>
   </div>
-<!-- 회원가입 수정 섹션 끝 -->
+<!-- 수정 섹션 끝 -->
 
 
 

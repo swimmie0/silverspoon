@@ -19,20 +19,26 @@
     <div class="index-rtnt-box d-flex">
         <%@zizum_array.drop(6).each do |zizum|%>
             <div class="index-today-rtntbox">
-                <div class="today-rtnt-imgbox"><%=link_to image_tag("beige-logo.PNG",class:"today-rtnt-img"),zizum%></div>         
-                    <%if user_signed_in?%>
-                        <% if zizum.followed_by?(current_user) %>
-                            <!-- 좋아요를 했다면 -->
-                            <i class="fas fa-bookmark zizum"></i>
-                            <div class="zizum-id-like"><%=zizum.id%></div>
-                            <!-- 좋아요를 안 했다면 -->
-                        <% else %>
-                            <i class="far fa-bookmark zizum"></i>
-                            <div class="zizum-id-like"><%=zizum.id%></div>
-                        <% end %>
-                    <%else%>
-                        <i class="far fa-bookmark zizum" data-toggle="modal" data-target="#loginModal"></i>
+                <div class="today-rtnt-imgbox">
+                    <% if zizum.image.url != nil%>
+                    <%=link_to image_tag(zizum.image.url,class:"today-rtnt-img"),zizum%>                
+                    <% else %>
+                    <%=link_to image_tag("beige-logo.PNG",class:"today-rtnt-img"),zizum%>
                     <%end%>
+                </div>       
+                <%if user_signed_in?%>
+                    <% if zizum.followed_by?(current_user) %>
+                        <!-- 좋아요를 했다면 -->
+                        <i class="fas fa-bookmark zizum"></i>
+                        <div class="zizum-id-like"><%=zizum.id%></div>
+                        <!-- 좋아요를 안 했다면 -->
+                    <% else %>
+                        <i class="far fa-bookmark zizum"></i>
+                        <div class="zizum-id-like"><%=zizum.id%></div>
+                    <% end %>
+                <%else%>
+                    <i class="far fa-bookmark zizum" data-toggle="modal" data-target="#loginModal"></i>
+                <%end%>
                 <div class="about-rtnt2">
                     <p class="rtnt-name"><%= zizum.restaurant_name%>&nbsp;<%= zizum.zizum_name%></p>
                     <p class="rtnt-intro">신선한 샌드위치를 만드는 서브웨이입니다.</p>                                
@@ -44,20 +50,26 @@
     <div class="index-rtnt-box d-flex justify-content-center">
         <%@zizum_array[3..5].each do |zizum|%>
               <div class="index-today-rtntbox">
-                <div class="today-rtnt-imgbox"><%=link_to image_tag("beige-logo.PNG",class:"today-rtnt-img"),zizum%></div>         
-                    <%if user_signed_in?%>
-                        <% if zizum.followed_by?(current_user) %>
-                            <!-- 좋아요를 했다면 -->
-                            <i class="fas fa-bookmark zizum"></i>
-                            <div class="zizum-id-like"><%=zizum.id%></div>
-                            <!-- 좋아요를 안 했다면 -->
-                        <% else %>
-                            <i class="far fa-bookmark zizum"></i>
-                            <div class="zizum-id-like"><%=zizum.id%></div>
-                        <% end %>
-                    <%else%>
-                        <i class="far fa-bookmark zizum" data-toggle="modal" data-target="#loginModal"></i>
-                    <%end%>                
+                <div class="today-rtnt-imgbox">
+                    <% if zizum.image.url != nil%>
+                    <%=link_to image_tag(zizum.image.url,class:"today-rtnt-img"),zizum%>                
+                    <% else %>
+                    <%=link_to image_tag("beige-logo.PNG",class:"today-rtnt-img"),zizum%>
+                    <%end%>
+                </div>       
+                <%if user_signed_in?%>
+                    <% if zizum.followed_by?(current_user) %>
+                        <!-- 좋아요를 했다면 -->
+                        <i class="fas fa-bookmark zizum"></i>
+                        <div class="zizum-id-like"><%=zizum.id%></div>
+                        <!-- 좋아요를 안 했다면 -->
+                    <% else %>
+                        <i class="far fa-bookmark zizum"></i>
+                        <div class="zizum-id-like"><%=zizum.id%></div>
+                    <% end %>
+                <%else%>
+                    <i class="far fa-bookmark zizum" data-toggle="modal" data-target="#loginModal"></i>
+                <%end%>                
                 <div class="about-rtnt2">
                     <p class="rtnt-name"><%= zizum.restaurant_name%>&nbsp;<%= zizum.zizum_name%></p>
                     <p class="rtnt-intro">신선한 샌드위치를 만드는 서브웨이입니다.</p>                                
@@ -69,20 +81,26 @@
     <div class="index-rtnt-box d-flex justify-content-center">
         <%@zizum_array.drop(6).each do |zizum|%>
              <div class="index-today-rtntbox">
-                <div class="today-rtnt-imgbox"><%=link_to image_tag("beige-logo.PNG",class:"today-rtnt-img"),zizum%></div>
-                    <%if user_signed_in?%>
-                        <% if zizum.followed_by?(current_user) %>
-                            <!-- 좋아요를 했다면 -->
-                            <i class="fas fa-bookmark zizum"></i>
-                            <div class="zizum-id-like"><%=zizum.id%></div>
-                            <!-- 좋아요를 안 했다면 -->
-                        <% else %>
-                            <i class="far fa-bookmark zizum"></i>
-                            <div class="zizum-id-like"><%=zizum.id%></div>
-                        <% end %>
-                    <%else%>
-                        <i class="far fa-bookmark zizum" data-toggle="modal" data-target="#loginModal"></i>
+                <div class="today-rtnt-imgbox">
+                    <% if zizum.image.url != nil%>
+                    <%=link_to image_tag(zizum.image.url,class:"today-rtnt-img"),zizum%>                
+                    <% else %>
+                    <%=link_to image_tag("beige-logo.PNG",class:"today-rtnt-img"),zizum%>
                     <%end%>
+                </div>
+                <%if user_signed_in?%>
+                    <% if zizum.followed_by?(current_user) %>
+                        <!-- 좋아요를 했다면 -->
+                        <i class="fas fa-bookmark zizum"></i>
+                        <div class="zizum-id-like"><%=zizum.id%></div>
+                        <!-- 좋아요를 안 했다면 -->
+                    <% else %>
+                        <i class="far fa-bookmark zizum"></i>
+                        <div class="zizum-id-like"><%=zizum.id%></div>
+                    <% end %>
+                <%else%>
+                    <i class="far fa-bookmark zizum" data-toggle="modal" data-target="#loginModal"></i>
+                <%end%>
                 <div class="about-rtnt2">
                     <p class="rtnt-name"><%= zizum.restaurant_name%>&nbsp;<%= zizum.zizum_name%></p>
                     <p class="rtnt-intro">신선한 샌드위치를 만드는 서브웨이입니다.</p>                                

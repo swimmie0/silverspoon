@@ -13,10 +13,10 @@
             <p style="color:#FF5400;"><%= @freeboard.category%></p>
             <h5 class="post-title"> <%= @freeboard.title %></h5>
             <div class="form-inline">
-            <%=link_to( image_tag("beige-logo.PNG",class:"post-profile-img"), profile_path(@writer.profile.id))%>   
-            <div> <%= link_to @freeboard.name,  profile_path(@writer.profile.id), class:"linkto" %> </div> 
-            <div style="font-weight:lighter;margin-left:2rem;"><%= @freeboard.created_at.strftime("%Y-%m-%d") %> </div>
-            <div style="margin-left:auto;font-size:0.8rem;"> 조회수: <%= @freeboard.impressionist_count(:filter=>:session_hash) %></div>
+              <%=link_to(image_tag(@freeboard.image(@writer),class:"post-profile-img"), profile_path(@writer.profile.id)) %>
+              <div> <%= link_to @freeboard.name,  profile_path(@writer.profile.id), class:"linkto" %> </div> 
+              <div style="font-weight:lighter;margin-left:2rem;"><%= @freeboard.created_at.strftime("%Y-%m-%d") %> </div>
+              <div style="margin-left:auto;font-size:0.8rem;"> 조회수: <%= @freeboard.impressionist_count(:filter=>:session_hash) %></div>
             </div>  
           <hr/>
             <p><%= content_tag(:div, @freeboard.content.html_safe, :class=>"post-body")  %></p>
@@ -26,11 +26,11 @@
                 <%= link_to '삭제', {method: :delete}, class:"linkto"%>      
               <%end%>
               <% if @freeboard.category=='제보글'&&user_signed_in? && current_user.admin? %>
-                <%# <%= form_tag(freeboard_path, :method => "get") do %> 
                 <%= form_for(@freeboard)  do |form| %>
                     <%= form.check_box :completed, class:'checked' , style: 'display:none;'%>
                     <%=submit_tag "승인", class:'result' %>
                 <% end %>   
+                <p class="comp"><%= @freeboard.completed %></p>                                            
               <% end %>       
             </div>
 
@@ -73,6 +73,18 @@ $('.nav-link').on('click', function(){
     $('.nav-link').removeClass('selected');
     $(this).addClass('selected');
 })
+
+$(function(){
+  $('.all').click(function(){
+    $('.postall').show();
+    $('tr').not('tr.post'+$(this).attr('target')).hide();          
+  });
+  $('.single').click(function(){
+    $('.postall').hide();
+    $('tr').not('tr.post'+$(this).attr('target')).hide();      
+    $('.post'+$(this).attr('target')).show();
+  });
+});
 
 $(document).ready(function() {
   if($('p.comp').text() == "false"){

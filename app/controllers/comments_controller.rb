@@ -26,6 +26,7 @@ class CommentsController < ApplicationController
             format.html  { redirect_to(request.referrer, :alert => '댓글 내용을 작성해주세요.') }
         end
       end
+    end
 
 ## 수정해야할부분 내작성글에 댓글달았을 때 거기에 답글다는경우(작성글댓글로알림)/내작성글에 a유저의 댓글에 b유저가 답글다는경우(나에게는 작성글댓글, a유저에겐 답글알림)
     #   if @comment.parent == nil && commentable.user != current_user 
