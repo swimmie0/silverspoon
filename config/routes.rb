@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'legal/using' => "legal#using"
   #PROFILE------FOLLOW/UNFOLLOW
   get 'profiles/:id/follow' => 'follows#profile_follow', as: 'profile_follow'
-  
+
   ##SEARCH------resources :zizuminfos 보다 위에
   get 'zizuminfos/search/' => "zizuminfos#search"
   post 'zizuminfos/getZizum' => "zizuminfos#getZizum"
@@ -81,7 +81,10 @@ Rails.application.routes.draw do
   # post '/zizuminfos/:id/follow', to: 'follows#zizum_back_follow_toggle', as: 'zizum_back_follow'
   # post '/menus/index/params', to: 'follows#zizum_front_follow_toggle', as: 'zizum_front_follow'
 
-  # get '/freeboards/'
+  # freeboards 용
+    post "/checkNum" => "freeboards#checkNum"
+
+    # get '/freeboards/'
   resources :recipes
   resources :freeboards
   resources :userrequests

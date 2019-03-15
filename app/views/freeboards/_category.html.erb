@@ -1,5 +1,5 @@
   <nav class="nav"> <!--나중에수정하기-->
-    <a class="nav-link all" href="/freeboards" target="_self" >전체</a >  
+    <a class="nav-link all single" href="/freeboards" target="_self" >전체</a >  
       <%= form_tag(freeboards_path, :method => "get") do %>
       <%= text_field_tag :category, params[:category], value:"일상글", style:"display:none;"%>
           <% if @freeboard.category == "일상글" %><%=submit_tag "일상글", class:"nav-link selected"%>

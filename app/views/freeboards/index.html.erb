@@ -1,20 +1,12 @@
 <div class="post-contents container">
   <nav class="nav">  <!---->
     <% if params[:category] == nil %>
-      <a class="nav-link all single selected" target="all">전체</a ><% else %>        
-      <a class="nav-link all single" href="/freeboards" target="_self">전체</a><% end %>  
-    <% if params[:category] == "일상글" %>
-      <a class="nav-link single selected" id="showSingle" target="일상글">일상글</a><% else %>  
-      <a class="nav-link single" id="showSingle" target="일상글">일상글</a><% end %>
-    <% if params[:category] == "정보글" %>
-      <a class="nav-link single selected" id="showSingle" target="정보글">정보글</a><% else %>  
-      <a class="nav-link single" id="showSingle" target="정보글">정보글</a><% end %> 
-    <% if params[:category] == "질문글" %>
-      <a class="nav-link single selected" id="showSingle" target="질문글">질문글</a><% else %>  
-      <a class="nav-link single" id="showSingle" target="질문글">질문글</a><% end %> 
-    <% if params[:category] == "제보글" %>
-      <a class="nav-link single selected" id="showSingle" target="제보글">제보글</a><% else %>  
-      <a class="nav-link single" id="showSingle" target="제보글">제보글</a><% end %>
+      <a class="nav-link all single selected" target="all">전체<%else%>
+      <a class="nav-link all single" href="/freeboards" target="_self">전체</a><% end %>
+      <a class="nav-link single" id="showSingle" target="일상글">일상글</a>
+      <a class="nav-link single" id="showSingle" target="정보글">정보글</a>
+      <a class="nav-link single" id="showSingle" target="질문글">질문글</a> 
+      <a class="nav-link single" id="showSingle" target="제보글">제보글</a>
   </nav>             
 </div>
 
@@ -31,9 +23,7 @@
 
 
 <div class ="contents">
-    <div class="post-num">
-      총 <%=Freeboard.all.count%>건
-    </div>
+  <div class="post-num row">총&nbsp;<p><%=Freeboard.all.count%></p>건</div>
   <div class="post-table">    
     <table class="table table-hover" id="post-table">
       <thead>
@@ -131,61 +121,77 @@
 </div> <!--contents-->
 
 <script>
-
 // nav selected 
 $('.nav-link').on('click', function(){
     $('.nav-link').removeClass('selected');
     $(this).addClass('selected');
 })
 
+
 // 카테고리별 show (params전)
 $(function(){
-  // $('.all').click(function(){
-  //   $('.postall').show();
-  //   $('tr').not('tr.post'+$(this).attr('target')).hide();          
-  // });
   $('.single').click(function(){
     $('.postall').hide();
-    $('tr').not('tr.post'+$(this).attr('target')).hide();      
+    $('tr').not('tr.post'+$(this).attr('target')).hide();  
     $('.post'+$(this).attr('target')).show();
     if($(this).attr('target')=='제보글'){
       $('.change').html('진행')
     }else{
       $('.change').html('댓글')
     };
+    // 카테고리별 게시글수 받아오기
+    var category = $('a.selected').html();
+      console.log(category);
+          $.ajax({    
+            async : true,
+            type : "POST",
+            data : {category : category},
+            url : "checkNum",
+            dataType : "json",
+            success : function(data){
+              console.log(data["postNum"]);
+              result = data["postNum"]
+              $('div.post-num p').html(result);
+            }
+      });
   });
+
 });
 
-// url Params받기 (위에)
-$.urlParam = function(name){
-    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results==null){
-       return null;
-    }else{
-       return results[1] || 0;
-    }
-}
-// 카테고리별 show (params 후)
- var category = decodeURIComponent($.urlParam('category'));
-//  console.log(category)
-    if(category=='제보글'){
-      $('.change').html('진행');      
-      $('.postall').hide();
-      $('tr').not('tr.post제보글').hide();      
-      $('.post제보글').show();
-    }else if(category!='null' && category!='제보글'){
-      $('.postall').hide();
-      $('tr').not('tr.post'+category).hide();   
-      $('tr.post'+category).show();
-    };
-
-// 행 clickable 
 $(document).ready(function() {
+    // 행 clickable 
     $('#post-table tr').click(function() {
         var href = $(this).find("a").attr("href");
         if(href) {
             window.location = href;
         }
     });
-});
+
+    // url Params받기 (위에)
+    $.urlParam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      if (results==null){
+        return null;
+      }else{
+        return results[1] || 0;
+      }
+    }
+
+    // 카테고리별 show (params 후)
+    var category = decodeURIComponent($.urlParam('category'));
+    // console.log(category);
+    if(category=='제보글'){
+      $('a.single[target="'+category+'"]').addClass('selected');      
+      $('.change').html('진행');      
+      $('.postall').hide();
+      $('tr').not('tr.post제보글').hide();      
+      $('.post제보글').show();
+    }else if(category!='null' && category!='제보글'){
+      $('a.single[target="'+category+'"]').addClass('selected');      
+      $('.postall').hide();
+      $('tr').not('tr.post'+category).hide();   
+      $('.post'+category).show();
+    };
+  });
+
  </script>

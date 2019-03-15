@@ -71,9 +71,9 @@
                   <div class="tab-content" id="nav-tabContent">
                     
                     <div style=" margin-left: 2rem; margin-top: 2rem;" class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                      <%if @profile.nil? == 'true' %>
+                      <%if @profile.nil? %>
                       
-                      <% elsif @profile.nil? != 'true' %>
+                      <% elsif !@profile.nil? && @profile.user.allergy != nil %>
                         <%if @profile.user.allergy.include?("난류") %>
                           <div style="float: left; height: 6rem; width: 5rem; border: 1px solid rgb(226, 226, 226); background-color: white;"><%= image_tag "profile_egg.png", style: "margin-top: 0.5rem; margin-bottom: 0.5rem; display: block; margin-left: auto; margin-right: auto; width: 50%; width: 2.5rem" %></div>
                         <% end %>
