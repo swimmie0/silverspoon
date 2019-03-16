@@ -2,42 +2,50 @@
   <%= render 'category' %>           
 </div>
 
+
 <div class ="contents">
   <div class="back container"><%= link_to '뒤로가기', freeboards_path, class:"post-linkto"%></div>
   <div class="container">
     <div class="post-view">
-        <p style="color:#FF5400;"><%= @freeboard.category%></p>
-        <h5 class="post-title"> <%= @freeboard.title %></h5>
-        <div class="form-inline">
-         <%=link_to( image_tag("beige-logo.PNG",class:"post-profile-img"), profile_path(@writer.profile.id))%>   
-         <div> <%= link_to @freeboard.name,  profile_path(@writer.profile.id), class:"linkto" %> </div> 
-         <div style="font-weight:lighter;margin-left:2rem;"><%= @freeboard.created_at.strftime("%Y-%m-%d") %> </div>
-         <div style="margin-left:auto;font-size:0.8rem;"> 조회수: <%= @freeboard.impressionist_count(:filter=>:session_hash) %></div>
-        </div>  
-        
+      <!-- -->
+        <% if !@freeboard.locked? || user_signed_in? && current_user.admin? || @freeboard.user == current_user %>
+            <!--게시글내용-->
+            <p style="color:#FF5400;"><%= @freeboard.category%></p>
+            <h5 class="post-title"> <%= @freeboard.title %></h5>
+            <div class="form-inline">
+            <%=link_to( image_tag("beige-logo.PNG",class:"post-profile-img"), profile_path(@writer.profile.id))%>   
+            <div> <%= link_to @freeboard.name,  profile_path(@writer.profile.id), class:"linkto" %> </div> 
+            <div style="font-weight:lighter;margin-left:2rem;"><%= @freeboard.created_at.strftime("%Y-%m-%d") %> </div>
+            <div style="margin-left:auto;font-size:0.8rem;"> 조회수: <%= @freeboard.impressionist_count(:filter=>:session_hash) %></div>
+            </div>  
+          <hr/>
+            <p><%= content_tag(:div, @freeboard.content.html_safe, :class=>"post-body")  %></p>
+            <div class="post-edit">
+              <% if current_user == @freeboard.user%>
+                <%= link_to '수정', edit_freeboard_path(@freeboard), class:"linkto" %>
+                <%= link_to '삭제', {method: :delete}, class:"linkto"%>      
+              <%end%>
+              <% if @freeboard.category=='제보글'&&user_signed_in? && current_user.admin? %>
+                <%# <%= form_tag(freeboard_path, :method => "get") do %> 
+                <%= form_for(@freeboard)  do |form| %>
+                    <%= form.check_box :completed, class:'checked' , style: 'display:none;'%>
+                    <%=submit_tag "승인", class:'result' %>
+                <% end %>   
+              <% end %>       
+            </div>
 
-      <hr/>
-        <p><%= content_tag(:div, @freeboard.content.html_safe, :class=>"post-body")  %></p>
-        <div class="post-edit">
-          <% if current_user == @freeboard.user%>
-            <%= link_to '수정', edit_freeboard_path(@freeboard), class:"linkto" %>
-            <%= link_to '삭제', method: :delete, class:"linkto"%>      
-          <%end%>
-          <% if @freeboard.category=='제보글'&&user_signed_in? && current_user.admin? %>
-            <%# <%= form_tag(freeboard_path, :method => "get") do %> 
-            <%= form_for(@freeboard)  do |form| %>
-                <%= form.check_box :completed, class:'checked' , style: 'display:none;'%>
-                <%=submit_tag "승인", class:'result' %>
-            <% end %>   
-          <% end %>       
-        </div>
+       
     </div>
+     
+    
 
     <% if @freeboard.category == "질문글"%>
       <p> 답변 <%=@freeboard.comment_threads.count%>개</p>       
     <% else %>
       <p> 댓글 <%=@freeboard.comment_threads.count%>개</p>   
     <% end %>
+      
+      <!-- -->
      
     <%= render partial: "comments/form", locals: {new_comment: @new_comment} %>
     <div class="comment-view">
@@ -45,6 +53,18 @@
     </div>
         <%# template은 댓글틀 / reply는 댓글list, 안에 답글reply_end , 안에 form이 댓글작성box %>
                 <%# / 질문글은 answer이 댓글리스트(추천수기능) %> 
+    <% else %>
+          <!--비밀글-->
+          <div style="text-align:center;">
+            <h5 style="color:#FF5400;"> 비밀글 </h5>
+            <p>해당글은 작성자와 관리자만 볼 수 있습니다.</p>
+          </div>  
+        </div>
+        </div>
+        </div>
+
+      <%end%>
+                
   </div>                
 </div>                
 

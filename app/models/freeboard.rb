@@ -16,7 +16,7 @@ class Freeboard < ApplicationRecord
   def self.category(category)
     where("category LIKE ?", "%#{category}%") 
   end
-
+  
   def time(post)
     if Time.now.strftime("%m:%d") == post.created_at.strftime("%m:%d")
       post.created_at.strftime("%H:%m")

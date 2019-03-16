@@ -1,15 +1,4 @@
-<style>
-    .glyphicon {
-        float: right;
-        margin-top: 2px;
-        margin-right: -6px;
-    }
-</style>
 
-<style type="text/scss">
-  body { font-family: 'Jeju Myeongjo', serif; }
-  h1 { font-weight: bold; }
-</style>
 <body style="background-color: #F8F8F8">
     <div class="container">
         <div class="row" style="margin-top: 5%; height: 600px" >
@@ -18,7 +7,7 @@
                 <div style="background-color: #141b40; height: 11%; width: 100%">
                     <p style="line-height: 66px; font-size: 1.2rem; margin: 0px; color: white">TALES MESSAGE</p>
                 </div>
-                <div style="background-color: #1E285D; height: 89%; width: 100%"> 
+                <div style="background-color: #002f7b; height: 89%; width: 100%"> 
                     <p style="line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white"> <%= link_to "전체 편지함", conversations_path, style: "text-decoration: none; color: white" %> </p>
                     <p style="line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white"></p>
                     <p style="line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white"></p>
@@ -30,55 +19,42 @@
                 <div style="background-color: #F8F8F8; height: 11%; width: 100%">
                     <p style="line-height: 66px; padding-left: 2rem; border: 0.05px solid #bfbebe; font-size: 1rem; margin: 0px; color: black"> 보낸 사람 | 내용 | </p>
                 </div> -->
-                <div style="background-color: white; border-right: 0.05px solid #bfbebe; height: 89%">
+                <div class="ConversationContent" style="overflow-y: scroll; background-color: white; border-right: 0.05px solid #bfbebe; height: 85.1%">
                    
+                    <table class="table" style="font-size: 1rem;">
+                        <thead >
+                            <tr style="height: 4rem;">
+                            <th scope="col", style="width: 3%">#</th>
+                            <th scope="col", style="width: 2%">SENDER</th>
+                            <th scope="col", style="width: 6%">LAST CONVERSATION</th>
+                            <th scope="col", style="width: 10%">DATE & TIME</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% i = 0 %>
+                            <% @conversations.reverse_order.each do |conversation| %>
+                                <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+                                    <% if conversation.sender_id == current_user.id %>
+                                    <% recipient = User.find(conversation.recipient_id) %>
+                                    <% else %>
+                                    <% recipient = User.find(conversation.sender_id) %>
+                                    <% end %>
+                                <tr style="line-height: 29.5px; border-bottom: 1px solid #dee2e6;">
+                                <th scope = "row"><%= link_to " #{i+=1} 번", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338; font-size: 0.9rem;" %> </th>
+                                    <td><%= link_to "#{recipient.name}님", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338; font-size: 0.9rem;" %>  </td>
+                                    <td><%= link_to " #{conversation.messages.last.body.first(22)}...", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338; font-size: 0.9rem;" %>  </td>
+                                    <td><%= link_to " #{conversation.messages.last.message_time} ", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338; font-size: 0.9rem;" %></td>
+                                </tr>
+                                <% else %>
+                                
+                                <% end %> 
+                            <% end %>
+                        </tbody>
+                    </table>
 
-
-
-
-<table class="table" style="font-size: 1rem;">
-  <thead >
-    <tr style="height: 4.1rem;">
-      <th scope="col", style="width: 1%">#</th>
-      <th scope="col", style="width: 3%">SENDER</th>
-      <th scope="col", style="width: 10%">LAST CONVERSATION</th>
-      <th scope="col", style="width: 10%">DATE & TIME</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% i = 0 %>
-    <% @conversations.reverse_order.each do |conversation| %>
-        <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
-            <% if conversation.sender_id == current_user.id %>
-            <% recipient = User.find(conversation.recipient_id) %>
-            <% else %>
-            <% recipient = User.find(conversation.sender_id) %>
-            <% end %>
-        <tr style="line-height: 29.5px; border-bottom: 1px solid #dee2e6;">
-        <th scope = "row"><%= link_to " #{i+=1} 번", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %> </th>
-            <td><%= link_to "#{recipient.name}님", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %>  </td>
-            <td><%= link_to " #{conversation.messages.last.body.first(22)}...", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %>  </td>
-            <td><%= link_to " #{conversation.messages.last.message_time} ", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %></td>
-        </tr>
-        <% end %> 
-    <% end %>
-  </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-                    
                 </div>
-                <div style="background-color: #F8F8F8; height: 15%; width: 100%">
-                    <p style="line-height: 66px; text-align: right; padding-right: 2rem; border: 0.05px solid #bfbebe; font-size: 1rem; margin: 0px; color: black"> Pagination Section </p>
+                <div style="border: 0.05px solid #bfbebe; background-color: #F8F8F8; height: 15%; width: 100%">
+                    <p style="line-height: 66px; text-align: right; padding-right: 2rem; font-size: 1rem; margin: 0px; color: black"> </p>
                 </div>
             </div>
 
@@ -87,6 +63,11 @@
         </div>
     </div>
 </body>
+
+<script>
+    var scroll = document.getElementsByClassName("ConversationContent")[0];
+    scroll.scrollTop = scroll.scrollHeight;
+</script>
 <!-- 
 <div class="list-group col-md-3">
     <ul class="nav nav-pills nav-stacked">
