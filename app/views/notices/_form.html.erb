@@ -30,6 +30,11 @@
         <%= form.text_area :content, :class => "form-control tinymce", :rows=> "10"%>
     </div>
 
+    <div class="field">
+        <%= form.label '팝업 설정' %>
+        <%= form.check_box :isModal %>
+    </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
