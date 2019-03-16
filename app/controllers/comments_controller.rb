@@ -28,21 +28,21 @@ class CommentsController < ApplicationController
       end
 
 ## 수정해야할부분 내작성글에 댓글달았을 때 거기에 답글다는경우(작성글댓글로알림)/내작성글에 a유저의 댓글에 b유저가 답글다는경우(나에게는 작성글댓글, a유저에겐 답글알림)
-      if @comment.parent == nil && commentable.user != current_user 
-        # puts "테스트 #{NewAlarm.where(link: freeboard_path(:id=>commentable)).count}끝"
-        @alarms = NewAlarm.where(link: freeboard_path(:id=>commentable))
-        if @alarms.count != 0
-          @alarms[0].mark_as_read! for: commentable.user
-          @new_alarm = NewAlarm.create! user: commentable.user,
-                                          content: "#{Comment.where(commentable: commentable).count}",
-                                          link: URI(request.referer).path
-        else 
-          @new_alarm = NewAlarm.create! user: commentable.user,
-                                        content: "#{Comment.where(commentable: commentable).count}",
-                                        link: URI(request.referer).path
-        end  
-      end                             
-    end
+    #   if @comment.parent == nil && commentable.user != current_user 
+    #     # puts "테스트 #{NewAlarm.where(link: freeboard_path(:id=>commentable)).count}끝"
+    #     @alarms = NewAlarm.where(link: freeboard_path(:id=>commentable))
+    #     if @alarms.count != 0
+    #       @alarms[0].mark_as_read! for: commentable.user
+    #       @new_alarm = NewAlarm.create! user: commentable.user,
+    #                                       content: "#{Comment.where(commentable: commentable).count}",
+    #                                       link: URI(request.referer).path
+    #     else 
+    #       @new_alarm = NewAlarm.create! user: commentable.user,
+    #                                     content: "#{Comment.where(commentable: commentable).count}",
+    #                                     link: URI(request.referer).path
+    #     end  
+    #   end                             
+    # end
 
     def destroy
         @comment = Comment.find_by(id: params[:id])

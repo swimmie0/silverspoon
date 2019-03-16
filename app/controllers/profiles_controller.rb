@@ -10,14 +10,19 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-    params[:id] = current_user.id
+    # params[:id] = current_user.id
     # @user_requests = Userrequest.where(uid: current_user.id)
-    @user_posts = Freeboard.where(user: current_user)
-    @user_commentnum = Comment.where(user: current_user).count
     @conversations = Conversation.all
+  
+    #작성글
+    @user_posts = Freeboard.where(user: current_user).where.not(category:"제보글")
 
-    @user_requests = Freeboard.where(:user_id => current_user.id, :category => '제보글')
-    @requests_array = Kaminari.paginate_array(@user_requests).page(params[:page]).per(3)
+    # 댓글단 게시글
+    @user_comments_id =  Comment.where(user_id:1).pluck(:commentable_id) 
+    @user_comments = Freeboard.where(id:@user_comments_id).where.not(user:current_user).order("created_at desc")
+    # 제보글
+    @user_requests = Freeboard.where(:user_id => current_user.id, :category => '제보글').order("created_at desc")
+    # @requests_array = Kaminari.paginate_array(@user_requests).page(params[:page]).per(3)
   end
 
   # GET /profiles/new
@@ -74,8 +79,19 @@ class ProfilesController < ApplicationController
   end
 
   def myposts
-    params[:id]= @profile.id
-    @user_requests = Freeboard.where(:user_id => current_user.id, :category => '제보글')    
+     #작성글
+     @user_posts = Freeboard.where(user: current_user).where.not(category:"제보글").order("created_at desc")
+  end
+
+  def myrequests
+     # 제보글
+     @user_requests = Freeboard.where(:user_id => current_user.id, :category => '제보글').order("created_at desc")      
+  end
+
+  def mycomments
+     # 댓글단 게시글
+     @user_comments_id =  Comment.where(user_id:1).pluck(:commentable_id) 
+     @user_comments = Freeboard.where(id:@user_comments_id).where.not(user:current_user).order("created_at desc")
   end
 
   private
