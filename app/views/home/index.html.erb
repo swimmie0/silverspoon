@@ -76,8 +76,8 @@
                                 <tr class="main-board-tr" data-href="freeboards/<%=post.id%>">
                                     <td style="text-align: center;"><%=post.comment_threads.count %></td>
                                     <td><%=post.title%></td>
-                                    <td style="text-align: center;"><%= post.name %></td>
-                                    <td style="text-align: center;"><%=post.impressionist_count(:filter=>:session_hash) %></td>
+                                    <td class="post-td-gray" style="text-align: center;"><%= post.name %></td>
+                                    <td  class="post-td-gray" style="text-align: center;"><%=post.impressionist_count(:filter=>:session_hash) %></td>
                                 </tr>
                             <%end%>
                         </tbody>
@@ -105,8 +105,8 @@
                                 <tr class="main-board-tr" data-href="freeboards/<%=post.id%>">
                                     <td style="text-align: center;"><%=post.comment_threads.count %></td>
                                     <td><%=post.title%></td>
-                                    <td style="text-align: center;"><%= post.name %></td>
-                                    <td style="text-align: center;"><%=post.impressionist_count(:filter=>:session_hash) %></td>
+                                    <td class="post-td-gray" style="text-align: center;"><%= post.name %></td>
+                                    <td class="post-td-gray" style="text-align: center;"><%=post.impressionist_count(:filter=>:session_hash) %></td>
                                 </tr>
                                 <%end%>
                             </div>

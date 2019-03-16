@@ -86,9 +86,8 @@ body {
   }
 
   .ProfileImg {
-    position: relative; 
-    float:left;
-    top: -4.75rem; 
+    position: absolute;
+    top: 12rem;
     margin-left: 7.5%; 
     width: 10rem; 
     height: 10rem; 
@@ -98,9 +97,8 @@ body {
   }
 
   .ProfileDefaultImg {
-    position: relative; 
-    float:left;
-    top: -4.75rem; 
+    position: absolute; 
+    top: 12rem; 
     margin-left: 7.5%; 
     width: 10rem; 
     height: 10rem; 
@@ -115,13 +113,14 @@ body {
   }
 
   .ProfileInfoSection {
-    height: 10.5rem;
+    //height: 10.5rem;
+    height: 8.1rem;
   }
 
   .ProfileInfo {
     float: left;
-    margin-top: -3rem; 
-    margin-left: 1rem;
+    margin-top: -2.3rem; 
+    margin-left: 7.4rem;
     font-size: 1rem; 
     color: black; 
     
@@ -139,9 +138,10 @@ body {
   }
 
   .ProfileTabInfo {
-    position: absolute;
-    margin-top: -3rem; 
-    width: 70%;
+    //position: absolute;
+    //margin-top: -3rem; 
+    //width: 77.2%;
+    width: 100%;
   }
 // 상단 섹션 끝
 
@@ -157,16 +157,21 @@ body {
 
 .ProfileTitle {
   text-align: center; 
-  font-size: 1.4rem; 
-  margin-top: 4rem; 
-  margin-bottom: 2.5rem;
+  font-size: 1.6rem;
+  font-weight: bolder;  
+}
+
+.profile-recipe-title{
+  margin-bottom: 2rem;
 }
 
 .ProfileRecipeSection {
+  margin-top: 4.5rem;
   background-color: white; 
   height: 100%; 
   width: 100%;
   padding: 0px;
+  margin-bottom: 5rem;
 }
 
 .ProfileRecipeCount {
@@ -205,6 +210,8 @@ body {
 
 // 작성한 게시글 & 댓글단 게시글
 .ProfilePostingSection {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
   height: 100%;
   width: 100%;
   background-color: #F8F8F8;
@@ -217,11 +224,21 @@ body {
 // 작성한 게시글 & 댓글단 게시글 끝
 
 // 수정 요청 현황확인 섹션
+.profile-request-titlebox{
+  margin-bottom: 2rem;
+}
 
+.profile-request-notice{
+  color: rgb(165, 164, 164);
+  font-size: 0.8rem;
+  margin-top: 1.5rem;
+  margin-bottom: 5rem;
+}
 .ProfileRequestEditSection {
   background-color: white;
   height: 100%; 
-  width: 100%; 
+  width: 100%;
+  margin-top: 5rem;
 }
 
 .ProfileRequestEditList {
@@ -441,4 +458,18 @@ $colors: (
 
 .RegisterSection .RegisterForm{
   font-family: 'NanumSquare', sans-serif;
+  
+}
+
+.profile-message-tr{
+  cursor: pointer;
+}
+.profile-message-tr:hover{
+  background-color: rgb(243, 243, 243);
+}
+
+//제보
+
+.request-contents{
+  padding-bottom: 4rem !important;
 }

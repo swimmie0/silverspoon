@@ -8,39 +8,36 @@
           <h3 class="RegisterFormHeader">회원가입 안내</h3>
           <hr><h6 class="RegisterFormMust" style="text-align: right;"> **필수 항목 </h6> 
 
-            <div class="row">
 
-              <div class="col field">
-                <span style="color:red;">*&nbsp;</span><%= f.label "이름" %><br/>
-                <%= f.text_field :name, class: "form-control", id: "checkname", :required => true, :validates => { :uniqueness => true }  %>
-                <p class = "mt-4 mb-2" id = "check-warning"></p>
-              </div>
+              <%# <div class="col field">
+                <span style="color:red;">*&nbsp;</span><%= f.label "아이디" %><br/>
+                <%# <%= f.text_field :IDe, class: "form-control", id: "checkID", :required => true, :placeholder => "가입 후 변경 불가능하니 신중히 기입해주세요" %>
+                <%# <p class = "mt-4 mb-2" id = "check-id"></p>
+              </div> %> 
 
               <div class="col field">
                 <span style="color:red;">*&nbsp;</span><%= f.label "아이디" %><br/>
-                <%= f.text_field :IDe, class: "form-control", id: "checkID", :required => true, :placeholder => "가입 후 변경 불가능하니 신중히 기입해주세요" %>
-                <p class = "mt-4 mb-2" id = "check-id"></p>
-              </div>
+                <%= f.text_field :name, class: "form-control", id: "checkname", :required => true, :validates => { :uniqueness => true }, :placeholder => "가입 후 변경 불가능하니 신중히 기입해주세요"   %>
+                <p class = "mb-2 ml-2" id = "check-warning" ></p>
+              </div><br/>
 
-            </div>
-
+<%# 
             <div class="field">
-              <span style="color:red;">*&nbsp;</span><%= f.label "이메일" %><br />
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control",  :required => true  %>
-            </div><br>
+              <span style="color:red;">*&nbsp;</span><%= f.label "이메일" %>
+              <%# <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control",  :required => true  %>
+            <%# </div><br> %> 
 
-            <div class="field">
+            <div class="col field">
               <span style="color:red;">*&nbsp;</span><%= f.label "비밀번호" %><em>(6글자 이상)</em>
               <%= f.password_field :password, autocomplete: "off", class: "form-control", id:"password", :required => true   %>
               <%# <%= f.password_field :password, autocomplete: "new-password" %>
-              <p class = "mt-4 mb-2" id = "check-pw1"></p>    
-              
-            </div>
+              <p class = "mb-2 ml-2" id = "check-pw1"></p>    
+            </div><br/>
 
-            <div class="field">
+            <div class="col field">
               <span style="color:red;">*&nbsp;</span><%= f.label "비밀번호 확인" %><br />
               <%= f.password_field :password_confirmation, id:"password2", autocomplete: "off", class: "form-control", :required => true %>
-              <p class = "mt-4 mb-2" id = "check-pw2"></p>    
+              <p class = "mb-2 ml-2" id = "check-pw2"></p>    
             </div>
 
 
@@ -91,17 +88,6 @@
 
             <div class="row">
 
-              <div class="col-3 field">
-                <h5> 성별 </h5>
-                <%= f.radio_button :gender, "남" %> 남자
-                <%= f.radio_button :gender, "여" %> 여자 <br/>
-              </div>
-
-              <div class="col-4 field">
-                <h5> 나이 </h5>
-                <%= f.select :ages, options_for_select([["10대이하", "10대이하"], ["10대","10대"], ["20-30대","20-30대"], ["40-50대","40-50대"],["60대이상","60대이상"]]), { prompt: '나이를 선택해주세요' } %>  
-              </div>
-
               <div class="col-4 field">
                 <h5> 프로필 사진 </h5>
                 <%#= f.label :profileimg, "프로필 사진" %>
@@ -124,7 +110,7 @@
               <%# <%= f.submit "Sign up" , id: "submitButton" %> 
               <div class="d-flex justify-content-between">
               <div></div>
-              <button type="submit" class="btn btn-search">회원가입</button>
+              <button type="submit" class="btn btn-search"id="submit">회원가입</button>
               </div>
               <%# <input type="button" class="btn btn-primary" value="회원가입 버튼" id="submit"> </input> %>
             </div>
@@ -152,118 +138,117 @@
 var pw_check = document.getElementById("password");
 var pw_confirm = document.getElementById("password2");
 var confirm = document.getElementById("check-pw2");
+var lengthcheck = document.getElementById("check-pw1");
 // var submit = document.getElementById("submitButton");
 var namecheck = document.getElementById("check-warning");
-var idcheck = document.getElementById("check-id");
+// var idcheck = document.getElementById("check-id");
 
 function doubleCheck() {
     if (pw_confirm.value != pw_check.value ){
       confirm.innerHTML = "불일치";
+      confirm.style = "color:#dc3545;font-size:0.9rem;"
       // submit.disabled = true;   
     }else{
       confirm.innerHTML = "일치";
+      confirm.style = "color:#1E285D;font-size:0.9rem;"      
       // submit.disabled = false;  
     }  
 }
 
-// function checkAll() { 
-//    if (confirm.innerHTML == "일치" && namecheck.innerHTML == "사용가능한 닉네임입니다" && idcheck.innerHTML == "사용가능한 아이디입니다"){
-//       submit.disabled = false;       
-//    }else {
-//       submit.disabled = true;            
-//    }
-// }
-
 $(document).ready(function(){
-  var lengthcheck = document.getElementById("check-pw1");
    $("#password").keyup(function(){ 
     if (pw_check.value.length<6){
       lengthcheck.innerHTML = "6글자이상";
-    } else {
-      lengthcheck.innerHTML = "사용가능";  
+      lengthcheck.style = "color:#dc3545;font-size:0.9rem;"
+    }else {
+      lengthcheck.innerHTML = "사용가능"; 
+      lengthcheck.style = "color:#1E285D;font-size:0.9rem;"             
       // pw_confirm.disabled = false; 
     }
      doubleCheck();
-  });
-  
-  $("#password2").keyup(function(){ 
-      doubleCheck(); 
-    // if (location.pathname =="/users"){
-    //   if (confirm.innerHTML=="일치" && idcheck.innerHTML.length == 0 && namecheck.innerHTML.length ==0){
-    //   submit.disabled = false;
-    //   }
-    // }   
-  });
-  
-  $("#checkname").keyup(function(){                           
-      var nameIn = document.getElementById("checkname").value;
-      var IDeIn = document.getElementById("checkID").value;
-      var namecheck = document.getElementById("check-warning");
-        $.ajax({    //checkid와같이x
-          async : true,
-          type : "POST",
-          data : {name : nameIn, IDe : IDeIn},
-          url : "checkDouble",
-          dataType : "json",
-          success : function(data){
-            console.log(data);     
-            if (data["ableName"] == 1){
-                namecheck.innerHTML = "해당 닉네임은 이미 사용중입니다";
-                // submit.disabled = true;
-            }else if(data["ableName"] == 0 && data["ableID"] == 1 ){
-                namecheck.innerHTML = "사용가능한 닉네임입니다";
-                // submit.disabled = true;
-            }else if(data["ableName"] == 0 && data["ableID"] == 0){
-                namecheck.innerHTML = "사용가능한 닉네임입니다";
-                // submit.disabled  = false;
-            }
-          }
-        });
-  });
-    
-  $("#checkID").keyup(function(){
-      var IDeIn = document.getElementById("checkID").value;
-      var nameIn = document.getElementById("checkname").value;
-      var idcheck = document.getElementById("check-id");
-        $.ajax({
-          async : true,
-          type : "POST",
-          data : {name : nameIn,IDe : IDeIn},
-          url : "checkDouble",
-          dataType : "json",
-          success : function(data){   
-            console.log(data);
-            if (data["ableID"] == 1){
-                idcheck.innerHTML = "해당 아이디는 이미 사용중입니다";
-                // submit.disabled = true;
-            }else if( data["ableID"] == 0 && data["ableName"] ==1){
-                idcheck.innerHTML = "사용가능한 아이디입니다";
-                // submit.disabled = true;
-            }else if(data["ableName"] == 0 && data["ableID"] == 0 ){
-                idcheck.innerHTML = "사용가능한 아이디입니다";
-                // submit.disabled = false;
-            }
-          }
-        })
     });
- });
+  
+    $("#password2").keyup(function(){ 
+        doubleCheck(); 
+      // if (location.pathname =="/users"){
+      //   if (confirm.innerHTML=="일치" && idcheck.innerHTML.length == 0 && namecheck.innerHTML.length ==0){
+      //   submit.disabled = false;
+      //   }
+      // }   
+    });
+  
+    $("#checkname").keyup(function(){                           
+        var nameIn = document.getElementById("checkname").value;
+        // var IDeIn = document.getElementById("checkID").value;
+        var namecheck = document.getElementById("check-warning");
+          $.ajax({    //checkid와같이x
+            async : true,
+            type : "POST",
+            data : {name : nameIn},
+            url : "checkDouble",
+            dataType : "json",
+            success : function(data){
+              console.log(data);     
+              if (data["ableName"] == 1){
+                  namecheck.innerHTML = "해당 아이디는 이미 사용중입니다";
+                  namecheck.style = "color:#dc3545;font-size:0.9rem;"
+                  // submit.disabled = true;
+              }else if(data["ableName"] == 0 ){
+                  namecheck.innerHTML = "사용가능한 아이디입니다";
+                  namecheck.style = "color:#1E285D;font-size:0.9rem;"                        
+                  // submit.disabled = true;
+              }
+            }
+          });
+    });
+ });     
+//   $("#checkID").keyup(function(){
+//       var IDeIn = document.getElementById("checkID").value;
+//       var nameIn = document.getElementById("checkname").value;
+//       var idcheck = document.getElementById("check-id");
+//         $.ajax({
+//           async : true,
+//           type : "POST",
+//           data : {name : nameIn,IDe : IDeIn},
+//           url : "checkDouble",
+//           dataType : "json",
+//           success : function(data){   
+//             console.log(data);
+//             if (data["ableID"] == 1){
+//                 idcheck.innerHTML = "해당 아이디는 이미 사용중입니다";
+//                 // submit.disabled = true;
+//             }else if( data["ableID"] == 0 && data["ableName"] ==1){
+//                 idcheck.innerHTML = "사용가능한 아이디입니다";
+//                 // submit.disabled = true;
+//             }else if(data["ableName"] == 0 && data["ableID"] == 0 ){
+//                 idcheck.innerHTML = "사용가능한 아이디입니다";
+//                 // submit.disabled = false;
+//             }
+//           }
+//         })
+//     });
+//  });
 
-document.getElementById("submit").addEventListener("click", function(){
-  if (location.pathname =="/users"){
-      if (confirm.innerHTML=="불일치" || idcheck.innerHTML == "해당 아이디는 이미 사용중입니다" || namecheck.innerHTML == "해당 닉네임은 이미 사용중입니다"){
-       document.getElementById("submit").type = "button" 
-      }else{
-       document.getElementById("submit").type = "submit"      
-      }
-  }else{
-    if (confirm.innerHTML == "일치" && namecheck.innerHTML == "사용가능한 닉네임입니다" && idcheck.innerHTML == "사용가능한 아이디입니다"){
-    document.getElementById("submit").type = "submit"
+  document.getElementById("submit").addEventListener("click", function(){
+    if (location.pathname =="/users"){
+        // if (confirm.innerHTML=="불일치" || idcheck.innerHTML == "해당 아이디는 이미 사용중입니다" || namecheck.innerHTML == "해당 닉네임은 이미 사용중입니다"){
+        if (confirm.innerHTML=="불일치" ||lengthcheck.innerHTML=="6글자이상"|| namecheck.innerHTML == "해당 아이디는 이미 사용중입니다"){     
+        document.getElementById("submit").type = "button" 
+        alert("제대로 기입했는지 확인해주세요 :)")          
+        }else{
+        document.getElementById("submit").type = "submit"      
+        }
     }else{
-    document.getElementById("submit").type = "button"  
-    alert("제대로 기입했는지 확인하시오")  
-    }
-  }  
-})
+      // if (confirm.innerHTML == "일치" && namecheck.innerHTML == "사용가능한 닉네임입니다" && idcheck.innerHTML == "사용가능한 아이디입니다"){
+      if (confirm.innerHTML == "일치" && lengthcheck.innerHTML=="사용가능" &&namecheck.innerHTML == "사용가능한 아이디입니다"){   
+      document.getElementById("submit").type = "submit"
+      }else{
+      document.getElementById("submit").type = "button"  
+      alert("제대로 기입했는지 확인해주세요 :)")  
+      }
+    }  
+  })
+
 
 
 // var error= document.getElementById("modal-body")

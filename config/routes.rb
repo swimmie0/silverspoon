@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'legal/using' => "legal#using"
   #PROFILE------FOLLOW/UNFOLLOW
   get 'profiles/:id/follow' => 'follows#profile_follow', as: 'profile_follow'
-  
+
   ##SEARCH------resources :zizuminfos 보다 위에
   get 'zizuminfos/search/' => "zizuminfos#search"
   post 'zizuminfos/getZizum' => "zizuminfos#getZizum"
@@ -81,7 +81,10 @@ Rails.application.routes.draw do
   # post '/zizuminfos/:id/follow', to: 'follows#zizum_back_follow_toggle', as: 'zizum_back_follow'
   # post '/menus/index/params', to: 'follows#zizum_front_follow_toggle', as: 'zizum_front_follow'
 
-  # get '/freeboards/'
+  # freeboards 용
+    post "/checkNum" => "freeboards#checkNum"
+
+    # get '/freeboards/'
   resources :recipes
   resources :freeboards
   resources :userrequests
@@ -104,24 +107,23 @@ Rails.application.routes.draw do
      post "/checkDouble" => "user/registrations#checkDouble"
      get "/users" => 'user/registrations#new'
   end
-  devise_for :users, :controllers => {registrations: 'user/registrations' }
-  devise_scope :user do
-    get 'editsns', :to => 'devise/registrations#editsns'
-  end
+  devise_for :users, :controllers => {registrations: 'user/registrations',passwords: 'users/passwords' }
+  # devise_scope :user do
+  #   get 'editsns', :to => 'devise/registrations#editsns'
+  # end
   # resources :comments, only: [:create, :destroy]
   resources :comments do
     member do
       put "like", to: "comments#like"
       put "unvote", to: "comments#unvote" 
-      put "dislike", to: "comments#dislike" 
-      
+      put "dislike", to: "comments#dislike"    
     end    
   end
 
 
   # 알림
-  get '/new_alarms/read_all' => 'new_alarms#read_all'
-  resources :new_alarms #순서이대로
+  # get '/new_alarms/read_all' => 'new_alarms#read_all'
+  # resources :new_alarms #순서이대로
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'# 맨아래에 둬주세요
   
   # concern :paginatable do
