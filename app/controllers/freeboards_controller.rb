@@ -29,6 +29,7 @@ class FreeboardsController < ApplicationController
       @result = Freeboard.all.order("created_at DESC")
       @freeboards = Kaminari.paginate_array(@result).page(params[:page]).per(12)      
     end
+
   end
 
   # GET /freeboards/1
@@ -143,7 +144,7 @@ class FreeboardsController < ApplicationController
   def destroy
     @freeboard.destroy
     respond_to do |format|
-      format.html { redirect_back(fallback_location: root_path) }
+      format.html { redirect_to freeboards_url }
       format.json { head :no_content }
     end
   end

@@ -565,3 +565,48 @@
     margin-top: 1rem;
     font-weight: bold;
 }
+
+#noticeModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    overflow: auto; /* Enable scroll if needed */
+    width:70%;
+    margin-left: 100px;
+    border:none;
+    
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding-left: 10px;
+    border:none;
+    width:30%;
+    margin-right:80px;
+    margin-left:70px;
+    -webkit-box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+    -moz-box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+    box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+}
+.modal-content img{
+    max-width:80%;
+    max-height:80%;
+}
+
+/* The Close Button */
+.close {
+    text-align: right;
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}

@@ -119,10 +119,49 @@
         </div>
     </div>
 </div>
-
 <%#= javascript_include_tag('searchmain.js') %>
-<script>
 
+<!--알림창 +application.js --> 
+<% if @popNotice != nil  %>
+<!--공지 팝업창 -->
+<div id="noticeModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h5><%= @popNotice.title %></h5>
+    <b><%=@date.to_s%></b>
+    <p> <%=@popNotice.content.html_safe %></p>
+    <br>
+    <p><input type="checkbox" value="OK" onclick="javascript:closeWinAt00('noticeModal', 1);"/>오늘만 이 창을 열지 않음 </p>
+  </div>
+</div>
+
+<script>
+// 창열기  
+    function openWin( winName ) {  
+        var blnCookie    = getCookie( winName );  
+        var obj = eval( "window." + winName );  
+        if( !blnCookie ) {  
+            obj.style.display = "block";  
+        }; 
+    }  
+    
+    // 창닫기  
+    function closeWinAt00(winName, expiredays) {   
+        setCookieAt00( winName, "done" , expiredays);   
+        var obj = eval( "window." + winName );  
+        obj.style.display = "none";  
+    }  
+
+    openWin('noticeModal');  
+    var modal = document.getElementById('noticeModal');
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+            modal.style.display = "none";   
+    }
+</script>
+<% end %>
+
+<script>
     $(".main-board-tr").click(function() {
         window.location = $(this).data("href")  
     })
