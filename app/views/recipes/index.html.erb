@@ -126,6 +126,8 @@
     $(".recipe-index-search-input").val(tagadd);
   })
 
+  
+
   if('<%=user_signed_in?%>'==="true"){
     $(".recipe-index-bookmark").click(function(){
         $recipeid = $(this).siblings("div.recipe-index-id-bookmark").html();

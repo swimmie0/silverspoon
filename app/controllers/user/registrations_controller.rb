@@ -4,22 +4,25 @@ class User::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   # include Accessible
+  skip_before_action :require_no_authentication
+
   respond_to :json
   def checkDouble
     puts "double checking"
     @name = params[:name]
-    @IDe = params[:IDe]
+    # @IDe = params[:IDe]
     puts @name
   
-    $result = {"ableID"=> 0,"ableName" => 0}
+    # $result = {"ableID"=> 0,"ableName" => 0}
+    $result = {"ableName" => 0}
     
       if User.exists?(:name => @name) || @name == ""
         $result[:ableName] = 1
       end
   
-      if User.exists?(:IDe => @IDe) || @IDe == ""
-        $result[:ableID] = 1
-      end
+      # if User.exists?(:IDe => @IDe) || @IDe == ""
+      #   $result[:ableID] = 1
+      # end
 
       $result = $result.to_json
       puts $result
@@ -58,7 +61,7 @@ class User::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/sign_up
-  # def new
+  # def new 
   #   super
   # end
 
@@ -103,6 +106,9 @@ class User::RegistrationsController < Devise::RegistrationsController
   #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
   # end
 
+  def after_update_path_for(resource)
+    signed_in_root_path(resource)
+  end
   # The path used after sign up.
   def after_sign_up_path_for(resource)
     new_profile_path

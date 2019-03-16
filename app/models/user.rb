@@ -5,8 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable, :omniauthable, authentication_keys: [:login]
   
-  has_one :profile
-  has_many :freeboards
+  has_one :profile,  dependent: :destroy
+  has_many :freeboards, dependent: :destroy
   has_many :new_alarms
   has_many :recipes
   has_many :notices
@@ -16,7 +16,7 @@ class User < ApplicationRecord
   acts_as_voter
   
   mount_uploader :profileimg, S3Uploader
-  # validates_uniqueness_of :name
+  validates_uniqueness_of :name
   # validates_uniqueness_of :IDe  
   # validates :name,:IDe, presence: :true, uniqueness: { case_sensitive: false }
   # validates_format_of :name,:IDe, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
@@ -25,14 +25,14 @@ class User < ApplicationRecord
 
   ## 아이디로 로그인
   def login
-    @login || self.IDe || self.email
+    @login || self.name
   end
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
-      where(conditions.to_h).where(["lower(IDe) = :value OR lower(email) = :value", { :value => login.downcase }]).first
-    elsif conditions.has_key?(:IDe) || conditions.has_key?(:email)
+      where(conditions.to_h).where(["lower(name) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    elsif conditions.has_key?(:name) 
       where(conditions.to_h).first
     end
   end

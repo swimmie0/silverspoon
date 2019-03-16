@@ -517,7 +517,7 @@
 
 .main-board-title{
     font-size: 1.1rem;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .main-board-more{
@@ -589,4 +589,9 @@
     width: 23%;
     height: 2.2rem;
     background-color:white;    
+}
+#error_explanation h2{
+    font-size: 1rem;
+    margin-top: 1rem;
+    font-weight: bold;
 }

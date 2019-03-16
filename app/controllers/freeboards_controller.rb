@@ -4,6 +4,7 @@ class FreeboardsController < ApplicationController
   impressionist actions: [:show]
   # GET /freeboards
   # GET /freeboards.json 
+  
   def index
     # if user_signed_in? && current_user.name == nil
     #   flash[:warning] ='닉네임을 설정해주세요'
@@ -39,17 +40,9 @@ class FreeboardsController < ApplicationController
     if params[:completed] == 'true'
       @freeboard.completed = true
     end
-    # 로그인 및 닉네임설정해야 글 볼 수 있도록
-    # if user_signed_in? && current_user.name != nil
-    #   @new_comment  = Comment.build_from(@freeboard, current_user.id, "") 
-    # elsif !user_signed_in?
-    #   flash[:warning] = "로그인해주세요"
-    #   redirect_to root_path  
-    # elsif user_signed_in? && current_user.name == nil
-    #   flash[:warning] ='닉네임을 설정해주세요'
-    #   redirect_to edit_user_registration_path
-    # end
 
+    @num = Freeboard.all.count
+    
     if user_signed_in?
        @new_comment  = Comment.build_from(@freeboard, current_user.id, "") 
     end
@@ -61,7 +54,40 @@ class FreeboardsController < ApplicationController
       end
     end
 
+    # if @freeboard.user.profileimg.url == nil
+    #   @freeboard.user.profileimg = 'defaultImg3.jpg'
+    # end
   end
+
+  def checkNum
+    @free_all= Freeboard.all.count  
+    @free_daily=Freeboard.where(category: "일상글").count
+    @free_information=Freeboard.where(category: "정보글").count
+    @free_qna=Freeboard.where(category: "질문글").count 
+    @free_crowd=Freeboard.where(category: "제보글").count
+
+    @category = params[:category]
+
+    $result={"postNum" => nil}
+    if @category == "일상글"
+      $result["postNum"] =  @free_daily
+    elsif @category == "정보글"
+      $result["postNum"] =  @free_information
+    elsif @category == "질문글"
+      $result["postNum"] =  @free_qna
+    elsif @category == "제보글"  
+      $result["postNum"] =  @free_crowd 
+    else
+      $result["postNum"] = Freeboard.all.count               
+    end
+    
+      $result = $result.to_json
+      respond_to do |format|
+        format.json {render json: $result}
+      end
+  end
+
+
 
   # GET /freeboards/new
   def new   
@@ -121,6 +147,7 @@ class FreeboardsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

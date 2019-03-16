@@ -20,8 +20,9 @@ ActiveRecord::Schema.define(version: 2019_03_12_080953) do
 >>>>>>> 5715e5c72c040215a62b2d7a1f5417e034a45d61
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "email", default: "", null: false
+    t.string "email", default: ""
     t.string "encrypted_password", default: "", null: false
+    t.string "name", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -302,12 +303,12 @@ ActiveRecord::Schema.define(version: 2019_03_12_080953) do
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "email", default: "", null: false
+    t.string "email", default: ""
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.string "IDe"
-    t.string "name"
+    t.string "name", null: false
     t.string "allergy"
     t.string "allergy_etc"
     t.string "gender", default: ""
@@ -323,7 +324,6 @@ ActiveRecord::Schema.define(version: 2019_03_12_080953) do
     t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
