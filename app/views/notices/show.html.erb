@@ -16,11 +16,13 @@
         </div>      
 
       <hr/>
-        <p><%= @notice.content.html_safe  %></p>
+        <%# <p><%= @notice.content.html_safe  %>
+        <p><%= content_tag(:div, @notice.content.html_safe, :class=>"post-body")  %></p>
+        
         <div class="post-edit">
           <% if user_signed_in? && current_user.admin?%>
             <%= link_to '수정', edit_notice_path(@notice), class:"linkto" %>
-            <%= link_to '삭제', method: :delete, class:"linkto"%>      
+            <%= link_to '삭제', @notice, method: :delete, class:"linkto"%>      
           <%end%>  
         </div>
     </div>

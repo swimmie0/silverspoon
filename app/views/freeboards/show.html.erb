@@ -23,7 +23,7 @@
             <div class="post-edit">
               <% if current_user == @freeboard.user%>
                 <%= link_to '수정', edit_freeboard_path(@freeboard), class:"linkto" %>
-                <%= link_to '삭제', {method: :delete}, class:"linkto"%>      
+                <%= link_to '삭제', @freeboard, method: :delete,  data: { confirm: '삭제하시겠습니까?' }, class:"linkto" %>      
               <%end%>
               <% if @freeboard.category=='제보글'&&user_signed_in? && current_user.admin? %>
                 <%= form_for(@freeboard)  do |form| %>
