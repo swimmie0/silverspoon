@@ -5,131 +5,131 @@
 
         <!-- 회원가입 Form 섹션 -->
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        <%= devise_error_messages! %>
-        <div class="RegisterFormHeader big-title"> 개인정보 수정 </div>
-        <!-- 필수항목 기입 섹션 -->
-        <%# <hr><h6 class="RegisterFormMust" style="text-align: right;"> **필수 항목 </h6>  %>
+          <%= devise_error_messages! %>
+          <div class="RegisterFormHeader big-title"> 개인정보 수정 </div>
+          <!-- 필수항목 기입 섹션 -->
+          <%# <hr><h6 class="RegisterFormMust" style="text-align: right;"> **필수 항목 </h6>  %>
 
-        <%# <div class = "field">
-          <span style="color:red;">*&nbsp;</span><%= f.label "닉네임" %>
-          <%# <div class="form-inline">
-          <%# <%= f.text_field :name, class: "form-control", id: "checkname", :required => true, :validates => { :uniqueness => true } %>
-          <%# <button type = "button" id="checkDouble">중복확인</button>
-          </div>
-          <p class = "mt-4 mb-2" id = "check-warning"></p>
-        </div> %> 
+          <%# <div class = "field">
+            <span style="color:red;">*&nbsp;</span><%= f.label "닉네임" %>
+            <%# <div class="form-inline">
+            <%# <%= f.text_field :name, class: "form-control", id: "checkname", :required => true, :validates => { :uniqueness => true } %>
+            <%# <button type = "button" id="checkDouble">중복확인</button>
+            </div>
+            <p class = "mt-4 mb-2" id = "check-warning"></p>
+          </div> %> 
 
-        <%# <div class="field">
-          <span style="color:red;">*&nbsp;</span><%= f.label "이메일" %>
-          <%# <%= f.email_field :email, autofocus: true, autocomplete: "email" , class: "form-control" %>
-        <%# </div> %> 
-        <!-- 필수항목 기입 섹션 끝 -->
-
-
-        <!-- 선택항목 기입 섹션 -->
-        <h6 class="RegisterFormMust" style="text-align: right;"> **선택 항목 </h6>
-        
-        <div class="field">
-
-          <h5 style="padding-bottom: 1%"> 알레르기정보 </h5>
-          
-          <div> 유제품 및 난류:
-            <%= check_box_tag 'user[allergy][]', '난류' %> 난류
-            <%= check_box_tag 'user[allergy][]', '우유' %> 우유 
-          </div><br/>
-
-          <div> 과채류 및 곡류: 
-            <%= check_box_tag 'user[allergy][]', '복숭아'%> 복숭아
-            <%= check_box_tag 'user[allergy][]', '토마토'%> 토마토
-            <%= check_box_tag 'user[allergy][]', '대두(콩)' %> 대두(콩) 
-            <%= check_box_tag 'user[allergy][]', '밀'%> 밀
-            <%= check_box_tag 'user[allergy][]', '메밀'%> 메밀 
-          </div><br/>
-
-          <div> 육류:
-            <%= check_box_tag 'user[allergy][]', '닭고기' %> 닭고기 
-            <%= check_box_tag 'user[allergy][]', '돼지고기'%>돼지고기 
-            <%= check_box_tag 'user[allergy][]', '쇠고기'%>쇠고기
-          </div><br/> 
-
-          <div> 어패류:
-            <%= check_box_tag 'user[allergy][]', '고등어' %>고등어
-            <%= check_box_tag 'user[allergy][]', '오징어' %>오징어
-            <%= check_box_tag 'user[allergy][]', '게' %> 게
-            <%= check_box_tag 'user[allergy][]', '새우' %> 새우 
-            <%= check_box_tag 'user[allergy][]', '조개류' %>조개류
-            <%= check_box_tag 'user[allergy][]', '홍합' %>홍합
-            <%= check_box_tag 'user[allergy][]', '전복' %>전복
-            <%= check_box_tag 'user[allergy][]', '굴' %>굴
-          </div><br/>
-
-          <div> 견과류,아황산:
-            <%= check_box_tag 'user[allergy][]', '땅콩' %> 땅콩
-            <%= check_box_tag 'user[allergy][]', '호두 ' %> 호두 
-            <%= check_box_tag 'user[allergy][]', '아황산류 ' %> 아황산류 
-          </div><br>
-        </div>
-
-        <hr>
-
-        <div class="row">
-
-          <%# <div class="col-3 field">
-            <h5> 성별 </h5>
-            <%= f.radio_button :gender, "남" %>
-            <%# <%= f.radio_button :gender, "여" %> 
+          <%# <div class="field">
+            <span style="color:red;">*&nbsp;</span><%= f.label "이메일" %>
+            <%# <%= f.email_field :email, autofocus: true, autocomplete: "email" , class: "form-control" %>
           <%# </div> %> 
+          <!-- 필수항목 기입 섹션 끝 -->
 
-          <%# <div class="col-4 field">
-            <h5> 나이 </h5>
-            <%= f.select :ages, options_for_select([["10대이하", "10대이하"], ["10대","10대"], ["20-30대","20-30대"], ["40-50대","40-50대"],["60대이상","60대이상"]]), { prompt: '나이를 선택해주세요' } %>  
-          <%# </div> %>
 
-          <div class="col-4 field">
-            <h5> 프로필 사진 </h5>
-            <%#= f.label :profileimg, "프로필 사진" %>
-            <%= f.file_field :profileimg, accept: 'image/png, image/gif, image/jpeg' %>
+          <!-- 선택항목 기입 섹션 -->
+          <h6 class="RegisterFormMust" style="text-align: right;"> **선택 항목 </h6>
+          
+          <div class="field">
+
+            <h5 style="padding-bottom: 1%"> 알레르기정보 </h5>
+            
+            <div> 유제품 및 난류:
+              <%= check_box_tag 'user[allergy][]', '난류' %> 난류
+              <%= check_box_tag 'user[allergy][]', '우유' %> 우유 
+            </div><br/>
+
+            <div> 과채류 및 곡류: 
+              <%= check_box_tag 'user[allergy][]', '복숭아'%> 복숭아
+              <%= check_box_tag 'user[allergy][]', '토마토'%> 토마토
+              <%= check_box_tag 'user[allergy][]', '대두(콩)' %> 대두(콩) 
+              <%= check_box_tag 'user[allergy][]', '밀'%> 밀
+              <%= check_box_tag 'user[allergy][]', '메밀'%> 메밀 
+            </div><br/>
+
+            <div> 육류:
+              <%= check_box_tag 'user[allergy][]', '닭고기' %> 닭고기 
+              <%= check_box_tag 'user[allergy][]', '돼지고기'%>돼지고기 
+              <%= check_box_tag 'user[allergy][]', '쇠고기'%>쇠고기
+            </div><br/> 
+
+            <div> 어패류:
+              <%= check_box_tag 'user[allergy][]', '고등어' %>고등어
+              <%= check_box_tag 'user[allergy][]', '오징어' %>오징어
+              <%= check_box_tag 'user[allergy][]', '게' %> 게
+              <%= check_box_tag 'user[allergy][]', '새우' %> 새우 
+              <%= check_box_tag 'user[allergy][]', '조개류' %>조개류
+              <%= check_box_tag 'user[allergy][]', '홍합' %>홍합
+              <%= check_box_tag 'user[allergy][]', '전복' %>전복
+              <%= check_box_tag 'user[allergy][]', '굴' %>굴
+            </div><br/>
+
+            <div> 견과류,아황산:
+              <%= check_box_tag 'user[allergy][]', '땅콩' %> 땅콩
+              <%= check_box_tag 'user[allergy][]', '호두 ' %> 호두 
+              <%= check_box_tag 'user[allergy][]', '아황산류 ' %> 아황산류 
+            </div><br>
           </div>
 
-        </div><br/>      
-        <!-- 선택항목 기입 섹션 끝 -->
-        <hr>
-        
-        <!--비밀번호 수정-->
-        <div class="field"> 
-          <h5> 비밀번호 수정&nbsp;<i style="font-size:0.9rem;">(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i></h5>
-          <%# <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>
-          <div class="row" style="margin-top:1rem;">
-            <div class="col field">
-            <%= f.label :password%> 
-            <%= f.password_field :password, autocomplete: "off",class: "form-control" %>            
+          <hr>
+
+          <div class="row">
+
+            <%# <div class="col-3 field">
+              <h5> 성별 </h5>
+              <%= f.radio_button :gender, "남" %>
+              <%# <%= f.radio_button :gender, "여" %> 
+            <%# </div> %> 
+
+            <%# <div class="col-4 field">
+              <h5> 나이 </h5>
+              <%= f.select :ages, options_for_select([["10대이하", "10대이하"], ["10대","10대"], ["20-30대","20-30대"], ["40-50대","40-50대"],["60대이상","60대이상"]]), { prompt: '나이를 선택해주세요' } %>  
+            <%# </div> %>
+
+            <div class="col-4 field">
+              <h5> 프로필 사진 </h5>
+              <%#= f.label :profileimg, "프로필 사진" %>
+              <%= f.file_field :profileimg, accept: 'image/png, image/gif, image/jpeg' %>
             </div>
-            <div class="col field">
-            <%= f.label :password_confirmation %><br />            
-            <%= f.password_field :password_confirmation, autocomplete: "off",class: "form-control" %>
-            </div>
-            <%# <% if @minimum_password_length %>
-              <%# <br />
-              <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %>
-            <%# <% end %> 
-          </div><br/>
 
-          <div class="field">
-            <%= f.label :current_password %> <br />
-            <%= f.password_field :current_password, autocomplete: "off",class: "form-control"%>
-          </div><br/>
-        </div>
-
-        <hr>
-        <h5>  회원탈퇴 </h5>
-        <p><%= t('.unhappy') %> <%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %></p>
-
+          </div><br/>      
+          <!-- 선택항목 기입 섹션 끝 -->
+          <hr>
           
+          <!--비밀번호 수정-->
+          <div class="field"> 
+            <h5> 비밀번호 수정&nbsp;<i style="font-size:0.9rem;">(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i></h5>
+            <%# <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>
+            <div class="row" style="margin-top:1rem;">
+              <div class="col field">
+              <%= f.label :password%> 
+              <%= f.password_field :password, autocomplete: "off",class: "form-control" %>            
+              </div>
+              <div class="col field">
+              <%= f.label :password_confirmation %><br />            
+              <%= f.password_field :password_confirmation, autocomplete: "off",class: "form-control" %>
+              </div>
+              <%# <% if @minimum_password_length %>
+                <%# <br />
+                <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %>
+              <%# <% end %> 
+            </div><br/>
+
+            <div class="field">
+              <%= f.label :current_password %> <br />
+              <%= f.password_field :current_password, autocomplete: "off",class: "form-control"%>
+            </div><br/>
+          </div>
+
+          <hr>
+          <h5>  회원탈퇴 </h5>
+          <p><%= t('.unhappy') %> <%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %></p>
+
+            
           <div class="actions">
             <%# <%= f.submit "Sign up" , id: "submitButton" %> 
                 <div class="d-flex justify-content-between">
-                <div></div>
-                <button type="submit" class="btn btn-search" id="submitButton">수정하기</button>
+                  <div></div>
+                  <button type="submit" class="btn btn-search" id="submitButton">수정하기</button>
                 </div>
           </div>
         <% end %>  
