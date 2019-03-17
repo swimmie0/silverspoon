@@ -1,5 +1,4 @@
 <!-- My Page : Open-->
-<body>
 
 <!-- 상단 섹션 -->
   <div class="ProfileUpperSection">
@@ -131,49 +130,42 @@
   </div>
 <!-- 상단 섹션 끝 -->
 
-
 <!-- 프로필 레시피 섹션 -->
   <div class="ProfileRecipeSection">
     <!-- 프로필 레시피 제목 섹션 -->
-      <p class="ProfileTitle">즐겨찾는 레시피를 확인해보세요!</p>
+      <p class="ProfileTitle profile-recipe-title">즐겨찾는 레시피를 확인하세요!</p>
     <!-- 프로필 레시피 제목 섹션 끝 -->
     <!-- 프로필 레시피 사진 섹션 -->
-      <div class="ProfileRecipeSection container">
+      <div class="container">
         <nav style="font-size: 0.9rem;">
-          <p class="ProfileRecipeCount">최신 3건</p>
-          <p style="float: right;">더 보기</p>
+          <%# <p class="ProfileRecipeCount">최신 3건</p>
+          <p style="float: right;">더 보기</p> %>
         </nav>
         <!-- 프로필 레시피 사진 섹션 중 이미지 나열 섹션 -->
           <div class="ProfileRecipeImgSection">
             <!-- 프로필 레시피 사진 섹션 중 이미지 1 -->
               <div class="ProfileRecipeImgBlock">
-                <%= image_tag "https://st2.depositphotos.com/1889887/5668/i/950/depositphotos_56689941-stock-photo-banana-cake.jpg", class:"ProfileRecipeImg"%>
-                <div class="container">
-                  <p style="margin-bottom: 0.5rem; margin-top: 1rem;"> 식빵 </p>
-                  <div style="font-size: 0.8rem"> 우유, 난류 </div>
-                  <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> 알레르기 보유자를 위한 식빵 </div>
+                <%= image_tag "contents-ready-beige.PNG", class:"ProfileRecipeImg"%>
+                <div class="container"  style="height:5rem;">
+                   <span class="popular-recipe-text">레시피 컨텐츠 준비중입니다</span>
                 </div>
               </div>
             <!-- 프로필 레시피 사진 섹션 중 이미지 1 끝 -->
 
             <!-- 프로필 레시피 사진 섹션 중 이미지 2 -->
               <div class="ProfileRecipeImgBlock">
-                <%= image_tag "https://st2.depositphotos.com/1889887/5668/i/950/depositphotos_56689941-stock-photo-banana-cake.jpg", class:"ProfileRecipeImg"%>
-                <div class="container">
-                  <p style="margin-bottom: 0.5rem; margin-top: 1rem;"> 식빵 </p>
-                  <div style="font-size: 0.8rem"> 우유, 난류 </div>
-                  <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> 알레르기 보유자를 위한 식빵 </div>
+                <%= image_tag "contents-ready-beige.PNG", class:"ProfileRecipeImg"%>
+                <div class="container"  style="height:5rem;">
+                   <span class="popular-recipe-text">레시피 컨텐츠 준비중입니다</span>
                 </div>
               </div>
             <!-- 프로필 레시피 사진 섹션 중 이미지 2 끝 -->
 
             <!-- 프로필 레시피 사진 섹션 중 이미지 3 -->
               <div class="ProfileRecipeImgBlock">
-                <%= image_tag "https://st2.depositphotos.com/1889887/5668/i/950/depositphotos_56689941-stock-photo-banana-cake.jpg", class:"ProfileRecipeImg"%>
-                <div class="container">
-                  <p style="margin-bottom: 0.5rem; margin-top: 1rem;"> 식빵 </p>
-                  <div style="font-size: 0.8rem"> 우유, 난류 </div>
-                  <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> 알레르기 보유자를 위한 식빵 </div>
+                <%= image_tag "contents-ready-beige.PNG", class:"ProfileRecipeImg"%>
+                <div class="container" style="height:5rem;">
+                  <span class="popular-recipe-text">레시피 컨텐츠 준비중입니다</span>
                 </div>
               </div>
             <!-- 프로필 레시피 사진 섹션 중 이미지 3 끝 -->
@@ -193,8 +185,8 @@
         <!-- 작성한 게시판 -->
           <div class="col">
             <nav style="margin-top: 2rem; ">
-              <p style="float: left"><b>작성한 게시글</b></p>
-              <p style="float: right;font-size: 0.9rem;"><%=link_to '전체 보기', myposts_path(@profile), class:"linkto", target: :_blank %></p> 
+              <p style="float: left"  class="main-board-title"><b>・&nbsp;작성한 게시글</b></p>
+              <p style="float: right;"><%=link_to '전체 보기', myposts_path(@profile), class:"main-board-more", target: :_blank %></p> 
             </nav>
             <table class="ProfilePostingTable table" style="font-size: 0.8rem;">
               <thead style="background-color: #00307C">
@@ -222,8 +214,8 @@
         <!-- 댓글단 게시판 -->
           <div class="col">
             <nav style="margin-top: 2rem;">
-              <p style="float: left;"><b>댓글 단 게시글</b></p>
-              <p style="float: right;font-size: 0.9rem;"><%=link_to '전체 보기', mycomments_path(id:@profile), class:"linkto", target: :_blank %></p>  
+              <p style="float: left;" class="main-board-title"><b>・&nbsp;댓글 단 게시글</b></p>
+              <p style="float: right;"><%=link_to '전체 보기', mycomments_path(id:@profile), class:"main-board-more", target: :_blank %></p>  
             </nav>
             <table class="ProfilePostingTable table" style="font-size: 0.8rem;">
               <thead style="background-color: #00307C">
@@ -254,39 +246,40 @@
 
 
 <!-- 수정 요청 현황확인 섹션 -->
-  <div class="ProfileRequestEditSection" style="margin-bottom:5rem;">
+<div class="ProfileRequestEditSection container">
     <!-- 수정 요청 현황확인 제목 -->
-      <p class="ProfileTitle">수정 요청 현황 확인</p>
-    <!-- 수정 요청 현황확인 제목 끝 -->
+    <div class="profile-request-titlebox d-flex justify-content-between">
+      <div></div>
+      <div class="ProfileTitle">수정 요청 현황 확인</div>
+      <div class="d-flex align-items-end flex-row-reverse">
+            <span>
+                <%=link_to '더보기 >', myrequests_path(@profile), class:"main-board-more"%>
+            </span>
+      </div>
+     
+      <!-- 수정 요청 현황확인 제목 끝 -->
+    </div>
 
     <!-- 수정 요청 현황확인 내역 -->
-      <div class="container">
-        <!-- 수정 요청 현황확인 네브바 내역 -->
-          <nav style="font-size: 0.8rem;">
-            <p style="float: right"><%=link_to '더 보기', myrequests_path(@profile), class:"linkto", target: :_blank %></p> 
-          </nav>
-          
-        <!-- 수정 요청 현황확인 네브바 내역 끝 -->
-  <!-- 수정 요청 현황확인 섹션 -->
-    <div class="profile-request container d-flex"> <%n=1%>
-      <%@user_requests.each do |request|%>
-      <div class="request-box">
-        <%=link_to request do %>        
-        <div style="margin-bottom: 0rem; margin-top: 1rem;color:black;"> <%=n%><%n=n+1%>번 수정요청에 대한 현황 </div>        
-        <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> <%=request.created_at.strftime('%Y-%m-%d %H:%M')%> </div>
-          <% if request.completed== true %>   
-        <div class="request-completed">완료
-          <% else %>
-        <div class="request-uncompleted">미처리
-          <%end%>
-        </div>
-      </div>
-      <%end%>  
-      <%end%>                       
-    </div> 
-    
-    <p style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0.5rem; float: left; position: relative;">현재 관리자가 확인 및 수정 절차를 진행하고 있습니다. 통상적으로 1~2주 안에 결과가 반영됩니다. 좋은 의견 항상 감사합니다.</p>
-  </div>    
+    <div class="profile-request-wrap">    
+      <div class="profile-request d-flex"> <%n=1%>
+        <%@user_requests.each do |request|%>
+          <div class="request-box">
+            <%=link_to request do %>        
+              <div style="margin-bottom: 0rem; margin-top: 1rem;color:black;"> <%=n%><%n=n+1%>번 수정요청에 대한 현황 </div>        
+              <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> <%=request.created_at.strftime('%Y-%m-%d %H:%M')%> </div>
+              <% if request.completed== true %>   
+                <div class="request-completed">완료</div>
+              <% else %>
+                <div class="request-uncompleted">미처리</div>
+              <%end%>
+            <%end%>
+          </div>  
+        <%end%>                       
+      </div> 
+    </div>
+
+    <div class="profile-request-notice">현재 관리자가 확인 및 수정 절차를 진행하고 있습니다. 통상적으로 1~2주 안에 결과가 반영됩니다. 좋은 의견 항상 감사합니다.</div>
 </div>
 
 <!-- 수정 요청 현황확인 섹션 끝-->

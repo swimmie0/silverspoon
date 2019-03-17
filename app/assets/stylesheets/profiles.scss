@@ -49,7 +49,7 @@ body {
     border: none;
     color: white;
     border-width: 0.3px;
-    font-family: 'NanumBarunGothic',serif;
+    font-family: 'NanumSquare', sans-serif;
     font-size: 0.8rem;
     line-height: 2.5rem;
     
@@ -69,7 +69,7 @@ body {
     border-color:white;
     color: white;
     border-width: 0.3px;
-    font-family: 'NanumBarunGothic',serif;
+    font-family: 'NanumSquare', sans-serif;
     font-size: 0.8rem;
     line-height: 2.5rem;
 
@@ -157,16 +157,21 @@ body {
 
 .ProfileTitle {
   text-align: center; 
-  font-size: 1.4rem; 
-  margin-top: 4rem; 
-  margin-bottom: 2.5rem;
+  font-size: 1.6rem;
+  font-weight: bolder;  
+}
+
+.profile-recipe-title{
+  margin-bottom: 2rem;
 }
 
 .ProfileRecipeSection {
+  margin-top: 4.5rem;
   background-color: white; 
   height: 100%; 
   width: 100%;
   padding: 0px;
+  margin-bottom: 5rem;
 }
 
 .ProfileRecipeCount {
@@ -205,6 +210,8 @@ body {
 
 // 작성한 게시글 & 댓글단 게시글
 .ProfilePostingSection {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
   height: 100%;
   width: 100%;
   background-color: #F8F8F8;
@@ -217,12 +224,21 @@ body {
 // 작성한 게시글 & 댓글단 게시글 끝
 
 // 수정 요청 현황확인 섹션
+.profile-request-titlebox{
+  margin-bottom: 2rem;
+}
 
+.profile-request-notice{
+  color: rgb(165, 164, 164);
+  font-size: 0.8rem;
+  margin-top: 1.5rem;
+  margin-bottom: 5rem;
+}
 .ProfileRequestEditSection {
   background-color: white;
   height: 100%; 
-  width: 100%; 
-  margin-bottom: 5rem;
+  width: 100%;
+  margin-top: 5rem;
 }
 
 .ProfileRequestEditList {
@@ -269,7 +285,7 @@ body {
 }
 
 .ProfileRequestEditBlock-button_O {
-  color: #00307C; 
+  color: #002f7b; 
   text-align: center;
   font-size: 0.8rem; 
   width: 3.3rem; 
@@ -277,7 +293,7 @@ body {
   margin-top: 6%;
   margin-bottom: 6%; 
   padding: 0.8% 1% 0.5% 1%; 
-  border: 1px solid #00307C; 
+  border: 1px solid #002f7b; 
   border-radius: 30%; 
 
 }
@@ -420,8 +436,8 @@ $colors: (
   border-radius: 30%; 
   margin-top: 6%; 
   padding: 0.8% 1% 0.5% 1%; 
-  border: 1px solid #00307C; 
-  color: #00307C; 
+  border: 1px solid #002f7b; 
+  color: #002f7b; 
   width: 3.3rem; 
   // height: 2rem; 
   font-size: 0.8rem; 
@@ -441,7 +457,8 @@ $colors: (
 }
 
 .RegisterSection .RegisterForm{
-  font-family: 'NanumBarunGothic',serif;
+  font-family: 'NanumSquare', sans-serif;
+  
 }
 
 .profile-message-tr{
@@ -449,4 +466,10 @@ $colors: (
 }
 .profile-message-tr:hover{
   background-color: rgb(243, 243, 243);
+}
+
+//제보
+
+.request-contents{
+  padding-bottom: 4rem !important;
 }

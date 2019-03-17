@@ -3,10 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-
+.recipe-new-ready{
+    margin: 10rem 0rem;
+}
 
 .recipe-index-upper{
-    font-family: 'NanumBarunGothic',serif;
+    font-family: 'NanumSquare', sans-serif;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -66,7 +68,7 @@
     font-size: 0.8rem;
     width: 13%;
     height: 3rem;
-    background-color: #00307C;
+    background-color: #002f7b;
 }
 
 
@@ -84,9 +86,9 @@
 .recipe-index-search-tag{
     cursor: pointer;
 
-    font-weight: 330;
+    font-weight: 400;
     margin: 0.35rem !important;
-    color: #00307C;
+    color: #002f7b;
     font-size: 0.8rem;
     height: 2rem;
     line-height: 2rem;
@@ -95,13 +97,13 @@
     padding-left: 0.6rem;
     border-radius: 0.75rem;
     border-style: solid;
-    border-color: #00307C;
+    border-color: #002f7b;
     border-width: 1px;
 }
 
 .recipe-index-search-tag:hover{
     text-decoration: underline;
-    text-decoration-color: #00307C;
+    text-decoration-color: #002f7b;
 }
 
 
@@ -112,7 +114,7 @@
 
 //-----------------index main 시작========
 .recipe-index-main{
-    font-family: 'NanumBarunGothic',serif;
+    font-family: 'NanumSquare', sans-serif;
     width: 100%;
     margin-top: 4rem;
     margin-bottom: 4rem;
@@ -249,7 +251,7 @@
 .recipe-about-sec{
     width: 100%;
     height: 100%;
-    font-family:  'NanumBarunGothic',serif;
+    font-family:  'NanumSquare', sans-serif;
 }
 
 .recipe-bookmark{
@@ -366,7 +368,7 @@
 }
 
 .recipe-i-ingr{
-    color: #00307C;
+    color: #002f7b;
 }
 
 
@@ -447,7 +449,7 @@
 
 .recipe-show-step-title{
     font-size: 1.1rem;
-    color: #00307C;
+    color: #002f7b;
     font-weight: 600;
 }
 
@@ -470,7 +472,7 @@
 
 .carousel-item{
     height: 100%;
-    font-family:  'NanumBarunGothic',serif;
+    font-family:  'NanumSquare', sans-serif;
 }
 .carousel-item img{
     height: 100%;

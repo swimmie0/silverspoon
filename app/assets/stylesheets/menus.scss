@@ -33,7 +33,7 @@
     width: 100%;
 }
 .index-content-title{
-    font-family: 'NanumBarunGothic',serif;
+    font-family: 'NanumSquare', sans-serif;
     font-size: 1.2rem;
     font-weight: bolder;
     flex-direction: column;
@@ -199,7 +199,7 @@ p.rtnt-name{
     line-height: 40%;
 }
 p.rtnt-intro{
-    font-family: 'NanumBarunGothic',serif;
+    font-family: 'NanumSquare', sans-serif;
     font-size: 0.7rem;
     // font-weight: lighter ;
     color: rgb(172, 166, 166);
@@ -207,7 +207,7 @@ p.rtnt-intro{
     letter-spacing: 0.1rem;
 }
 p.rtnt-adress{
-    font-family: 'NanumBarunGothic',serif;
+    font-family: 'NanumSquare', sans-serif;
     font-size: 0.7rem;
     font-weight: lighter ;
 }
@@ -246,7 +246,7 @@ p.menu-name{
     line-height: 40%;
 }
 p.menu-intro{
-    font-family: 'NanumBarunGothic',serif;
+    font-family: 'NanumSquare', sans-serif;
     font-size: 0.7rem;
     // font-weight: lighter ;
     color: rgb(172, 166, 166);
@@ -266,7 +266,7 @@ p.menu-intro{
     width: auto;
     max-width: 8rem;
     margin: 0.35rem !important;
-    color: #00307C;
+    color: #002f7b;
     font-size: 0.8rem;
     height: 2rem;
     line-height: 2rem;
@@ -275,7 +275,7 @@ p.menu-intro{
     padding-left: 0.9rem;
     border-radius: 0.75rem;
     border-style: solid;
-    border-color: #00307C;
+    border-color: #002f7b;
     border-width: 1.1px;
 }
 
@@ -341,7 +341,7 @@ span.pg{
 }
 //--강조
 span.current {
-  background-color: #00307C;
+  background-color: #002f7b;
   color: white;
   border-radius: 50%;
   font-size: 0.8rem;  

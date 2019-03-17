@@ -6,7 +6,12 @@
     cursor: pointer;
 }
 
-
+.zizum-about-explain{
+    margin-top:0.6rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: rgb(165, 164, 164); 
+}
 .zizum-about-wrap{
     height: 500px;
     width: 100%;
@@ -18,7 +23,7 @@
     width: 100%;
     height: 100%;
     background-color: #F8F8F8;
-    font-family:  'NanumBarunGothic',serif;
+    font-family:  'NanumSquare', sans-serif;
 }
 
 .zizum-about-container{
@@ -116,17 +121,17 @@
     margin-right: 0.7rem;
 }
 
-.zizum-i-adr, .zizum-i-phone{
-    color: #00307C;
+.zizum-i-adr, .zizum-i-bookmark{
+    color: #002f7b;
 }
 
-.zizum-i-time, .zizum-i-bookmark{
+.zizum-i-time, .zizum-i-phone{
     color: #FF5400;
 }
 
 
 .zizum-allergy{
-    font-family: 'NanumBarunGothic',serif;
+    font-family: 'NanumSquare', sans-serif;
     margin-top: 4rem;
     margin-bottom: 7rem;
 }
@@ -170,9 +175,9 @@
 }
 
 .zizum-menu-active{
-    background-color: #00307C;
+    background-color: #002f7b;
     color: white;
-    border-color: #00307C;
+    border-color: #002f7b;
 }
 
 .zizum-table-active{
@@ -184,7 +189,7 @@
     font-size: 0.8rem;
     color: white;
     width: 100%;
-    background-color: #00307C;
+    background-color: #002f7b;
     height: 2rem;
 }
 
@@ -206,7 +211,7 @@
 .zizum-menu-box{
     width: 100%;
     border-style: solid;
-    border-color: #00307C;
+    border-color: #002f7b;
     border-width: 0.6px;
 }
 
@@ -228,7 +233,7 @@
     align-items: center;
 
     border-right-style: solid;
-    border-right-color:#00307C;
+    border-right-color:#002f7b;
     border-right-width: 0.6px; 
     width: 21%;
     background-color: #F8F8F8;
@@ -254,7 +259,7 @@
 
 .zizum-menu-cp{
     margin: 0.35rem !important;
-    color: #00307C;
+    color: #002f7b;
     font-size: 0.8rem;
     height: 2rem;
     line-height: 2rem;
@@ -263,7 +268,7 @@
     padding-left: 0.9rem;
     border-radius: 0.75rem;
     border-style: solid;
-    border-color: #00307C;
+    border-color: #002f7b;
     border-width: 1.1px;
 }
 
@@ -280,7 +285,7 @@
 //     // display: none;
 // }
 .fa-map-marker-alt{
-    color: #00307C;
+    color: #002f7b;
 }
 
 .zizum-table-header-title{
@@ -336,7 +341,7 @@
 }
 
 .zizum-overlay-text{
-    font-family:  'NanumBarunGothic',serif;
+    font-family:  'NanumSquare', sans-serif;
     color: white;
     font-weight: bold;
     font-size: 1.3rem;
@@ -411,12 +416,12 @@
 
 .allergy-circle{
     font-weight: 800;
-    color: #00307C;
+    color: #002f7b;
 }
 
 .allergy-star{
     font-weight: 800;
-    color: #00307C;
+    color: #002f7b;
 }
 
 .allergy-none{

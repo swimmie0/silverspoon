@@ -27,12 +27,14 @@
           </div>
 
           <div class="zizum-about-txtbox-in">
-            <div class="zizum-about-title"><%= @zizuminfo.restaurant_name + " " + @zizuminfo.zizum_name%></div>
+            <div class="zizum-about-title"><%= @zizuminfo.restaurant_name + " " + @zizuminfo.zizum_name%><br>
+              <div class="zizum-about-explain"><%=@zizuminfo.restaurant.explain%></div>
+            </div>
+            
             <div class="zizum-about-resid nodisplay"><%=@zizuminfo.restaurant.id%></div>
             <div class="zizum-about-zizid nodisplay"><%=@zizuminfo.id%></div>
             <div class="zizum-about-moreinfo">
               <div class="zizum-about-mi-row"><div class="zizum-about-stitle"><i class="fas fa-map-marked-alt zizum-i-adr"></i>주소</div><div class="zizum-about-spec"><%= @zizuminfo.sido + " " +@zizuminfo.sigungu + " " +@zizuminfo.sangse_juso %></div></div>
-              <div class="zizum-about-mi-row"><div class="zizum-about-stitle"><i class="far fa-clock zizum-i-time"></i></i>운영시간</div><div class="zizum-about-spec">제보 부탁드립니다.</div></div>
               <div class="zizum-about-mi-row"><div class="zizum-about-stitle"><i class="fas fa-phone zizum-i-phone"></i>연락처</div><div class="zizum-about-spec"><%= @zizuminfo.phone_number %></div></div>
               <div class="zizum-about-mi-row"><div class="zizum-about-stitle"><i class="far fa-bookmark zizum-i-bookmark"></i>북마크수</div><div class="zizum-about-spec"><%= @zizuminfo.followers_count%>명</div></div>
             </div>

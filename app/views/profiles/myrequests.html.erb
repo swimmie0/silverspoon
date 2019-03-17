@@ -1,7 +1,8 @@
-<div class="post-contents container">
-나의 수정 요청 진행현황
+<div class="post-contents middle-title container">
+나의 수정 요청 진행 현황
 </div>
-<div class ="contents">
+
+<div class ="contents request-contents">
     <div class="post-num">
       '전체' 총 <%=@user_requests.all.count%>건
     </div>
@@ -19,38 +20,39 @@
       </thead>
 
       <tbody>
-    </div>
+
         <% @user_requests.each do |request| %>
           <tr >
             <td> 
              <% if request.completed==true %>
-             <div class="completed"style="font-weight:lighter;color:#1E285D; ">[완료]</div>
+             <div class="completed"style="font-weight:lighter;color:#002f7b; ">[완료]</div>
             <% else %>
              <div class="completed"style="font-weight:lighter;color:#FF5400;">[미처리]</div>
             <% end %>   
             </td>
-            <td class="title form-inline">
+            <td class="title">
                 <%= link_to request.title, request, {:class => "linkto",:style=>"font-size:0.8rem;"} %>             
             </td>
-            <td><%= request.name %></td>
-            <td><%= request.time(request)%></td>                
-            <td> <%= request.impressionist_count(:filter=>:session_hash) %></td>
+            <td class="post-td-gray"><%= request.name %></td>
+            <td class="post-td-gray"><%= request.time(request)%></td>                
+            <td class="post-td-gray"> <%= request.impressionist_count(:filter=>:session_hash) %></td>
           </tr>
         <% end %>
-    </tbody>
+      </tbody>
     </table>
+  </div>
 </div>
 
 <script>
 
 // 행 clickable 
-$(document).ready(function() {
-    $('#post-table tr').click(function() {
-        var href = $(this).find("a").attr("href");
+  $(document).ready(function() {
+      $('#post-table tr').click(function() {
+          var href = $(this).find("a").attr("href");
 
-        if(href) {
-            window.location = href;
-        }
-    });
-});
+          if(href) {
+              window.location = href;
+          }
+      });
+  });
  </script>

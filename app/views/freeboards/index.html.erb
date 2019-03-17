@@ -15,12 +15,12 @@
     <%= form_tag(freeboards_path, :method => "get") do %>
       <%= text_field_tag :search, params[:search], class: 'search form-control', placeholder:'검색어 입력'%>
       <span class="input-group-btn">
-        <button class="post-btn" type="button"><i class="fa fa-search fa-fw"></i>검색</button>
+        <button class="post-btn" type="submit"><i class="fa fa-search fa-fw"></i></button>
       </span>
       <%# <%= submit_tag "검색", class: 'btn btn-outline-primary my-2 my-sm-0' %> 
     <% end %> 
   </div>  
-
+</div>
 
 <div class ="contents">
   <div class="post-num row">총&nbsp;<p><%=Freeboard.all.count%></p>건</div>
@@ -30,26 +30,25 @@
         <tr class= "postall post일상글 post정보글 post질문글 post제보글">
           <%# <th>Category</th> %>
           <th class="change" style="width:8%;">댓글</th>          
-          <th style="width:60%;" class="title">제목</th>
-          <th>작성자</th>
+          <th style="width:58%;" class="title">제목</th>
+          <th >작성자</th>
           <th style="width:10%;">작성일</th>
-          <th style="width:6%;">조회수</th>      
+          <th style="width:8%;">조회수</th>      
         </tr>
       </thead>
 
       <tbody>
-    </div>
         <% @freeboards.each do |freeboard| %>
           <tr class = "postall" >
             <td> <%= freeboard.comment_threads.count %></td>
-            <td class="title form-inline">
-              <div class="ctg"style="font-weight:lighter;font-size:0.6rem;">[<%=freeboard.category%>]</div>
-              &nbsp;<%= link_to freeboard.title, freeboard, {:class => "linkto",:style=>"font-size:0.8rem;"} %>
+            <td class="title">
+              <span class="ctg"style="font-weight:400;font-size:0.6rem;">[<%=freeboard.category%>]</span>
+              &nbsp;&nbsp;<%= link_to freeboard.title, freeboard, {:class => "linkto",:style=>"font-size:0.8rem;"} %>
               &nbsp;<% if freeboard.locked %><i class="fas fa-lock"></i><% end %>  
             </td>
-            <td><%= freeboard.name %></td>
-            <td><%= freeboard.time(freeboard)%></td>                
-            <td> <%= freeboard.impressionist_count(:filter=>:session_hash) %></td>
+            <td class="post-td-gray"><%= freeboard.name %></td>
+            <td class="post-td-gray"><%= freeboard.time(freeboard)%></td>                
+            <td class="post-td-gray"> <%= freeboard.impressionist_count(:filter=>:session_hash) %></td>
           </tr>
         <% end %>
 
@@ -57,9 +56,9 @@
           <tr class="post일상글" style= "display:none">
             <td> <%= d.comment_threads.count %></td>
             <td class="title"><%= link_to d.title, d, {:class => "linkto"} %></td>
-            <td><%= d.name %></td>
-            <td><%= d.time(d)%></td>                
-            <td> <%= d.impressionist_count(:filter=>:session_hash) %></td>            
+            <td class="post-td-gray"><%= d.name %></td>
+            <td class="post-td-gray"><%= d.time(d)%></td>                
+            <td class="post-td-gray"> <%= d.impressionist_count(:filter=>:session_hash) %></td>            
           </tr>
         <% end %>   
       
@@ -68,9 +67,9 @@
           <td> <%= i.comment_threads.count %></td>
           <%# <td><%= i.category %>
           <td   class="title"><%= link_to i.title, i, {:class => "linkto"} %></td>
-          <td><%= i.name %></td>
-          <td><%= i.time(i)%></td>                                                
-          <td> <%= i.impressionist_count(:filter=>:session_hash) %></td>
+          <td class="post-td-gray"><%= i.name %></td>
+          <td class="post-td-gray"><%= i.time(i)%></td>                                                
+          <td class="post-td-gray"> <%= i.impressionist_count(:filter=>:session_hash) %></td>
         </tr>
         <% end %>
 
@@ -79,9 +78,9 @@
           <td> <%= q.comment_threads.count %></td>
             <%# <td><%= q.category %>
             <td   class="title"><%= link_to q.title, q, {:class => "linkto"} %></td>
-            <td><%= q.name %></td>
-            <td><%= q.time(q)%></td>                                         
-          <td> <%= q.impressionist_count(:filter=>:session_hash) %></td>              
+            <td class="post-td-gray"><%= q.name %></td>
+            <td class="post-td-gray"><%= q.time(q)%></td>                                         
+            <td class="post-td-gray"> <%= q.impressionist_count(:filter=>:session_hash) %></td>              
           </tr>
         <% end %>
 
@@ -89,36 +88,41 @@
           <tr class="post제보글" style= "display:none">
             <td> 
             <% if c.completed==true %>
-             <div class="completed"style="font-weight:lighter;color:#1E285D; ">[완료]</div>
+              <div class="completed"style="font-weight:400;color:#1E285D; ">[완료]</div>
             <% else %>
-             <div class="completed"style="font-weight:lighter;color:#FF5400;">[미처리]</div>
+              <div class="completed"style="font-weight:400;color:#FF5400;">[미처리]</div>
             <% end %> 
             </td>
             <%# <td><%= c.category %>
             <td class="title"><%= link_to c.title, c, {:class => "linkto"} %></td>
-            <td><%= c.name %></td>
-            <td><%= c.time(c)%></td>                                            
-          <td> <%= c.impressionist_count(:filter=>:session_hash) %></td>        
+            <td class="post-td-gray"><%= c.name %></td>
+            <td class="post-td-gray"><%= c.time(c)%></td>                                            
+            <td class="post-td-gray"> <%= c.impressionist_count(:filter=>:session_hash) %></td>        
           </tr>
         <% end %>
       </tbody>
     </table>
+  </div>
+  
+  <div class="postpost-btn">
+    <div class="postpost-btn-width">
+      <div></div>
+      <div class = "p_window">   
+        <%= paginate @freeboards%>
+      </div> 
+      <% if user_signed_in? %>
+        <%= button_to '새 글 작성', new_freeboard_path, :class => "btn btn-search",:method=>'get' %>
+      <% end %>
+    </div>
+  </div>
+
 </div>
 
-<div class="postpost-btn">
-  <div class="postpost-btn-width">
-    <% if user_signed_in? %>
-      <%= button_to '새 글 작성', new_freeboard_path, :class => "btn btn-search",:method=>'get' %>
-    <% end %>
-  </div>
-</div>
-
-  <div class = "p_window">   
-    <%= paginate @freeboards%>
-  </div>
+ 
+<%# 
 </div> <!--second. post table-->
 
-</div> <!--contents-->
+</div> <!--contents--> %>
 
 <script>
 // nav selected 
