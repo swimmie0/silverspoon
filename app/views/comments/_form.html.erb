@@ -21,9 +21,12 @@
       <%= submit_tag "등록", class:"comment-btn" %><br/>
     </div>
   <% end %>
-
+<% elsif user_signed_in? && !current_user.admin? && @new_comment.commentable.category == "제보글"%>
+  <div class="field form-group">
+    <%= text_area_tag :nil, "", class: "form-control", placeholder: "관리자용 댓글창입니다." %>
+  </div>
 <% else %>
-    <div class="field form-group">
-      <%= text_area_tag :nil, "", class: "form-control", placeholder: "회원가입 후 작성가능합니다" %>
-    </div>
+  <div class="field form-group">
+    <%= text_area_tag :nil, "", class: "form-control", placeholder: "회원가입 후 이용가능합니다." %>
+  </div>
 <% end %>

@@ -260,26 +260,33 @@
       <!-- 수정 요청 현황확인 제목 끝 -->
     </div>
 
+    <%if @user_requests.length == 0%>
+      <div class="profile-no-request">
+        <div style="font-size: 0.9rem; color: rgb(165, 164, 164);">'커뮤니티'의 '제보글'을 통해 제보해주세요.</div>
+        <%=link_to "제보글 쓰러 가기 >", new_freeboard_path, style: "font-weight: bold; font-size: 0.9rem; color: rgb(90, 90, 90);"%>
+      </div>
+    <%else%>
     <!-- 수정 요청 현황확인 내역 -->
-    <div class="profile-request-wrap">    
-      <div class="profile-request d-flex"> <%n=1%>
-        <%@user_requests.each do |request|%>
-          <div class="request-box">
-            <%=link_to request do %>        
-              <div style="margin-bottom: 0rem; margin-top: 1rem;color:black;"> <%=n%><%n=n+1%>번 수정요청에 대한 현황 </div>        
-              <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> <%=request.created_at.strftime('%Y-%m-%d %H:%M')%> </div>
-              <% if request.completed== true %>   
-                <div class="request-completed">완료</div>
-              <% else %>
-                <div class="request-uncompleted">미처리</div>
+      <div class="profile-request-wrap">
+        <div class="profile-request d-flex"> <%n=1%>
+          <%@user_requests.each do |request|%>
+            <div class="request-box">
+              <%=link_to request do %>        
+                <div style="margin-bottom: 0rem; margin-top: 1rem;color:black;"> <%=n%><%n=n+1%>번 수정요청에 대한 현황 </div>        
+                <div style="color: rgb(165, 164, 164); font-size: 0.8rem; margin-top: 0rem;"> <%=request.created_at.strftime('%Y-%m-%d %H:%M')%> </div>
+                <% if request.completed== true %>   
+                  <div class="request-completed">완료</div>
+                <% else %>
+                  <div class="request-uncompleted">미처리</div>
+                <%end%>
               <%end%>
-            <%end%>
-          </div>  
-        <%end%>                       
-      </div> 
-    </div>
+            </div>  
+          <%end%>                       
+        </div>
+      </div>
 
-    <div class="profile-request-notice">현재 관리자가 확인 및 수정 절차를 진행하고 있습니다. 통상적으로 1~2주 안에 결과가 반영됩니다. 좋은 의견 항상 감사합니다.</div>
+      <div class="profile-request-notice">현재 관리자가 확인 및 수정 절차를 진행하고 있습니다. 통상적으로 1~2주 안에 결과가 반영됩니다. 좋은 의견 항상 감사합니다.</div>
+    <%end%>
 </div>
 
 <!-- 수정 요청 현황확인 섹션 끝-->
