@@ -507,10 +507,17 @@
 }
 
 .recipe-about-follower{
-    margin: 1rem 0.5rem;
+    padding: 1rem 0.5rem;
     width: 100%;
     align-items: center;
 }
+
+
+.recipe-about-follower:hover{
+   background-color: rgb(243, 243, 243);
+}
+
+
 
 .recipe-new-button{
     margin-right: 0.7rem;

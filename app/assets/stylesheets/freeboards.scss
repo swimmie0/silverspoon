@@ -175,6 +175,7 @@ td.title{
 
 .linkto, .linkto-cancel{
     color:black;
+    cursor: pointer;
 }
 
 .linkto:hover{
@@ -276,7 +277,6 @@ td.title{
     background-color:white;
     border: 0.1px solid rgba(201, 200, 200, 0.438);
     padding: 1.5rem;
-
 }
 .comment.form-control{
     width:90%;
@@ -297,6 +297,7 @@ td.title{
 //    border-bottom: 0.1px solid rgba(201, 200, 200, 0.438);    
 // }
 .comment-btn{
+    cursor: pointer;
     width:10%;
     height:5rem;
     background-color:rgb(0,48,124);
@@ -333,3 +334,6 @@ a.disabled.vote-btn{
     
 }
 
+.post-show-contents{
+    padding-bottom: 5rem;
+}

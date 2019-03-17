@@ -5,7 +5,7 @@
 
       <div class="comment-profile form-inline"> <!--프로필-->
         <%=image_tag("beige-logo.PNG", class:"post-profile-img")%>    
-        <% if comment.user ==nil %><i>탈퇴한 회원입니다</i><%else%>   
+        <% if comment.user ==nil %><i>탈퇴한 회원입니다</i><%else%><%=comment.user.name%><%end%>  
         <%= link_to comment.user.name, profile_path(comment.user.profile.id) ,class:"linkto"%> <%end%>
         <div style="font-weight:lighter;margin-left:1rem;"> <%= time_ago_in_words(comment.created_at) %>전 [ <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %> ] </div> 
         <% if current_user == comment.user %>
@@ -63,7 +63,8 @@
         </div>
       </div>
       <%end%>  <!--//답글창-->
-      <br/> <hr style="border-top: 1px dashed rgb(201, 200, 200);width:95%;">
+      <br/>
+     <hr style="border-top: 1px rgb(201, 200, 200);width:100%;">
     </div> <!--//comment-->
     <%# <div style="margin-left: 20px;"> %>
     <div>    

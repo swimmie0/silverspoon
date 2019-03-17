@@ -328,6 +328,11 @@ body{
 }
 
 .MessageBottomRightButton {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+         appearance: none;
+    border-style: none;
+    cursor:pointer;
     color: white; 
     background-color: #1a2352;
     width: 100%; 

@@ -187,12 +187,17 @@
         scrollLink("rtnt-search-result");
     })
 
+    
+
     $(".sido-select").val('<%=params[:sido]%>');
     $(".sigungu-select").val('<%=params[:sigungu]%>');
 
     
     //메뉴 show
     $(".card-body").on('click',function() {
+        $('#menuBox').animate({scrollTop: 0}, 0);
+
+
         $("#menuBox").html($(this).children(".seeMenu").siblings('.hideMenu').html());
         $("#card2").html($(this).children(".seeMenu").siblings('.hideCard').html());
         $(this).children('.rtnt-check').children('.fa-square').css("display","none");      

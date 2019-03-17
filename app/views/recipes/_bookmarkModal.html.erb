@@ -9,21 +9,24 @@
         </button>
     </div>
     <div class="modal-body recipe-modal-body">
-        <%# 로그인 기능 심기 %>
+        
+       
         <%@recipe.followers.each do |follower|%>
-           <div class="recipe-about-follower d-flex">
-            <div class="recipe-about-writer-imgbox">
-                <% if follower.profileimg.url != nil%>
-                <%=image_tag follower.profileimg.url%>
-                <%elsif%>
-                <%= image_tag "beige-logo.PNG"%>
-                <%end%>
-            </div>
+            <%=link_to profile_path(follower.profile.id) do%>
+            <div class="recipe-about-follower d-flex">
+                <div class="recipe-about-writer-imgbox">
+                    <% if follower.profileimg.url != nil%>
+                        <%=image_tag follower.profileimg.url%>
+                    <%elsif%>
+                        <%= image_tag "beige-logo.PNG"%>
+                    <%end%>
+                </div>
 
-            <div class="recipe-about-writer">
-                <%= follower.name%>
-            </div>
-            </div>
+                <div class="recipe-about-writer linkto">
+                    <%= follower.name%>
+                </div>
+                </div>
+            <%end%>
         <%end%>
     </div>
     </div>
