@@ -568,6 +568,11 @@
 .form-control.id,.form-control.pw{
     margin-bottom:1rem;
 }
+
+.form-control.pw{
+    font-family: initial;
+}
+
 .form-control.id:focus,.form-control.pw:focus{
     border-color:#FF5400;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
