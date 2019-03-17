@@ -55,7 +55,7 @@
         <% @free_daily.each do |d| %>
           <tr class="post일상글" style= "display:none">
             <td> <%= d.comment_threads.count %></td>
-            <td class="title"><%= link_to d.title, d, {:class => "linkto"} %></td>
+            <td class="title"><%= link_to d.title, d, {:class => "linkto", :style=>"font-size:0.8rem;"} %></td>
             <td class="post-td-gray"><%= d.name %></td>
             <td class="post-td-gray"><%= d.time(d)%></td>                
             <td class="post-td-gray"> <%= d.impressionist_count(:filter=>:session_hash) %></td>            
@@ -66,7 +66,7 @@
         <tr class="post정보글" style= "display:none">
           <td> <%= i.comment_threads.count %></td>
           <%# <td><%= i.category %>
-          <td   class="title"><%= link_to i.title, i, {:class => "linkto"} %></td>
+          <td   class="title"><%= link_to i.title, i, {:class => "linkto", :style=>"font-size:0.8rem;"} %></td>
           <td class="post-td-gray"><%= i.name %></td>
           <td class="post-td-gray"><%= i.time(i)%></td>                                                
           <td class="post-td-gray"> <%= i.impressionist_count(:filter=>:session_hash) %></td>
@@ -77,7 +77,7 @@
           <tr class="post질문글" style= "display:none">
           <td> <%= q.comment_threads.count %></td>
             <%# <td><%= q.category %>
-            <td   class="title"><%= link_to q.title, q, {:class => "linkto"} %></td>
+            <td   class="title"><%= link_to q.title, q, {:class => "linkto", :style=>"font-size:0.8rem;"} %></td>
             <td class="post-td-gray"><%= q.name %></td>
             <td class="post-td-gray"><%= q.time(q)%></td>                                         
             <td class="post-td-gray"> <%= q.impressionist_count(:filter=>:session_hash) %></td>              
@@ -94,7 +94,7 @@
             <% end %> 
             </td>
             <%# <td><%= c.category %>
-            <td class="title"><%= link_to c.title, c, {:class => "linkto"} %></td>
+            <td class="title"><%= link_to c.title, c, {:class => "linkto", :style=>"font-size:0.8rem;"} %></td>
             <td class="post-td-gray"><%= c.name %></td>
             <td class="post-td-gray"><%= c.time(c)%></td>                                            
             <td class="post-td-gray"> <%= c.impressionist_count(:filter=>:session_hash) %></td>        
