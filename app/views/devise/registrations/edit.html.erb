@@ -120,21 +120,24 @@
           </div><br/>
         </div>
 
-        <hr>
-        <h5>  회원탈퇴 </h5>
-        <p><%= t('.unhappy') %> <%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %></p>
-
-          
-          <div class="actions">
+        <div class="actions">
             <%# <%= f.submit "Sign up" , id: "submitButton" %> 
                 <div class="d-flex justify-content-between">
                 <div></div>
-                <button type="submit" class="btn btn-search" id="submitButton">수정하기</button>
+                <button type="submit" class="btn btn-search">수정하기</button>
                 </div>
           </div>
         <% end %>  
         <!-- 수정 Form 섹션 끝 -->
         <br>
+        
+        <!-- 탈퇴  -->
+        <hr>
+        <h5> 회원탈퇴 </h5>
+        <div class="row">
+          <p class="col field"><%= t('.unhappy') %> </p>
+          <p class="col field"><%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete, class:"btn-cancel" %></p>
+        </div><br/>
 
       </div>
     </div>
@@ -143,7 +146,7 @@
 
 
 
-<script>
+<%# <script>
 //document.getElementById("submitButton").disabled = true;
 $('#checkname').each(function(){
   var elem =$(this)
@@ -189,4 +192,4 @@ $('#checkname').each(function(){
  });
 
 
-</script>
+</script> %>
