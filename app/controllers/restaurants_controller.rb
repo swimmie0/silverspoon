@@ -80,30 +80,30 @@ class RestaurantsController < ApplicationController
     Restaurant.RestaurantName
     puts "\n\nrestaurant name finished\n\n"
     # sleep 1.5
-    # Zizuminfo.Subway        #1
-    # Zizuminfo.Momstouch     #2
-    # # Zizuminfo.Raracost
+    Zizuminfo.Subway        #1
+    Zizuminfo.Momstouch     #2
+    # Zizuminfo.Raracost
     Zizuminfo.Vips          #3
-    # Zizuminfo.Coffeebean    #4
-    # Zizuminfo.Popeyes       #5
-    # Zizuminfo.Baskin        #6
-    # Zizuminfo.PizzaSchool   #7
-    # Zizuminfo.SeasonsTable  #8
-    # Zizuminfo.Burgerking    #9
-    # Zizuminfo.DunkinDonuts  #10   
+    Zizuminfo.Coffeebean    #4
+    Zizuminfo.Popeyes       #5
+    Zizuminfo.Baskin        #6
+    #Zizuminfo.PizzaSchool   #7
+    Zizuminfo.SeasonsTable  #8
+    Zizuminfo.Burgerking    #9
+    Zizuminfo.DunkinDonuts  #10   
     # ### SushiHiroba         #11
     puts "\n\nzizuminfo finished\n\n"
-    # Menu.Subway             #1
-    # Menu.Momstouch          #2
+    Menu.Subway             #1
+    Menu.Momstouch          #2
     Menu.Vips               #3
-    # # Menu.Raracost
-    # Menu.Coffeebean         #4
-    # Menu.Popeyes            #5
-    # Menu.Baskin             #6
-    # Menu.PizzaSchool        #7
-    # Menu.SeasonsTable       #8
-    # Menu.Burgerking         #9
-    # Menu.DunkinDonuts       #10
+    # Menu.Raracost
+    Menu.Coffeebean         #4
+    Menu.Popeyes            #5
+    Menu.Baskin             #6
+    Menu.PizzaSchool        #7
+    Menu.SeasonsTable       #8
+    Menu.Burgerking         #9
+    Menu.DunkinDonuts       #10
     # ### SushiHiroba         #11    
     puts "crwaling update finished!"
     #redirect_to userrequests_path

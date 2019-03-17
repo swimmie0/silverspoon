@@ -1,24 +1,25 @@
 <div class="post-contents container">
-공지사항
+  <div class="big-title">공지사항</div>
 </div>
 <div class ="contents">
     <div class="post-num">
       '전체' 총 <%=Notice.all.count%>건
     </div>
-  <div class="post-table">    
-    <table class="table table-hover" id="post-table">
-      <thead>
-        <tr>     
-          <th style="width:8%;">No</th>
-          <th style="width:60%;" class="title">제목</th>
-          <th>작성자</th>
-          <th style="width:10%;">작성일</th>
-          <th style="width:6%;">조회수</th>      
-        </tr>
-      </thead>
+    <div class="post-table" style="margin-bottom: 5rem;">    
+      <table class="table table-hover" id="post-table">
+        <thead>
+          <tr>     
+            <th style="width:8%;">No</th>
+            <th style="width:60%;" class="title">제목</th>
+            <th>작성자</th>
+            <th style="width:10%;">작성일</th>
+            <th style="width:6%;">조회수</th>      
+          </tr>
+        </thead>
 
-      <tbody>
-    </div><%n=1%>
+        <tbody>
+      </div>
+      <%n=1%>
         <% @notices.each do | notice| %>
           <tr>
             <td><%=n%><%n=n+1%></td>
@@ -28,9 +29,9 @@
             <td> <%=  notice.impressionist_count(:filter=>:session_hash) %></td>
           </tr>
         <% end %>
-  </tbody>
-</table>
-</div>
+     </tbody>
+  </table>
+  </div>
 <br>
 <% if user_signed_in? &&current_user.admin?%>
 <%= link_to '공지 등록', new_notice_path %>

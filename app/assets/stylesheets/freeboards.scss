@@ -49,20 +49,22 @@
 .contents{
     margin-top: 3rem;
     padding:3rem 0rem 0rem;
-    margin-bottom: 6rem;
     width: 100%;
     background-color:#F8F8F8;
 
 }
 .post-num{
+    font-weight: bold;
     text-align:left;
     margin-left:10%;
     font-size:0.9rem;    
 }
+
 .post-table{
     display: flex;
     align-items:center;
     flex-direction: column;
+    
 }
 
 .post-table table{
@@ -70,15 +72,24 @@
     width: 80%;
     text-align:center;
 }
+
+
 #post-table td.title{
     cursor:pointer;
 }
-.post-table th{
+
+.post-td-gray{
+    color: #8d8d8d;
+}
+.post-table table thead tr th{
     font-size: 0.8rem;
     // background-color: rgba(100, 133, 184, 0.966);
-    border-top:1px solid rgb(4, 30, 73);
-    border-bottom:1.5px solid rgb(4, 30, 73) !important;
+    border-top: 3px solid #002f7b;
+    // border-bottom:1.5px solid rgb(4, 30, 73) !important;
+    vertical-align: bottom;
+    border-bottom-width: 1.3px;
 }
+
 .post-table tbody{
     font-size: 0.75rem;
 }
@@ -89,29 +100,28 @@ td.title{
     text-align:left;
 }
 .post-btn{
+    cursor: pointer;
     margin-top:2rem;
     margin-left: auto;
     text-align: center;
-    width: 5rem;
+    width: 3rem;
     height: 2.2rem;
     // border-style: solid;
     // border-color: rgb(83, 83, 83);
     // color: rgb(83, 83, 83);
-    background-color:rgb(0,48,124);
+    background-color:#002f7b;
     // color:white;
     border-width: 0.3px;
-    font-family: 'NanumBarunGothic',serif;
+    font-family: 'NanumSquare', sans-serif;
     font-size: 0.8rem;
     line-height: 2.2rem;
     color:white;
 }
-.post-btn:hover{
-    background-color:rgba(168, 168, 168, 0.425);
-    cursor:pointer;
-}
+
 
 .postpost-btn
 {  
+    margin-top: 2rem;
     width: 100%;
     display:flex;
     justify-content: center;
@@ -120,7 +130,8 @@ td.title{
 .postpost-btn-width{
     width: 80%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    padding-bottom: 3rem;
 }
 
 .freeboard-new-graybox{
@@ -213,7 +224,7 @@ td.title{
     border-color: rgb(83, 83, 83);
     color: rgb(83, 83, 83);
     border-width: 0.3px;
-    font-family: 'NanumBarunGothic',serif;
+    font-family: 'NanumSquare', sans-serif;
     font-size: 0.8rem;
     -moz-transition: all .2s ease-in;
     -o-transition: all .2s ease-in;
@@ -282,7 +293,7 @@ td.title{
     background-color:rgb(0,48,124);
     color:white;
     border:none;
-    font-size:0.7rem;
+    font-size: 0.9rem;
 }
 .reply-btn{
     background-color:white;
