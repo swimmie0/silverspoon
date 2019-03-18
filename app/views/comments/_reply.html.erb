@@ -1,13 +1,15 @@
 
 <% comments.each do |comment| %>  
-  <div class="comments-show">
-    <div class="comment">
+  <div class="comments-show nago">
+    <div class="comment comment-bar">
       <div class="comment-profile form-inline"> <!--프로필-->
-        <%=image_tag("beige-logo.PNG", class:"post-profile-img")%>        
+        <%=image_tag("beige-logo.PNG", class:"post-profile-img")%>
+        <% if comment.user ==nil %><i>탈퇴한 회원입니다</i><%else%>
+        <%= link_to comment.user.name, profile_path(comment.user.profile.id) ,class:"linkto"%><%end%>
         <%# <%= link_to comment.user.name, profile_path(comment.user.profile.id),class:"linkto" %> 
-        <div style="font-weight:lighter;margin-left:1rem;"> <%= time_ago_in_words(comment.created_at) %>전 [ <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %> ] </div> 
+        <div style="font-size:0.8rem; color: rgb(140,140,140); font-weight:lighter;margin-left:1rem;"> <%= time_ago_in_words(comment.created_at) %>전 [ <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %> ] </div> 
         <% if current_user == comment.user %>
-          /<%= link_to "삭제", comment_path(comment), method: :delete, remote: false, data: { confirm: "정말로 지우시겠습니까?" }, style: "color: black;" %>
+          &nbsp;/&nbsp;<%= link_to "삭제", comment_path(comment), method: :delete, remote: false, data: { confirm: "정말로 지우시겠습니까?" }, style: "font-size:0.8rem; color: rgb(140,140,140);" %>
         <% end %>  
       </div>
 
@@ -36,7 +38,7 @@
       </div>
       <%end%>  <!--//답글창-->
       <br/> 
-      <hr style="border-top: 1px rgb(201, 200, 200);width:100%;">
+
     </div> <!--//comment-->
     <%# <div style="margin-left: 20px;"> %>
     <div>    
@@ -44,7 +46,7 @@
     </div>
 
   </div>
-<hr>
+
   
 <% end %>
 

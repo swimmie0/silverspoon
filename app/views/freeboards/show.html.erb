@@ -13,15 +13,15 @@
         <% if !@freeboard.locked? || user_signed_in? && current_user.admin? || @freeboard.user == current_user %>
             <!--게시글내용-->
             <div class="post-category-title"><%= @freeboard.category%></div>
-            <div class="post-title"> <%= @freeboard.title %></div>
+            <div class="post-title nago"> <%= @freeboard.title %></div>
             <div class="form-inline">
               <%=link_to(image_tag(@freeboard.image(@writer),class:"post-profile-img"), profile_path(@writer.profile.id)) %>
-              <div style="font-size: 0.9rem;"> <%= link_to @freeboard.name,  profile_path(@writer.profile.id), class:"linkto" %> </div> 
+              <div style="font-size: 0.9rem;"> <%= link_to @freeboard.name,  profile_path(@writer.profile.id), class:"linkto nago" %> </div> 
               <div class="main-board-more" style="margin-left: 2rem; "><%= @freeboard.created_at.strftime("%Y-%m-%d") %> </div>
               <div style="margin-left:auto;font-size:0.8rem;"> 조회수: <%= @freeboard.impressionist_count(:filter=>:session_hash) %></div>
             </div>  
           <hr class="post-view-hr"/>
-            <p style="font-size: 0.9rem;"><%= content_tag(:div, @freeboard.content.html_safe, :class=>"post-body")  %></p>
+            <p style="font-size: 0.9rem;"><%= content_tag(:div, @freeboard.content.html_safe, :class=>"post-body nago")  %></p>
             <div class="post-edit">
               <% if current_user == @freeboard.user%>
                 <%= link_to '수정', edit_freeboard_path(@freeboard), class:"linkto" %>

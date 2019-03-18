@@ -12,6 +12,22 @@
 @import "admincontrol.scss";
 @import "legal.scss";
 
+
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
+
+
+input{
+    font-family: 'Nanum Gothic', sans-serif !important;
+}
+
+td{
+    font-family: 'Nanum Gothic', sans-serif !important;
+}
+
+.nago{
+    font-family: 'Nanum Gothic', sans-serif !important;
+}
+
 .nanumsquare { font-family: 'NanumSquare', sans-serif !important; }
 
 
