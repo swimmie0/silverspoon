@@ -12,8 +12,11 @@
         <% end %>  
       </div>
 
-      <div class="comment-content form-inline" style="margin:0rem 0rem 1.6rem 2.5rem;">  <!--답글내용-->
-        <b>@<%= comment.parent.user.name %></b><%= content_tag(:div, comment.body, style: "white-space: pre-wrap;margin-left:0.8rem;") %>
+      <div class="comment-content " style="margin:0rem 0rem 1.6rem 2.5rem;">  <!--답글내용-->
+        <div class="d-flex">
+          <b>@<%= comment.parent.user.name %></b>
+          <%= content_tag(:div, comment.body, style: "white-space: pre-wrap;margin-left:0.8rem;") %>
+        </div>
       <% if user_signed_in? && current_user.name != nil %> <!--답글창-->
         <button onclick="showHide('comment_<%= comment.id %>')" onfocus="this.blur()" class="reply-end-btn">답글</button>
       </div>
@@ -27,10 +30,9 @@
             <div class="field form-group">
               <%= f.hidden_field :name, value: current_user.name, required: "true" %>
               <%= f.text_area :body, class: 'form-control' %>
+               <%= submit_tag "답댓글 작성", class:"reply-btn rereply-btn", style:"float:right;" %>
             </div>
-            <div class="field form-group">
-              <%= submit_tag "답댓글 작성", class:"reply-btn", style:"float:right;" %>
-            </div>
+             
           <% end %>
         </div>
       </div>

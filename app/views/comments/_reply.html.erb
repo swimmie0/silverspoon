@@ -3,7 +3,14 @@
   <div class="comments-show nago">
     <div class="comment comment-bar">
       <div class="comment-profile form-inline"> <!--프로필-->
-        <%=image_tag("beige-logo.PNG", class:"post-profile-img")%>
+        <%if !comment.user.nil?%>
+          <%if comment.user.profileimg.nil?%>
+            <%=image_tag("beige-logo.PNG", class:"post-profile-img")%>    
+          <%else%>
+            <%=image_tag comment.user.profileimg.url, class:"post-profile-img"%>
+          <%end%>
+        <%end%>
+        
         <% if comment.user ==nil %><i>탈퇴한 회원입니다</i><%else%>
         <%= link_to comment.user.name, profile_path(comment.user.profile.id) ,class:"linkto"%><%end%>
         <%# <%= link_to comment.user.name, profile_path(comment.user.profile.id),class:"linkto" %> 
@@ -29,10 +36,9 @@
             <div class="field form-group">
               <%= f.hidden_field :name, value: current_user.name, required: "true" %>
               <%= f.text_area :body, class: 'form-control' %>
+               <%= submit_tag "답댓글 작성", class:"reply-btn rereply-btn", style:"float:right;" %>
             </div>
-            <div class="field form-group">
-              <%= submit_tag "답댓글 작성", class:"reply-btn", style:"float:right;" %>
-            </div>
+            
           <% end %>
         </div>
       </div>

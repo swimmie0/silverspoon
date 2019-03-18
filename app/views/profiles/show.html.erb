@@ -5,7 +5,7 @@
     <!-- 상단 섹션 중 상단 배너 이미지 -->
         <div class="ProfileUpperBannerSection">
           <div class="container">
-            <% if @profile.id == current_user.id %>
+            <% if @profile.user.name == current_user.name %>
               <%= link_to(fa_icon("cog", class: "ProfileEditButton"), edit_user_registration_path) %>
             <% end %>
             <br>
@@ -44,7 +44,9 @@
             <div class="ProfileInfoSection">
               <div class="ProfileInfo">
                 <p class="ProfileName big-title"> <%= @profile.user.name %> </p>
-                <p class="profile-info-spec"></p>
+                <p class="profile-info-spec">
+                  <%=link_to "프로필 수정하기", edit_user_registration_path, style: "color: rgb(110, 110, 110); font-size: 0.9rem;"%>
+                </p>
               </div>
             </div>
           
@@ -150,24 +152,25 @@
                           <% i = 0 %>
                           <% if @profile.user.name == current_user.name%>
                             <%if @conversations.where('sender_id=? OR recipient_id=?', current_user.id, current_user.id).count == 0%>
-                                <span>메세지함이 비었습니다.</span>
+                                <div class="profile-message-blank">메세지함이 비었습니다.</div>
+                            <%else%>
+                              <% @conversations.reverse_order.each do |conversation| %>
+                                <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+                                    <% if conversation.sender_id == current_user.id %>
+                                    <% recipient = User.find(conversation.recipient_id) %>
+                                    <% else %>
+                                    <% recipient = User.find(conversation.sender_id) %>
+                                    <% end %>
+                                <tr class="profile-message-tr" data-href="/conversations/<%=conversation.id%>/messages" style="line-height: 29.5px; border-bottom: 1px solid #dee2e6;">
+                                <th scope = "row"><%= link_to " #{i+=1}", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %> </th>
+                                    <%if !conversation.messages.last.nil?%>
+                                    <td><%= link_to "#{recipient.name}", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %>  </td>
+                                    <td><%= link_to " #{conversation.messages.last.body.first(22)}...", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %>  </td>
+                                    <td><%= link_to " #{conversation.messages.last.message_time} ", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %></td><%end%>
+                                </tr>
+                                <% end %> 
+                              <% end %>
                             <%end%>
-                            <% @conversations.reverse_order.each do |conversation| %>
-                              <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
-                                  <% if conversation.sender_id == current_user.id %>
-                                  <% recipient = User.find(conversation.recipient_id) %>
-                                  <% else %>
-                                  <% recipient = User.find(conversation.sender_id) %>
-                                  <% end %>
-                              <tr class="profile-message-tr" data-href="/conversations/<%=conversation.id%>/messages" style="line-height: 29.5px; border-bottom: 1px solid #dee2e6;">
-                              <th scope = "row"><%= link_to " #{i+=1}", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %> </th>
-                                  <%if !conversation.messages.last.nil?%>
-                                  <td><%= link_to "#{recipient.name}", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %>  </td>
-                                  <td><%= link_to " #{conversation.messages.last.body.first(22)}...", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %>  </td>
-                                  <td><%= link_to " #{conversation.messages.last.message_time} ", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %></td><%end%>
-                              </tr>
-                              <% end %> 
-                            <% end %>
                           <%end%>
                           
                         </tbody>
@@ -251,9 +254,9 @@
               <p style="float: left"  class="main-board-title"><b>・&nbsp;작성한 게시글</b></p>
               <p style="float: right;"><%=link_to '전체 보기', myposts_path(@profile), class:"main-board-more", target: :_blank %></p> 
             </nav>
-            <table class="ProfilePostingTable table" style="font-size: 0.8rem;">
-              <thead style="background-color: #00307C">
-                <tr style="color: white">
+            <table class="main-board-box ProfilePostingTable table" style="font-size: 0.8rem;">
+              <thead>
+                <tr>
                   <th width="10%">NO</th>
                   <th width="20%">제목</th>
                   <th width="10%">작성자</th>
@@ -280,9 +283,9 @@
               <p style="float: left;" class="main-board-title"><b>・&nbsp;댓글 단 게시글</b></p>
               <p style="float: right;"><%=link_to '전체 보기', mycomments_path(id:@profile), class:"main-board-more", target: :_blank %></p>  
             </nav>
-            <table class="ProfilePostingTable table" style="font-size: 0.8rem;">
-              <thead style="background-color: #00307C">
-                <tr style="color: white">
+            <table class="main-board-box ProfilePostingTable table" style="font-size: 0.8rem;">
+              <thead>
+                <tr>
                   <th width="8%">NO</th>
                   <th width="26%">제목</th>
                   <th width="8%">작성자</th>

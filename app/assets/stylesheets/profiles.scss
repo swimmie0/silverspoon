@@ -1,4 +1,10 @@
-
+.profile-message-blank{
+  font-family: "NanumSquare", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(133, 133, 133);
+}
 .profile-allergy-cp{
   flex-direction: row;
   flex-wrap: wrap;
@@ -446,7 +452,7 @@ $colors: (
 }
 
 .request-completed{
-  border-radius: 30%; 
+  border-radius: 0.75rem;
   margin-top: 6%; 
   padding: 0.8% 1% 0.5% 1%; 
   border: 1px solid #002f7b; 
@@ -458,7 +464,7 @@ $colors: (
 
 }
 .request-uncompleted{
-  border-radius: 30%; 
+  border-radius: 0.75rem;
   margin-top: 6%; 
   padding: 0.8% 1% 0.5% 1%; 
   border: 1px solid #FF5400; 
