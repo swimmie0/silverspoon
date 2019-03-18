@@ -13,10 +13,10 @@
 <div class="post-table">
   <div class="post-search form-inline">
     <%= form_tag(freeboards_path, :method => "get") do %>
-      <%= text_field_tag :search, params[:search], class: 'search form-control', placeholder:'검색어 입력'%>
-      <span class="input-group-btn">
-        <button class="post-btn" type="submit"><i class="fa fa-search fa-fw"></i></button>
-      </span>
+      <div class="input-group-btn d-flex">
+        <%= text_field_tag :search, params[:search], class: 'search form-control', placeholder:'검색어 입력'%>
+        <button class="post-search-btn" type="submit"><i class="fa fa-search fa-fw"></i></button>
+      </div>
       <%# <%= submit_tag "검색", class: 'btn btn-outline-primary my-2 my-sm-0' %> 
     <% end %> 
   </div>  

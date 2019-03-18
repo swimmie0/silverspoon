@@ -1,35 +1,36 @@
 
 <% comments.each do |comment| %>  
-  <div class="comments-show">
-    <div class="comment">
+  <div class="comments-show nago">
+    <div class="comment comment-bar">
 
       <div class="comment-profile form-inline"> <!--프로필-->
         <%=image_tag("beige-logo.PNG", class:"post-profile-img")%>    
-        <% if comment.user ==nil %><i>탈퇴한 회원입니다</i><%else%><%=comment.user.name%><%end%>  
-        <%= link_to comment.user.name, profile_path(comment.user.profile.id) ,class:"linkto"%> <%end%>
-        <div style="font-weight:lighter;margin-left:1rem;"> <%= time_ago_in_words(comment.created_at) %>전 [ <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %> ] </div> 
+        <% if comment.user ==nil %><i>탈퇴한 회원입니다</i><%else%>
+        <%= link_to comment.user.name, profile_path(comment.user.profile.id) ,class:"linkto"%><%end%>
+        <div style="font-size:0.8rem; color: rgb(140,140,140); font-weight:lighter;margin-left:1rem;"> <%= time_ago_in_words(comment.created_at) %>전 [ <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %> ] </div> 
         <% if current_user == comment.user %>
-          /<%= link_to "삭제", comment_path(comment), method: :delete, remote: false, data: { confirm: "정말로 지우시겠습니까?" }, style: "color: black;" %>
+          &nbsp;/&nbsp;<%= link_to "삭제", comment_path(comment), method: :delete, remote: false, data: { confirm: "정말로 지우시겠습니까?" }, style: "font-size:0.8rem; color: rgb(140,140,140);" %>
         <% end %>  
 
           <!--추천기능 only in 질문글-->
-          <div class="comment-vote" style="text-align:center;margin-top:0.5rem;margin-left:auto;margin-right:1rem;">
-            <% if current_user %>    
-              추천수: <%= comment.weighted_score%> &nbsp;             
-              <% if current_user.liked? (comment) %>
-               <%= link_to raw("<i class=\"fas fa-thumbs-up\"></i>"), unvote_comment_path(comment), method: :put,class:"vote-btn" %> <% else %>
-               <%= link_to raw("<i class=\"far fa-thumbs-up\"></i>"), like_comment_path(comment), method: :put,class:"vote-btn" %>
-              <% end %> &nbsp;
-              <% if current_user.disliked? (comment) %>
-                <%= link_to raw("<i class=\"fas fa-thumbs-down\"></i>"), unvote_comment_path(comment), method: :put,class:"vote-btn"  %><% else %>
-                <%= link_to raw("<i class=\"far fa-thumbs-down\"></i>"), dislike_comment_path(comment), method: :put,class:"vote-btn"  %> 
-              <% end %>
-              <% else %>
-                <a class="disabled vote-btn"style="cursor:pointer;"><i class=\"far fa-thumbs-up\"></i> </a><br>
-                <%= comment.weighted_score%><br>      
-                <a class="disabled vote-btn"style="cursor:pointer;"><i class=\"far fa-thumbs-down\"></i></a>
+        <div class="comment-vote" style="text-align:center;margin-top:0.5rem;margin-left:auto;margin-right:1rem;">
+          <% if current_user %>    
+            <span style="font-weight: bold; font-size:0.8rem; color: rgb(120,120,120);">추천수: <%= comment.weighted_score%></span> &nbsp;             
+            <% if current_user.liked? (comment) %>
+              <%= link_to raw("<i class=\"fas fa-thumbs-up\"></i>"), unvote_comment_path(comment), method: :put,class:"vote-btn" %> <% else %>
+              <%= link_to raw("<i class=\"far fa-thumbs-up\"></i>"), like_comment_path(comment), method: :put,class:"vote-btn" %>
+            <% end %> &nbsp;
+            <% if current_user.disliked? (comment) %>
+              <%= link_to raw("<i class=\"fas fa-thumbs-down\"></i>"), unvote_comment_path(comment), method: :put,class:"vote-btn"  %><% else %>
+              <%= link_to raw("<i class=\"far fa-thumbs-down\"></i>"), dislike_comment_path(comment), method: :put,class:"vote-btn"  %> 
             <% end %>
-          </div>
+          
+          <% else %>
+              <a class="disabled vote-btn"style="cursor:pointer;"><i class=\"far fa-thumbs-up\"></i> </a><br>
+              <%= comment.weighted_score%><br>      
+              <a class="disabled vote-btn"style="cursor:pointer;"><i class=\"far fa-thumbs-down\"></i></a>
+          <% end %>
+        </div>
 
       </div>
 
@@ -43,7 +44,9 @@
         </div>  
       <% if user_signed_in? && current_user.name != nil %> <!--답글창-->
       <%# <div class="comment-nav" > %>
+
         <button onclick="showHide('comment_<%= comment.id %>')" onfocus="this.blur()" class="reply-btn">답글</button>
+
       </div>
 
       <div id="comment_<%= comment.id %>" style="display:none;margin:0.3rem;"> 
@@ -64,7 +67,7 @@
       </div>
       <%end%>  <!--//답글창-->
       <br/>
-     <hr style="border-top: 1px rgb(201, 200, 200);width:100%;">
+     
     </div> <!--//comment-->
     <%# <div style="margin-left: 20px;"> %>
     <div>    
@@ -72,7 +75,7 @@
     </div>
 
   </div>
-<hr>
+
   
 <% end %>
 

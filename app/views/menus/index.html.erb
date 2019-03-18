@@ -69,8 +69,8 @@
                                         <%=image_tag zizum.image.url,class:"rtnt-img1" %> 
                                     <%end%>
                                     <div class="about-rtnt">
-                                        <p class="rtnt-name"><%= zizum.restaurant_name%>&nbsp;<%= zizum.zizum_name%></p>
-                                        <p class="rtnt-intro">신선한 샌드위치를 만드는 서브웨이입니다.</p>                                
+                                        <div class="rtnt-name"><%= zizum.restaurant_name%>&nbsp;<%= zizum.zizum_name%></div>
+                                        <div class="rtnt-intro"><%= zizum.restaurant.explain%></div>                                
                                         <p class="rtnt-adress"><i class="fas fa-map-marked-alt zizum-i-adr"></i>&nbsp;<%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
                                     </div>
                                 </div>    
@@ -197,6 +197,8 @@
     $(".card-body").on('click',function() {
         $('#menuBox').animate({scrollTop: 0}, 0);
 
+        $(this).parent(".shop-card").removeClass("shop-card-dim")
+        $(this).parent(".shop-card").siblings().addClass("shop-card-dim");
 
         $("#menuBox").html($(this).children(".seeMenu").siblings('.hideMenu').html());
         $("#card2").html($(this).children(".seeMenu").siblings('.hideCard').html());

@@ -245,6 +245,10 @@
     color: rgb(165, 164, 164); 
 }
 
+.recipe-index-user{
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
 //------------------------------------
 
 //================recipe show==========
@@ -315,6 +319,7 @@
 }
 
 .recipe-about-writer{
+    font-family: 'Nanum Gothic', sans-serif;
     font-size: 0.9rem;
     font-weight: 600;
 }
@@ -474,6 +479,7 @@
     height: 100%;
     font-family:  'NanumSquare', sans-serif;
 }
+
 .carousel-item img{
     height: 100%;
 }

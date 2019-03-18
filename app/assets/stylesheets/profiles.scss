@@ -1,7 +1,8 @@
-body {
-  font-family: 'NanumBarunGothic';
-}
 
+.profile-allergy-cp{
+  flex-direction: row;
+  flex-wrap: wrap;
+}
   .profile-active-nav{
     background-color: #002f7b !important;
     color: white !important;
@@ -136,7 +137,7 @@ body {
   }
 
   .ProfileName {
-    font-family: 'NanumSquare', sans-serif;
+    font-family: 'Nanum Gothic', sans-serif;
     margin-bottom: 0rem; 
     font-size: 1.6rem; 
     color: white;
@@ -470,7 +471,6 @@ $colors: (
 
 .RegisterSection .RegisterForm{
   font-family: 'NanumSquare', sans-serif;
-  
 }
 
 .profile-message-tr{

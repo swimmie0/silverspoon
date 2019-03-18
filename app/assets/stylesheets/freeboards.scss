@@ -115,20 +115,29 @@ th.title{
 td.title{
     text-align:left;
 }
-.post-btn{
+
+.input-group-btn{
+    margin-top: 2rem;
+}
+
+.post-search-btn{
     cursor: pointer;
-    margin-top:2rem;
-    margin-left: auto;
     text-align: center;
-    width: 3rem;
+    width: 2.2rem;
     height: 2.2rem;
+    border-top-right-radius: 3.5px;
+    border-bottom-right-radius: 3.5px;
+
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    
     // border-style: solid;
     // border-color: rgb(83, 83, 83);
     // color: rgb(83, 83, 83);
     background-color:#002f7b;
     // color:white;
-    border-width: 0.3px;
-    font-family: 'NanumSquare', sans-serif;
+    border-width: 0px;
+   
     font-size: 0.8rem;
     line-height: 2.2rem;
     color:white;
@@ -211,11 +220,19 @@ td.title{
     color:white;   
 }
 
+
 .search.form-control{
-    border-radius:0px;   
-    border:0.3px solid rgba(201, 200, 200, 0.7);  
-    width:20rem;      
+    border-top-left-radius: 3.5px;
+    border-bottom-left-radius: 3.5px;
+
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border: 1.2px solid #002f7b;
+    width:20rem;
+    font-size: 0.9rem;
+    height: 2.2rem;
 }
+
 .search.form-control::placeholder{
     font-size:0.7rem;
 }
@@ -273,12 +290,31 @@ td.title{
 }
 
 //댓글창
+.reply-box{
+    border-bottom: 0.8px solid rgb(201, 200, 200);
+}
+
 .comment-view{
+    font-family: 'Nanum Gothic', sans-serif !important;
     background-color:white;
     border: 0.1px solid rgba(201, 200, 200, 0.438);
-    padding: 1.5rem;
+    //padding: 1.5rem;
 }
+
+.comment{
+    padding-bottom: 0.5rem;
+    padding-top: 0.8rem;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.comment-bar{
+    border-left: 3px solid #002f7b;
+    border-bottom: 0.8px solid rgb(201, 200, 200);
+}
+
 .comment.form-control{
+    font-family: 'Nanum Gothic', sans-serif !important;
     width:90%;
     height:5rem;
    border-radius:0px;
@@ -305,20 +341,27 @@ td.title{
     border:none;
     font-size: 0.9rem;
 }
+
 .reply-btn{
+   margin-bottom: 0.8rem;
+    cursor: pointer;
     background-color:white;
-    border:1px solid rgb(201, 200, 200);
+    border:0.8px solid rgb(201, 200, 200);
     padding:0.2rem 0.6rem;
-    font-size:0.9rem; 
+    font-size:0.7rem; 
     float:right;
 }
+
 .reply-end-btn{
+    margin-bottom: 0.8rem;
+    cursor: pointer;
     background-color:white;
-    border:1px solid rgb(201, 200, 200);
+    border:0.8px solid rgb(201, 200, 200);
     padding:0.2rem 0.6rem;
-    font-size:0.9rem; 
+    font-size:0.7rem; 
     margin-left:auto;
 }
+
 .fa-level-up-alt{
     transform: rotateZ(90deg);
     margin: 0rem 0.7rem;
