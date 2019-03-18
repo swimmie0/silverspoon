@@ -4,6 +4,7 @@ class Freeboard < ApplicationRecord
 
   acts_as_commentable
   is_impressionable
+
   
   def self.category(category)
     where("category LIKE ?", "%#{category}%") 
