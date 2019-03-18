@@ -10,11 +10,12 @@
     </div>
 </div>
 
-<div class="result-contents rtnt2">
+<div id="rtnt-search-byname" class="result-contents rtnt2">
 <div class=" container" >
 <% if @zizums.length != 0 %>
-<p> <strong><%=params[:sido]%>/<%=params[:sigungu]%>의 <%=params[:restaurant_name]%></strong> 로 검색 결과
-   : <strong><%=@zizums.length%>개의 식당</strong>을 찾았습니다.</p> <br>
+    <div class="d-flex justify-content-center middle-title">
+        검색 결과
+    </div>
 </div>
     <div class="index-rtnt-box d-flex">
         <%@zizum_array.drop(6).each do |zizum|%>
@@ -112,8 +113,9 @@
     <div class="container d-flex justify-content-center"style="margin-top:2rem;"><%= paginate @zizum_array%></div>
 </div>
 <%else%>
+    <div style="text-align: center;">
 <p> <strong><%=params[:sido]%>/<%=params[:sigungu]%>의 <%=params[:restaurant_name]%></strong> 로 검색 결과
-   : <strong>검색결과가 없습니다. 다른 식당을 검색해보세요! </p> <br>
+   : <strong>검색결과가 없습니다. 다른 식당을 검색해보세요! </p> <br></div>
 <%end%>
 
 
@@ -123,6 +125,15 @@
     <%end%>
 
   <script>
+     function scrollLink(obj){ 
+        var position = $("#"+obj).offset();
+        $('html, body').animate({scrollTop : position.top}, 500);
+    }
+
+    $(document).ready(function(){
+        scrollLink("rtnt-search-byname");
+    })
+
     // $(".sido-select").val('<%=params[:sido]%>');
     // $(".sigungu-select").val('<%=params[:sigungu]%>');
 

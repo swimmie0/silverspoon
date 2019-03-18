@@ -24,141 +24,152 @@
         <%=image_tag("howto.png", class: "howto-img")%>
     </div>
 </div>
-  
-<!--- 2-결과페이지 -->
-<% if params[:sido] == nil%>
-<% elsif @zizums.length == 0%>
-    <script>$(".index-contents").css("display","none");</script> 
-    <p><%=params[:sido]%>/<%=params[:sigungu]%>에 해당 식당이 없습니다.<br>다시 검색해주세요
-<% elsif @zizums.length != 0 %>
-    <script>$(".index-contents").css("display","none");</script> 
-    <%# <div class="zizumOrder">
-        <button type="button" class="btn btn-outline-dark btn-default-order">가나다순</button>
-        <button type="button" class="btn btn-outline-dark btn-famous-order">인기순</button>
-    </div> %>
-    <div class="result-contents rtnt">
-        <div id="rtnt-titlebox"><div class="index-content-title text-center">식당 안내</div></div>
-        <div class="d-flex justify-content-center" style="background-color:#F8F8F8;">
-            <div class="shops"><!--매장안내-->
-              <div><% @zizum_array.each do |zizum| %> 
-                    <div class="card shop-card">
-                        <div class="card-body"> 
-                            <p class="seeMenu" style="display:none;"><%= zizum.restaurant_name%></p> <!--for js-->                        
-                            <div class="rtnt-check">
-                                <i class="fas fa-check-square" style="display:none;"></i>
-                                <i class="far fa-square"></i>     
-                            </div>
-                            <div class="rtnt-info container"> <!--식당card-->
-                                <%if user_signed_in?%>
-                                    <% if zizum.followed_by?(current_user) %>
-                                        <!-- 좋아요를 했다면 -->
-                                        <i class="fas fa-bookmark menu"></i>
-                                        <div class="zizum-id-bookmark"><%=zizum.id%></div>   
-                                    <% else %>
-                                        <!-- 좋아요를 안 했다면 -->
-                                        <i class="far fa-bookmark menu"></i>
-                                        <div class="zizum-id-bookmark"><%=zizum.id%></div>
-                                    <% end %>
-                                <%else%>
-                                    <i class="far fa-bookmark menu" data-toggle="modal" data-target="#loginModal"></i>
-                                <%end%>   
-                                <%if zizum.image.url == nil %>
-                                    <%=image_tag("beige-logo.PNG",class:"rtnt-img1")%>
-                                <%else%>  
-                                    <%=image_tag zizum.image.url,class:"rtnt-img1" %> 
-                                <%end%>
-                                <div class="about-rtnt">
-                                    <p class="rtnt-name"><%= zizum.restaurant_name%>&nbsp;<%= zizum.zizum_name%></p>
-                                    <p class="rtnt-intro">신선한 샌드위치를 만드는 서브웨이입니다.</p>                                
-                                    <p class="rtnt-adress"><%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
+
+<div id="rtnt-search-result">
+    <!--- 2-결과페이지 -->
+    <% if params[:sido] == nil%>
+    <% elsif @zizums.length == 0%>
+        <script>$(".index-contents").css("display","none");</script> 
+        <p><%=params[:sido]%>/<%=params[:sigungu]%>에 해당 식당이 없습니다.<br>다시 검색해주세요
+    <% elsif @zizums.length != 0 %>
+        <script>$(".index-contents").css("display","none");</script> 
+        <%# <div class="zizumOrder">
+            <button type="button" class="btn btn-outline-dark btn-default-order">가나다순</button>
+            <button type="button" class="btn btn-outline-dark btn-famous-order">인기순</button>
+        </div> %>
+        <div class="result-contents rtnt">
+            <div id="rtnt-titlebox"><div class="index-content-title text-center">검색 결과</div></div>
+            <div class="d-flex justify-content-center" style="background-color:#F8F8F8;">
+                <div class="shops"><!--매장안내-->
+                <div><% @zizum_array.each do |zizum| %> 
+                        <div class="card shop-card">
+                            <div class="card-body zizum-card"> 
+                                <p class="seeMenu" style="display:none;"><%= zizum.restaurant_name%></p> <!--for js-->                        
+                                <div class="rtnt-check">
+                                    <i class="fas fa-check-square" style="display:none;"></i>
+                                    <i class="far fa-square"></i>     
                                 </div>
-                            </div>    
-
-                            <!--메뉴안내-->
-
-                            <div class="hideMenu">
-                                <!--메뉴 hidden-->
-                                <div style="display:flex;justify-content:flex-end;"><%=link_to '자세히 보기',zizuminfo_path(id: zizum.id), class:"linkto",style:"font-size:0.9rem;"%></div>
-                                <% @menus.where(:restaurant_name => zizum.restaurant_name).each do |menu|%>
-                                <div class="card menu-card">
-                                    <div class="card-body">
-                                    <%# <i class="fas fa-utensil-spoon"></i> %>
-                                        <p class="menu-name"><%=menu.menu_name%></p>
-                                        <p class="menu-intro">교차 위험군과 미제공 항원들은 상세페이지에서 확인해주세요</p>
-                                        <div class="menu-cpbox">                                  
-                                            <%if menu.a1_maemil == 0%><div class="menu-cp">-&nbsp;메밀</div><%end%>
-                                            <%if menu.a2_mil == 0%><div class="menu-cp">-&nbsp;밀</div><%end%>
-                                            <%if menu.a3_daedu == 0%><div class="menu-cp">-&nbsp;대두</div><%end%>
-                                            <%if menu.a4_hodu == 0%><div class="menu-cp">-&nbsp;호두</div><%end%>
-                                            <%if menu.a5_ddangkong == 0%><div class="menu-cp">-&nbsp;땅콩</div><%end%>
-                                            <%if menu.a6_peach == 0%><div class="menu-cp">-&nbsp;복숭아</div><%end%>
-                                            <%if menu.a7_tomato == 0%><div class="menu-cp">-&nbsp;토마토</div><%end%>
-                                            <%if menu.a8_piggogi == 0%><div class="menu-cp">-&nbsp;돼지고기</div><%end%>
-                                            <%if menu.a9_nanryu == 0%><div class="menu-cp">-&nbsp;난류</div><%end%>
-                                            <%if menu.a10_milk == 0%><div class="menu-cp">-&nbsp;우유</div><%end%>
-                                            <%if menu.a11_ddakgogi == 0%><div class="menu-cp">-&nbsp;닭고기</div><%end%>
-                                            <%if menu.a12_shoigogi == 0%><div class="menu-cp">-&nbsp;쇠고기</div><%end%>
-                                            <%if menu.a13_saewoo == 0%><div class="menu-cp">-&nbsp;새우</div><%end%>
-                                            <%if menu.a14_godeungeoh == 0%><div class="menu-cp">-&nbsp;고등어</div><%end%>
-                                            <%if menu.a15_honghap == 0%><div class="menu-cp">-&nbsp;홍합</div><%end%>
-                                            <%if menu.a16_junbok == 0%><div class="menu-cp">-&nbsp;전복</div><%end%>
-                                            <%if menu.a17_gul == 0%><div class="menu-cp">-&nbsp;굴</div><%end%>
-                                            <%if menu.a18_jogaeryu == 0%><div class="menu-cp">-&nbsp;조개류</div><%end%>
-                                            <%if menu.a19_gye == 0%><div class="menu-cp">-&nbsp;게</div><%end%>
-                                            <%if menu.a20_ohjingeoh == 0%><div class="menu-cp">-&nbsp;오징어</div><%end%>
-                                            <%if menu.a21_ahwangsan == 0%><div class="menu-cp">-&nbsp;아황산류</div><%end%>
-                                            <br>
-                                            <!--<%if menu.a1_maemil == -2%><div class="menu-cp">△&nbsp;메밀</div><%end%>
-                                            <%if menu.a2_mil == -2%><div class="menu-cp">△&nbsp;밀</div><%end%>
-                                            <%if menu.a3_daedu == -2%><div class="menu-cp">△&nbsp;대두</div><%end%>
-                                            <%if menu.a4_hodu == -2%><div class="menu-cp">△&nbsp;호두</div><%end%>
-                                            <%if menu.a5_ddangkong == -2%><div class="menu-cp">△&nbsp;땅콩</div><%end%>
-                                            <%if menu.a6_peach == -2%><div class="menu-cp">△&nbsp;복숭아</div><%end%>
-                                            <%if menu.a7_tomato == -2%><div class="menu-cp">△&nbsp;토마토</div><%end%>
-                                            <%if menu.a8_piggogi == -2%><div class="menu-cp">△&nbsp;돼지고기</div><%end%>
-                                            <%if menu.a9_nanryu == -2%><div class="menu-cp">△&nbsp;난류</div><%end%>
-                                            <%if menu.a10_milk == -2%><div class="menu-cp">△&nbsp;우유</div><%end%>
-                                            <%if menu.a11_ddakgogi == -2%><div class="menu-cp">△&nbsp;닭고기</div><%end%>
-                                            <%if menu.a12_shoigogi == -2%><div class="menu-cp">△&nbsp;쇠고기</div><%end%>
-                                            <%if menu.a13_saewoo == -2%><div class="menu-cp">△&nbsp;새우</div><%end%>
-                                            <%if menu.a14_godeungeoh == -2%><div class="menu-cp">△&nbsp;고등어</div><%end%>
-                                            <%if menu.a15_honghap == -2%><div class="menu-cp">△&nbsp;홍합</div><%end%>
-                                            <%if menu.a16_junbok == -2%><div class="menu-cp">△&nbsp;전복</div><%end%>
-                                            <%if menu.a17_gul == -2%><div class="menu-cp">△&nbsp;굴</div><%end%>
-                                            <%if menu.a18_jogaeryu == -2%><div class="menu-cp">△&nbsp;조개류</div><%end%>
-                                            <%if menu.a19_gye == -2%><div class="menu-cp">△&nbsp;게</div><%end%>
-                                            <%if menu.a20_ohjingeoh == -2%><div class="menu-cp">△&nbsp;오징어</div><%end%>
-                                            <%if menu.a21_ahwangsan == -2%><div class="menu-cp">△&nbsp;아황산류</div><%end%>-->
-                                            <br><br>
-                                        </div>
+                                <div class="rtnt-info container"> <!--식당card-->
+                                    <%if user_signed_in?%>
+                                        <% if zizum.followed_by?(current_user) %>
+                                            <!-- 좋아요를 했다면 -->
+                                            <i class="fas fa-bookmark menu"></i>
+                                            <div class="zizum-id-bookmark"><%=zizum.id%></div>   
+                                        <% else %>
+                                            <!-- 좋아요를 안 했다면 -->
+                                            <i class="far fa-bookmark menu"></i>
+                                            <div class="zizum-id-bookmark"><%=zizum.id%></div>
+                                        <% end %>
+                                    <%else%>
+                                        <i class="far fa-bookmark menu" data-toggle="modal" data-target="#loginModal"></i>
+                                    <%end%>   
+                                    <%if zizum.image.url == nil %>
+                                        <%=image_tag("beige-logo.PNG",class:"rtnt-img1")%>
+                                    <%else%>  
+                                        <%=image_tag zizum.image.url,class:"rtnt-img1" %> 
+                                    <%end%>
+                                    <div class="about-rtnt">
+                                        <p class="rtnt-name"><%= zizum.restaurant_name%>&nbsp;<%= zizum.zizum_name%></p>
+                                        <p class="rtnt-intro">신선한 샌드위치를 만드는 서브웨이입니다.</p>                                
+                                        <p class="rtnt-adress"><i class="fas fa-map-marked-alt zizum-i-adr"></i>&nbsp;<%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
                                     </div>
-                                </div>   
-                                <% end%>
-                            </div> 
-                        </div>
-                    </div> 
-                <% end %></div>
-                <!-- pagination --><div class = "p_window">        
-                <% if @zizum_array.current_page == 1 %>
-                    <%= paginate @zizum_array, window: 4 %>
-                <% elsif  @zizum_array.current_page == 2 %>
-                    <%= paginate @zizum_array, window: 3 %>
-                <% elsif  @zizum_array.current_page == 3 %>
-                    <%= paginate @zizum_array, window: 2 %>
-                <% else %>
-                    <%= paginate @zizum_array, window: 2 %>                                    
-                <% end %> </div>  
-            </div> <!--shop-->
-            <!-- 메뉴 -->
-            <div id="Box">
-            <div id="menuBox">
-            <p style="display:flex;justify-content:center;">원하시는 식당을 누르면 해당 메뉴가 이곳에 보여집니다</p>
-             <%# <%= paginate @menu_array, window: 2 %>    
-            </div>
-        </div> <!-- around --> 
-    </div> <!--container -->  
-<%end%>
+                                </div>    
 
+                                <!--메뉴안내-->
+
+                                <div class="hideMenu">
+                                    <!--메뉴 hidden-->
+                                    <div class="rtnt-result-upper">
+                                        <%= link_to zizuminfo_path(id:zizum.id) do%>
+                                            <div class="rtnt-result-zizum-more">
+                                                <div class="rtnt-result-zizum-title linkto"><i class="fas fa-store" style="color: #FF5400;"></i>&nbsp;&nbsp;<%=zizum.restaurant_name%>&nbsp;<%= zizum.zizum_name%>&nbsp;</div>
+                                                <div class="rtnt-result-link linkto">상세 페이지로 이동&nbsp;>></div>
+                                                <div class="rtnt-result-zizum-explain">*해당 알레르기 항원을 포함하지 않은 메뉴들입니다.<br>**메뉴 하단의 항원은 메뉴에 포함되지 않은 알레르기 항원입니다.</div>
+                                            </div>
+                                        <%end%>
+                                        <hr class="rtnt-result-hr"/>
+                                    </div>
+
+                                    <% @menus.where(:restaurant_name => zizum.restaurant_name).each do |menu|%>
+                                    <div class="rtnt-result-menu-box menu-card">
+                                        <div class="card-body">
+                                        <%# <i class="fas fa-utensil-spoon"></i> %>
+                                            <p class="menu-name"><%=menu.menu_name%></p>
+                                            <p class="menu-intro">교차 위험군과 미제공 항원들은 상세페이지에서 확인해주세요</p>
+                                            <div class="menu-cpbox">                                  
+                                                <%if menu.a1_maemil == 0%><div class="menu-cp">-&nbsp;메밀</div><%end%>
+                                                <%if menu.a2_mil == 0%><div class="menu-cp">-&nbsp;밀</div><%end%>
+                                                <%if menu.a3_daedu == 0%><div class="menu-cp">-&nbsp;대두</div><%end%>
+                                                <%if menu.a4_hodu == 0%><div class="menu-cp">-&nbsp;호두</div><%end%>
+                                                <%if menu.a5_ddangkong == 0%><div class="menu-cp">-&nbsp;땅콩</div><%end%>
+                                                <%if menu.a6_peach == 0%><div class="menu-cp">-&nbsp;복숭아</div><%end%>
+                                                <%if menu.a7_tomato == 0%><div class="menu-cp">-&nbsp;토마토</div><%end%>
+                                                <%if menu.a8_piggogi == 0%><div class="menu-cp">-&nbsp;돼지고기</div><%end%>
+                                                <%if menu.a9_nanryu == 0%><div class="menu-cp">-&nbsp;난류</div><%end%>
+                                                <%if menu.a10_milk == 0%><div class="menu-cp">-&nbsp;우유</div><%end%>
+                                                <%if menu.a11_ddakgogi == 0%><div class="menu-cp">-&nbsp;닭고기</div><%end%>
+                                                <%if menu.a12_shoigogi == 0%><div class="menu-cp">-&nbsp;쇠고기</div><%end%>
+                                                <%if menu.a13_saewoo == 0%><div class="menu-cp">-&nbsp;새우</div><%end%>
+                                                <%if menu.a14_godeungeoh == 0%><div class="menu-cp">-&nbsp;고등어</div><%end%>
+                                                <%if menu.a15_honghap == 0%><div class="menu-cp">-&nbsp;홍합</div><%end%>
+                                                <%if menu.a16_junbok == 0%><div class="menu-cp">-&nbsp;전복</div><%end%>
+                                                <%if menu.a17_gul == 0%><div class="menu-cp">-&nbsp;굴</div><%end%>
+                                                <%if menu.a18_jogaeryu == 0%><div class="menu-cp">-&nbsp;조개류</div><%end%>
+                                                <%if menu.a19_gye == 0%><div class="menu-cp">-&nbsp;게</div><%end%>
+                                                <%if menu.a20_ohjingeoh == 0%><div class="menu-cp">-&nbsp;오징어</div><%end%>
+                                                <%if menu.a21_ahwangsan == 0%><div class="menu-cp">-&nbsp;아황산류</div><%end%>
+                                                <br>
+                                                <!--<%if menu.a1_maemil == -2%><div class="menu-cp">△&nbsp;메밀</div><%end%>
+                                                <%if menu.a2_mil == -2%><div class="menu-cp">△&nbsp;밀</div><%end%>
+                                                <%if menu.a3_daedu == -2%><div class="menu-cp">△&nbsp;대두</div><%end%>
+                                                <%if menu.a4_hodu == -2%><div class="menu-cp">△&nbsp;호두</div><%end%>
+                                                <%if menu.a5_ddangkong == -2%><div class="menu-cp">△&nbsp;땅콩</div><%end%>
+                                                <%if menu.a6_peach == -2%><div class="menu-cp">△&nbsp;복숭아</div><%end%>
+                                                <%if menu.a7_tomato == -2%><div class="menu-cp">△&nbsp;토마토</div><%end%>
+                                                <%if menu.a8_piggogi == -2%><div class="menu-cp">△&nbsp;돼지고기</div><%end%>
+                                                <%if menu.a9_nanryu == -2%><div class="menu-cp">△&nbsp;난류</div><%end%>
+                                                <%if menu.a10_milk == -2%><div class="menu-cp">△&nbsp;우유</div><%end%>
+                                                <%if menu.a11_ddakgogi == -2%><div class="menu-cp">△&nbsp;닭고기</div><%end%>
+                                                <%if menu.a12_shoigogi == -2%><div class="menu-cp">△&nbsp;쇠고기</div><%end%>
+                                                <%if menu.a13_saewoo == -2%><div class="menu-cp">△&nbsp;새우</div><%end%>
+                                                <%if menu.a14_godeungeoh == -2%><div class="menu-cp">△&nbsp;고등어</div><%end%>
+                                                <%if menu.a15_honghap == -2%><div class="menu-cp">△&nbsp;홍합</div><%end%>
+                                                <%if menu.a16_junbok == -2%><div class="menu-cp">△&nbsp;전복</div><%end%>
+                                                <%if menu.a17_gul == -2%><div class="menu-cp">△&nbsp;굴</div><%end%>
+                                                <%if menu.a18_jogaeryu == -2%><div class="menu-cp">△&nbsp;조개류</div><%end%>
+                                                <%if menu.a19_gye == -2%><div class="menu-cp">△&nbsp;게</div><%end%>
+                                                <%if menu.a20_ohjingeoh == -2%><div class="menu-cp">△&nbsp;오징어</div><%end%>
+                                                <%if menu.a21_ahwangsan == -2%><div class="menu-cp">△&nbsp;아황산류</div><%end%>-->
+                                                <br><br>
+                                            </div>
+                                        </div>
+                                    </div>   
+                                    <% end%>
+                                </div> 
+                            </div>
+                        </div> 
+                    <% end %></div>
+                    <!-- pagination --><div class = "p_window">        
+                    <% if @zizum_array.current_page == 1 %>
+                        <%= paginate @zizum_array, window: 4 %>
+                    <% elsif  @zizum_array.current_page == 2 %>
+                        <%= paginate @zizum_array, window: 3 %>
+                    <% elsif  @zizum_array.current_page == 3 %>
+                        <%= paginate @zizum_array, window: 2 %>
+                    <% else %>
+                        <%= paginate @zizum_array, window: 2 %>                                    
+                    <% end %> </div>  
+                </div> <!--shop-->
+                <!-- 메뉴 -->
+                <div id="Box">
+                    <div style="color: rgb(100,100,100); font-weight: 500; display:flex;justify-content:center;">원하시는 식당을 누르면 해당 메뉴가 이곳에 보여집니다</div>
+                <div id="menuBox">
+                <%# <%= paginate @menu_array, window: 2 %>    
+                </div>
+            </div> <!-- around --> 
+        </div> <!--container -->  
+    <%end%>
+</div>
 <%if !user_signed_in?%>
         <%= render 'layouts/loginModal'%>
 <%end%>
@@ -166,12 +177,27 @@
 
 
 <script>
+
+    function scrollLink(obj){ 
+        var position = $("#"+obj).offset();
+        $('html, body').animate({scrollTop : position.top}, 500);
+    }
+
+    $(document).ready(function(){
+        scrollLink("rtnt-search-result");
+    })
+
+    
+
     $(".sido-select").val('<%=params[:sido]%>');
     $(".sigungu-select").val('<%=params[:sigungu]%>');
 
     
     //메뉴 show
     $(".card-body").on('click',function() {
+        $('#menuBox').animate({scrollTop: 0}, 0);
+
+
         $("#menuBox").html($(this).children(".seeMenu").siblings('.hideMenu').html());
         $("#card2").html($(this).children(".seeMenu").siblings('.hideCard').html());
         $(this).children('.rtnt-check').children('.fa-square').css("display","none");      

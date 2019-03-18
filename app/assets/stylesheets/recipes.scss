@@ -47,7 +47,7 @@
 
     border-style: solid;
     border-color: rgb(226,226,226);
-    border-width: 0.6px;
+    border-width: 0.8px;
 
     width: 87%;
     height: 3rem;
@@ -385,7 +385,7 @@
     padding: 2rem;
     border-color: rgb(226,226,226);
     border-style: solid;
-    border-width: 0.6px;
+    border-width: 0.8px;
     margin-bottom: 5rem;
 }
 
@@ -507,10 +507,17 @@
 }
 
 .recipe-about-follower{
-    margin: 1rem 0.5rem;
+    padding: 1rem 0.5rem;
     width: 100%;
     align-items: center;
 }
+
+
+.recipe-about-follower:hover{
+   background-color: rgb(243, 243, 243);
+}
+
+
 
 .recipe-new-button{
     margin-right: 0.7rem;
