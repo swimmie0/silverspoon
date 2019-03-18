@@ -3,23 +3,25 @@
 </div>
 
 
-<div class ="contents">
-  <div class="back container"><%= link_to '뒤로가기', freeboards_path, class:"post-linkto"%></div>
+<div class ="contents post-show-contents">
+  <div class="back container">
+    <%= link_to '목록으로 가기', freeboards_path, class:"main-board-more"%>
+  </div>
   <div class="container">
     <div class="post-view">
       <!-- -->
         <% if !@freeboard.locked? || user_signed_in? && current_user.admin? || @freeboard.user == current_user %>
             <!--게시글내용-->
-            <p style="color:#FF5400;"><%= @freeboard.category%></p>
-            <h5 class="post-title"> <%= @freeboard.title %></h5>
+            <div class="post-category-title"><%= @freeboard.category%></div>
+            <div class="post-title"> <%= @freeboard.title %></div>
             <div class="form-inline">
               <%=link_to(image_tag(@freeboard.image(@writer),class:"post-profile-img"), profile_path(@writer.profile.id)) %>
-              <div> <%= link_to @freeboard.name,  profile_path(@writer.profile.id), class:"linkto" %> </div> 
-              <div style="font-weight:lighter;margin-left:2rem;"><%= @freeboard.created_at.strftime("%Y-%m-%d") %> </div>
+              <div style="font-size: 0.9rem;"> <%= link_to @freeboard.name,  profile_path(@writer.profile.id), class:"linkto" %> </div> 
+              <div class="main-board-more" style="margin-left: 2rem; "><%= @freeboard.created_at.strftime("%Y-%m-%d") %> </div>
               <div style="margin-left:auto;font-size:0.8rem;"> 조회수: <%= @freeboard.impressionist_count(:filter=>:session_hash) %></div>
             </div>  
-          <hr/>
-            <p><%= content_tag(:div, @freeboard.content.html_safe, :class=>"post-body")  %></p>
+          <hr class="post-view-hr"/>
+            <p style="font-size: 0.9rem;"><%= content_tag(:div, @freeboard.content.html_safe, :class=>"post-body")  %></p>
             <div class="post-edit">
               <% if current_user == @freeboard.user%>
                 <%= link_to '수정', edit_freeboard_path(@freeboard), class:"linkto" %>
@@ -40,9 +42,9 @@
     
 
     <% if @freeboard.category == "질문글"%>
-      <p> 답변 <%=@freeboard.comment_threads.count%>개</p>       
+      <div style="font-weight: bold; font-size: 1rem; margin-bottom: 0.8rem;"> 답변 <%=@freeboard.comment_threads.count%>개</div>       
     <% else %>
-      <p> 댓글 <%=@freeboard.comment_threads.count%>개</p>   
+      <div style="font-weight: bold; font-size: 1rem; margin-bottom: 0.8rem;"> 댓글 <%=@freeboard.comment_threads.count%>개</div>   
     <% end %>
       
       <!-- -->
@@ -69,6 +71,7 @@
 </div>                
 
 <script>
+
 $('.nav-link').on('click', function(){
     $('.nav-link').removeClass('selected');
     $(this).addClass('selected');

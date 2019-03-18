@@ -2,6 +2,11 @@ body {
   font-family: 'NanumBarunGothic';
 }
 
+  .profile-active-nav{
+    background-color: #002f7b !important;
+    color: white !important;
+  }
+  
 // 상단 섹션
   .ProfileUpperSection {
     height: 35rem; 
@@ -88,7 +93,6 @@ body {
   .ProfileImg {
     position: absolute;
     top: 12rem;
-    margin-left: 7.5%; 
     width: 10rem; 
     height: 10rem; 
     border: 1px solid rgb(226, 226, 226); 
@@ -118,23 +122,28 @@ body {
   }
 
   .ProfileInfo {
+    
     float: left;
-    margin-top: -2.3rem; 
-    margin-left: 7.4rem;
+    margin-top: -2.4rem; 
+    margin-left: 10.8rem;
     font-size: 1rem; 
     color: black; 
     
   }
 
   .profile-specific{
-    margin-top: 1.5rem;
+    margin-top: 2.5rem;
   }
 
   .ProfileName {
+    font-family: 'NanumSquare', sans-serif;
     margin-bottom: 0rem; 
     font-size: 1.6rem; 
     color: white;
+  }
 
+  .profile-info-spec{
+    margin-top: 0.7rem;
   }
 
   .ProfileTabInfo {
@@ -224,6 +233,9 @@ body {
 // 작성한 게시글 & 댓글단 게시글 끝
 
 // 수정 요청 현황확인 섹션
+.profile-no-request{
+  margin-bottom: 5rem;
+}
 .profile-request-titlebox{
   margin-bottom: 2rem;
 }
