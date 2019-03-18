@@ -33,41 +33,41 @@
 
             <h5 style="padding-bottom: 1%"> 알레르기정보 </h5>
             
-            <div> 유제품 및 난류:
-              <%= check_box_tag 'user[allergy][]', '난류' %> 난류
-              <%= check_box_tag 'user[allergy][]', '우유' %> 우유 
-            </div><br/>
+              <div> 유제품 및 난류:
+                <label><%= check_box_tag 'user[allergy][]', '난류', current_user.allergy.include?('난류') %> 난류</label>
+                <label><%= check_box_tag 'user[allergy][]', '우유', current_user.allergy.include?('우유') %> 우유</label>
+              </div><br/>
 
-            <div> 과채류 및 곡류: 
-              <%= check_box_tag 'user[allergy][]', '복숭아'%> 복숭아
-              <%= check_box_tag 'user[allergy][]', '토마토'%> 토마토
-              <%= check_box_tag 'user[allergy][]', '대두(콩)' %> 대두(콩) 
-              <%= check_box_tag 'user[allergy][]', '밀'%> 밀
-              <%= check_box_tag 'user[allergy][]', '메밀'%> 메밀 
-            </div><br/>
+              <div> 과채류 및 곡류: 
+                <label><%= check_box_tag 'user[allergy][]', '복숭아', current_user.allergy.include?('복숭아')%> 복숭아</label>
+                <label><%= check_box_tag 'user[allergy][]', '토마토', current_user.allergy.include?('토마토')%> 토마토</label>
+                <label><%= check_box_tag 'user[allergy][]', '대두(콩)' , current_user.allergy.include?('대두(콩)')%> 대두(콩) </label>
+                <label><%= check_box_tag 'user[allergy][]', '밀', current_user.allergy.include?('밀')%> 밀</label>
+                <label><%= check_box_tag 'user[allergy][]', '메밀', current_user.allergy.include?('메밀')%> 메밀 </label>
+              </div><br/>
 
-            <div> 육류:
-              <%= check_box_tag 'user[allergy][]', '닭고기' %> 닭고기 
-              <%= check_box_tag 'user[allergy][]', '돼지고기'%>돼지고기 
-              <%= check_box_tag 'user[allergy][]', '쇠고기'%>쇠고기
-            </div><br/> 
+              <div> 육류:
+                <label><%= check_box_tag 'user[allergy][]', '닭고기', current_user.allergy.include?('닭고기') %> 닭고기 </label>
+                <label><%= check_box_tag 'user[allergy][]', '돼지고기', current_user.allergy.include?('돼지고기')%>돼지고기 </label>
+                <label><%= check_box_tag 'user[allergy][]', '쇠고기', current_user.allergy.include?('쇠고기')%>쇠고기</label>
+              </div><br/> 
 
-            <div> 어패류:
-              <%= check_box_tag 'user[allergy][]', '고등어' %>고등어
-              <%= check_box_tag 'user[allergy][]', '오징어' %>오징어
-              <%= check_box_tag 'user[allergy][]', '게' %> 게
-              <%= check_box_tag 'user[allergy][]', '새우' %> 새우 
-              <%= check_box_tag 'user[allergy][]', '조개류' %>조개류
-              <%= check_box_tag 'user[allergy][]', '홍합' %>홍합
-              <%= check_box_tag 'user[allergy][]', '전복' %>전복
-              <%= check_box_tag 'user[allergy][]', '굴' %>굴
-            </div><br/>
+              <div> 어패류:
+                <label><%= check_box_tag 'user[allergy][]', '고등어' , current_user.allergy.include?('고등어')%>고등어</label>
+                <label><%= check_box_tag 'user[allergy][]', '오징어', current_user.allergy.include?('오징어') %>오징어</label>
+                <label><%= check_box_tag 'user[allergy][]', '게' , current_user.allergy.include?('게')%> 게</label>
+                <label><%= check_box_tag 'user[allergy][]', '새우' , current_user.allergy.include?('새우')%> 새우 </label>
+                <label><%= check_box_tag 'user[allergy][]', '조개류', current_user.allergy.include?('조개류') %>조개류</label>
+                <label><%= check_box_tag 'user[allergy][]', '홍합', current_user.allergy.include?('홍합') %>홍합</label>
+                <label><%= check_box_tag 'user[allergy][]', '전복' , current_user.allergy.include?('전복')%>전복</label>
+                <label><%= check_box_tag 'user[allergy][]', '굴', current_user.allergy.include?('굴') %>굴</label>
+              </div><br/>
 
-            <div> 견과류,아황산:
-              <%= check_box_tag 'user[allergy][]', '땅콩' %> 땅콩
-              <%= check_box_tag 'user[allergy][]', '호두 ' %> 호두 
-              <%= check_box_tag 'user[allergy][]', '아황산류 ' %> 아황산류 
-            </div><br>
+              <div> 견과류,아황산:
+                <label><%= check_box_tag 'user[allergy][]', '땅콩', current_user.allergy.include?('땅콩') %> 땅콩</label>
+                <label><%= check_box_tag 'user[allergy][]', '호두', current_user.allergy.include?('호두') %> 호두 </label>
+                <label><%= check_box_tag 'user[allergy][]', '아황산류', current_user.allergy.include?('아황산류') %> 아황산류 </label>
+              </div><br>
           </div>
 
           <hr>
@@ -79,21 +79,14 @@
               <%= f.radio_button :gender, "남" %>
               <%# <%= f.radio_button :gender, "여" %> 
             <%# </div> %> 
-
-            <%# <div class="col-4 field">
-              <h5> 나이 </h5>
-              <%= f.select :ages, options_for_select([["10대이하", "10대이하"], ["10대","10대"], ["20-30대","20-30대"], ["40-50대","40-50대"],["60대이상","60대이상"]]), { prompt: '나이를 선택해주세요' } %>  
-            <%# </div> %>
-
             <div class="col-4 field">
               <h5> 프로필 사진 </h5>
               <%#= f.label :profileimg, "프로필 사진" %>
               <%= f.file_field :profileimg, accept: 'image/png, image/gif, image/jpeg' %>
             </div>
 
-          </div><br/>      
-          <!-- 선택항목 기입 섹션 끝 -->
-          <hr>
+          </div><br/> 
+             <hr>
           
           <!--비밀번호 수정-->
           <div class="field"> 
@@ -118,23 +111,26 @@
               <%= f.label :current_password %> <br />
               <%= f.password_field :current_password, autocomplete: "off",class: "form-control"%>
             </div><br/>
-          </div>
+          </div> 
 
-          <hr>
-          <h5>  회원탈퇴 </h5>
-          <p><%= t('.unhappy') %> <%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %></p>
-
-            
           <div class="actions">
             <%# <%= f.submit "Sign up" , id: "submitButton" %> 
                 <div class="d-flex justify-content-between">
-                  <div></div>
-                  <button type="submit" class="btn btn-search" id="submitButton">수정하기</button>
+                <div></div>
+                <button type="submit" class="btn btn-search">수정하기</button>
                 </div>
           </div>
         <% end %>  
         <!-- 수정 Form 섹션 끝 -->
         <br>
+        
+        <!-- 탈퇴  -->
+        <hr>
+        <h5> 회원탈퇴 </h5>
+        <div class="row">
+          <p class="col field"><%= t('.unhappy') %> </p>
+          <p class="col field"><%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete, class:"btn-cancel" %></p>
+        </div><br/>
 
       </div>
     </div>
@@ -143,7 +139,7 @@
 
 
 
-<script>
+<%# <script>
 //document.getElementById("submitButton").disabled = true;
 $('#checkname').each(function(){
   var elem =$(this)
@@ -189,4 +185,4 @@ $('#checkname').each(function(){
  });
 
 
-</script>
+</script> %>
