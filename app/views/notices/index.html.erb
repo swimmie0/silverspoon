@@ -34,7 +34,7 @@
   </div>
 <br>
 <% if user_signed_in? &&current_user.admin?%>
-<%= link_to '공지 등록', new_notice_path %>
+<%= button_to '공지 등록', new_notice_path,:method=>'get' %>
 <%end%>
 
 <script>

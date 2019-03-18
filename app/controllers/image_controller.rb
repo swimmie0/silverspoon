@@ -10,6 +10,7 @@ class ImageController < ApplicationController
       private
      
       def image_params
-        params.require(:image).permit(:file, :hint, :alt, :post_id, :all_notice_id)
+        # params.require(:image).permit(:file, :hint, :alt, :post_id, :all_notice_id)
+        params.require(:image).permit(:file, :hint, :alt, :notice_id, :freeboard_id)
       end
 end

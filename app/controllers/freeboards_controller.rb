@@ -92,10 +92,10 @@ class FreeboardsController < ApplicationController
 
   # GET /freeboards/new
   def new   
-    if user_signed_in? && current_user.name == nil
-      flash[:warning] ='닉네임을 설정해주세요'
-      redirect_to edit_user_registration_path
-    end
+    # if user_signed_in? && current_user.name == nil
+    #   flash[:warning] ='닉네임을 설정해주세요'
+    #   redirect_to edit_user_registration_path
+    # end
     @freeboard = Freeboard.new
   end
 
