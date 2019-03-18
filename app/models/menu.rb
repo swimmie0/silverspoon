@@ -2,7 +2,7 @@ require 'open-uri'
 require 'nokogiri'
 
 class Menu < ApplicationRecord
-    mount_uploader :image, S3Uploader
+    # mount_uploader :image, S3Uploader
 
     belongs_to :restaurant
     
@@ -27,7 +27,7 @@ class Menu < ApplicationRecord
             m_name = r.css('th').text
             r_name = "서브웨이"
             
-            if Menu.where(menu_name: m_name)[0].nil?
+            if Menu.where(restaurant_name: r_name,menu_name: m_name)[0].nil?
                 a_info = Menu.new
             else
                 a_info = Menu.where(restaurant_name: r_name, menu_name: m_name)[0]
@@ -168,7 +168,7 @@ class Menu < ApplicationRecord
             r_name = "맘스터치"
             m_name = r.css(':nth-child(1)').text
             
-            if Menu.where(menu_name: m_name)[0].nil?
+            if Menu.where(restaurant_name: r_name,menu_name: m_name)[0].nil?
                 a_info = Menu.new
             else
                 a_info = Menu.where(restaurant_name: r_name, menu_name: m_name)[0]
@@ -351,7 +351,7 @@ class Menu < ApplicationRecord
             m_name = r.css('td.l-txt').text
             r_name = "빕스"
             
-            if Menu.where(menu_name: m_name)[0].nil? #신규
+            if Menu.where(restaurant_name: r_name,menu_name: m_name)[0].nil? #신규
                 a_info = Menu.new
             else
                 a_info = Menu.where(restaurant_name: r_name, menu_name: m_name)[0] #업데이트
@@ -527,7 +527,7 @@ class Menu < ApplicationRecord
                     a = r.css('td:nth-child(2)')
                 end
                 
-                if Menu.where(menu_name: m_name)[0].nil? #신규
+                if Menu.where(restaurant_name: r_name,menu_name: m_name)[0].nil? #신규
                     a_info = Menu.new
                 else
                     a_info = Menu.where(restaurant_name: r_name, menu_name: m_name)[0] #업데이트
@@ -704,7 +704,7 @@ class Menu < ApplicationRecord
                     #     a = r.css('dl.txt dd').text.split("알레르기 유발 물질")[1].gsub(':','')
                     # end  
 
-                    if Menu.where(menu_name: m_name)[0].nil? #신규
+                    if Menu.where(restaurant_name: r_name,menu_name: m_name)[0].nil? #신규
                         a_info = Menu.new
                     else
                         a_info = Menu.where(restaurant_name: r_name, menu_name: m_name)[0] #업데이트
@@ -852,7 +852,7 @@ class Menu < ApplicationRecord
                     a = r.css('td:nth-child(9)')       
                 end   
 
-                if Menu.where(menu_name: m_name)[0].nil? #신규
+                if Menu.where(restaurant_name: r_name,menu_name: m_name)[0].nil? #신규
                     a_info = Menu.new
                 else
                     a_info = Menu.where(restaurant_name: r_name, menu_name: m_name)[0] #업데이트
@@ -982,7 +982,7 @@ class Menu < ApplicationRecord
                 m_name = r.css('td:nth-child(1)').text
                 a=r.css('td:nth-child(8)')
 
-                if Menu.where(menu_name: m_name)[0].nil? #신규
+                if Menu.where(restaurant_name: r_name,menu_name: m_name)[0].nil? #신규
                     a_info = Menu.new
                 else
                     a_info = Menu.where(restaurant_name: r_name, menu_name: m_name)[0] #업데이트
@@ -1084,7 +1084,7 @@ class Menu < ApplicationRecord
                     
                     m_name = menu.gsub(',','').strip
 
-                    if Menu.where(menu_name: m_name)[0].nil? #신규
+                    if Menu.where(restaurant_name: r_name,menu_name: m_name)[0].nil? #신규
                         a_info = Menu.new
                         a_info.restaurant_name = r_name
                         a_info.restaurant_id = Restaurant.where(restaurant_name: r_name)[0].id
@@ -1599,7 +1599,7 @@ end
             rows.each do |r|
                 m_name = r.css('td.product').text
 
-                if Menu.where(menu_name: m_name)[0].nil?
+                if Menu.where(restaurant_name: r_name,menu_name: m_name)[0].nil?
                     a_info = Menu.new
                 else
                     a_info = Menu.where(restaurant_name: r_name, menu_name: m_name)[0]
@@ -1755,7 +1755,7 @@ end
             m_name = titles[idx]
             idx = idx + 1
             
-            if Menu.where(menu_name: m_name)[0].nil?
+            if Menu.where(restaurant_name: r_name,menu_name: m_name)[0].nil?
                 a_info = Menu.new
             else
                 a_info = Menu.where(restaurant_name: r_name, menu_name: m_name)[0]
@@ -1867,7 +1867,7 @@ end
             
             m_name = r.css('td:nth-child('+idx+')').text
 
-            if Menu.where(menu_name: m_name)[0].nil?
+            if Menu.where(restaurant_name: r_name,menu_name: m_name)[0].nil?
                 a_info = Menu.new
             else
                 a_info = Menu.where(restaurant_name: r_name, menu_name: m_name)[0]
