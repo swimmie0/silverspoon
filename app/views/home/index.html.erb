@@ -129,9 +129,8 @@
     <span class="close">&times;</span>
     <h5><%= @popNotice.title %></h5>
     <b><%=@date.to_s%></b>
-    <p> <%=@popNotice.content.html_safe %></p>
-    <br>
-    <p><input type="checkbox" value="OK" onclick="javascript:closeWinAt00('noticeModal', 1);"/>오늘만 이 창을 열지 않음 </p>
+    <p> <%=link_to @popNotice.content.html_safe, @popNotice %></p>
+    <label><input type="checkbox" value="OK" onclick="javascript:closeWinAt00('noticeModal', 1);"/>오늘 하루 이 창을 열지 않음</label>
   </div>
 </div>
 
