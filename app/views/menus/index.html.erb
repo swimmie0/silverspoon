@@ -63,10 +63,10 @@
                                     <%else%>
                                         <i class="far fa-bookmark menu" data-toggle="modal" data-target="#loginModal"></i>
                                     <%end%>   
-                                    <%if zizum.image.url == nil %>
+                                    <%if zizum.restaurant.image.url == nil %>
                                         <%=image_tag("beige-logo.PNG",class:"rtnt-img1")%>
                                     <%else%>  
-                                        <%=image_tag zizum.image.url,class:"rtnt-img1" %> 
+                                        <%=image_tag zizum.restaurant.image.url,class:"rtnt-img1" %> 
                                     <%end%>
                                     <div class="about-rtnt">
                                         <div class="rtnt-name"><%= zizum.restaurant_name%>&nbsp;<%= zizum.zizum_name%></div>
