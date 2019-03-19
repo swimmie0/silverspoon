@@ -20,24 +20,25 @@
       </thead>
 
       <tbody>
-
-        <% @user_requests.each do |request| %>
-          <tr >
-            <td> 
-             <% if request.completed==true %>
-             <div class="completed"style="font-weight:lighter;color:#002f7b; ">[완료]</div>
-            <% else %>
-             <div class="completed"style="font-weight:lighter;color:#FF5400;">[미처리]</div>
-            <% end %>   
-            </td>
-            <td class="title">
-                <%= link_to request.title, request, {:class => "linkto",:style=>"font-size:0.8rem;"} %>             
-            </td>
-            <td class="post-td-gray"><%= request.name %></td>
-            <td class="post-td-gray"><%= request.time(request)%></td>                
-            <td class="post-td-gray"> <%= request.impressionist_count(:filter=>:session_hash) %></td>
-          </tr>
-        <% end %>
+        <% if @user_requests != nil %>
+          <% @user_requests.each do |request| %>
+            <tr >
+              <td> 
+              <% if request.completed==true %>
+              <div class="completed"style="font-weight:lighter;color:#002f7b; ">[완료]</div>
+              <% else %>
+              <div class="completed"style="font-weight:lighter;color:#FF5400;">[미처리]</div>
+              <% end %>   
+              </td>
+              <td class="title">
+                  <%= link_to request.title, request, {:class => "linkto",:style=>"font-size:0.8rem;"} %>             
+              </td>
+              <td class="post-td-gray"><%= request.name %></td>
+              <td class="post-td-gray"><%= request.time(request)%></td>                
+              <td class="post-td-gray"> <%= request.impressionist_count(:filter=>:session_hash) %></td>
+            </tr>
+          <%end%>
+          <% end %>
       </tbody>
     </table>
   </div>
