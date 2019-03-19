@@ -1,0 +1,687 @@
+// Place all the styles related to the recipes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.recipe-new-ready{
+    margin: 10rem 0rem;
+}
+
+.recipe-index-upper{
+    font-family: 'NanumSquare', sans-serif;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color:#F8F8F8;
+}
+
+
+
+.recipe-index-upper-container{
+    padding: 5rem 2rem;
+}
+
+.recipe-index-search-area{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.recipe-index-search-area2{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.recipe-index-search-box{
+    width: 75%;
+    display: flex;
+    justify-content: center;
+}
+
+.recipe-index-search-input{
+   
+    font-size: 0.8rem;
+    color: rgb(100, 100, 100);
+    line-height: 3rem;
+    padding: 0.3rem 1rem;
+
+    border-style: solid;
+    border-color: rgb(226,226,226);
+    border-width: 0.8px;
+
+    width: 87%;
+    height: 3rem;
+    background-color: white;
+}
+
+.recipe-index-search-btn{
+
+    //type submit 이므로 appearnace 조정
+    -webkit-appearance: none;
+    border-style: none;
+    cursor: pointer;
+    padding: 0.3rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    width: 13%;
+    height: 3rem;
+    background-color: #002f7b;
+}
+
+
+  .recipe-index-search-tagbox{
+    margin: 2rem 0rem;
+    margin-bottom: 0rem;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+
+.recipe-index-search-tag{
+    cursor: pointer;
+
+    font-weight: 400;
+    margin: 0.35rem !important;
+    color: #002f7b;
+    font-size: 0.8rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    padding-right: 0.6rem;
+    padding-left: 0.6rem;
+    border-radius: 0.75rem;
+    border-style: solid;
+    border-color: #002f7b;
+    border-width: 1px;
+}
+
+.recipe-index-search-tag:hover{
+    text-decoration: underline;
+    text-decoration-color: #002f7b;
+}
+
+
+
+//=================index search 끝========
+
+
+
+//-----------------index main 시작========
+.recipe-index-main{
+    font-family: 'NanumSquare', sans-serif;
+    width: 100%;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+.recipe-index-main-count{
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.recipe-index-body{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+
+}
+
+
+.recipe-index-outbox{
+    padding: 0.7rem 0.7rem;
+}
+
+
+.recipe-index-box{
+    width: 100%;
+    height: 100%;
+    border-color: rgb(226, 226, 226);
+    border-width:  1px;
+    border-style: solid;
+    //width: 18rem;
+    height: 24rem;
+}
+
+
+.recipe-index-box:hover{
+   border-color: #FF5400;
+   -moz-transition: all .3s ease-in;
+   -o-transition: all .3s ease-in;
+   -webkit-transition: all .3s ease-in;
+   transition: all .3s ease-in;
+}
+
+.recipe-index-imgbox{
+    width: 100%;
+    height: 70%;
+    border-bottom-style: solid;
+    border-color: rgb(226, 226, 226);
+    border-width:  0.5px;
+
+    // position: relative;
+    // overflow: hidden;
+}
+
+
+// .recipe-index-imgbox * {
+//     -webkit-box-sizing: border-box;
+//     box-sizing: border-box;
+//     -webkit-transition: all 0.2s ease-in-out;
+//     transition: all 0.2s ease-in-out;
+// }
+  
+// .recipe-index-imgbox img {
+//     max-width: 100%;
+//     position: relative;
+//     opacity: 0.9;
+// }
+
+// .recipe-index-imgbox:hover img,
+// .recipe-index-imgbox.hover img {
+//     -webkit-filter: grayscale(20%); /* Safari 6.0 - 9.0 */
+//     filter: grayscale(20%);
+//     opacity: 0.35;
+//     -webkit-transform: scale(1.1);
+//     transform: scale(1.1);
+// }
+
+
+
+
+.recipe-index-img{
+    width: 100%;
+    height: 100%;
+}
+
+.recipe-index-bookmark-area{
+    height: 1%;
+}
+
+.recipe-index-bookmark, .recipe-index-nobookmark{
+    margin-right: 0.7rem;
+}
+
+.recipe-index-bookmark{
+    cursor: pointer;
+    color: #FF5400;
+    font-size: 1.8rem;
+    font-weight: 200;
+}
+
+.recipe-index-id-bookmark{
+    display: none;
+}
+
+.recipe-index-textbox{
+    height: 30%;
+    width: 100%;
+    padding: 0.6rem 1rem;
+}
+
+.recipe-index-title{
+
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.8rem;
+}
+
+
+
+.recipe-index-text{
+}
+
+.recipe-index-text-allergy{
+    font-size: 0.9rem;
+}
+
+.recipe-index-text-2, .recipe-index-user{
+    font-size: 0.8rem;
+    color: rgb(165, 164, 164); 
+}
+
+.recipe-index-user{
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+//------------------------------------
+
+//================recipe show==========
+.recipe-about-sec{
+    width: 100%;
+    height: 100%;
+    font-family:  'NanumSquare', sans-serif;
+}
+
+.recipe-bookmark{
+    cursor: pointer;
+    color: #FF5400;
+    font-size: 2.2rem;
+    font-weight: 200;
+}
+
+
+
+
+.recipe-id-like, .recipe-id-bookmark{
+    display: none;
+}
+
+.recipe-show-allergyfor{
+    color: #FF5400;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.recipe-about-upper{
+    height: 46%;
+}
+
+.recipe-about-title1{
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.recipe-about-title2{
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+}
+
+.recipe-about-explain{
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: rgb(165, 164, 164); 
+}
+
+.recipe-about-user{
+    margin-top: 0.7rem;
+    width: 100%;
+    align-items: center;
+}
+
+.recipe-about-writer-imgbox{
+    border-radius:50%;
+    width:2.5rem;
+    height:2.5rem;
+    margin-right: 0.8rem;
+    overflow: hidden;
+}
+
+.recipe-about-writer-imgbox img{
+    width: 100%;
+    height: 100%;
+}
+
+.recipe-about-writer{
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+
+.recipe-about-moreinfo{
+    margin-top: 0.4rem;
+    width: 100%;
+    height: 54%;
+    padding-top: 1.4rem;
+    font-size: 0.9rem;
+}
+
+.recipe-about-mi-row{
+    align-items: center;
+}
+
+
+
+.recipe-about-spec-bookmark{
+    width: 6rem; 
+    height: 75%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.9rem;
+    border-style: solid;
+    border-color: #FF5400;
+    border-width: 1.2px;
+    padding: 0.2rem 0.75rem;
+    font-size: 0.9rem;
+
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+.recipe-about-spec-bookmark:hover{
+    background-color: #FF5400;
+    color: white;
+}
+
+.recipe-about-spec{
+    width: 84%;
+}
+
+.recipe-about-spec-ingr{
+    font-size: 0.8rem;
+}
+
+.recipe-i-ingr{
+    color: #002f7b;
+}
+
+
+//recipe show 과정---------------
+.recipe-show-content-area{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.recipe-show-content-box{
+    width: 100%;
+    padding-top: 0.5rem;
+    padding: 2rem;
+    border-color: rgb(226,226,226);
+    border-style: solid;
+    border-width: 0.8px;
+    margin-bottom: 5rem;
+}
+
+.recipe-show-content-how{
+    height: 1.6rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.3rem;
+}
+
+.recipe-show-how-btnbox{
+    width: 5rem;
+    height: 100%;
+    display: flex;
+}
+
+.recipe-show-how-btn{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-color: rgb(226,226,226);
+    border-style: solid;
+    border-width: 0.5px;
+
+    color:  rgb(202, 202, 202);
+}
+.recipe-show-how-btn i {
+    font-size: 1rem;
+}
+
+.recipe-show-how-active{
+    background-color: rgb(202, 202, 202);
+    color: white;
+}
+
+.recipe-show-content-steps{
+    width: 100%;
+    height: 17rem;
+}
+
+.recipe-show-content-txt {
+    //text 형식일 때
+    margin-bottom: 2rem;
+}
+
+.recipe-show-step-img{
+    height: 15rem;
+    width: 17rem;
+    border-color: rgb(226,226,226);
+    border-style: solid;
+    border-width: 0.5px;
+}
+
+.recipe-show-step-content{
+    padding: 0rem 2.5rem;
+}
+
+.recipe-show-step-title{
+    font-size: 1.1rem;
+    color: #002f7b;
+    font-weight: 600;
+}
+
+.recipe-show-step-detail{
+    margin-top: 1.2rem;
+    font-size: 0.9rem;
+}
+
+//img 만 보여지는 형식일 때
+
+.recipe-bd-example{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.recipe-carousel-inner{
+    width: 35rem;
+    height: 30rem;
+}
+
+.carousel-item{
+    height: 100%;
+    font-family:  'NanumSquare', sans-serif;
+}
+
+.carousel-item img{
+    height: 100%;
+}
+
+.recipe-carousel-caption{
+   background-color: rgba(100, 100, 100, 0.363)
+}
+
+.recipe-show-step-title-img{
+    font-size: 1.1rem;
+    color: white;
+    font-weight: 600;
+}
+
+.recipe-show-step-detail-img{
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+//-------------------------------------
+
+//-------------modal-------------------
+
+.recipe-modal-body{
+    padding-top: 0.5rem;
+    height: 17rem;
+    overflow-y: auto;
+}
+.recipe-modal-dialog{
+    width: 23rem;
+}
+
+.recipe-about-follower{
+    padding: 1rem 0.5rem;
+    width: 100%;
+    align-items: center;
+}
+
+
+.recipe-about-follower:hover{
+   background-color: rgb(243, 243, 243);
+}
+
+
+
+.recipe-new-button{
+    margin-right: 0.7rem;
+}
+//-------------------------------------
+
+.recipe-new-upper{
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.recipe-new-upper-main{
+    font-size: 22px;
+    font-weight: 650;
+}
+
+
+.post-submit-button{
+    font-size: 18px;
+    cursor: pointer;
+    width: 6rem;
+    height: 2.3rem;
+    border-radius: 17px;
+    color: white;
+    border-style: none;
+    background-color: rgba(0, 171, 108, 0.849);
+}
+
+.recipe-new-intro{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.recipe-new-intro-allergyfor{
+    border-style: solid;
+    border-width: 0.4px;
+    border-bottom-color: #707070;
+
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    width: 150px;
+}
+
+.recipe-new-intro-field{
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.recipe-new-form-title{
+    font-size: 16px;
+    width: 7.5rem;
+    margin-right: 1rem;
+}
+
+.recipe-new-intro-input{
+    border-style: solid;
+    border-width: 0.4px;
+    border-color: #707070;
+    width: 13rem;
+}
+
+.recipe-new-intro-input-ingr{
+    border-style: solid;
+    border-width: 0.4px;
+    border-color: #707070;
+    width: 20rem;
+    height: 15rem;
+}
+
+
+.recipe-new-intro-title{
+    margin-left: 10px;
+}
+.recipe-new-body{
+    width: 100%;
+}
+
+.recipe-new-divide-line{
+    height: 3px;
+}
+
+.recipe-new-defaultimg{
+    width: 9rem;
+    height: 9rem;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.recipe-new-representative{
+    width: 20rem;
+    height: 20rem;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+
+
+.recipe-new-body-cap{
+    //!! 어떻게 100% 로 딱 채우지?
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.recipe-new-body-add{
+    font-size: 2rem;
+    color: rgba(0, 171, 108, 0.849);
+    cursor: pointer;
+}
+
+.recipe-new-targetimg{
+    width: 9rem;
+    height: 9rem;
+    overflow: hidden;
+}
+
+.recipe-target-imgbox{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.pictureInput{
+    display: none;
+
+}
+
+.allergy-tag-input{
+    display: none;
+}
+
+.allergy-tag-box{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    border-style: solid;
+    border-color: gray;
+    border-width: 0.5px;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.allergy-tag{
+    margin: 5px;
+    cursor: pointer;
+    height: 32px;
+    width: 80px;
+    border-style: solid;
+    border-color: rgb(0, 141, 99);
+    border-width: 0.5px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+
+.recipe-ready-pic{
+    width: 65%;
+}

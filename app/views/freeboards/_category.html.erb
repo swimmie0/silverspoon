@@ -1,0 +1,23 @@
+  <nav class="nav"> <!--나중에수정하기-->
+    <a class="nav-link all single" href="/freeboards" target="_self" >전체</a >  
+      <%= form_tag(freeboards_path, :method => "get") do %>
+      <%= text_field_tag :category, params[:category], value:"일상글", style:"display:none;"%>
+          <% if @freeboard.category == "일상글" %><%=submit_tag "일상글", class:"nav-link selected"%>
+          <% else%><%=submit_tag "일상글", class:"nav-link"%><% end %> 
+      <% end %> 
+      <%= form_tag(freeboards_path, :method => "get") do %>
+      <%= text_field_tag :category, params[:category], value:"정보글", style:"display:none;"%>
+          <% if @freeboard.category == "정보글" %><%=submit_tag "정보글", class:"nav-link selected"%>
+          <% else%><%=submit_tag "정보글", class:"nav-link"%><% end %> 
+      <% end %> 
+      <%= form_tag(freeboards_path, :method => "get") do %>
+      <%= text_field_tag :category, params[:category], value:"질문글", style:"display:none;"%>
+          <% if @freeboard.category == "질문글" %><%=submit_tag "질문글", class:"nav-link selected"%>
+          <% else%><%=submit_tag "질문글", class:"nav-link"%><% end %> 
+      <% end %>       
+      <%= form_tag(freeboards_path, :method => "get") do %>
+      <%= text_field_tag :category, params[:category], value:"제보글", style:"display:none;"%>
+          <% if @freeboard.category == "제보글" %><%=submit_tag "제보글", class:"nav-link selected"%>
+          <% else%><%=submit_tag "제보글", class:"nav-link"%><% end %> 
+      <% end %> 
+  </nav>  

@@ -1,0 +1,493 @@
+.profile-message-blank{
+  font-family: "NanumSquare", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(133, 133, 133);
+}
+.profile-allergy-cp{
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+  .profile-active-nav{
+    background-color: #002f7b !important;
+    color: white !important;
+  }
+  
+// 상단 섹션
+  .ProfileUpperSection {
+    height: 35rem; 
+    width: 100%; 
+    justify-content: center;
+  }
+
+  .ProfileUpperBannerSection{
+    height: 12rem;
+    background-image: image-url("FakeBanner.png");
+  }
+
+  .ProfileEditButton {
+    color: white;
+    float: right; 
+    margin-top: 1.2rem; 
+    margin-right: 0.5rem;
+  }
+
+  .ProfileEditButton:hover {
+    color: #FF5400;
+
+  }
+
+  .ProfileUpperNameSection {
+    margin-top: 7.5rem; 
+    height: 2.5rem;
+  }
+
+  .ProfileUpperName {
+    float: left;
+    top: -4.75rem;
+    margin-left: 10.5%;
+    font-size: 1.5rem; 
+    color: white; 
+  }
+
+  .ProfileBanner-Unbutton {
+    margin-right: 0.5rem;
+    float: right;
+    text-align: center;
+    width: 10rem;
+    height: 2.5rem;
+    background-color: #FF5400;
+    border: none;
+    color: white;
+    border-width: 0.3px;
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 0.8rem;
+    line-height: 2.5rem;
+    
+  }
+
+  .ProfileBanner-Button{
+    //position: absolute;
+    //bottom: 0;
+    //right: 0;
+    width: 10rem;
+    height: 2.5rem;
+    text-align: center;
+    float: right;
+    margin-top: 7rem;
+    margin-right: 0.5rem;
+    border-style: solid;
+    border-color:white;
+    color: white;
+    border-width: 0.3px;
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 0.8rem;
+    line-height: 2.5rem;
+
+    -moz-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+  }
+
+  .ProfileBanner-Button:hover{
+    background-color: #FF5400;
+    border: none;
+    color: white;
+  }
+
+  .ProfileImg {
+    position: absolute;
+    top: 12rem;
+    width: 10rem; 
+    height: 10rem; 
+    border: 1px solid rgb(226, 226, 226); 
+    border-radius: 50%; 
+    
+  }
+
+  .ProfileDefaultImg {
+    position: absolute; 
+    top: 12rem; 
+    // margin-left: 7.5%; 
+    width: 10rem; 
+    height: 10rem; 
+    border: 1px solid rgb(226, 226, 226); 
+    border-radius: 50%; 
+
+  }
+
+  .ProfileDownInfoSection {
+    background-color: #F8F8F8;
+    height: 23rem; 
+  }
+
+  .ProfileInfoSection {
+    //height: 10.5rem;
+    height: 8.1rem;
+  }
+
+  .ProfileInfo {
+    
+    float: left;
+    margin-top: -2.4rem; 
+    margin-left: 10.8rem;
+    font-size: 1rem; 
+    color: black; 
+    
+  }
+
+  .profile-specific{
+    margin-top: 2.5rem;
+  }
+
+  .ProfileName {
+    font-family: 'Nanum Gothic', sans-serif;
+    margin-bottom: 0rem; 
+    font-size: 1.6rem; 
+    color: white;
+  }
+
+  .profile-info-spec{
+    margin-top: 0.7rem;
+  }
+
+  .ProfileTabInfo {
+    //position: absolute;
+    //margin-top: -3rem; 
+    //width: 77.2%;
+    width: 100%;
+  }
+// 상단 섹션 끝
+
+// 나의 레시피를 확인하세요 섹션
+
+.ProfileRecipeSection {
+  background-color: white;
+  justify-content: center; 
+  width: 100%; 
+  height: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.ProfileTitle {
+  text-align: center; 
+  font-size: 1.6rem;
+  font-weight: bolder;  
+}
+
+.profile-recipe-title{
+  margin-bottom: 2rem;
+}
+
+.ProfileRecipeSection {
+  margin-top: 4.5rem;
+  background-color: white; 
+  height: 100%; 
+  width: 100%;
+  padding: 0px;
+  margin-bottom: 5rem;
+}
+
+.ProfileRecipeCount {
+  float: left; 
+  //position: relative; 
+  margin-left: 0.8rem; 
+  
+}
+
+.ProfileRecipeImgSection {
+  width: 100%;
+  display: flex;
+  //flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ProfileRecipeImgBlock {
+  background-color: white;
+  //float: left; 
+  height: 100%; 
+  width: 50%; 
+  margin-left: 0.5rem;
+  margin-right: 0.5rem; 
+  border: 1px solid rgb(226, 226, 226); 
+  
+}
+
+.ProfileRecipeImg {
+  width: 100%; 
+  height: 70%; 
+  margin: 0rem; 
+  border: 1px solid rgb(226, 226, 226);
+}
+// 나의 레시피를 확인하세요 섹션 끝
+
+// 작성한 게시글 & 댓글단 게시글
+.ProfilePostingSection {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  height: 100%;
+  width: 100%;
+  background-color: #F8F8F8;
+  text-align: center;
+}
+
+.ProfilePostingTable {
+  margin-top: 2rem;
+}
+// 작성한 게시글 & 댓글단 게시글 끝
+
+// 수정 요청 현황확인 섹션
+.profile-no-request{
+  margin-bottom: 5rem;
+}
+.profile-request-titlebox{
+  margin-bottom: 2rem;
+}
+
+.profile-request-notice{
+  color: rgb(165, 164, 164);
+  font-size: 0.8rem;
+  margin-top: 1.5rem;
+  margin-bottom: 5rem;
+}
+.ProfileRequestEditSection {
+  background-color: white;
+  height: 100%; 
+  width: 100%;
+  margin-top: 5rem;
+}
+
+.ProfileRequestEditList {
+  width: 100%;
+  display: flex;
+  //flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ProfileRequestEditBlock {
+  background-color: white;
+  //float: left; 
+  height: 100%; 
+  width: 33%; 
+  margin-left: 1rem;
+  margin-right: 1rem; 
+  border: 1px solid rgb(226, 226, 226); 
+}
+
+.ProfileRequestEditBlock-title {
+  margin-bottom: 0rem; 
+  margin-top: 1rem;
+}
+
+.ProfileRequestEditBlock-date {
+  color: rgb(165, 164, 164); 
+  font-size: 0.8rem; 
+  margin-top: 0rem;
+}
+
+.ProfileRequestEditBlock-button_X {
+  color: #FF5400; 
+  text-align: center;
+  font-size: 0.8rem; 
+  width: 3.3rem; 
+  height: 1.5rem; 
+  margin-top: 6%;
+  margin-bottom: 6%; 
+  padding: 0.8% 1% 0.5% 1%; 
+  border: 1px solid #FF5400; 
+  border-radius: 30%; 
+
+}
+
+.ProfileRequestEditBlock-button_O {
+  color: #002f7b; 
+  text-align: center;
+  font-size: 0.8rem; 
+  width: 3.3rem; 
+  height: 1.5rem; 
+  margin-top: 6%;
+  margin-bottom: 6%; 
+  padding: 0.8% 1% 0.5% 1%; 
+  border: 1px solid #002f7b; 
+  border-radius: 30%; 
+
+}
+
+.ProfileRequestEditGuide {
+  //position: relative;
+  //float: left; 
+  color: rgb(165, 164, 164); 
+  height: 2rem;
+  font-size: 0.8rem; 
+  margin-top: 1rem; 
+
+}
+// 수정 요청 현황확인 섹션 끝
+
+
+//제주명조
+@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css); .jejumyeongjo * { font-family: 'Jeju Myeongjo', serif; }
+
+.jeju {
+  font-family: 'Jeju Myeongjo', serif;
+  color:#454338;
+}
+
+.irop {
+  font-family:'Noto Sans KR', sans-serif;
+  color:#454338;
+}
+
+
+// Animate the size, inside
+.fill:hover,
+.fill:focus {
+  box-shadow: inset 0 0 0 2em var(--hover);
+}
+
+// // Animate the size, outside
+// .pulse:hover, 
+// .pulse:focus {
+//   animation: pulse 1s;
+//   box-shadow: 0 0 0 2em rgba(#fff,0);
+// }
+
+// @keyframes pulse {
+//   0% { box-shadow: 0 0 0 0 var(--hover); }
+// }
+
+// // Stack multiple shadows, one from the left, the other from the right
+// .close:hover,
+// .close:focus {
+//   box-shadow: 
+//     inset -3.5em 0 0 0 var(--hover),
+//     inset 3.5em 0 0 0 var(--hover);  
+// }
+
+// // Size can also be negative; see how it's smaller than the element
+// .raise:hover,
+// .raise:focus {
+//   box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+//   transform: translateY(-0.25em);
+// }
+
+// // Animating from the bottom
+// .up:hover,
+// .up:focus {
+//   box-shadow: inset 0 -3.25em 0 0 var(--hover);
+// }
+
+
+// // Multiple shadows, one on the outside, another on the inside
+// .offset {  
+//   box-shadow: 
+//     0.3em 0.3em 0 0 var(--color),
+//     inset 0.3em 0.3em 0 0 var(--color);
+  
+//   &:hover,
+//   &:focus {
+//     box-shadow: 
+//       0 0 0 0 var(--hover),
+//       inset 6em 3.5em 0 0 var(--hover);
+//   }
+// }
+
+//=== Set button colors
+// If you wonder why use Sass vars or CSS custom properties...
+  // Make a map with the class names and matching colors
+$colors: (
+  fill: #E2D6CF
+  // pulse: #ef6eae,  
+  // close: #ff7f82, 
+  // raise: #ffa260, 
+  // up: #e4cb58, 
+  // offset: #19bc8b
+);
+
+// Sass variables compile to a static string; CSS variables are dynamic and inhe
+@each $mbutton, $color in $colors {
+  .#{$mbutton} {
+    --color: #{$color};
+    // --hover: #{adjust-hue($color, 45deg)};
+    --hover: #{adjust-hue($color, 20deg)};
+  }
+}
+
+// // Now every button will have different colors as set above. We get to use the same structure, only changing the custom properties.
+// button {  
+//   color: #E2D6CF;
+//   transition: 0.25s;
+  
+//   &:hover,
+//   &:focus { 
+//     border-color: var(--hover);
+//     color: #FFF;
+//   }
+// }
+
+
+// // Basic button styles
+// .mbutton {
+//   background: none;
+//   border: 2px solid;
+//   font: inherit;
+//   line-height: 1;
+//   margin: 0.5em;
+//   padding: 0.5em 1em;
+// }
+
+// 프로필페이지 제보글현황 //
+.request-box
+{
+  height: 9rem; 
+  width: 34%; 
+  border: 1px solid rgb(226, 226, 226); 
+  background-color: white;
+  padding-left: 1rem;
+  margin-right:0.5rem;
+}
+
+.request-completed{
+  border-radius: 0.75rem;
+  margin-top: 6%; 
+  padding: 0.8% 1% 0.5% 1%; 
+  border: 1px solid #002f7b; 
+  color: #002f7b; 
+  width: 3.3rem; 
+  // height: 2rem; 
+  font-size: 0.8rem; 
+  text-align: center;
+
+}
+.request-uncompleted{
+  border-radius: 0.75rem;
+  margin-top: 6%; 
+  padding: 0.8% 1% 0.5% 1%; 
+  border: 1px solid #FF5400; 
+  color:  #FF5400;
+  width: 3.3rem; 
+  // height: 2rem; 
+  font-size: 0.8rem; 
+  text-align: center;
+}
+
+.RegisterSection .RegisterForm{
+  font-family: 'NanumSquare', sans-serif;
+}
+
+.profile-message-tr{
+  cursor: pointer;
+}
+.profile-message-tr:hover{
+  background-color: rgb(243, 243, 243);
+}
+
+//제보
+
+.request-contents{
+  padding-bottom: 4rem !important;
+}

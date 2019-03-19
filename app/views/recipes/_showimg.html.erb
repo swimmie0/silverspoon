@@ -1,0 +1,160 @@
+<div class="bd-example recipe-bd-example">
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+      <%if !@count.nil?%>
+        <%for x in 1..@count%>
+            <li data-target="#carouselExampleCaptions" data-slide-to="<%=x%>"></li>
+        <%end%>
+      <%end%>
+    </ol>
+
+    <div class="carousel-inner recipe-carousel-inner">
+        <%if !(@recipe.content1.blank? && @recipe.recipeimage1.blank?)%>
+        <div class="carousel-item active">
+            <% if @recipe.recipeimage1.blank?%>
+                <%=image_tag("beige-logo.PNG", class:"d-block w-100")%>
+            <%else%>
+                <%=image_tag @recipe.recipeimage1_url, class:"d-block w-100"%>
+            <%end%>
+            <div class="carousel-caption d-none d-md-block ">
+                <div class="recipe-show-step-title-img">STEP 01.</div>
+            </div>
+        </div>
+        <%end%>
+
+        <%if !(@recipe.content2.blank? && @recipe.recipeimage2.blank?)%>
+        <div class="carousel-item">
+            <% if @recipe.recipeimage2.blank?%>
+                <%=image_tag("beige-logo.PNG", class:"d-block w-100")%>
+            <%else%>
+                <%=image_tag @recipe.recipeimage2_url, class:"d-block w-100"%>
+            <%end%>
+            <div class="carousel-caption d-none d-md-block ">
+                <div class="recipe-show-step-title-img">STEP 02.</div>
+               
+            </div>
+        </div>
+        <%end%>
+
+        <%if !(@recipe.content3.blank? && @recipe.recipeimage3.blank?)%>
+        <div class="carousel-item">
+            <% if @recipe.recipeimage3.blank?%>
+                <%=image_tag("beige-logo.PNG", class:"d-block w-100")%>
+            <%else%>
+                <%=image_tag @recipe.recipeimage3_url, class:"d-block w-100"%>
+            <%end%>
+            <div class="carousel-caption d-none d-md-block ">
+                <div class="recipe-show-step-title-img">STEP 03.</div>
+                
+            </div>
+        </div>
+        <%end%>
+
+        <%if !(@recipe.content4.blank? && @recipe.recipeimage4.blank?)%>
+        <div class="carousel-item">
+            <% if @recipe.recipeimage4.blank?%>
+                <%=image_tag("beige-logo.PNG", class:"d-block w-100")%>
+            <%else%>
+                <%=image_tag @recipe.recipeimage4_url, class:"d-block w-100"%>
+            <%end%>
+            <div class="carousel-caption d-none d-md-block ">
+                <div class="recipe-show-step-title-img">STEP 04.</div>
+                
+            </div>
+        </div>
+        <%end%>
+
+        <%if !(@recipe.content5.blank? && @recipe.recipeimage5.blank?)%>
+        <div class="carousel-item">
+            <% if @recipe.recipeimage5.blank?%>
+                <%=image_tag("beige-logo.PNG", class:"d-block w-100")%>
+            <%else%>
+                <%=image_tag @recipe.recipeimage5_url, class:"d-block w-100"%>
+            <%end%>
+            <div class="carousel-caption d-none d-md-block ">
+                <div class="recipe-show-step-title-img">STEP 05.</div>
+                
+            </div>
+        </div>
+        <%end%>
+
+        <%if !(@recipe.content6.blank? && @recipe.recipeimage6.blank?)%>
+        <div class="carousel-item">
+            <% if @recipe.recipeimage6.blank?%>
+                <%=image_tag("beige-logo.PNG", class:"d-block w-100")%>
+            <%else%>
+                <%=image_tag @recipe.recipeimage6_url, class:"d-block w-100"%>
+            <%end%>
+            <div class="carousel-caption d-none d-md-block ">
+                <div class="recipe-show-step-title-img">STEP 06.</div>
+               
+            </div>
+        </div>
+        <%end%>
+
+        <%if !(@recipe.content7.blank? && @recipe.recipeimage7.blank?)%>
+        <div class="carousel-item">
+            <% if @recipe.recipeimage7.blank?%>
+                <%=image_tag("beige-logo.PNG", class:"d-block w-100")%>
+            <%else%>
+                <%=image_tag @recipe.recipeimage7_url, class:"d-block w-100"%>
+            <%end%>
+            <div class="carousel-caption d-none d-md-block ">
+                <div class="recipe-show-step-title-img">STEP 07.</div>
+                
+        </div>
+        <%end%>
+
+        <%if !(@recipe.content8.blank? && @recipe.recipeimage8.blank?)%>
+        <div class="carousel-item">
+            <% if @recipe.recipeimage8.blank?%>
+                <%=image_tag("beige-logo.PNG", class:"d-block w-100")%>
+            <%else%>
+                <%=image_tag @recipe.recipeimage8_url, class:"d-block w-100"%>
+            <%end%>
+            <div class="carousel-caption d-none d-md-block ">
+                <div class="recipe-show-step-title-img">STEP 08.</div>
+                
+            </div>
+        </div>
+        <%end%>
+
+        <%if !(@recipe.content9.blank? && @recipe.recipeimage9.blank?)%>
+        <div class="carousel-item">
+            <% if @recipe.recipeimage9.blank?%>
+                <%=image_tag("beige-logo.PNG", class:"d-block w-100")%>
+            <%else%>
+                <%=image_tag @recipe.recipeimage9_url, class:"d-block w-100"%>
+            <%end%>
+            <div class="carousel-caption d-none d-md-block ">
+                <div class="recipe-show-step-title-img">STEP 09.</div>
+                
+            </div>
+        </div>
+        <%end%>
+        
+        <%if !(@recipe.content10.blank? && @recipe.recipeimage10.blank?)%>
+        <div class="carousel-item">
+            <% if @recipe.recipeimage10.blank?%>
+                <%=image_tag("beige-logo.PNG", class:"d-block w-100")%>
+            <%else%>
+                <%=image_tag @recipe.recipeimage10_url, class:"d-block w-100"%>
+            <%end%>
+            <div class="carousel-caption d-none d-md-block ">
+                <div class="recipe-show-step-title-img-img">STEP 10.</div>
+                
+            </div>
+        </div>
+        <%end%>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>

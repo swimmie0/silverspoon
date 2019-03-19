@@ -1,0 +1,44 @@
+<%= form_with(model: zizuminfo, local: true) do |form| %>
+  <% if zizuminfo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(zizuminfo.errors.count, "error") %> prohibited this zizuminfo from being saved:</h2>
+
+      <ul>
+      <% zizuminfo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :zizum_name %>
+    <%= form.text_field :zizum_name %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :sido %>
+    <%= form.select :sido, ['서울특별시', '부산광역시', '대구광역시', '인천광역시', '광주광역시', '대전광역시', '세종특별자치시', '경기도', '강원도', '충청북도', '충청남도', '전라남도', '전라북도', '경상남도', '경상북도', '제주특별자치시'] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sigungu %>
+    <%= form.text_field :sigungu %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sangse_juso %>
+    <%= form.text_field :sangse_juso %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number %>
+  </div>
+
+
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

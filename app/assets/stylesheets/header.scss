@@ -1,0 +1,405 @@
+//rolling banner css --------------
+.header-temp{
+    position: relative;
+    width: 100%;
+    height: 4.5rem;
+}
+.holder{
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 600;    
+
+    transition: All 0.2s ease; 
+    /* 사라지고 나타날때 부드럽게 보이는 효과를 준다, 꼭 넣지 않아도 된다 */
+    -webkit-transition: All 0.2s ease;
+    -moz-transition: All 0.2s ease;
+    -o-transition: All 0.2s ease;
+
+    border-bottom-style: solid;
+    border-bottom-width: 0.6px;
+    border-bottom-color: rgb(226,226,226);
+}
+
+// .holder-shadow{
+//     -webkit-box-shadow: 0px 10px 18px -15px rgba(122,122,122,1);
+//     -moz-box-shadow: 0px 10px 18px -15px rgba(122,122,122,1);
+//     box-shadow: 0px 10px 18px -15px rgba(122,122,122,1);
+// }
+
+.rolling-banner {
+    font-family: 'NanumSquare', sans-serif;
+    //top: 0;
+	overflow: hidden;
+    width: 100%;
+    height: 1.7rem;
+    background-color: #002f7b;
+    color: white;
+    font-size: 0.8rem;
+}
+
+.rolling-banner ul{
+    top: 0;
+    list-style: none;
+    position: relative; 
+    width:100%; 
+    height: 1.7rem;
+    overflow: hidden;
+
+}
+
+
+.rolling-banner ul li{
+    position: relative;
+    width:100%; 
+    height:30px; 
+    line-height:1.7rem;
+    color: white;
+    font-size: 0.8rem;
+}
+
+.rolling-banner ul li div{
+    height: 30px;
+}
+
+.rolling-banner ul:after{
+    display:block;
+    content:"";
+    clear:both;
+}
+
+//navbar css---------------------
+
+.headerfont{
+    text-decoration: none;
+    color:#454338;
+}
+
+.headerlogo{
+    width: 100%;
+    height: 100%;
+}
+
+.navbarstyle {
+    // border-style: solid;
+    // border-color: red;
+    display: flex;
+    width: 100%;
+    height: 3rem;
+    line-height: 3rem;
+    background-color: white;
+    -webkit-trasition: 0.6s;
+    transition: 0.6s;
+    // z-index:999;
+}
+
+.navbarcontent{
+    justify-content: space-between;
+}
+
+
+.header-title{
+    display: flex;
+    align-items: center;
+}
+
+.header-title a{
+    width: 100%;
+    height: 100%;
+}
+
+.headerlogo{
+    width: 9.4rem;
+    height: 1.7rem;
+}
+
+.header-menu{
+    display: flex;
+    font-family: 'NanumSquare', sans-serif;
+    justify-content: space-between;
+    font-size: 0.8rem;
+}
+
+.header-personal{
+    // margin-left: 0.3rem;
+    display: flex;
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 0.7rem;
+    // justify-content: end;
+    line-height: 3rem;
+}
+
+.header-mypage{
+    margin-right: 1rem;
+}
+
+
+
+.navbarconent:hover{
+    color: #454338;
+}
+
+.logo {
+    width:100px;
+    height:30px;
+    margin-left: 28px;
+}
+
+//알림창
+#info_html{
+    display:none; 
+    //margin-top: 35px; 
+    background-color:white;
+    width:25%;  height:40%; margin-left: 65%; border-radius:7px;
+    font: black;
+    padding-top:25px;
+    padding-left:20px;
+    padding-right:20px;
+   -webkit-box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+   -moz-box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+   box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+  
+}
+.inborder{
+   padding: 10px;
+    border: 1px solid rgb(41, 153, 116);
+}
+
+// a.fa-globe {
+//     position: relative;
+//     top: 3px;
+//     font-size: 1em;
+//     color: rgba(24, 2, 2, 0);
+//     cursor: pointer;
+//   }
+//   span.fa-comment {
+//     position: absolute;
+//     font-size: 1em;
+//     top: -9px;
+//     color: rgb(41, 153, 116);
+//     right: -12px;
+//   }
+//   span.num {
+//     position: absolute;
+//     font-size: 0.6em;
+//     top: -7px;
+//     color: #fff;
+//     right: -7px;
+//   }
+
+
+
+//   @media screen and (min-width: 730px) {
+//     .nav-toggle{
+//       visibility: hidden;
+//     }
+//     .head-title{
+//       height: 4rem;
+//     }
+//   }
+  
+//   .nav {
+//       -webkit-transition: left 0.5s ease;
+//       -moz-transition: left 0.5s ease;
+//       -ms-transition: left 0.5s ease;
+//       -o-transition: left 0.5s ease;
+//       transition: left 0.5s ease;
+//       background:rgb(255, 255, 255);
+//       cursor: pointer;
+//       height: 100%;
+//       left: -100%;
+//       position: fixed;
+//       top: 0;
+//       width: 100%;
+//       z-index: 10;
+//       border-right-style: solid;
+//       border-right-color: #77777780;
+//       border-right-width: 0.6px;
+//     }
+    
+//     .nav.expanded { left: 0; }
+    
+//     // .nav ul {
+//     //   top: 50%;
+//     //   position: absolute;
+//     //   -webkit-transform: translateY(-50%);
+//     //   -ms-transform: translateY(-50%);
+//     //   transform: translateY(-50%);
+//     //   list-style: none;
+//     //   margin: 0;
+//     //   padding: 0;
+//     // }
+  
+//     .nav-toggle {
+//       -webkit-user-select: none;
+//       -moz-user-select: none;
+//       user-select: none;
+//       cursor: pointer;
+//       // height: 2rem;
+//       // left: 2rem;
+//       // position: fixed;
+//       //top: 0.3em;
+//       z-index: 15;
+//     }
+  
+  
+//   $buttonWidth: 24px;
+//   $buttonHeight: 20px;
+//   $buttonColor: white;
+//   $lineThickness: 1.9px;
+//   $transitionSpeed: .25s;
+//   $transitionEasing: ease-in-out;
+  
+//   // Demo
+//   .nav-toggle {
+//     position: relative;
+//     display: block;
+//     width: $buttonWidth;
+//     height: $buttonHeight;
+    
+//     background: transparent;
+//     border-top: $lineThickness solid;
+//     border-bottom: $lineThickness solid;
+    
+//     color: $buttonColor;
+//     font-size: 0;
+    
+//     transition: all $transitionSpeed $transitionEasing;
+  
+//     &:before,
+//     &:after {
+//       content: '';
+//       display: block;
+//       width: 100%;
+//       height: $lineThickness;
+      
+//       position: absolute;
+//       top: 50%;
+//       left: 50%;
+      
+//       background: currentColor;
+      
+//       transform: translate(-50%, -50%);
+//       transition: transform $transitionSpeed $transitionEasing;
+//     } 
+//   }
+  
+//   .nav-toggle.is-active {
+//     border-color: transparent;
+//     color:white;
+//     &:before {
+//       transform: translate(-50%, -50%) rotate(45deg);
+//     }
+  
+//     &:after {
+//       transform: translate(-50%, -50%) rotate(-45deg);
+//     }
+//   }
+  
+  
+//   button {
+//     border: none;
+//     cursor: pointer;
+//     outline: none;
+//   }
+  
+//   button:focus {outline:0;}
+  
+  
+// .nav-profile{
+//     height: 270px;
+//     width: 100%;
+//     background-color: rgba(0, 171, 108, 0.719);
+//   }
+  
+//   .nav-right-top{
+//     position: absolute;
+//     right: 0;
+//     color: white;
+//     padding-top: 0.8em;
+    
+//     font-size: 20px;
+//     margin-right: 1rem;
+//     //text-align: end;
+//   }
+  
+//   .nav-login-button{
+//     color: white;
+//   }
+  
+//   .nav-profile-content{
+//     width: 100%;
+//     margin-top: 2.6rem;
+//   }
+  
+//   .nav-profile-imgbox{
+//     left: 0;
+//     right: 0;
+//     margin-left: auto;
+//     margin-right: auto;
+//     border-radius: 100%;
+//     width: 8.4rem;
+//     height: 8.4rem;
+//     overflow: hidden;
+//   }
+  
+//   .nav-profile-img{
+//     width: 100%;
+//     height: 100%;
+//   }
+  
+//   .nav-profile-info{
+//     margin-top: 0.7rem;
+//     text-align: center;
+//     font-size: 18px;  
+//   }
+  
+//   .web-category-box{
+//     margin-top: 0.5em;
+//     //margin-bottom: 0.5em;
+//     //height: 2.8em;
+    
+//     width: 100%;
+//     border-bottom-style: solid;
+//     border-bottom-color: rgba(112, 112, 112, 0.22);
+//     border-bottom-width: 0.6px;
+//   }
+  
+//   .web-category-box{
+//     display: none;
+//   }
+//   @media screen and (min-width: 560px) and ( max-width:734px){
+//     .nav-profile{
+//       height: 47%;
+//     }
+    
+//     .nav-profile-content{
+//       display: flex;
+//       justify-content: space-around;
+//       margin-top: 2.3rem;
+//     }
+  
+//     .nav-profile-imgbox{
+//       left: initial;
+//       right: initial;
+//       margin-left: initial;
+//       margin-right: initial;
+//       width: 6.5rem;
+//       height: 6.5rem;
+//     }
+//   }
+  
+//   @media screen and (min-width: 733px){
+//     .web-category-box{
+//       display: block;
+//     }
+//     .nav{
+//       display: none;
+//     }
+//   }
+
+.header-nav-active{
+    color: #00307C;
+    font-weight: 600;
+}

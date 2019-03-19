@@ -1,0 +1,109 @@
+<!-- 메세지창 페이지 -->
+    <body class="MessagePage">
+        <!-- 메세지 섹션 -->
+            <div class="MessageSection container">
+                <div class="MessageSectionForm row">
+                
+                    <!-- 메세지 섹션 왼쪽칸 -->
+                        <div class="MessageSectionLeftColumn col-2">
+                        
+                        <!-- 메세지 섹션 왼쪽칸 위-->
+                            <div class="MessageSectionLeftTop">
+                                <div class="MessageSectionLeftTopText">TALES Message</div>
+                            </div>
+                        <!-- 메세지 섹션 왼쪽칸 위 끝-->
+                        
+                        <!-- 메세지 섹션 왼쪽칸 아래-->
+                            <%= link_to conversations_path do %>
+                                <div class="MessageSectionLeftBottom"> 
+                                    <p class="MessageSectionLeftBottomText">전체 쪽지함</p>
+                                </div>
+                            <% end %>
+                        <!-- 메세지 섹션 왼쪽칸 아래 끝-->
+                        
+                        </div>
+                    <!-- 메세지 섹션 왼쪽칸 끝 -->
+
+                    <!-- 메세지 섹션 오른쪽칸 -->
+                        <div class="MessageSectionRightColumn col-10">
+                            <!-- 메세지 섹션 오른쪽칸 위 섹션-->
+                                <div class="MessageSectionRightTop">
+                                    <p class="MessageSectionRightTopText">발신자 : <%= @conversation.sender.name %> 님 </p>
+                                </div>
+                            <!-- 메세지 섹션 오른쪽칸 위 섹션 끝 -->
+
+                            <!-- 메세지 섹션 오른쪽칸 중간 섹션 -->
+                                <div class="MessageSectionRightMiddle scrollbar scrollbar-primary container">
+                                    <!-- 메세지 섹션 채팅창 -->
+                                        <div class="row">
+                                            <% @messages.each do |message|%>
+                                            <% if message.body %>
+                                                <% user = User.find(message.user_id) %>
+                                                <!-- 메세지 섹션 채팅창 왼쪽(본인) -->
+                                                    <% if current_user == user %>
+                                                        <div class="MessageLeftUser col-1">
+                                                            <p class="MessageLeftUserName"><%= user.name %></p>
+                                                        </div>
+                                                        <div class="MessageLeftUserChat col-4 card bg-light">
+                                                            <div class="MessageLeftUserChatContent card-body">
+                                                                <%= message.body %>
+                                                            </div>
+                                                        </div>
+                                                        <div class="MessageLeftUserDate">
+                                                            <%= message.message_time %>
+                                                        </div>
+                                                <!-- 메세지 섹션 채팅창 왼쪽(본인) 끝 -->
+
+                                                <!-- 메세지 섹션 채팅창 오른쪽(타인) -->
+                                                    <% else %>
+                                                        <div class="MessageRightUser col-7">
+                                                            <p class="MessageRightUserName"><%= user.name %></p>
+                                                        </div>
+                                                        <div class="MessageRightUserChat col-4 card bg-light">
+                                                            <div class="MessageRightUserChatContent card-body">
+                                                                <%= message.body %>
+                                                            </div>
+                                                        </div>
+                                                        <div class="MessageRightUserDate" >
+                                                            <%= message.message_time %>
+                                                        </div>
+                                                    <% end %>
+                                                <!-- 메세지 섹션 채팅창 오른쪽(타인) 끝 -->
+                                            <% end %> 
+                                            <% end %>
+                                        </div>
+                                    <!-- 메세지 섹션 채팅창 끝 -->
+
+                                </div>
+                            <!-- 메세지 섹션 오른쪽칸 중간 섹션 끝 -->
+
+                            <!-- 메세지 섹션 오른쪽칸 아래 섹션 -->
+                                <div class="MessageSectionRightBottom row">
+                                    <div class="MessageBottomLeft col-10">
+                                    <%= form_for [@conversation, @message], style: "padding: 0px; margin: 0px" do |f| %>
+                                            <%= f.text_field :body, class: "MessageBottomLeftField", placeholder: " 해당 칸에 보내실 메세지를 입력해주세요 "%>
+                                    
+                                            <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+                                    </div>
+                                        <div class="MessageBottomRight col-2">
+                                            <%= f.submit "보내기", class: "MessageBottomRightButton" %>
+                                        </div>
+                                        <% end %>
+                                    </div>
+
+                                    <!-- <p style="line-height: 66px; text-align: right; padding-right: 2rem; border: 0.05px solid #bfbebe; font-size: 1rem; margin: 0px; color: black"> 쪽지 보내기</p> -->
+                                </div>
+                            <!-- 메세지 섹션 오른쪽칸 아래 섹션 -->
+                        </div>
+                    <!-- 메세지 섹션 오른쪽칸 -->
+
+                </div>
+            </div>
+        <!-- 메세지 섹션 끝 -->
+    </body>
+<!-- 메세지창 끝 -->
+
+<script>
+    var scroll = document.getElementsByClassName("MessageSectionRightMiddle")[0];
+    scroll.scrollTop = scroll.scrollHeight;
+</script>

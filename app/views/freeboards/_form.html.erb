@@ -1,0 +1,72 @@
+<%= form_with(model: freeboard, local: true) do |form| %>
+
+  <% if freeboard.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(freeboard.errors.count, "error") %> prohibited this freeboard from being saved:</h2>
+
+      <ul>
+      <% freeboard.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-inline">
+    <%= form.label "카테고리" %>&nbsp;
+    <%= form.select :category, options_for_select([["일상글", "일상글"], ["정보글","정보글"], ["질문글","질문글"],["홍보글","홍보글"],["제보글","제보글"]], form.object.category), { :include_blank => '-- 선택 --'},  :id=>'category', :required => true %>
+    <%# <select class="form-control" id="category" name="freeboard[category]" require='true'>
+      <option value='' disable>-- 선택 --</option> 
+      <option value="일상글">일상글</option>   
+      <option value="정보글">정보글</option>   
+      <option value="질문글">질문글</option>         
+      <option value="홍보글">홍보글</option>               
+      <option value="제보글">제보글</option>     
+    </select> %>
+      <div class="field locked" style="display:none;margin-left:1rem;">
+      <%= form.radio_button :locked, true%>  비밀글<br/>
+      </div>
+  </div>
+
+  <div class="field form-inline">
+    <%= form.label '제목' %>
+    <%= form.text_field :title, :class =>"form-control" ,:style=>"width:95%; margin-left:10px; margin-top:10px;", :required=>'true'%>
+  </div><br/>
+
+   <div class="field">
+      <%= form.label '내용' %>
+      
+      <%= tinymce :language => "en",  :relative_urls => false %>    
+      <%= form.text_area :content, :class => "form-control tinymce", :rows=> "10" %>
+  </div>
+
+  
+  <div class="freeboard-new-btnbox">
+    <div class="back-btn">
+        <%= link_to '취소', freeboard, class: "linkto-cancel"%>
+    </div>
+
+    <div class="freeboard-submit-btnbox">
+        <button type="submit" class="btn btn-search">글 등록하기</button>
+    </div>
+  </div>
+
+
+
+<% end %>
+
+<script>
+    
+//비밀글
+  $('select').on('change',function(){
+    if ($(this).val() == "제보글") {
+       $(".locked").css('display','block');
+    }  
+     else 
+    $(".locked").css('display','none');
+  });
+
+// $(document).ready(locking);
+// $('option').change(locking);
+</script>
+

@@ -1,0 +1,43 @@
+<div class="admin-body">
+    <%if user_signed_in? && current_user.admin?%>
+       <%=render partial: 'admincontrol/category'%>
+
+        <div><%= link_to "전체 크롤링 업데이트", "/crawling"%></div>
+        <div class="admin-index-content-stretch">
+            <div class="admin-index-content-box container">
+                <div class="admin-index-content-title middle-title">최근 관리 항목</div>
+                
+                <div class="d-flex justify-content-center">
+                <div class="admin-index-recent-container">
+                    <div class="admin-index-recent-wrap">
+                        <div class="small-title"><i class="fas fa-utensils"></i>&nbsp;식당 관리</div>
+                        <div class="admin-index-recent-box"></div>
+                    </div>
+
+                    <div class="admin-index-recent-wrap">
+                        <div class="small-title"><i class="fas fa-store"></i>&nbsp;식당 관리</div>
+                        <div class="admin-index-recent-box"></div>
+                    </div>
+
+                    <div class="admin-index-recent-wrap">
+                        <div class="small-title"><i class="fas fa-users"></i>&nbsp;식당 관리</div>
+                        <div class="admin-index-recent-box"></div>
+                    </div>
+
+                </div>
+                </div>
+            </div>
+        </div>
+
+    <%else%>
+        <div class="admin-index-inner container">
+            접근 권한이 없습니다.
+        </div>
+    <%end%>
+</div>
+
+<script>
+    $(".admin-index-all-ct").addClass("admin-index-activebtn")
+    $(".admin-index-category").not(".admin-index-all-ct").removeClass("admin-index-activebtn")
+   
+</script>

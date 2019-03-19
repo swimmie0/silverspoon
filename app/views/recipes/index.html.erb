@@ -1,0 +1,147 @@
+<div class="recipe-index-upper">
+  <div class="recipe-index-upper-container container">
+    <%= form_tag(recipes_path, method: :get) do %>
+      <div class="recipe-index-search-area">
+        <div class="recipe-index-search-box">
+          <%= text_field_tag :recipe_word, params[:recipe_word], class: "recipe-index-search-input", placeholder: "검색어 입력(띄어쓰기로 구분해주세요)"%>   
+          <button type="submit" class="recipe-index-search-btn">검색하기</button>
+        </div>
+      </div>
+
+      <div class="recipe-index-search-area2">
+        <div class="recipe-index-search-tagbox">
+          <% @allergy_tags.each do |tag|%>
+            <div class="recipe-index-search-tag">#&nbsp;<%=tag%></div>
+          <%end%>
+        </div>
+      </div>
+    <%end%>
+  </div>
+</div>
+
+<div class="recipe-index-main container">
+  <div class="recipe-index-main-count">총 <%=@recipes.total_count%>건</div>
+  <div class="recipe-index-body row">
+    <% @recipes.each do |recipe|%>
+      <div class="recipe-index-outbox col-4">
+        <div class="recipe-index-box">
+          <%=link_to recipe do%>
+            <div class="recipe-index-imgbox">
+              <% if recipe.recipeimage0.blank?%>
+                <%=image_tag("beige-logo.PNG",class:"recipe-index-img")%>
+              <%else%>
+                <%=image_tag recipe.recipeimage0.url, class:"recipe-index-img"%>
+              <%end %>
+            </div>
+          <%end%>
+          <div class="d-flex justify-content-end recipe-index-bookmark-area">
+            <%if user_signed_in?%>
+                <% if recipe.followed_by?(current_user) %>
+                    <!-- 좋아요를 했다면 -->
+                    <i class="fas fa-bookmark recipe-index-bookmark"></i>
+                    <div class="recipe-index-id-bookmark"><%= recipe.id%></div>
+                <% else %>
+                    <!-- 좋아요를 안 했다면 -->
+                    <i class="far fa-bookmark recipe-index-bookmark recipe-index-nobookmark"></i>
+                    <div class="recipe-index-id-bookmark"><%= recipe.id%></div>
+                <% end %>
+            <%else%>
+            <i class="far fa-bookmark recipe-index-bookmark recipe-index-nobookmark" data-toggle="modal" data-target="#loginModal"></i>
+            <%end%>
+          </div>
+
+          <div class="recipe-index-textbox">
+              <%=link_to recipe do%>
+                <div class="recipe-index-title linkto"><%=recipe.title%></div>
+              <%end%>
+              <div class="recipe-index-text">
+                <div class="recipe-index-text-allergy"><%=recipe.allergyfor%></div>
+                
+                <div class="d-flex justify-content-between">
+                  <div class="recipe-index-text-2">알레르기 보유자를 위한 <%=recipe.title%></div>
+                  <div class="recipe-index-user">
+                  by <%=recipe.name%>
+                  </div>
+                </div>
+              </div>
+              
+          </div>
+        </div>
+      </div>
+    <%end%>
+  </div>
+
+
+  <div class="d-flex justify-content-center container">
+    <div class="recipe-new-button w-100 d-flex justify-content-between">
+      <div></div>
+
+      <div>   
+      <%= paginate @recipes%>
+      </div>
+
+      <%if user_signed_in?%>
+        <%= button_to '레시피 작성', new_recipe_path, :class => "btn btn-search", :method=>'get' %>
+      <%else %>
+        <span data-toggle="modal" data-target="#loginModal" class="btn btn-search">레시피 작성</span>
+      <%end%>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<%if !user_signed_in?%>
+        <%= render 'layouts/loginModal'%>
+<%end%>
+
+
+
+
+
+<script>
+
+  var tagarray = [];
+  $(".recipe-index-search-tag").click(function(){
+    var key = $(this).html();
+    key = key.split('&nbsp;')[1]
+  
+    if($(this).hasClass("allergy-tag-selected")){
+      $(this).removeClass("allergy-tag-selected");
+      tagarray.splice(tagarray.indexOf(key),1);
+    }
+    else{
+      $(this).addClass("allergy-tag-selected");
+      tagarray.push(key);
+    }
+
+    var idx = 0;
+    var length = tagarray.length;
+    var tagadd = '';
+    for(;idx<length;idx++){
+      tagadd+='#'+tagarray[idx]+' '
+    }
+    $(".recipe-index-search-input").val(tagadd);
+  })
+
+  
+
+  if('<%=user_signed_in?%>'==="true"){
+    $(".recipe-index-bookmark").click(function(){
+        $recipeid = $(this).siblings("div.recipe-index-id-bookmark").html();
+        $likeicon = $(this);
+        $.ajax({
+            async : true,
+            data : {id: $recipeid},
+            type : "GET",
+            url : "/follows/recipefollow",
+            success : function(data){
+                $likeicon.toggleClass('far');
+                $likeicon.toggleClass('fas');
+            }
+        })
+    });
+  }
+</script>

@@ -1,0 +1,647 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.mainbanner{
+    position: relative;
+}
+
+.main-img-box{
+    height: 480px; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow:hidden;
+}
+
+
+.main-image{
+    width: 1300px;
+    //overflow: hidden;
+    height: 100%;
+}
+
+.main-image-text{
+    width: 30%;
+    position: absolute;
+    top: 10%;
+}
+.mainbanner-btn-box{
+    position: absolute;
+    width: 100%;
+    top: 70%;
+    display: flex;
+    justify-content: center;
+}
+
+.mainbanner-button{
+    border: 0.5px solid #FF5400;
+    border-radius: 3.5px;
+
+    //position: absolute;
+    //top: 80%;
+    text-align: center;
+    width: 10rem;
+    height: 2.5rem;
+
+    color: #FF5400;
+
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 0.8rem;
+    line-height: 2.5rem;
+
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+.mainbanner-button:hover{
+    background-color: #FF5400;
+    color: white;
+}
+
+#main-contents-allergy{
+    margin-top: 4rem;
+}
+
+.alg-filt-title{
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 1.6rem;
+    font-weight: bolder;
+}
+
+//home-search
+.search-full-box{
+    margin-top: 1.5rem;
+}
+
+
+
+.search-f-row{
+    color: rgb(83, 83, 83);
+    width: 100%;
+    border-color: rgb(226, 226, 226);
+    border-width:  1px;
+    border-style: solid;
+    border-bottom-style: none;
+    border-bottom-width: 0px;
+}
+
+.search-s-row{
+    color: rgb(83, 83, 83);
+    width: 100%;
+    border-color: rgb(226, 226, 226);
+    border-bottom-style: none;
+    border-width:  1px;
+    border-style: solid;
+    border-bottom-width: 0px;
+}
+
+.search-t-row{
+    color: rgb(83, 83, 83);
+    width: 100%;
+    border-color: rgb(226, 226, 226);
+    border-bottom-style: none;
+    border-bottom-width: 0px;
+    border-width:  1px;
+    border-style: solid;
+    margin-bottom: 3rem;
+}
+
+.search-box-th{
+    background-color: #002f7b;
+    color: white !important;
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 0.8rem;
+    font-weight: normal;
+    width: 5.5rem;
+    text-align: center;  
+    border-right-style: solid;
+    border-width:  1px;
+    border-color: rgb(226, 226, 226);
+}
+
+
+.s-th-category{
+    height: 2.5rem;
+    line-height: 2.5rem; 
+}
+
+.s-td-category{
+    width: 100%;
+    background-color: rgb(250, 250, 250);
+    height: 2.5rem;
+    line-height: 2.5rem;
+}
+
+.s-th-find{
+    height: 3.5rem;
+    line-height: 3.5rem;
+}
+
+.s-td-find{
+    width: 100%;
+    background-color: rgb(250, 250, 250);
+    height: 3.5rem;
+    line-height: 3.5rem;
+}
+
+.s-th-sort{
+    //height 따로 지정 안함. 표 크기 따라서 자동으로 설정.
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    // height: 13rem;
+    // line-height: 13rem;
+}
+
+.s-th-sort-restaurant{
+    height: 3.5rem;
+    line-height: 3.5rem;
+}
+
+.s-td-sort{
+    width: 100%;
+    background-color: rgb(250, 250, 250);
+    // height: 13rem;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.s-td-sort-restaurant{
+    width: 100%;
+    background-color: rgb(250, 250, 250);
+    height: 3.5rem;
+    line-height: 3.5rem;
+}
+
+
+.allergy-table-row{
+    margin-left: 1.7rem;
+    margin-right: 1.7rem;
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;   
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 0.8rem;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.allergy-cp{
+    cursor: pointer;
+    border-width:  0.5px;
+    border-color: rgb(148, 148, 148);
+    border-style: solid;
+    height: 4.8rem;
+    // line-height: 4.5rem;
+    text-align : center;
+    width: 4.8rem;
+}
+
+.allergy-cp-active{
+    background-color:#FF5400;
+    border-width: 0px;
+    
+    color: white; 
+}
+
+.allergy-cp-img-active{
+    //눌렀을 때 흰색 되도록
+    -webkit-filter: invert(1) contrast(6); /* Safari 6.0 - 9.0 */
+    filter: invert(1) contrast(6) ;
+}
+.allergy-cp-img{
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+
+.search-categories{
+    margin-left: 1.7rem;
+    margin-right: 1.7rem; 
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 0.8rem;
+}
+
+.btn-searchtype{
+    cursor: pointer;
+    width: 9rem;
+    height: 100%;
+    // line-height: 2.5rem;
+    align-items: center;
+}
+
+.btn-searchtype-circle{
+    height: 1rem;
+    width: 1rem;
+    margin-right: 0.5rem;
+    border-color: rgb(192, 192, 192);
+    border-width: 0.8px;
+    border-radius: 100%;
+    border-style: solid;
+    background-color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.active-btn{
+    border-color: #FF5400;
+}
+
+.active-btn-inside{
+    height: 0.74rem;
+    width: 0.74rem;
+    border-color: transparent;
+    border-width: 0px;
+    border-radius: 100%;
+    border-style: solid;
+    background-color:#FF5400;
+    
+}
+
+.active-typename{
+    font-weight: bold;
+    color: #FF5400;
+}
+
+
+.sido{
+    margin-left: 1.7rem;
+    margin-right: 0.9rem;
+}
+
+.selectcss{
+    -webkit-border-radius: 3.5px;
+    -moz-border-radius: 3.5px;
+    border-radius: 3.5px;
+
+    color: rgb(83, 83, 83);
+    padding-left: 0.4rem;
+    width: 8rem;
+    height: 2rem;
+    border-width:  0.5px;
+    border-color: rgb(148, 148, 148);
+    border-style: solid;
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 0.8rem;
+}
+
+.restaurant-name-field{
+    margin-left: 1.7rem;
+    padding-left: 0.4rem;
+    width: 16.9rem;
+    height: 2rem;
+    border-width:  0.5px;
+    border-color: rgb(148, 148, 148);
+    border-style: solid;
+    // font-family: 'NanumSquare', sans-serif;
+    font-size: 0.8rem;
+}
+
+.search-submit{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.a-submit{
+    border-radius: 3.5px;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 1rem;
+    //type submit 이므로 appearnace 조정
+    -webkit-appearance: none;
+    text-align: center;
+    width: 10rem;
+    height: 2.5rem;
+    border-style: solid;
+    border-color: #FF5400;
+    color: #FF5400;
+    border-width: 0.5px;
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 0.8rem;
+    line-height: 2.5rem;
+
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+.a-submit:hover{
+    background-color: #FF5400;
+    color: white;
+}
+
+.custom-btn{
+    border-radius: 3.5px;
+    margin: 1rem;
+    -webkit-appearance: none;
+    text-align: center;
+    width: 10rem;
+    height: 2.5rem;
+    border-style: solid;
+    border-color: rgb(83, 83, 83);
+    color: rgb(83, 83, 83);
+    border-width: 0.5px;
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 0.8rem;
+    line-height: 2.5rem;
+
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+.custom-btn-original{
+    cursor: pointer;
+}
+
+.custom-btn-original:hover{
+    background-color: rgb(83, 83, 83);
+    color: white;
+}
+
+
+.custom-btn-disabled{
+    border-width: 0px;
+    color: rgb(139, 139, 139);    
+}
+
+
+//------------검색 부분 완료------------------
+
+//------------mainabout----------------------
+.about-contents{
+    margin-top: 6rem;
+}
+
+.main-about-imgbox{
+   height: 355px;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   overflow: hidden;
+}
+
+.main-about-img{
+   width: 1300px;
+   height: 100%;
+}
+
+//------------recipe----------------------
+
+.main-contents-recipe{
+    //#main-contents-allergy 와 margin 동일
+    margin-top: 6rem;
+    width: 100%;
+    margin-bottom: 4rem;
+}
+
+.main-contents-recipe-title{
+    text-align: center;
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 1.6rem;
+    font-weight: bolder;
+}
+
+
+.main-contents-rcp-mtxt{
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 0.8rem;
+    color: rgb(165, 164, 164); 
+    text-decoration: none;
+}
+
+
+.main-recipes-box{
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.main-popular-recipebox{
+    margin: 0rem 0.4rem;
+    border-color: rgb(226, 226, 226);
+    border-width:  1px;
+    border-style: solid;
+    width: 21rem;
+    height: 23rem;
+}
+
+.popular-recipe-imgbox{
+    height: 65%;
+    border-bottom-style: solid;
+    border-color: rgb(226, 226, 226);
+    border-width:  0.5px;
+}
+
+.popular-recipe-img{
+    width: 100%;
+    height: 100%;
+}
+
+.popular-recipe-textbox{
+    height: 35%;
+   padding: 0.8rem;
+}
+
+.popular-recipe-title{
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: 'NanumSquare', sans-serif;
+}
+
+.popular-recipe-text{
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: rgb(165, 164, 164); 
+    font-family: 'NanumSquare', sans-serif;
+}
+
+
+.main-contents-boardwrap{
+    height: 400px; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.main-contents-board{
+   width: 100%;
+   height: 100%;
+   background-color: #F8F8F8;
+   font-family:  'NanumSquare', sans-serif;
+}
+
+.main-board-container{
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+
+.main-board-box{
+    width: 100%;
+    // width: 32rem;
+    //height: 16rem;
+    border-style: solid;
+    border-color:  rgb(226, 226, 226);
+    border-width:  1px;
+
+    border-top: 3px solid #002f7b;
+}
+
+
+.main-board-container div{
+    width: 100%;
+}
+.main-board-section1{
+    margin-right: 0.4rem;
+}
+
+.main-board-section2{
+    margin-left: 0.4rem;
+}
+.main-board-upper{
+    margin-bottom: 1rem;   
+}
+
+.main-board-title{
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.main-board-more{
+    font-size: 0.8rem;
+    color: rgb(134, 134, 134); 
+    text-decoration: none;
+}
+
+.main-board-box thead{
+    font-size: 0.8rem;
+    background-color: white;
+    
+    // background-color: #002f7b;
+    // color: white;
+}
+
+.main-board-box thead tr th{
+    vertical-align: bottom;
+    border-bottom-width: 1.3px;
+    text-align: center;
+}
+
+.main-board-tr{
+    cursor: pointer;
+}
+
+.main-board-tr:hover{
+    background-color: rgb(243, 243, 243);
+}
+
+.main-board-box tbody{
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 0.8rem;
+    background-color: white;
+}
+
+
+//로그인
+.session{
+    margin-top: 3rem;
+    // margin-bottom: 6rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+}
+.form-control.id,.form-control.pw{
+    margin-bottom:1rem;
+}
+
+.form-control.pw{
+    font-family: initial;
+}
+
+.form-control.id:focus,.form-control.pw:focus{
+    border-color:#FF5400;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+}
+.session-form{
+    width:23%;
+}
+.session-btn{
+    background-color:#FF5400;
+    text-align: center;
+    width: 100%;
+    height: 2.2rem;
+    color:white;
+    margin-bottom:0.3rem;
+}
+.signup-btn{
+    border:1px solid  #FF5400;
+    color:#FF5400;
+    width: 23%;
+    height: 2.2rem;
+    background-color:white;    
+}
+#error_explanation h2{
+    font-size: 1rem;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+#noticeModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    // overflow: auto; /* Enable scroll if needed */
+    width:80%;
+    margin-left: 100px;
+    border:none;
+    
+}
+
+.main-notice-modal {
+    background-color: #fefefe;
+    margin: auto;
+    padding-left: 10px;
+    border:none;
+    width:30%;
+    margin-right:80px;
+    margin-left:70px;
+    -webkit-box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+    -moz-box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+    box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+}
+.modal-content img{
+    max-width:95%;
+    max-height:80%;
+}
+
+/* The Close Button */
+.close {
+    text-align: right;
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}

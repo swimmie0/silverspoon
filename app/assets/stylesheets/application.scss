@@ -1,0 +1,387 @@
+@import "bootstrap";
+@import "menus.scss";
+@import "font-awesome";
+@import 'header.scss';
+@import "recipes.scss";
+@import "profiles.scss";
+@import "home.scss";
+@import "restaurants.scss";
+@import "zizuminfos.scss";
+@import "freeboards.scss";
+@import "footer.scss";
+@import "admincontrol.scss";
+@import "legal.scss";
+
+
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
+
+
+input{
+    font-family: 'Nanum Gothic', sans-serif !important;
+}
+
+td{
+    font-family: 'Nanum Gothic', sans-serif !important;
+}
+
+.nago{
+    font-family: 'Nanum Gothic', sans-serif !important;
+}
+
+.nanumsquare { font-family: 'NanumSquare', sans-serif !important; }
+
+
+.small-title{
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.middle-title{
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.big-title{
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+//--------------------modal
+.modal{
+    font-family: 'NanumSquare', sans-serif;
+}
+
+
+.modal-title{
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+/// 폰트 안돼서 임시 ///
+@font-face {
+    font-family: 'NanumBarunGothic';
+    font-style: normal;
+    font-weight: 400;
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'NanumBarunGothic';
+    font-style: normal;
+    font-weight: 700;
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot');
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.ttf') format('truetype');
+}
+
+    @font-face {
+    font-family: 'NanumBarunGothic';
+    font-style: normal;
+    font-weight: 300;
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot');
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.ttf') format('truetype');
+}
+
+.nanumbarungothic * {
+    font-family: 'NanumBarunGothic', sans-serif;
+}
+////////////////
+
+body{
+    overflow-x:hidden;
+    overflow-y:auto;
+    font-family: 'NanumSquare', sans-serif;
+  
+}
+
+
+// select {
+//      -webkit-appearance: none; /* 네이티브 외형 감추기 */ 
+//      -moz-appearance: none;
+//      appearance: none;
+//      background-size: 15px;
+//      background: url("down-arrow.png") white no-repeat 98% !important; /* 화살표 모양의 이미지 */ 
+// } /* IE 10, 11의 네이티브 화살표 숨기기 */ 
+
+// select::-ms-expand {
+//      display: none; 
+// }
+
+/* 회원가입 CSS */
+
+    .RegisterSection {
+        font-family: 'NanumBarunGothic'; 
+        background-color: #F8F8F8;
+        height: 100%;
+        width: 100%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        //text-align: center;
+    }
+
+    .RegisterForm {
+        background-color: white;
+        height: 100%;
+        width: 800px;
+        padding-right: 5%;
+        padding-left: 5%;
+        border: 2px solid #002f7b; 
+        border-radius: 25px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .RegisterFormHeader {
+        margin-top: 2rem; 
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .RegisterFormMust {
+        text-align: "right";
+    }
+
+/* 회원가입 CSS 끝 */
+
+/* 채팅 페이지 CSS */
+
+.MessagePage {
+    background-color: #F8F8F8;
+}
+
+.MessageSectionForm {
+    margin-top: 5%;
+}
+
+.MessageSectionLeftColumn {
+    background-color: #002f7b; 
+    text-align: center;
+    padding: 0;
+}
+
+.MessageSectionLeftTop {
+    background-color: #1a2352; 
+    height: 4.15rem;
+    display: flex;
+    justify-content:center;
+    align-content:center;
+    flex-direction:column;
+}
+
+.MessageSectionLeftTopText { 
+    font-size: 1.2rem; 
+    margin: 0px; 
+    color: white;
+    padding: 5%;
+    
+}
+
+.MessageSectionLeftBottom { 
+    //position: relative; 
+    //height: 100%;
+    width: 100%;
+}
+
+.MessageSectionLeftBottomText {
+    padding: 10%;
+    margin: 0;
+    color: white; 
+    font-size: 1rem; 
+    border-bottom: 0.5px solid #ffffff8c; 
+    text-decoration: none; 
+    color: white;
+    
+}
+
+.MessageSectionRightColumn {
+    border: 0.05px solid #bfbebe; 
+    padding: 0px; 
+    height: 100%;
+}
+
+.MessageSectionRightTop {
+    background-color: #F8F8F8; 
+    height: 11.1%;
+    width: 100%;
+}
+
+.MessageSectionRightTopText {
+    border: 0.05px solid #bfbebe;
+    line-height: 66px; 
+    padding-left: 2rem; 
+    font-size: 1rem; 
+    margin: 0px; 
+    color: black;
+}
+.MessageSectionRightMiddle {
+    background-color: white; 
+    border-right: 0.05px solid #bfbebe; 
+    overflow-y: scroll; 
+    height: 30rem; 
+    width: 100%; 
+    margin: 0px;
+    
+}
+
+.MessageLeftUser {
+    line-height: 2.3rem; 
+    font-size: 0.8rem; 
+    padding: 0px;
+    margin-right: 0px;
+}
+
+.MessageLeftUserChat {
+    margin-top: 0.5rem; 
+    margin-bottom: 0.5rem; 
+    margin-left: 3rem;
+    padding: 0px; 
+    border: 1px solid #bfbebe; 
+    border-radius: 0.5rem;
+}
+
+.MessageLeftUserChatContent {
+    font-size: 0.8rem;
+    padding-top: 0.5rem; 
+    padding-bottom: 0.5rem;
+}
+
+.MessageLeftUserDate{
+    color: #a9a9a9; 
+    font-size: 0.8rem; 
+    margin-left: 7rem; 
+    width: 100%;
+}
+
+.MessageRightUser {
+    line-height: 2.3rem; 
+    font-size: 0.8rem; 
+    padding: 0px; 
+    margin-right: 0px;
+    padding-right: 1.5rem;
+}
+
+.MessageLeftUserName {
+    width: 5rem; 
+    text-align:right; 
+    margin-right: 0.3rem;
+}
+
+.MessageRightUserChat {
+    margin-top: 0.5rem; 
+    margin-bottom: 0.5rem; 
+    margin-right: 3rem;
+    padding: 0px; 
+    border: 1px solid #bfbebe; 
+    border-radius: 0.5rem;
+}
+
+.MessageRightUserChatContent {
+    font-size: 0.8rem; 
+    padding-top: 0.5rem; 
+    padding-bottom: 0.5rem;
+}
+.MessageRightUserDate {
+    text-align: right; 
+    color: #a9a9a9; 
+    font-size: 0.8rem; 
+    margin-right: 4.3rem; 
+    width: 100%;
+}
+
+.MessageRightUserName {
+    line-height: 2.3rem; 
+    font-size: 0.8rem;
+    margin-right: 0.4rem; 
+    text-align: right;
+}
+
+.MessageSectionRightBottom {
+    border: 0.05px solid #bfbebe; 
+    margin: 0px; 
+    height: 15%; 
+    width: 100%;
+}
+
+.MessageBottomLeft {
+    border: 0.05px solid #bfbebe;
+    background-color: #F8F8F8; 
+    padding: 0px; 
+    margin: 0px;
+}
+
+.MessageBottomLeftField {
+    border: 0.05px solid #bfbebe; 
+    background-color: white; 
+    width: 100%; 
+    height: 5.65rem; 
+    padding: 0px;
+    padding-left: 1rem; 
+    margin: 0px;
+}
+
+.MessageBottomRight {
+    background-color: #1a2352; 
+    padding: 0px; 
+    margin: 0px; 
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.MessageBottomRightButton {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+         appearance: none;
+    border-style: none;
+    cursor:pointer;
+    color: white; 
+    background-color: #1a2352;
+    width: 100%; 
+    height: 5.65rem
+}
+
+/* 채팅 페이지 CSS 끝 */
+
+/* 쪽지 뷰 페이지 CSS */
+
+
+/* 쪽지 뷰 페이지 CSS 끝*/
+
+
+/* ScrollBar CSS */
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+  /* ScrollBar CSS 끝 */

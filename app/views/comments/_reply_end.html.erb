@@ -1,0 +1,51 @@
+
+<% comments.each do |comment| %>  
+  <div class="comments-show nago">
+    <div class="comment reply-box">
+      <div class="comment-profile form-inline"> <!--프로필-->
+        <i class="fas fa-level-up-alt"></i>        
+        <%# <%=image_tag("beige-logo.PNG", class:"comment-profile-img")%>
+        <% if comment.user ==nil %>
+          <i>탈퇴한 회원입니다</i>
+        <%else%>
+          <%= link_to comment.user.name, profile_path(comment.user.profile.id),class:"linkto nago", style:"font-weight: 500; font-size: 1rem; margin-left: 0.5rem;" %> 
+        <%end%>
+        <div style="font-weight:lighter;margin-left:1rem; font-size:0.8rem; color: rgb(140,140,140); "> <%= time_ago_in_words(comment.created_at) %>전 [ <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %> ] </div> 
+        <% if current_user == comment.user %>
+          &nbsp;/&nbsp;<%= link_to "삭제", comment_path(comment), method: :delete, remote: false, data: { confirm: "정말로 지우시겠습니까?" }, style: "font-size:0.8rem; color: rgb(140,140,140);" %>
+        <% end %>  
+      </div>
+
+      <div class="comment-content " style="margin:0rem 0rem 1.6rem 2.5rem;">  <!--답글내용-->
+        <div class="d-flex">
+          <p style ="color: #4b5d79;font-size: 0.8rem;margin-top: 0.2rem;margin-left: 0.5rem;">@<%= comment.parent.user.name %></p>
+          <%= content_tag(:div, comment.body, style: "white-space: pre-wrap;margin-left:0.8rem;") %>
+        </div>
+      <% if user_signed_in? && current_user.name != nil %> <!--답글창-->
+        <button onclick="showHide('comment_<%= comment.id %>')" onfocus="this.blur()" class="reply-end-btn">답글</button>
+      </div>
+    
+      <div id="comment_<%= comment.id %>" style="display:none;margin:0.3rem;"> 
+        <div class="reply-form">
+          <%= form_for @new_comment do |f| %>
+            <%= f.hidden_field :commentable_id, value: @new_comment.commentable_id %>
+            <%= f.hidden_field :commentable_type, value: @new_comment.commentable_type %>
+            <%= f.hidden_field :comment_id, value: comment.id %>
+            <div class="field form-group">
+              <%= f.hidden_field :name, value: current_user.name, required: "true" %>
+              <%= f.text_area :body, class: 'form-control' %>
+               <%= submit_tag "답댓글 작성", class:"reply-btn rereply-btn", style:"float:right;" %>
+            </div>
+             
+          <% end %>
+        </div>
+      </div>
+      <%end%>  <!--//답글창-->
+    </div> <!--//comment-->
+    <div>
+      <%= render partial: "comments/reply_end", locals: {comments: comment.children} %>
+    </div>
+
+  </div>
+<% end %>
+

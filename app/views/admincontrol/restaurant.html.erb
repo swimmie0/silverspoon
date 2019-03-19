@@ -1,0 +1,81 @@
+<div class="admin-body">
+    <%if user_signed_in? && current_user.admin?%>
+       <%=render partial: 'admincontrol/category'%>
+        <div class="admin-index-content-stretch">
+            <div class="admin-index-content-box container">
+                <div class="admin-index-content-title middle-title">식당 관리</div>
+                
+                <div class="d-flex justify-content-center">
+                    <div class="admin-index-recent-container">
+                        <table class="table admin-res-list">
+                            <thead>
+                                <tr>
+                                    <th width="15%">식당 번호</th>
+                                    <th width="35%">식당 이름</th>
+                                    <th width="25%">식당 정보수정</th>
+                                    <th width="25%">지점업데이트</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <%@restaurants.each do |restaurant|%>
+                                <tr class="admin-res-box">
+                                    <td><%=restaurant.id%></td>
+                                    <td><%=link_to restaurant.restaurant_name, restaurant_path(restaurant)%></td>
+                                    <td><%=link_to "식당정보수정", edit_restaurant_path(restaurant)%></td>
+                                    <td><span class="res-zizum-update" id="<%=restaurant.restaurant_name%>">지점정보업데이트</span></td>
+                                </tr>
+                            <%end%>
+                            </tbody>  
+                        </table>
+
+                        <div class="admin-res-subfunc">
+                            <%=link_to "레스토랑 추가", new_restaurant_path%>
+                            <%=link_to "식당 전체 크롤링", admincontrol_resupdate_path, class:"resall"%>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+        
+
+    <%else%>
+        <div class="admin-index-inner container">
+            접근 권한이 없습니다.
+        </div>
+    <%end%>
+</div>
+
+<script>
+    $(".admin-index-res-ct").addClass("admin-index-activebtn")
+    $(".admin-index-category").not(".admin-index-res-ct").removeClass("admin-index-activebtn")
+   
+    $(".resall").click(function () {
+        $res = $(this).attr("class")
+         alert("업데이트 중입니다. 기다려주세요")
+        $.ajax({
+        async : true,
+        data : {res : $res},
+        type : "GET",
+        url : "resupdate",
+        success : function(data){
+            alert("모든 식당 업데이트")
+        }
+        });  
+    })
+
+    $(".res-zizum-update").click(function () {
+        $res = $(this).attr("id")
+         alert("업데이트 중입니다. 기다려주세요")
+        $.ajax({
+        async : true,
+        data : {res : $res},
+        type : "GET",
+        url : "resupdate",
+        success : function(data){
+             alert($res+" 지점 업데이트 완료")
+        }
+        });  
+    })
+   
+</script>

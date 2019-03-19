@@ -1,0 +1,71 @@
+<div class="holder">
+    <div id="banner1" class="rolling-banner">
+        <ul id="rolling-list" class="rolling container">
+            <li><div>[OPEN] SILVER SPOON 베타 버전 오픈</div></li>
+            <li><div>[EVENT] 스푼 테일즈 이벤트 공지사항 참고</div></li>
+        </ul>
+    </div>
+
+    <div class="navbarstyle"> 
+        <div class="navbarcontent container">
+            
+            <div class="row"> 
+                <div class="header-title col-4"><%= link_to image_tag("logo-letter.png", class: "headerlogo"), root_path%></div>        
+                <div class="header-menu col-4">
+                    <%= link_to "공지사항", notices_path, class: "headerfont header-menu-item"%>
+                    <%= link_to "식당찾기", restaurants_path, class: "headerfont header-menu-item"%>
+                    <%= link_to "커뮤니티", freeboards_path, class: "headerfont header-menu-item"%>
+                    <%= link_to "레시피", recipes_path, class: "headerfont header-menu-item"%>
+                </div>
+                <div class="col-1"></div>
+                <div id="header-right" class="header-personal justify-content-end col-3">
+                    <%#= link_to "Inbox", conversations_path, class: "headerfont" %>
+               
+                    <% if user_signed_in? %>
+                        <div class="header-mypage">
+                             <% if current_user.profile.nil? %> 
+                            <div><%= link_to "마이페이지", new_profile_path(@profile), class:"headerfont"%></div>
+                            <% elsif !current_user.profile.nil? %>
+                            <div><%= link_to "마이페이지", profile_path(current_user.profile.id), class:"headerfont"%></div>
+                            <% end %>
+                        </div>
+                     <!-- 알림창 -->
+                        <%# <button onclick="showHide('info_html')" onfocus="this.blur()" style="background:none;border:none;">
+                            <%if current_user.new_alarms.unread_by(current_user).count ==0 %>
+                            <%# <a class="fa fa-globe" style="color:black;"></a> 
+                            <% else %> 
+                            <%# <a class="fa fa-globe" style="color:black;">
+                                <span class="fa fa-comment"></span>
+                                <span class="num"> <%= current_user.new_alarms.unread_by(current_user).count %> 
+                            <%# </a>  
+                            <%end%>
+                        <%# </button>
+                        <div id="info_html" class="modal">
+                            <div class="inborder">
+                                <div class="noti_title"><b>알림창</b></div><hr>
+                                <%= render partial: "new_alarms/new_alarm", collection: current_user.new_alarms.unread_by(current_user) %>
+                                <%# <%= link_to '<b>모두 읽기</b>'.html_safe, new_alarms_read_all_path, {:style=>'color:black;margin-left:80%;'}%>
+                            <%# </div>
+                        </div>   %> 
+                    <% end %>    
+                    
+                    <!-- 로그인/로그아웃 -->
+                    <div>
+                        <% if !user_signed_in? %> 
+                            <%= link_to "로그인", new_user_session_path, class:"headerfont", :style=>"text-decoration: none; color: #454338;" %>
+                        <% elsif user_signed_in?%>
+                            <%= link_to "로그아웃", destroy_user_session_path, method: :delete, class:"headerfont", :style=>"text-decoration: none; color: #454338;"%>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header-temp"></div>
+
+<%# <script type="text/javascript" src="banner.js"></script> %>
+<%= javascript_include_tag('banner.js') %>
+<script>
+</script>

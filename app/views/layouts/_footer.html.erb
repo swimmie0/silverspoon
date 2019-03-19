@@ -1,0 +1,34 @@
+<div class="footer-outer-box">
+    <div class="footer-inner-box container d-flex">
+        <div class="footer-element footer-logo"><%= link_to image_tag("logo-letter.png", class: "headerlogo"), root_path%></div>
+        <div class="footer-element footer-detail1">
+            <div>By SpoonTales</div>
+            <div>문의 : whj0210@gmail.com</div>
+            <%# <div>상호: Silver Spoon (실버 스푼)</div>
+            <div>COPYRIGHT (C) SPOON TALES 2019.ALL RIGHTS RESERVED</div> %>
+        </div>
+        <div class="footer-element footer-detail2 d-flex justify-content-around">
+            <div class=" d-flex justify-content-between">
+                <div class="footer-element-menu">
+                    <div><%=link_to "공지사항", notices_path, class:"footer-linkto"%></div>
+                    <div><%=link_to "식당찾기", restaurants_path, class:"footer-linkto"%></div>
+                    
+                    <div><%#=link_to "개인정보 취급방침", "/legal/privacy", class:"footer-linkto"%></div>
+                    <div><%#=link_to "이용약관", "/legal/using",class:"footer-linkto"%></div>
+                </div>
+                <div>
+                    <div><%=link_to "커뮤니티", freeboards_path, class:"footer-linkto"%></div>
+                    <div><%=link_to "레시피", recipes_path, class:"footer-linkto"%></div>
+                </div>
+            </div>
+
+            <div class="d-flex">
+                <%=link_to 'https://www.instagram.com/_spoontales/',  target: "_blank" do%>
+                    <%=image_tag("Instagram_AppIcon.png", class:"footer-logoimg")%>
+                <%end%>
+
+                <%=link_to image_tag("flogo_rgb.png", class:"footer-logoimg")%>
+            </div>
+        </div>
+    </div>
+</div>

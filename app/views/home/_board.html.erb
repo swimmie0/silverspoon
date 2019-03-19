@@ -1,0 +1,12 @@
+<div class="recent-board">
+        <%post = @recent_adv[index]%>
+        <%if post.nil?%>
+            <%break%>
+        <%end%>
+        <tr>
+            <td style="text-align: center;"><%=post.comment_threads.count %></td>
+            <td><%=post.title%></td>
+            <td style="text-align: center;"><%= post.name %></td>
+            <td style="text-align: center;"><%=post.impressionist_count(:filter=>:session_hash) %></td>
+        </tr>
+</div>

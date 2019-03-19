@@ -1,0 +1,51 @@
+<div class="post-contents container">
+  <div class="big-title">공지사항</div>
+</div>
+<div class ="contents">
+    <div class="post-num">
+      총 <%=Notice.all.count%>건
+    </div>
+    <div class="post-table" style="margin-top: 0.8rem; margin-bottom: 5rem;">    
+      <table class="table table-hover" id="post-table">
+        <thead>
+          <tr>     
+            <th style="width:8%;">No</th>
+            <th style="width:58%;" class="title">제목</th>
+            <th>작성자</th>
+            <th style="width:10%;">작성일</th>
+            <th style="width:8%;">조회수</th>      
+          </tr>
+        </thead>
+
+        <tbody>
+      </div>
+      <%n=1%>
+        <% @notices.each do | notice| %>
+          <tr>
+            <td><%=n%><%n=n+1%></td>
+            <td class="title form-inline"><div class="ctg"style="font-weight:lighter;font-size:0.6rem;"><%= link_to  notice.title,  notice, {:class => "linkto",:style=>"font-size:0.8rem;"} %></td>
+            <td>관리자</td>
+            <td><%=  notice.time( notice)%></td>                
+            <td> <%=  notice.impressionist_count(:filter=>:session_hash) %></td>
+          </tr>
+        <% end %>
+     </tbody>
+  </table>
+  </div>
+<br>
+<% if user_signed_in? &&current_user.admin?%>
+<%= button_to '공지 등록', new_notice_path,:method=>'get' %>
+<%end%>
+
+<script>
+// 행 clickable 
+$(document).ready(function() {
+    $('#post-table tr').click(function() {
+        var href = $(this).find("a").attr("href");
+
+        if(href) {
+            window.location = href;
+        }
+    });
+});
+ </script>

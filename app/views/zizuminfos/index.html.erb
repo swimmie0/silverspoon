@@ -1,0 +1,474 @@
+<div class="container rebrowse-box">
+    <%= render partial: "rebrowse"%>
+</div>
+
+<!-- 2-1. index-이용방법 안내 -->
+<div id="index-contents" class="index-contents howto container" style="display:none;" >
+    <div class="index-content-title text-center">이용방법 안내</div><br/>
+    <div class="d-flex justify-content-center">
+        <%=image_tag("howto.png", class: "howto-img")%>
+    </div>
+</div>
+
+
+<% if @zizums.length != 0 %>
+    <div id="rtnt-search-byname" class="result-contents rtnt2">
+        <div class="container">
+            <div class="d-flex justify-content-center middle-title">
+                검색 결과
+            </div>
+        </div>
+        <div class="index-rtnt-box d-flex">
+            <%@zizum_array.drop(6).each do |zizum|%>
+                <div class="index-today-rtntbox">
+                    <div class="today-rtnt-imgbox">
+                        <% if zizum.restaurant.image.url != nil%>
+                        <%=link_to image_tag(zizum.restaurant.image.url,class:"today-rtnt-img"),zizum%>                
+                        <% else %>
+                        <%=link_to image_tag("beige-logo.PNG",class:"today-rtnt-img"),zizum%>
+                        <%end%>
+                    </div>       
+                    <%if user_signed_in?%>
+                        <% if zizum.followed_by?(current_user) %>
+                            <!-- 좋아요를 했다면 -->
+                            <i class="fas fa-bookmark zizum"></i>
+                            <div class="zizum-id-like"><%=zizum.id%></div>
+                            <!-- 좋아요를 안 했다면 -->
+                        <% else %>
+                            <i class="far fa-bookmark zizum"></i>
+                            <div class="zizum-id-like"><%=zizum.id%></div>
+                        <% end %>
+                    <%else%>
+                        <i class="far fa-bookmark zizum" data-toggle="modal" data-target="#loginModal"></i>
+                    <%end%>
+                    <div class="about-rtnt2">
+                        <div class="rtnt-name"><%= zizum.restaurant_name%>&nbsp;<%= zizum.zizum_name%></div>
+                        <div class="rtnt-intro"><%= zizum.restaurant.explain%></div>                                
+                        <p class="rtnt-adress"><i class="fas fa-map-marker-alt"></i>&nbsp;<%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
+                    </div>
+                </div>
+            <%end%>
+        </div>
+        <div class="index-rtnt-box d-flex justify-content-center">
+            <%@zizum_array[3..5].each do |zizum|%>
+                <div class="index-today-rtntbox">
+                    <div class="today-rtnt-imgbox">
+                        <% if zizum.restaurant.image.url != nil%>
+                        <%=link_to image_tag(zizum.restaurant.image.url,class:"today-rtnt-img"),zizum%>                
+                        <% else %>
+                        <%=link_to image_tag("beige-logo.PNG",class:"today-rtnt-img"),zizum%>
+                        <%end%>
+                    </div>       
+                    <%if user_signed_in?%>
+                        <% if zizum.followed_by?(current_user) %>
+                            <!-- 좋아요를 했다면 -->
+                            <i class="fas fa-bookmark zizum"></i>
+                            <div class="zizum-id-like"><%=zizum.id%></div>
+                            <!-- 좋아요를 안 했다면 -->
+                        <% else %>
+                            <i class="far fa-bookmark zizum"></i>
+                            <div class="zizum-id-like"><%=zizum.id%></div>
+                        <% end %>
+                    <%else%>
+                        <i class="far fa-bookmark zizum" data-toggle="modal" data-target="#loginModal"></i>
+                    <%end%>                
+                    <div class="about-rtnt2">
+                        <div class="rtnt-name"><%= zizum.restaurant_name%>&nbsp;<%= zizum.zizum_name%></div>
+                        <div class="rtnt-intro"><%= zizum.restaurant.explain%></div>                                
+                        <p class="rtnt-adress"><i class="fas fa-map-marker-alt"></i>&nbsp;<%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
+                    </div>
+                </div>
+            <%end%>
+        </div>    
+        <div class="index-rtnt-box d-flex justify-content-center">
+            <%@zizum_array.drop(6).each do |zizum|%>
+                <div class="index-today-rtntbox">
+                    <div class="today-rtnt-imgbox">
+                        <% if zizum.restaurant.image.url != nil%>
+                        <%=link_to image_tag(zizum.restaurant.image.url,class:"today-rtnt-img"),zizum%>                
+                        <% else %>
+                        <%=link_to image_tag("beige-logo.PNG",class:"today-rtnt-img"),zizum%>
+                        <%end%>
+                    </div>
+                    <%if user_signed_in?%>
+                        <% if zizum.followed_by?(current_user) %>
+                            <!-- 좋아요를 했다면 -->
+                            <i class="fas fa-bookmark zizum"></i>
+                            <div class="zizum-id-like"><%=zizum.id%></div>
+                            <!-- 좋아요를 안 했다면 -->
+                        <% else %>
+                            <i class="far fa-bookmark zizum"></i>
+                            <div class="zizum-id-like"><%=zizum.id%></div>
+                        <% end %>
+                    <%else%>
+                        <i class="far fa-bookmark zizum" data-toggle="modal" data-target="#loginModal"></i>
+                    <%end%>
+                    <div class="about-rtnt2">
+                        <div class="rtnt-name"><%= zizum.restaurant_name%>&nbsp;<%= zizum.zizum_name%></div>
+                        <div class="rtnt-intro"><%= zizum.restaurant.explain%></div>                                
+                        <p class="rtnt-adress"><i class="fas fa-map-marker-alt"></i>&nbsp;<%=zizum.sigungu%>, <%=zizum.sangse_juso%></p>
+                    </div>
+                </div>
+            <%end%>
+        </div>
+        <div class="container d-flex justify-content-center"style="margin-top:2rem;"><%= paginate @zizum_array%></div>
+    </div>
+<%else%>
+<div id="rtnt-search-byname" class="result-contents rtnt2">
+    <div class="container">
+        <div style="text-align: center;">
+            <p> <strong><%=params[:sido]%>/<%=params[:sigungu]%>의 <%=params[:restaurant_name]%></strong> 로 검색 결과
+        : <strong>검색결과가 없습니다. 다른 식당을 검색해보세요! </p> <br>
+        </div>
+
+        <div class="rtnt-recomment-title big-title" style="margin-top: 1.5rem; margin-bottom: 1rem; text-align: center;">오늘의 추천식당</div>
+        <div class="index-rtnt-box d-flex justify-content-center">
+            <%@today_restaurants.each do |res|%>
+                <div class="index-today-rtntbox">
+                    <div class="today-rtnt-imgbox">
+                        <% if res.image.url != nil%>
+                            <%=link_to image_tag(res.image.url,class:"today-rtnt-img"), zizuminfo_path(res.zizuminfos[0].id)%>                
+                        <% else %>
+                            <%=link_to image_tag("beige-logo.PNG",class:"today-rtnt-img"),zizuminfo_path(res.zizuminfos[0].id)%>
+                        <%end%>
+                    </div>
+
+                    <div class="about-rtnt2 about-rtnt-recmd">
+                        <div class="rtnt-name"><%= res.restaurant_name%></div>
+                        <div class="rtnt-intro"><%= res.explain%></div>                                
+                        
+                    </div>
+                </div>
+            <%end%>
+        </div>
+    </div>
+</div>
+<%end%>
+
+
+   <%# 로그인 하지 않았을 때 custom 기능 누르면 modal view 뜨도록 %>
+    <%if !user_signed_in?%>
+        <%= render 'layouts/loginModal'%>
+    <%end%>
+
+  <script>
+     function scrollLink(obj){ 
+        var position = $("#"+obj).offset();
+        $('html, body').animate({scrollTop : position.top}, 500);
+    }
+
+    $(document).ready(function(){
+        scrollLink("rtnt-search-byname");
+    })
+
+    // $(".sido-select").val('<%=params[:sido]%>');
+    // $(".sigungu-select").val('<%=params[:sigungu]%>');
+
+    //검색탭 전환
+    $(".btn-allergy").click(function(){
+        
+            $(this).children('.btn-searchtype-circle').addClass("active-btn");
+            $(this).children('.btn-searchtype-circle').children('div').addClass("active-btn-inside");
+            $(this).children('.category-name').addClass('active-typename');
+            
+            $(".btn-restaurant").children('.btn-searchtype-circle').removeClass("active-btn");
+            $(".btn-restaurant").children('.btn-searchtype-circle').children('div').removeClass("active-btn-inside");
+            $(".btn-restaurant").children('.category-name').removeClass('active-typename');
+            
+            $(".restaurant-search").addClass("nodisplay");
+            $(".allergy-search").removeClass("nodisplay");
+            $(".index-contents").css("display","block");
+            $(".result-contents").css("display","none");
+        
+    });
+
+    $(".btn-restaurant").click(function(){
+        
+            $(this).children('.btn-searchtype-circle').addClass("active-btn");
+            $(this).children('.btn-searchtype-circle').children('div').addClass("active-btn-inside");
+            $(this).children('.category-name').addClass('active-typename');
+            
+            $(".btn-allergy").children('.btn-searchtype-circle').removeClass("active-btn");
+            $(".btn-allergy").children('.btn-searchtype-circle').children('div').removeClass("active-btn-inside");
+            $(".btn-allergy").children('.category-name').removeClass('active-typename');
+
+            $(".restaurant-search").removeClass("nodisplay");
+            $(".allergy-search").addClass("nodisplay");
+            $(".index-contents").css("display","none");
+            $(".result-contents").css("display","block");
+        
+    });
+
+    //첫 시작
+    $(".sido-select").val('<%=params[:sido]%>');
+    $(".sigungu-select").val('<%=params[:sigungu]%>');
+    //처음 지역 채우기 끝
+    
+   //ajax 좋아요 구현
+    if('<%=user_signed_in?%>'==="true"){
+        $(".fa-bookmark").click(function(){
+            $zizumid = $(this).siblings("div.zizum-id-like").html();
+            $likeicon = $(this);
+            $.ajax({
+                async : true,
+                data : {id: $zizumid},
+                type : "GET",
+                url : "/follows/zizumfollow",
+                success : function(data){
+                    followType = data["follow"];
+                    console.log("이제"+data["zizumid"]+"를 follow"+followType);
+                    $likeicon.toggleClass('far');
+                    $likeicon.toggleClass('fas');
+                }
+            })
+        });
+    }
+
+    var sigungu;
+    var sigungu_length;
+
+
+  $(".sido-select").click(function() {
+        var sido = $(this).val();
+        
+        $.ajax({
+            async : true,
+            data : {sido : sido},
+            type : "GET",
+            url : "getGungu",
+            timeout : 3000,
+            success : function(data){
+                
+                sigungu = data["sigungu_name"];
+                if(sido != "전체"){
+                    sigungu_length = Object.keys(sigungu).length;
+                    var options = '';
+                    options += '<option value="' +"전체"+ '">' + "--전체선택--" + '</option>';
+                    for (var i = 0; i <sigungu_length; i++) {
+                        options += '<option value="' + sigungu[i]+'"'+'class='+'"sigungu-opt"'+'>' + sigungu[i] + '</option>';
+                    }
+
+                    $(".sigungu-select").html(options);
+                }
+
+            },error : function (xhr, textStatus, errorThrown) {
+                 console.log(xhr, textStatus, errorThrown);
+            }
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('2. fail 을 탄다 : ' + errorThrown);
+        });
+    })
+
+  
+
+    //페이지 뒤로 넘어가기 했을 시 및 시/도 자동 세팅되어있는 경우에 에러 수정.
+    var sido = $(".sido-select").val();
+    
+   if(sido != "전체"){
+        $.ajax({
+            async : true,
+            data : {sido : sido},
+            type : "GET",
+            url : "getGungu",
+            timeout : 3000,
+            success : function(data){
+
+                sigungu = data["sigungu_name"];
+                if(sido != "전체"){
+                    sigungu_length = Object.keys(sigungu).length;
+                    var options = '';
+                    options += '<option value="' +"전체"+ '">' + "--전체선택--" + '</option>';
+                    for (var i = 0; i <sigungu_length; i++) {
+                        options += '<option value="' + sigungu[i]+'"'+'class='+'"sigungu-opt"'+'>' + sigungu[i] + '</option>';
+                    }
+
+                    $(".sigungu-select").html(options);
+                }
+
+            },error : function () {
+                console.log('1. error 를 타고...');
+            }
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('2. fail 을 탄다 : ' + errorThrown);
+        });
+    }
+    //에러 수정 끝
+
+     //내 정보 불러오기 script
+    $(".custom-btn-original").click(function(){
+        $('#myinfo').removeClass('nodisplay');
+    });
+
+    //custom 안했을 때. 숨겨진 체크박스 선택되도록 + active
+    $(".allergy-cp-origin").click(function() {
+        var allergy = $(this).attr('id');
+        if($(this).hasClass('allergy-cp-active')){
+            $(this).removeClass('allergy-cp-active');
+            $(this).children('img').removeClass('allergy-cp-img-active');
+
+            if(allergy == "a1") $("#a1_maemil").prop('checked', false);
+            else if(allergy == "a2") $("#a2_mil").prop('checked', false);
+            else if(allergy == "a3") $("#a3_daedu").prop('checked', false);
+            else if(allergy == "a4") $("#a4_hodu").prop('checked', false);
+            else if(allergy == "a5") $("#a5_ddangkong").prop('checked', false);
+            else if(allergy == "a6") $("#a6_peach").prop('checked', false);
+            else if(allergy == "a7") $("#a7_tomato").prop('checked', false);
+            else if(allergy == "a8") $("#a8_piggogi").prop('checked', false);
+            else if(allergy == "a9") $("#a9_nanryu").prop('checked', false);
+            else if(allergy == "a10") $("#a10_milk").prop('checked', false);
+            else if(allergy == "a11") $("#a11_ddakgogi").prop('checked', false);
+            else if(allergy == "a12") $("#a12_shoigogi").prop('checked', false);
+            else if(allergy == "a13") $("#a13_saewoo").prop('checked', false);
+            else if(allergy == "a14") $("#a14_godeungeoh").prop('checked', false);
+            else if(allergy == "a15") $("#a15_honghap").prop('checked', false);
+            else if(allergy == "a16") $("#a16_junbok").prop('checked', false);
+            else if(allergy == "a17") $("#a17_gul").prop('checked', false);
+            else if(allergy == "a18") $("#a18_jogaeryu").prop('checked', false);
+            else if(allergy == "a19") $("#a19_gye").prop('checked', false);
+            else if(allergy == "a20") $("#a20_ohjingeoh").prop('checked', false);
+            else if(allergy == "a21") $("#a21_ahwangsan").prop('checked', false);
+            //배경색이 있는 그림이라서 바꿀 수가 없다. 일러스트를 흰색으로 못 바꿈.
+            
+        }
+        else{
+            $(this).addClass('allergy-cp-active');
+            $(this).children('img').addClass('allergy-cp-img-active');
+            if(allergy == "a1") $("#a1_maemil").prop('checked', true);
+            else if(allergy == "a2") $("#a2_mil").prop('checked', true);
+            else if(allergy == "a3") $("#a3_daedu").prop('checked', true);
+            else if(allergy == "a4") $("#a4_hodu").prop('checked', true);
+            else if(allergy == "a5") $("#a5_ddangkong").prop('checked', true);
+            else if(allergy == "a6") $("#a6_peach").prop('checked', true);
+            else if(allergy == "a7") $("#a7_tomato").prop('checked', true);
+            else if(allergy == "a8") $("#a8_piggogi").prop('checked', true);
+            else if(allergy == "a9") $("#a9_nanryu").prop('checked', true);
+            else if(allergy == "a10") $("#a10_milk").prop('checked', true);
+            else if(allergy == "a11") $("#a11_ddakgogi").prop('checked', true);
+            else if(allergy == "a12") $("#a12_shoigogi").prop('checked', true);
+            else if(allergy == "a13") $("#a13_saewoo").prop('checked', true);
+            else if(allergy == "a14") $("#a14_godeungeoh").prop('checked', true);
+            else if(allergy == "a15") $("#a15_honghap").prop('checked', true);
+            else if(allergy == "a16") $("#a16_junbok").prop('checked', true);
+            else if(allergy == "a17") $("#a17_gul").prop('checked', true);
+            else if(allergy == "a18") $("#a18_jogaeryu").prop('checked', true);
+            else if(allergy == "a19") $("#a19_gye").prop('checked', true);
+            else if(allergy == "a20") $("#a20_ohjingeoh").prop('checked', true);
+            else if(allergy == "a21") $("#a21_ahwangsan").prop('checked', true);
+        }
+        
+        
+        console.log(allergy);
+    });
+
+
+    
+
+    //origin checkbox 뒤로 돌아가기 했을 때 생기는 문제 해결
+    if($("#a1_maemil").prop('checked') == true)
+    {
+        $("#a1").addClass("allergy-cp-active");
+        $("#a1").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a2_mil").prop('checked') == true)
+    {
+        $("#a2").addClass("allergy-cp-active");
+        $("#a2").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a3_daedu").prop('checked') == true)
+    {
+        $("#a3").addClass("allergy-cp-active");
+        $("#a3").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a4_hodu").prop('checked') == true)
+    {
+        $("#a4").addClass("allergy-cp-active");
+        $("#a4").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a5_ddangkong").prop('checked') == true)
+    {
+        $("#a5").addClass("allergy-cp-active");
+        $("#a5").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a6_peach").prop('checked') == true)
+    {
+        $("#a6").addClass("allergy-cp-active");
+        $("#a6").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a7_tomato").prop('checked') == true)
+    {
+        $("#a7").addClass("allergy-cp-active");
+        $("#a7").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a8_piggogi").prop('checked') == true)
+    {
+        $("#a8").addClass("allergy-cp-active");
+        $("#a8").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a9_nanryu").prop('checked') == true)
+    {
+        $("#a9").addClass("allergy-cp-active");
+        $("#a9").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a10_milk").prop('checked') == true)
+    {
+        $("#a10").addClass("allergy-cp-active");
+        $("#a10").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a11_ddakgogi").prop('checked') == true)
+    {
+        $("#a11").addClass("allergy-cp-active");
+        $("#a11").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a12_shoigogi").prop('checked') == true)
+    {
+        $("#a12").addClass("allergy-cp-active");
+        $("#a12").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a13_saewoo").prop('checked') == true)
+    {
+        $("#a13").addClass("allergy-cp-active");
+        $("#a13").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a14_godeungeoh").prop('checked') == true)
+    {
+        $("#a14").addClass("allergy-cp-active");
+        $("#a14").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a15_honghap").prop('checked') == true)
+    {
+        $("#a15").addClass("allergy-cp-active");
+        $("#a15").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a16_junbok").prop('checked') == true)
+    {
+        $("#a16").addClass("allergy-cp-active");
+        $("#a16").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a17_gul").prop('checked') == true)
+    {
+        $("#a17").addClass("allergy-cp-active");
+        $("#a17").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a18_jogaeryu").prop('checked') == true)
+    {
+        $("#a18").addClass("allergy-cp-active");
+        $("#a18").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a19_gye").prop('checked') == true)
+    {
+        $("#a19").addClass("allergy-cp-active");
+        $("#a19").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a20_ohjingeoh").prop('checked') == true)
+    {
+        $("#a20").addClass("allergy-cp-active");
+        $("#a20").children('img').addClass('allergy-cp-img-active');
+    }
+    if($("#a21_ahwangsan").prop('checked') == true){
+        $("#a21").addClass("allergy-cp-active");
+        $("#a21").children('img').addClass('allergy-cp-img-active');
+    }
+
+  
+</script>
+

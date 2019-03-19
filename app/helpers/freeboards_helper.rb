@@ -1,0 +1,2 @@
+module FreeboardsHelper
+end

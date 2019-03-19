@@ -1,0 +1,19 @@
+<div class="admin-index-upper container">
+    <div class="admin-index-category-box row">
+        <%=link_to admincontrol_index_path, class:"col-6 col-sm-3 col-md-3 admin-index-category admin-index-all-ct" do%>
+            <div>관리 전체</div>
+        <%end%>
+
+        <%=link_to admincontrol_restaurant_path, class:"col-6 col-sm-3 col-md-3 admin-index-category admin-index-res-ct" do%>
+            <div>식당 관리</div>
+        <%end%>
+    
+        <%=link_to admincontrol_zizuminfo_path, class:"col-6 col-sm-3 col-md-3 admin-index-category admin-index-zizum-ct"  do%>
+            <div>지점 관리</div>
+        <%end%>
+
+        <%=link_to admincontrol_menu_path, class:"col-6 col-sm-3 col-md-3 admin-index-category admin-index-user-ct"  do%>
+            <div>메뉴 관리</div>
+        <%end%>
+    </div>
+</div>

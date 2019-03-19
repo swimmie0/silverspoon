@@ -1,0 +1,201 @@
+<div class="post-contents container">
+  <nav class="nav">  <!---->
+    <% if params[:category] == nil %>
+      <a class="nav-link all single selected" target="all">전체<%else%>
+      <a class="nav-link all single" href="/freeboards" target="_self">전체</a><% end %>
+      <a class="nav-link single" id="showSingle" target="일상글">일상글</a>
+      <a class="nav-link single" id="showSingle" target="정보글">정보글</a>
+      <a class="nav-link single" id="showSingle" target="질문글">질문글</a> 
+      <a class="nav-link single" id="showSingle" target="제보글">제보글</a>
+  </nav>             
+</div>
+
+<div class="post-table">
+  <div class="post-search form-inline">
+    <%= form_tag(freeboards_path, :method => "get") do %>
+      <div class="input-group-btn d-flex">
+        <%= text_field_tag :search, params[:search], class: 'search form-control', placeholder:'검색어 입력'%>
+        <button class="post-search-btn" type="submit"><i class="fa fa-search fa-fw"></i></button>
+      </div>
+      <%# <%= submit_tag "검색", class: 'btn btn-outline-primary my-2 my-sm-0' %> 
+    <% end %> 
+  </div>  
+</div>
+
+<div class ="contents">
+  <div class="post-num row">총&nbsp;<p><%=Freeboard.all.count%></p>건</div>
+  <div class="post-table">    
+    <table class="table table-hover" id="post-table">
+      <thead>
+        <tr class= "postall post일상글 post정보글 post질문글 post제보글">
+          <%# <th>Category</th> %>
+          <th class="change" style="width:8%;">댓글</th>          
+          <th style="width:58%;" class="title">제목</th>
+          <th >작성자</th>
+          <th style="width:10%;">작성일</th>
+          <th style="width:8%;">조회수</th>      
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @freeboards.each do |freeboard| %>
+          <tr class = "postall" >
+            <td> <%= freeboard.comment_threads.count %></td>
+            <td class="title">
+              <span class="ctg"style="font-weight:400;font-size:0.6rem;">[<%=freeboard.category%>]</span>
+              &nbsp;&nbsp;<%= link_to freeboard.title, freeboard, {:class => "linkto",:style=>"font-size:0.8rem;"} %>
+              &nbsp;<% if freeboard.locked %><i class="fas fa-lock"></i><% end %>  
+            </td>
+            <td class="post-td-gray"><%= freeboard.name %></td>
+            <td class="post-td-gray"><%= freeboard.time(freeboard)%></td>                
+            <td class="post-td-gray"> <%= freeboard.impressionist_count(:filter=>:session_hash) %></td>
+          </tr>
+        <% end %>
+
+        <% @free_daily.each do |d| %>
+          <tr class="post일상글" style= "display:none">
+            <td> <%= d.comment_threads.count %></td>
+            <td class="title"><%= link_to d.title, d, {:class => "linkto", :style=>"font-size:0.8rem;"} %></td>
+            <td class="post-td-gray"><%= d.name %></td>
+            <td class="post-td-gray"><%= d.time(d)%></td>                
+            <td class="post-td-gray"> <%= d.impressionist_count(:filter=>:session_hash) %></td>            
+          </tr>
+        <% end %>   
+      
+        <% @free_information.each do |i| %>
+        <tr class="post정보글" style= "display:none">
+          <td> <%= i.comment_threads.count %></td>
+          <%# <td><%= i.category %>
+          <td   class="title"><%= link_to i.title, i, {:class => "linkto", :style=>"font-size:0.8rem;"} %></td>
+          <td class="post-td-gray"><%= i.name %></td>
+          <td class="post-td-gray"><%= i.time(i)%></td>                                                
+          <td class="post-td-gray"> <%= i.impressionist_count(:filter=>:session_hash) %></td>
+        </tr>
+        <% end %>
+
+        <% @free_qna.each do |q| %>
+          <tr class="post질문글" style= "display:none">
+          <td> <%= q.comment_threads.count %></td>
+            <%# <td><%= q.category %>
+            <td   class="title"><%= link_to q.title, q, {:class => "linkto", :style=>"font-size:0.8rem;"} %></td>
+            <td class="post-td-gray"><%= q.name %></td>
+            <td class="post-td-gray"><%= q.time(q)%></td>                                         
+            <td class="post-td-gray"> <%= q.impressionist_count(:filter=>:session_hash) %></td>              
+          </tr>
+        <% end %>
+
+        <% @free_crowd.each do |c| %>
+          <tr class="post제보글" style= "display:none">
+            <td> 
+            <% if c.completed==true %>
+              <div class="completed"style="font-weight:400;color:#1E285D; ">[완료]</div>
+            <% else %>
+              <div class="completed"style="font-weight:400;color:#FF5400;">[미처리]</div>
+            <% end %> 
+            </td>
+            <%# <td><%= c.category %>
+            <td class="title"><%= link_to c.title, c, {:class => "linkto", :style=>"font-size:0.8rem;"} %></td>
+            <td class="post-td-gray"><%= c.name %></td>
+            <td class="post-td-gray"><%= c.time(c)%></td>                                            
+            <td class="post-td-gray"> <%= c.impressionist_count(:filter=>:session_hash) %></td>        
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="postpost-btn">
+    <div class="postpost-btn-width">
+      <div></div>
+      <div class = "p_window">   
+        <%= paginate @freeboards%>
+      </div> 
+      <% if user_signed_in? %>
+        <%= button_to '새 글 작성', new_freeboard_path, :class => "btn btn-search",:method=>'get' %>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+ 
+<%# 
+</div> <!--second. post table-->
+
+</div> <!--contents--> %>
+
+<script>
+// nav selected 
+$('.nav-link').on('click', function(){
+    $('.nav-link').removeClass('selected');
+    $(this).addClass('selected');
+})
+
+
+// 카테고리별 show (params전)
+$(function(){
+  $('.single').click(function(){
+    $('.postall').hide();
+    $('tr').not('tr.post'+$(this).attr('target')).hide();  
+    $('.post'+$(this).attr('target')).show();
+    if($(this).attr('target')=='제보글'){
+      $('.change').html('진행')
+    }else{
+      $('.change').html('댓글')
+    };
+    // 카테고리별 게시글수 받아오기
+    var category = $('a.selected').html();
+      console.log(category);
+          $.ajax({    
+            async : true,
+            type : "POST",
+            data : {category : category},
+            url : "checkNum",
+            dataType : "json",
+            success : function(data){
+              console.log(data["postNum"]);
+              result = data["postNum"]
+              $('div.post-num p').html(result);
+            }
+      });
+  });
+
+});
+
+$(document).ready(function() {
+    // 행 clickable 
+    $('#post-table tr').click(function() {
+        var href = $(this).find("a").attr("href");
+        if(href) {
+            window.location = href;
+        }
+    });
+
+    // url Params받기 (위에)
+    $.urlParam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      if (results==null){
+        return null;
+      }else{
+        return results[1] || 0;
+      }
+    }
+
+    // 카테고리별 show (params 후)
+    var category = decodeURIComponent($.urlParam('category'));
+    // console.log(category);
+    if(category=='제보글'){
+      $('a.single[target="'+category+'"]').addClass('selected');      
+      $('.change').html('진행');      
+      $('.postall').hide();
+      $('tr').not('tr.post제보글').hide();      
+      $('.post제보글').show();
+    }else if(category!='null' && category!='제보글'){
+      $('a.single[target="'+category+'"]').addClass('selected');      
+      $('.postall').hide();
+      $('tr').not('tr.post'+category).hide();   
+      $('.post'+category).show();
+    };
+  });
+
+ </script>

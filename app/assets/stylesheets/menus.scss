@@ -1,0 +1,427 @@
+// Place all the styles related to the menus controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+//--- 2. index 검색전
+.index-contents{
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+    width: 100%;
+}
+
+
+
+.result-contents{
+    padding-bottom: 5rem;
+    margin-top: 1rem;
+    // margin-bottom: 6rem;
+    width: 100%;
+}
+
+.rtnt{
+    padding-top: 3%;
+    padding-left: 7%;
+    padding-right: 7%;
+    
+    background-color:#F8F8F8;
+}
+
+.rtnt2{ 
+    margin-top:3%;
+    padding-top: 3%;
+    padding-left: 7%;
+    padding-right: 7%;
+    
+    background-color:#F8F8F8;
+}
+
+.index2-contents{
+    margin-top: 8rem;
+    margin-bottom: 6rem;    
+    width: 100%;
+}
+
+.index-content-title{
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 1.2rem;
+    font-weight: bolder;
+    flex-direction: column;
+}
+
+.howto-img{
+    width: 100%;
+    height: 100%;
+}
+
+#rtnt-titlebox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.index-rtnt-box{
+    margin-top: 1.5rem;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+// 3. index-식당으로 검색 전
+.index-today-rtntbox{
+    border-color: rgb(226, 226, 226);
+    border-width:  1px;
+    border-style: solid;
+    width: 21rem;
+    height: 24rem;
+    margin-right: 10px;
+    padding-bottom:1.5rem;
+}
+
+.today-rtnt-imgbox{
+    height: 70%;
+    border-bottom-style: solid;
+    border-color: rgb(226, 226, 226);
+    border-width:  0.5px;
+
+}
+
+.today-rtnt-img{
+    width: 100%;
+    height: 100%;
+}
+
+.about-rtnt2 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.3rem;
+    margin-left: 6%;
+    padding-right:1rem;
+}
+
+///
+.nodisplay{
+    display: none;
+}
+
+.allergy{
+    width: 180px;
+}
+
+// .experiment{
+//     background-color: #e2dccf;
+//     font-weight: 600;
+// }
+
+/////-- 2. 결과페이지
+.unlike{
+    color: lightpink;
+}
+
+.like{
+    color: red;
+}
+
+.getinfo{
+    display: none;
+}
+
+//식당//
+.shops{
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0);
+    width: 400px;
+    // -webkit-box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+    // -moz-box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+    // box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+}
+
+.shop-card{
+    width: 22rem;
+    height: 23rem;
+    border-radius:0px;
+    margin-bottom:1.5rem;
+    // background-color: rgba(255, 253, 253, 0.801);
+    // -webkit-box-shadow: 0px 3px 4px 0px rgba(11, 36, 4, 0.315);
+    // -moz-box-shadow: 0px 3px 4px 0px rgba(11, 36, 4, 0.315);
+    // box-shadow: 0px 3px 4px 0px rgba(11, 36, 4, 0.315);
+    // padding: 20px;
+}
+
+.shop-card-dim{
+    filter: brightness(55%);
+    -moz-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+}
+
+.shop-card:hover
+.shop-card:active{
+    background-color: #E2D6CF;
+}
+// .rtnt-info{
+//     // display: flex;
+//     // flex-direction: column;
+// }
+.rtnt-img1{
+    position: absolute; top:0; left: 0;
+    width:100%;
+    height:65%;
+    margin:auto;
+}
+.rtnt-check{
+    position:absolute;
+    height:1.2rem;
+    width:1.2rem;
+    background-color:White;
+    // margin-left:-0.8rem;
+    z-index:1;
+}
+.fa-check-square{
+    // position:absolute;
+    color:#FF5400;
+    font-size:1.6rem;
+    margin-left: -0.1rem;
+    margin-top: -0.2rem;
+    // background-color:white;
+}
+.fa-square{
+    // position:absolute;
+    color:white;
+    font-size:1.5rem;
+    margin-left: -0.1rem;
+    margin-top: -0.2rem;
+    // background-color:white;
+}
+.fa-bookmark.menu{
+    position: absolute;
+    bottom: 26.5%;
+    right: 5%;
+    font-size: 2rem;
+    color: #FF5400;
+    cursor: pointer;
+}
+.fa-bookmark.zizum{
+    position: relative;
+    /* margin-top: 3%; */
+    left: 89%;
+    font-size: 2rem;
+    color: #FF5400;
+    line-height: 90%;
+    cursor: pointer;
+    // z-index: -1;
+}
+.about-rtnt {
+    padding-top: 90%;
+    // margin-top: 5%;
+}
+
+div.rtnt-name{
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 1.1rem;
+    font-weight: bolder;
+    margin-bottom: 0.3rem;
+    // line-height: 40%;
+}
+
+div.rtnt-intro{
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 0.8rem;
+    // font-weight: lighter ;
+    color: rgb(153, 153, 153);
+    //line-height: 40%;
+    letter-spacing: 0.07rem;
+    margin-bottom: 1rem;
+}
+p.rtnt-adress{
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400 ;
+}
+
+//메뉴//
+.hideMenu{
+    display: none; 
+}
+.hideCard{
+    display: none; 
+}
+
+#Box{
+    // margin-top: 20px;
+    
+    width: 600px;
+    height: 74.5rem;
+    padding: 20px;
+    display:flex;
+    flex-direction: column;    
+    // -webkit-box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+    // -moz-box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+    // box-shadow: 0px 3px 9px 0px rgba(11, 36, 4, 0.315);
+    
+}
+
+#menuBox{
+    background-color: white;
+    border: 0.8px solid rgb(226, 226, 226);
+    overflow-y: scroll;
+}
+
+.menu-card {
+    padding: 10px 20px;
+}
+
+
+
+p.menu-name{
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 1rem;
+    font-weight: bolder;
+    line-height: 40%;
+}
+p.menu-intro{
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 0.8rem;
+    // font-weight: lighter ;
+    color: rgb(172, 166, 166);
+    // line-height: 40%;
+    // letter-spacing: 0.1rem;
+}
+.menu-cpbox{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    line-height: 40%;    
+}
+
+
+.menu-cp{
+    width: auto;
+    max-width: 8rem;
+    margin: 0.35rem !important;
+    color: #002f7b;
+    font-size: 0.8rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    padding-right: 0.9rem;
+    padding-left: 0.9rem;
+    border-radius: 0.75rem;
+    border-style: solid;
+    border-color: #002f7b;
+    border-width: 1.1px;
+}
+
+/////
+.rebrowse-box{
+    margin-top: 3.5rem;
+}
+.fa-utensil-spoon{
+    margin-right: 15px;
+}
+
+
+.sido{
+    margin-right: 10px;
+    font-weight: 450;
+    color: #454338;
+}
+
+.num_res{
+    font-size: 20px;
+}
+
+// .fa-utensils{
+//     margin-left: 10px;
+//     margin-right: 5px;
+// }
+
+////---- pagination-----//// 
+.p_window{
+    // width: 400px;
+    height: 100px;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;    
+}
+
+// .pagination {
+//   display: inline-block;
+//   padding: 8px 16px;
+// }
+//--prev, next 
+.pagination span.bar {  
+    background-color: rgb(243, 243, 243);
+    border-radius: 0%;
+    border: 1px solid rgba(189, 187, 187, 0.815);
+}
+//--prev, next_font
+span.bar a{ 
+    color:rgb(189, 187, 187);
+    font-size: 0.8rem;
+}
+//--page_font
+span.pagination a{ 
+  color: rgb(32, 39, 75) !important;
+  font-size: 0.8rem;
+}
+//--간격&크기
+span.pagination, span.bar {
+  padding: 4px 8px;
+}
+span.pg{ 
+    padding: 4px 8px;
+}
+//--강조
+span.current {
+  background-color: #002f7b;
+  color: white;
+  border-radius: 50%;
+  font-size: 0.8rem;  
+}
+//--hover
+.pagination span.pagination:hover:not(.crrent) {
+  background-color: #ddd;
+  border-radius: 50%;
+}
+.index-today-rtntbox:hover .today-rtnt-img {
+    opacity: 0.5;
+}
+
+.zizum-card{
+    cursor: pointer;
+}
+
+.rtnt-result-zizum-more{
+    cursor: pointer;
+    padding: 2rem 2.5rem 1rem;
+}
+
+.rtnt-result-upper:hover{
+    background-color: rgb(243, 243, 243);
+}
+
+.rtnt-result-zizum-title{
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+}
+
+.rtnt-result-zizum-explain{
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: rgb(172, 172, 172);
+}
+
+.rtnt-result-hr{
+    margin-top: 0.8rem;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+}
+
+.rtnt-result-link{
+    font-weight: bold; 
+    font-size: 0.9rem; 
+    margin-bottom: 0.6rem;
+}

@@ -1,0 +1,89 @@
+
+<% comments.each do |comment| %>  
+  <div class="comments-show nago">
+    <div class="comment comment-bar">
+
+      <div class="comment-profile form-inline"> <!--프로필-->
+        <%if !comment.user.nil?%>
+          <%if comment.user.profileimg.nil?%>
+            <%=image_tag("defaultImg3.jpg", class:"post-profile-img")%>    
+          <%else%>
+            <%=image_tag comment.user.profileimg.url, class:"post-profile-img"%>
+          <%end%>
+        <%end%>
+
+        <% if comment.user ==nil %><i>탈퇴한 회원입니다</i><%else%>
+        <%= link_to comment.user.name, profile_path(comment.user.profile.id) ,class:"linkto"%><%end%>
+        <div style="font-size:0.8rem; color: rgb(140,140,140); font-weight:lighter;margin-left:1rem;"> <%= time_ago_in_words(comment.created_at) %>전 [ <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %> ] </div> 
+        <% if current_user == comment.user %>
+          &nbsp;/&nbsp;<%= link_to "삭제", comment_path(comment), method: :delete, remote: false, data: { confirm: "정말로 지우시겠습니까?" }, style: "font-size:0.8rem; color: rgb(140,140,140);" %>
+        <% end %>  
+
+          <!--추천기능 only in 질문글-->
+        <div class="comment-vote" style="text-align:center;margin-top:0.5rem;margin-left:auto;margin-right:1rem;">
+          <% if current_user %>    
+            <span style="font-weight: bold; font-size:0.8rem; color: rgb(120,120,120);">추천수: <%= comment.weighted_score%></span> &nbsp;             
+            <% if current_user.liked? (comment) %>
+              <%= link_to raw("<i class=\"fas fa-thumbs-up\"></i>"), unvote_comment_path(comment), method: :put,class:"vote-btn" %> <% else %>
+              <%= link_to raw("<i class=\"far fa-thumbs-up\"></i>"), like_comment_path(comment), method: :put,class:"vote-btn" %>
+            <% end %> &nbsp;
+            <% if current_user.disliked? (comment) %>
+              <%= link_to raw("<i class=\"fas fa-thumbs-down\"></i>"), unvote_comment_path(comment), method: :put,class:"vote-btn"  %><% else %>
+              <%= link_to raw("<i class=\"far fa-thumbs-down\"></i>"), dislike_comment_path(comment), method: :put,class:"vote-btn"  %> 
+            <% end %>
+          
+          <% else %>
+              <a class="disabled vote-btn"style="cursor:pointer;"><i class=\"far fa-thumbs-up\"></i> </a><br>
+              <%= comment.weighted_score%><br>      
+              <a class="disabled vote-btn"style="cursor:pointer;"><i class=\"far fa-thumbs-down\"></i></a>
+          <% end %>
+        </div>
+
+      </div>
+
+      <div class="comment-content" style="margin:0.6rem 0rem 0rem 0.4rem;">  <!--댓글내용-->
+        <div style="display:flex;">
+        
+        
+
+          <%= content_tag(:div, comment.body, style:"white-space: pre-wrap;margin:1rem 3rem 0rem 3rem;align-items:center;") %>
+
+        </div>  
+      <% if user_signed_in? && current_user.name != nil %> <!--답글창-->
+      <%# <div class="comment-nav" > %>
+
+        <button onclick="showHide('comment_<%= comment.id %>')" onfocus="this.blur()" class="reply-btn">답글</button>
+
+      </div>
+
+      <div id="comment_<%= comment.id %>" style="display:none;margin:0.3rem;"> 
+        <div class="reply-form">
+          <%= form_for @new_comment do |f| %>
+            <%= f.hidden_field :commentable_id, value: @new_comment.commentable_id %>
+            <%= f.hidden_field :commentable_type, value: @new_comment.commentable_type %>
+            <%= f.hidden_field :comment_id, value: comment.id %>
+            <div class="field form-group">
+              <%= f.hidden_field :name, value: current_user.name, required: "true" %>
+              <%= f.text_area :body, class: 'form-control' %>
+              <%= submit_tag "답댓글 작성", class:"reply-btn rereply-btn", style:"float:right;" %>
+            </div>
+            
+          <% end %>
+        </div>
+      </div>
+      <%end%>  <!--//답글창-->
+      <br/>
+     
+    </div> <!--//comment-->
+    <%# <div style="margin-left: 20px;"> %>
+    <div>    
+      <%= render partial: "comments/reply_end", locals: {comments: comment.children} %>
+    </div>
+
+  </div>
+
+  
+<% end %>
+
+ 
+  

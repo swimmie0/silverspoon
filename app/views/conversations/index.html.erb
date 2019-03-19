@@ -1,0 +1,132 @@
+
+<body style="background-color: #F8F8F8">
+    <div class="container">
+        <div class="row" style="margin-top: 5%; height: 600px" >
+
+            <div class="col-3" style="text-align: center; padding: 0px;height: 100%">
+                <div style="background-color: #1a2352; height: 11%; width: 100%">
+                    <p style="line-height: 66px; font-size: 1.2rem; margin: 0px; color: white">TALES MESSAGE</p>
+                </div>
+
+                
+                <div style="background-color: #00307C; height: 89%; width: 100%"> 
+                    <%= link_to conversations_path do %>
+                        <p style="text-decoration: none; color: white; line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white">전체 편지함</p>
+                    <% end %>
+                </div>
+                
+            </div>
+
+            <div class="col-9" style="border: 0.05px solid #bfbebe; padding: 0px; height: 100%">
+                <!--
+                <div style="background-color: #F8F8F8; height: 11%; width: 100%">
+                    <p style="line-height: 66px; padding-left: 2rem; border: 0.05px solid #bfbebe; font-size: 1rem; margin: 0px; color: black"> 보낸 사람 | 내용 | </p>
+                </div> -->
+                <div class="ConversationContent" style="overflow-y: scroll; background-color: white; border-right: 0.05px solid #bfbebe; height: 85.1%">
+                   
+                    <table class="table" style="font-size: 1rem;">
+                        <thead >
+                            <tr style="height: 4rem;">
+                            <th scope="col", style="width: 3%">#</th>
+                            <th scope="col", style="width: 2%">Chat User</th>
+                            <th scope="col", style="width: 6%">LAST CONVERSATION</th>
+                            <th scope="col", style="width: 10%">DATE & TIME</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% i = 0 %>
+                            <% @conversations.reverse_order.each do |conversation| %>
+                                <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+                                    <% if conversation.sender_id == current_user.id %>
+                                    <% recipient = User.find(conversation.recipient_id) %>
+                                    <% else %>
+                                    <% recipient = User.find(conversation.sender_id) %>
+                                    <% end %>
+                                <tr class="profile-message-tr" data-href="/conversations/<%=conversation.id%>/messages" style="line-height: 29.5px; border-bottom: 1px solid #dee2e6;">
+                                <th scope = "row"><%= link_to " #{i+=1} 번", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338; font-size: 0.9rem;" %> </th>
+                                    <td><%= link_to "#{recipient.name}님", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338; font-size: 0.9rem;" %>  </td>
+                                    <td><%= link_to " #{conversation.messages.last.body.first(22)}...", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338; font-size: 0.9rem;" %>  </td>
+                                    <td><%= link_to " #{conversation.messages.last.message_time} ", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338; font-size: 0.9rem;" %></td>
+                                </tr>
+                                <% else %>
+                                
+                                <% end %> 
+                            <% end %>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div style="border: 0.05px solid #bfbebe; background-color: #F8F8F8; height: 15%; width: 100%">
+                    <p style="line-height: 66px; text-align: right; padding-right: 2rem; font-size: 1rem; margin: 0px; color: black"> </p>
+                </div>
+            </div>
+
+
+            
+        </div>
+    </div>
+</body>
+
+<script>
+    var scroll = document.getElementsByClassName("ConversationContent")[0];
+    scroll.scrollTop = scroll.scrollHeight;
+
+    $(".profile-message-tr").click(function() {
+        window.location = $(this).data("href")  
+    })
+</script>
+
+<!-- 
+<div class="list-group col-md-3">
+    <ul class="nav nav-pills nav-stacked">
+
+        <li><button type="button" class="list-group-item"
+        data-toggle="collapse" data-target="#mail"><h4>Conversations
+        <i class="glyphicon glyphicon-inbox"></i></h4></button>
+        </li>
+
+        <li><button type="button" class="list-group-item"
+        data-toggle="collapse" data-target="#new"><h4>New Message
+        <i class="glyphicon glyphicon-new-window" style="vertical-align:right;"></i></h4></button>
+        </li>
+        
+    </ul>
+</div>
+
+<h1>My Inbox</h1>
+<div class="panel panel-default">
+<div class="col-lg-6">
+    <div id="mail" class="collapse">
+        <h1 class="panel-heading">All Conversations: </h1>
+        <div class="panel-body">
+            <div class="item">
+            <% @conversations.each do |conversation| %>
+            <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+                <% if conversation.sender_id == current_user.id %>
+                    <% recipient = User.find(conversation.recipient_id) %>
+                <% else %>
+                    <% recipient = User.find(conversation.sender_id) %>
+                <% end %>
+                <h3><%= link_to recipient.name, conversation_messages_path(conversation) %></h3>
+            <% end %>
+        <% end %>
+        </div>
+    </div>
+</div>
+
+<div id="new" class="collapse">
+    <div class="panel-body">
+    <h1 class="panel-heading">All Users:</h1>
+        <% @users.each do |user| %>
+            <% if user.id != current_user.id %>
+                <div class="items"><h3>
+            <%= link_to user.name, 
+            conversations_path(sender_id: current_user.id, recipient_id: user.id), method: "post" %>
+            </h3></div>
+            <% end %>
+        <% end %>
+    </div>
+</div>
+</div>
+</div>
+-->

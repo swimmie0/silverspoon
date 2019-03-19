@@ -1,0 +1,273 @@
+<div class="zizum-about-wrap">
+  <div class="zizum-about-sec">
+    <div class="zizum-about-container container">
+      <div class="zizum-about-box d-flex">
+        <div class="zizum-about-imgbox">
+          <% if @zizuminfo.image.blank?%>
+            <%=image_tag("white-logo.PNG", class:"zizum-about-img")%>
+          <%else%>
+            <%=image_tag @zizuminfo.image_url, class:"zizum-about-img"%>
+          <%end %>
+        </div>
+        <div class="zizum-about-txtbox">
+          <div class="d-flex justify-content-end zizum-about-bookmark">
+            <%if user_signed_in?%>
+                <% if @zizuminfo.followed_by?(current_user) %>
+                    <!-- 좋아요를 했다면 -->
+                    <i class="fas fa-bookmark zizum-bookmark"></i>
+                    <div class="zizum-id-bookmark"><%= @zizuminfo.id%></div>
+                <% else %>
+                    <!-- 좋아요를 안 했다면 -->
+                    <i class="far fa-bookmark zizum-bookmark zizum-nobookmark"></i>
+                    <div class="zizum-id-bookmark"><%= @zizuminfo.id%></div>
+                <% end %>
+            <%else%>
+            <i class="far fa-bookmark zizum-bookmark zizum-nobookmark" data-toggle="modal" data-target="#loginModal"></i>
+            <%end%>
+          </div>
+
+          <div class="zizum-about-txtbox-in">
+            <div class="zizum-about-title"><%= @zizuminfo.restaurant_name + " " + @zizuminfo.zizum_name%><br>
+              <div class="zizum-about-explain"><%=@zizuminfo.restaurant.explain%></div>
+            </div>
+            
+            <div class="zizum-about-resid nodisplay"><%=@zizuminfo.restaurant.id%></div>
+            <div class="zizum-about-zizid nodisplay"><%=@zizuminfo.id%></div>
+            <div class="zizum-about-moreinfo">
+              <div class="zizum-about-mi-row"><div class="zizum-about-stitle"><i class="fas fa-map-marked-alt zizum-i-adr"></i>주소</div><div class="zizum-about-spec"><%= @zizuminfo.sido + " " +@zizuminfo.sigungu + " " +@zizuminfo.sangse_juso %></div></div>
+              <div class="zizum-about-mi-row"><div class="zizum-about-stitle"><i class="fas fa-phone zizum-i-phone"></i>연락처</div><div class="zizum-about-spec"><%= @zizuminfo.phone_number %></div></div>
+              <div class="zizum-about-mi-row"><div class="zizum-about-stitle"><i class="far fa-bookmark zizum-i-bookmark"></i>북마크수</div><div class="zizum-about-spec"><%= @zizuminfo.followers_count%>명</div></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="zizum-allergy container">
+
+  <div class="zizum-allergy-tabbox d-flex">
+    <div class="zizum-allergy-tab zizum-tab-menu zizum-menu-active">메뉴별 보기</div>
+    <div class="zizum-allergy-tab zizum-tab-table">표로 보기</div>
+
+    <div class="zizum-menu-explain">
+    *포함 항원, 교차 가능 항원을 +로 표현하였습니다.<br>
+    *세부 내용은 '표로 보기'에서 가능합니다.
+    </div>
+
+    <div class="zizum-table-explain nodisplay">
+        <span class="allergy-i allergy-star">△</span>교차위험
+        <i class="fas fa-times allergy-i allergy-none"></i>성분없음
+        <i class="far fa-circle allergy-i allergy-circle"></i>성분포함
+        <span class="allergy-i allergy-null">·</span>식당미제공
+    </div>
+
+  </div>
+
+
+  <div class="zizum-allergy-menu">
+    <div class="zizum-menu-header d-flex">
+      <div class="zizum-menu-header-title">메뉴이름</div>
+      <div class="zizum-menu-header-cp">알레르기 정보(포함하는 성분, 교차성분 안내)</div>
+    </div>
+    <%#= will_paginate @zizum_menus %>
+    <div class="zizum-menu-box">
+
+    <%@zizuminfo.restaurant.menus.each do |menu|%>
+      <div class="zizum-menu-row d-flex">
+        <div class="zizum-menu-title"><span><%= menu.menu_name%></span></div>
+        <div class="zizum-menu-cpbox">
+          <%# 아무것도 없을 시 상세정보 참고해주세요 %>
+          <%if menu.a1_maemil == -2%><div class="zizum-menu-cp">+&nbsp;메밀</div><%end%>
+          <%if menu.a2_mil == -2%><div class="zizum-menu-cp">+&nbsp;밀</div><%end%>
+          <%if menu.a3_daedu == -2%><div class="zizum-menu-cp">+&nbsp;대두</div><%end%>
+          <%if menu.a4_hodu == -2%><div class="zizum-menu-cp">+&nbsp;호두</div><%end%>
+          <%if menu.a5_ddangkong == -2%><div class="zizum-menu-cp">+&nbsp;땅콩</div><%end%>
+          <%if menu.a6_peach == -2%><div class="zizum-menu-cp">+&nbsp;복숭아</div><%end%>
+          <%if menu.a7_tomato == -2%><div class="zizum-menu-cp">+&nbsp;토마토</div><%end%>
+          <%if menu.a8_piggogi == -2%><div class="zizum-menu-cp">+&nbsp;돼지고기</div><%end%>
+          <%if menu.a9_nanryu == -2%><div class="zizum-menu-cp">+&nbsp;난류</div><%end%>
+          <%if menu.a10_milk == -2%><div class="zizum-menu-cp">+&nbsp;우유</div><%end%>
+          <%if menu.a11_ddakgogi == -2%><div class="zizum-menu-cp">+&nbsp;닭고기</div><%end%>
+          <%if menu.a12_shoigogi == -2%><div class="zizum-menu-cp">+&nbsp;쇠고기</div><%end%>
+          <%if menu.a13_saewoo == -2%><div class="zizum-menu-cp">+&nbsp;새우</div><%end%>
+          <%if menu.a14_godeungeoh == -2%><div class="zizum-menu-cp">+&nbsp;고등어</div><%end%>
+          <%if menu.a15_honghap == -2%><div class="zizum-menu-cp">+&nbsp;홍합</div><%end%>
+          <%if menu.a16_junbok == -2%><div class="zizum-menu-cp">+&nbsp;전복</div><%end%>
+          <%if menu.a17_gul == -2%><div class="zizum-menu-cp">+&nbsp;굴</div><%end%>
+          <%if menu.a18_jogaeryu == -2%><div class="zizum-menu-cp">+&nbsp;조개류</div><%end%>
+          <%if menu.a19_gye == -2%><div class="zizum-menu-cp">+&nbsp;게</div><%end%>
+          <%if menu.a20_ohjingeoh == -2%><div class="zizum-menu-cp">+&nbsp;오징어</div><%end%>
+          <%if menu.a21_ahwangsan == -2%><div class="zizum-menu-cp">+&nbsp;아황산류</div><%end%>
+
+          <%if menu.a1_maemil == 1%><div class="zizum-menu-cp">+&nbsp;메밀</div><%end%>
+          <%if menu.a2_mil == 1%><div class="zizum-menu-cp">+&nbsp;밀</div><%end%>
+          <%if menu.a3_daedu == 1%><div class="zizum-menu-cp">+&nbsp;대두</div><%end%>
+          <%if menu.a4_hodu == 1%><div class="zizum-menu-cp">+&nbsp;호두</div><%end%>
+          <%if menu.a5_ddangkong == 1%><div class="zizum-menu-cp">+&nbsp;땅콩</div><%end%>
+          <%if menu.a6_peach == 1%><div class="zizum-menu-cp">+&nbsp;복숭아</div><%end%>
+          <%if menu.a7_tomato == 1%><div class="zizum-menu-cp">+&nbsp;토마토</div><%end%>
+          <%if menu.a8_piggogi == 1%><div class="zizum-menu-cp">+&nbsp;돼지고기</div><%end%>
+          <%if menu.a9_nanryu == 1%><div class="zizum-menu-cp">+&nbsp;난류</div><%end%>
+          <%if menu.a10_milk == 1%><div class="zizum-menu-cp">+&nbsp;우유</div><%end%>
+          <%if menu.a11_ddakgogi == 1%><div class="zizum-menu-cp">+&nbsp;닭고기</div><%end%>
+          <%if menu.a12_shoigogi == 1%><div class="zizum-menu-cp">+&nbsp;쇠고기</div><%end%>
+          <%if menu.a13_saewoo == 1%><div class="zizum-menu-cp">+&nbsp;새우</div><%end%>
+          <%if menu.a14_godeungeoh == 1%><div class="zizum-menu-cp">+&nbsp;고등어</div><%end%>
+          <%if menu.a15_honghap == 1%><div class="zizum-menu-cp">+&nbsp;홍합</div><%end%>
+          <%if menu.a16_junbok == 1%><div class="zizum-menu-cp">+&nbsp;전복</div><%end%>
+          <%if menu.a17_gul == 1%><div class="zizum-menu-cp">+&nbsp;굴</div><%end%>
+          <%if menu.a18_jogaeryu == 1%><div class="zizum-menu-cp">+&nbsp;조개류</div><%end%>
+          <%if menu.a19_gye == 1%><div class="zizum-menu-cp">+&nbsp;게</div><%end%>
+          <%if menu.a20_ohjingeoh == 1%><div class="zizum-menu-cp">+&nbsp;오징어</div><%end%>
+          <%if menu.a21_ahwangsan == 1%><div class="zizum-menu-cp">+&nbsp;아황산류</div><%end%>
+        </div>
+      </div>
+    <%end%>
+    </div>
+  </div>
+
+  <div class="zizum-allergy-table nodisplay">
+    <div class="zizum-table-header d-flex">
+      <div class="zizum-table-header-title"><span>메뉴이름</span></div>
+      <div class="zizum-table-header-cpbox d-flex justify-content-between">
+        <%@allergy_tags.each do |allergy|%>
+          <div class="zizum-table-header-cp"><span><%=allergy%><span></div>
+        <%end%>
+      </div>
+    </div>
+
+    <div class="zizum-table-body">
+      <%if @zizuminfo.restaurant.menus.length > 10%>
+        <div class="zizum-overlay">
+          <div class="zizum-overlay-text">아래로 스크롤하세요!</div>
+        </div>
+      <%end%>
+
+      <%idx = 1%>
+      <%@zizuminfo.restaurant.menus.each do |menu|%>
+        <div class="zizum-table-row d-flex">
+          <div class="zizum-table-body-title">
+            <span><%= menu.menu_name%></span>
+          </div>
+          <div class="zizum-table-body-cpbox d-flex">
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a9_nanryu)%></div>
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a10_milk)%></div>
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a6_peach)%></div>
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a7_tomato)%></div>
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a1_maemil)%></div>
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a2_mil)%></div>
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a3_daedu)%></div>
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a11_ddakgogi)%></div>
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a12_shoigogi)%></div>
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a8_piggogi)%></div>
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a13_saewoo)%></div>
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a14_godeungeoh)%></div>
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a15_honghap)%></div>
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a16_junbok)%></div>
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a17_gul)%></div>
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a18_jogaeryu)%></div>
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a19_gye)%></div>
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a20_ohjingeoh)%></div>
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a4_hodu)%></div>
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a5_ddangkong)%></div>
+            <div class="zizum-table-body-cp"><%= value2icon(menu.a21_ahwangsan)%></div>
+          </div>
+        </div>
+
+        <%if idx % 5 == 0%>
+          <div class="zizum-table-orangeborder"></div>
+        <%end%>
+
+        <%idx = idx + 1%>
+      <%end%>
+    </div>
+  </div>
+
+</div>
+
+<%if !user_signed_in?%>
+        <%= render 'layouts/loginModal'%>
+<%end%>
+
+<%#= link_to '<button type="button" class= "fill mbutton">메뉴 추가 요청</button>'.html_safe, userrequests_new_request_url(restaurantID: @zizuminfo.restaurant.id)%>
+
+<script>
+  $resid = $(".zizum-about-resid").html();
+  console.log($resid);
+  $zizuminfo_id = $(".zizum-about-zizid").html();
+  $.ajax({
+      async : true,
+      data : {res_id: $resid},
+      type : "GET",
+      url : $zizuminfo_id+"/show",
+      success : function(data){
+          
+      }
+  });
+
+  if('<%=user_signed_in?%>'==="true"){
+      $(".zizum-bookmark").click(function(){
+          $zizumid = $(this).siblings("div.zizum-id-bookmark").html();
+          $likeicon = $(this);
+          $.ajax({
+              async : true,
+              data : {id: $zizumid},
+              type : "GET",
+              url : "/follows/zizumfollow",
+              success : function(data){
+                  $likeicon.toggleClass('far');
+                  $likeicon.toggleClass('fas');
+              }
+          })
+      });
+  }
+    
+  $(".zizum-tab-menu").click(function(){
+    $(".zizum-menu-explain").removeClass("nodisplay");
+    $(".zizum-table-explain").addClass("nodisplay");
+    $(this).addClass("zizum-menu-active");
+    $(".zizum-tab-table").removeClass("zizum-table-active");
+    $(".zizum-allergy-menu").removeClass("nodisplay");
+    $(".zizum-allergy-table").addClass("nodisplay");
+  });
+
+  $(".zizum-tab-table").click(function(){
+    $(".zizum-menu-explain").addClass("nodisplay");
+    $(".zizum-table-explain").removeClass("nodisplay");
+    $(this).addClass("zizum-table-active");
+    $(".zizum-tab-menu").removeClass("zizum-menu-active");
+    $(".zizum-allergy-table").removeClass("nodisplay");
+    $(".zizum-allergy-menu").addClass("nodisplay");
+
+    $(".zizum-table-body").scroll(function(){
+      $('.zizum-overlay').fadeOut(230, function(){ $(this).remove();});
+    })
+    
+    $(".zizum-table-body").click(function(){
+      $('.zizum-overlay').fadeOut(230, function(){ $(this).remove();});
+    })
+
+  });
+
+
+  $(".icon").click(function(){
+      if ($(this).hasClass("like")) //follow하고 있다면
+          {
+              $(this).removeClass("like");
+              $(this).addClass("unlike");
+          }
+      else if ($(this).hasClass("unlike"))
+          {
+              $(this).removeClass("unlike");
+              $(this).addClass("like");
+          }
+  });
+
+
+
+  
+
+</script> 
