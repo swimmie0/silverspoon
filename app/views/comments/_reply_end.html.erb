@@ -18,7 +18,7 @@
 
       <div class="comment-content " style="margin:0rem 0rem 1.6rem 2.5rem;">  <!--답글내용-->
         <div class="d-flex">
-          <b>@<%= comment.parent.user.name %></b>
+          <p style ="color: #4b5d79;font-size: 0.8rem;margin-top: 0.2rem;margin-left: 0.5rem;">@<%= comment.parent.user.name %></p>
           <%= content_tag(:div, comment.body, style: "white-space: pre-wrap;margin-left:0.8rem;") %>
         </div>
       <% if user_signed_in? && current_user.name != nil %> <!--답글창-->

@@ -3,25 +3,12 @@
   <div class="comments-show nago">
     <div class="comment comment-bar">
       <div class="comment-profile form-inline"> <!--프로필-->
-<<<<<<< HEAD
-        <%if !comment.user.nil?%>
-          <%if comment.user.profileimg.nil?%>
-            <%=image_tag("beige-logo.PNG", class:"post-profile-img")%>    
-          <%else%>
-            <%=image_tag comment.user.profileimg.url, class:"post-profile-img"%>
-          <%end%>
-        <%end%>
+        <%=link_to(image_tag(comment.image(comment.user),class:"post-profile-img"), profile_path(@writer.profile.id)) %>
         
         <% if comment.user ==nil %><i>탈퇴한 회원입니다</i><%else%>
         <%= link_to comment.user.name, profile_path(comment.user.profile.id) ,class:"linkto"%><%end%>
         <%# <%= link_to comment.user.name, profile_path(comment.user.profile.id),class:"linkto" %> 
         <div style="font-size:0.8rem; color: rgb(140,140,140); font-weight:lighter;margin-left:1rem;"> <%= time_ago_in_words(comment.created_at) %>전 [ <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %> ] </div> 
-=======
-        <%=image_tag("beige-logo.PNG", class:"post-profile-img")%>        
-        <% if comment.user ==nil %><i>탈퇴한 회원입니다</i><%else%>   
-        <%= link_to comment.user.name, profile_path(comment.user.profile.id) ,class:"linkto"%> <%end%>
-        <div style="font-weight:lighter;margin-left:1rem;"> <%= time_ago_in_words(comment.created_at) %>전 [ <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %> ] </div> 
->>>>>>> 3027f05636559991a162446c55e010bc6768ba50
         <% if current_user == comment.user %>
           &nbsp;/&nbsp;<%= link_to "삭제", comment_path(comment), method: :delete, remote: false, data: { confirm: "정말로 지우시겠습니까?" }, style: "font-size:0.8rem; color: rgb(140,140,140);" %>
         <% end %>  

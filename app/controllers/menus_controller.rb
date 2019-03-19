@@ -14,7 +14,7 @@ class MenusController < ApplicationController
   end
 
   def index
-    # 오늘의 추천식당- daily random
+    #오늘의 추천식당- daily random
     # day_today = Time.now.day
     # rule = day_today % Restaurant.count
     # @today_restaurants = Restaurant.where(id: [rule-1, rule, rule+1] )
