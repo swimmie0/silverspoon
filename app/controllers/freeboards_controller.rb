@@ -96,7 +96,11 @@ class FreeboardsController < ApplicationController
     #   flash[:warning] ='닉네임을 설정해주세요'
     #   redirect_to edit_user_registration_path
     # end
-    @freeboard = Freeboard.new
+    if user_signed_in?
+     @freeboard = Freeboard.new
+    else
+      redirect_to root_path   
+   end
   end
 
   # GET /freeboards/1/edit
