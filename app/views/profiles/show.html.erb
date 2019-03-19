@@ -44,7 +44,9 @@
               <div class="ProfileInfo">
                 <p class="ProfileName big-title"> <%= @profile.user.name %> </p>
                 <p class="profile-info-spec">
-                  <%=link_to "프로필 수정하기", edit_user_registration_path, style: "color: rgb(110, 110, 110); font-size: 0.9rem;"%>
+                  <% if @profile.user.name == current_user.name %>
+                    <%=link_to "프로필 수정하기", edit_user_registration_path, style: "color: rgb(110, 110, 110); font-size: 0.9rem;"%>
+                  <% end %>
                 </p>
               </div>
             </div>
