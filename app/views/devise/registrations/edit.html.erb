@@ -34,25 +34,54 @@
             <h5 style="padding-bottom: 1%"> 알레르기정보 </h5>
             
               <div> 유제품 및 난류:
+                <% if current_user.allergy.nil? %>
+                <label><%= check_box_tag 'user[allergy][]', '난류' %> 난류</label>
+                <label><%= check_box_tag 'user[allergy][]', '우유' %> 우유</label>
+                <% else %>
                 <label><%= check_box_tag 'user[allergy][]', '난류', current_user.allergy.include?('난류') %> 난류</label>
                 <label><%= check_box_tag 'user[allergy][]', '우유', current_user.allergy.include?('우유') %> 우유</label>
+                <% end %>
               </div><br/>
 
               <div> 과채류 및 곡류: 
+                <% if current_user.allergy.nil? %>
+                <label><%= check_box_tag 'user[allergy][]', '복숭아'%> 복숭아</label>
+                <label><%= check_box_tag 'user[allergy][]', '토마토'%> 토마토</label>
+                <label><%= check_box_tag 'user[allergy][]', '대두(콩)' %> 대두(콩) </label>
+                <label><%= check_box_tag 'user[allergy][]', '밀'%> 밀</label>
+                <label><%= check_box_tag 'user[allergy][]', '메밀'%> 메밀 </label>
+                <% else %>
                 <label><%= check_box_tag 'user[allergy][]', '복숭아', current_user.allergy.include?('복숭아')%> 복숭아</label>
                 <label><%= check_box_tag 'user[allergy][]', '토마토', current_user.allergy.include?('토마토')%> 토마토</label>
                 <label><%= check_box_tag 'user[allergy][]', '대두(콩)' , current_user.allergy.include?('대두(콩)')%> 대두(콩) </label>
                 <label><%= check_box_tag 'user[allergy][]', '밀', current_user.allergy.include?('밀')%> 밀</label>
                 <label><%= check_box_tag 'user[allergy][]', '메밀', current_user.allergy.include?('메밀')%> 메밀 </label>
+                <% end %>
               </div><br/>
 
               <div> 육류:
+                <% if current_user.allergy.nil? %>
+                <label><%= check_box_tag 'user[allergy][]', '닭고기' %> 닭고기 </label>
+                <label><%= check_box_tag 'user[allergy][]', '돼지고기'%>돼지고기 </label>
+                <label><%= check_box_tag 'user[allergy][]', '쇠고기'%>쇠고기</label>
+                <% else %>
                 <label><%= check_box_tag 'user[allergy][]', '닭고기', current_user.allergy.include?('닭고기') %> 닭고기 </label>
                 <label><%= check_box_tag 'user[allergy][]', '돼지고기', current_user.allergy.include?('돼지고기')%>돼지고기 </label>
                 <label><%= check_box_tag 'user[allergy][]', '쇠고기', current_user.allergy.include?('쇠고기')%>쇠고기</label>
+                <% end %>
               </div><br/> 
 
               <div> 어패류:
+                <% if current_user.allergy.nil? %>
+                <label><%= check_box_tag 'user[allergy][]', '고등어' %>고등어</label>
+                <label><%= check_box_tag 'user[allergy][]', '오징어' %>오징어</label>
+                <label><%= check_box_tag 'user[allergy][]', '게' %> 게</label>
+                <label><%= check_box_tag 'user[allergy][]', '새우' %> 새우 </label>
+                <label><%= check_box_tag 'user[allergy][]', '조개류' %>조개류</label>
+                <label><%= check_box_tag 'user[allergy][]', '홍합' %>홍합</label>
+                <label><%= check_box_tag 'user[allergy][]', '전복' %>전복</label>
+                <label><%= check_box_tag 'user[allergy][]', '굴' %>굴</label>
+                <% else %>
                 <label><%= check_box_tag 'user[allergy][]', '고등어' , current_user.allergy.include?('고등어')%>고등어</label>
                 <label><%= check_box_tag 'user[allergy][]', '오징어', current_user.allergy.include?('오징어') %>오징어</label>
                 <label><%= check_box_tag 'user[allergy][]', '게' , current_user.allergy.include?('게')%> 게</label>
@@ -61,12 +90,19 @@
                 <label><%= check_box_tag 'user[allergy][]', '홍합', current_user.allergy.include?('홍합') %>홍합</label>
                 <label><%= check_box_tag 'user[allergy][]', '전복' , current_user.allergy.include?('전복')%>전복</label>
                 <label><%= check_box_tag 'user[allergy][]', '굴', current_user.allergy.include?('굴') %>굴</label>
+                <% end %>
               </div><br/>
 
               <div> 견과류,아황산:
+                <% if current_user.allergy.nil? %>
+                <label><%= check_box_tag 'user[allergy][]', '땅콩' %> 땅콩</label>
+                <label><%= check_box_tag 'user[allergy][]', '호두 ' %> 호두 </label>
+                <label><%= check_box_tag 'user[allergy][]', '아황산류 ' %> 아황산류 </label>
+                <% else %>
                 <label><%= check_box_tag 'user[allergy][]', '땅콩', current_user.allergy.include?('땅콩') %> 땅콩</label>
                 <label><%= check_box_tag 'user[allergy][]', '호두', current_user.allergy.include?('호두') %> 호두 </label>
                 <label><%= check_box_tag 'user[allergy][]', '아황산류', current_user.allergy.include?('아황산류') %> 아황산류 </label>
+                <% end %>
               </div><br>
           </div>
 
