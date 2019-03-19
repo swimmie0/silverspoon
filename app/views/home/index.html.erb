@@ -128,8 +128,8 @@
   <div class="modal-content main-notice-modal">
     <span class="close">&times;</span>
     <h5><%= @popNotice.title %></h5>
-    <b><%=@date.to_s%></b>
-    <p> <%=link_to @popNotice.content.html_safe, @popNotice %></p>
+    <%# <b><%=@date.to_s%>
+    <%=link_to @popNotice.content.html_safe, @popNotice, class:"linkto" %>
     <label><input type="checkbox" value="OK" onclick="javascript:closeWinAt00('noticeModal', 1);"/>오늘 하루 이 창을 열지 않음</label>
   </div>
 </div>

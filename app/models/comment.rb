@@ -17,6 +17,14 @@ class Comment < ActiveRecord::Base
   # Helper class method that allows you to build a comment
   # by passing a commentable object, a user_id, and comment text
   # example in readme
+  def image(writer)
+    if writer.profileimg.url == nil
+      writer.profileimg = 'defaultImg3.jpg'  
+    else
+      writer.profileimg.url
+    end
+  end
+  
   def self.build_from(obj, user_id, comment)
     new \
       :commentable => obj,
