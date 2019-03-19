@@ -52,28 +52,28 @@
    
     $(".resall").click(function () {
         $res = $(this).attr("class")
-
+         alert("업데이트 중입니다. 기다려주세요")
         $.ajax({
         async : true,
         data : {res : $res},
         type : "GET",
         url : "resupdate",
         success : function(data){
-
+            alert("모든 식당 업데이트")
         }
         });  
     })
 
     $(".res-zizum-update").click(function () {
         $res = $(this).attr("id")
-
+         alert("업데이트 중입니다. 기다려주세요")
         $.ajax({
         async : true,
         data : {res : $res},
         type : "GET",
         url : "resupdate",
         success : function(data){
-
+             alert($res+" 지점 업데이트 완료")
         }
         });  
     })

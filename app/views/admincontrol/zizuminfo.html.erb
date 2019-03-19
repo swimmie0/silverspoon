@@ -53,6 +53,7 @@
      $(".zizumall").click(function () {
         $zizum = $(this).attr("class")
         console.log($zizum)
+        alert("업데이트 중입니다. 기다려주세요")
         $.ajax({
         async : true,
         data : {zizum : $zizum},
@@ -60,7 +61,7 @@
         url : "zizumupdate",
         success : function(data){
             
-          
+           alert("지점 업데이트 완료")
         }
         });  
     })
