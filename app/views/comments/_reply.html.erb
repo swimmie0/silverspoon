@@ -3,7 +3,13 @@
   <div class="comments-show nago">
     <div class="comment comment-bar">
       <div class="comment-profile form-inline"> <!--프로필-->
-        <%=link_to(image_tag(comment.image(comment.user),class:"post-profile-img"), profile_path(@writer.profile.id)) %>
+        <%if !comment.user.nil?%>
+          <%if comment.user.profileimg.nil?%>
+            <%=image_tag("defaultImg3.jpg", class:"post-profile-img")%>    
+          <%else%>
+            <%=image_tag comment.user.profileimg.url, class:"post-profile-img"%>
+          <%end%>
+        <%end%>
         
         <% if comment.user ==nil %><i>탈퇴한 회원입니다</i><%else%>
         <%= link_to comment.user.name, profile_path(comment.user.profile.id) ,class:"linkto"%><%end%>
