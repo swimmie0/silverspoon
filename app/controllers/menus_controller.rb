@@ -15,9 +15,7 @@ class MenusController < ApplicationController
 
   def index
     # 오늘의 추천식당- daily random
-    # day_today = Time.now.day
-    # rule = day_today % Restaurant.count
-    # @today_restaurants = Restaurant.where(id: [rule-1, rule, rule+1] )
+  
     
     # 총 식당- updated_at order
     @current_restaurants = Restaurant.order("created_at desc").limit(9);

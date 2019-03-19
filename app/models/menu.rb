@@ -10,10 +10,10 @@ class Menu < ApplicationRecord
    
 
     def image(zizum)
-        if zizum.image.url == nil
-            zizum.image.url = 'defaultImg3.jpg'  
+        if zizum.restaurant.image.url == nil
+            zizum.restaurant.image.url = 'defaultImg3.jpg'  
         else
-            zizum.image.url
+            zizum.restaurant.image.url
         end
     end
 
