@@ -126,6 +126,7 @@
             <%@today_restaurants.each do |res|%>
                 <div class="index-today-rtntbox">
                     <div class="today-rtnt-imgbox">
+                    
                         <% if res.image.url != nil%>
                             <%=link_to image_tag(res.image.url,class:"today-rtnt-img"), zizuminfo_path(res.zizuminfos[0].id)%>                
                         <% else %>
