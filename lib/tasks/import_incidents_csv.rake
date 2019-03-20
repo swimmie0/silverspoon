@@ -1,29 +1,21 @@
 require 'csv'
 namespace :import_zizuminfos_csv do
   task :create_zizuminfos => :environment do
-    # CSV.foreach("public/Zizuminfo_all.csv", :headers => true) do |row|
-    #   Zizuminfo.create!(row.to_hash)
-    # end
-    csv_text = File.read("public/Zizuminfoss.csv")
-    csv = CSV.parse(csv_text, :headers => true)
-    csv.each do |row|
-      Zizuminfo.create!(row.to_hash)  
+    CSV.foreach("public/Zizum.csv", :headers => true) do |row|
+      Zizuminfo.create(
+        :id => row[0],
+        :zizum_name => row[1],
+        :sido => row[2],
+        :sigungu => row[3],
+        :sangse_juso => row[4],
+        :phone_number	=> row[5],
+        :image	=> row[6],
+        :restaurant_id	=> row[7],
+        :restaurant_name	=> row[8],
+        :created_at	=> row[9],
+        :updated_at	=> row[10],
+        :explain => row[11]
+      )
     end
   end  
 end
-
-namespace :import_restaurants_csv do
-    task :create_restaurants => :environment do
-      CSV.foreach("public/Restaurantss.csv") do |row|
-        Restaurant.create(row.to_h)
-      end
-    end    
-end
-
-  # namespace :import_posts_csv do
-  #   task :create_posts => :environment do
-  #     CSV.foreach("public/Post.csv", :headers => true) do |row|
-  #       Post.create!(row.to_hash)
-  #     end
-  #   end  
-  # end
