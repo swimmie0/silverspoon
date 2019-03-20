@@ -84,7 +84,10 @@
                                             <div class="rtnt-result-zizum-more">
                                                 <div class="rtnt-result-zizum-title linkto"><i class="fas fa-store" style="color: #FF5400;"></i>&nbsp;&nbsp;<%=zizum.restaurant_name%>&nbsp;<%= zizum.zizum_name%>&nbsp;</div>
                                                 <div class="rtnt-result-link linkto">상세 페이지로 이동&nbsp;>></div>
-                                                <div class="rtnt-result-zizum-explain">*해당 알레르기 항원을 포함하지 않은 메뉴들입니다.<br>**메뉴 하단의 항원은 메뉴에 포함되지 않은 알레르기 항원입니다.</div>
+                                                <div class="rtnt-result-zizum-explain">*해당 알레르기 항원을 포함하지 않은 메뉴들입니다.
+                                                    <br><span style="font-weight: 650;">최신 정보가 아닐 수 있으니 참고용으로 사용하시고, 방문 시 재확인 부탁드립니다 :)</span>
+                                                </div>
+                                               
                                             </div>
                                         <%end%>
                                         <hr class="rtnt-result-hr"/>
@@ -95,7 +98,7 @@
                                         <div class="card-body">
                                         <%# <i class="fas fa-utensil-spoon"></i> %>
                                             <p class="menu-name"><%=menu.menu_name%></p>
-                                            <p class="menu-intro">교차 위험군과 미제공 항원들은 상세페이지에서 확인해주세요</p>
+                                            <p class="menu-intro">메뉴에 포함되지 않은 알레르기 항원입니다.<br>교차 위험군과 미제공 항원들은 상세페이지에서 확인해주세요</p>
                                             <div class="menu-cpbox">                                  
                                                 <%if menu.a1_maemil == 0%><div class="menu-cp">-&nbsp;메밀</div><%end%>
                                                 <%if menu.a2_mil == 0%><div class="menu-cp">-&nbsp;밀</div><%end%>
