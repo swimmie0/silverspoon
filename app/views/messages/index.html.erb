@@ -28,7 +28,11 @@
                         <div class="MessageSectionRightColumn col-10">
                             <!-- 메세지 섹션 오른쪽칸 위 섹션-->
                                 <div class="MessageSectionRightTop">
-                                    <p class="MessageSectionRightTopText">발신자 : <%= @conversation.sender.name %> 님 </p>
+                                    <% if current_user != @conversation.sender.name %>
+                                        <p class="MessageSectionRightTopText"> <%= @conversation.sender.name %> 님과의 채팅 </p>
+                                    <% else %>
+                                        <p class="MessageSectionRightTopText"> <%= @conversation.recipient.name %> 님과의 채팅 </p>
+                                    <% end %>
                                 </div>
                             <!-- 메세지 섹션 오른쪽칸 위 섹션 끝 -->
 
@@ -40,7 +44,7 @@
                                             <% if message.body %>
                                                 <% user = User.find(message.user_id) %>
                                                 <!-- 메세지 섹션 채팅창 왼쪽(본인) -->
-                                                    <% if current_user == user %>
+                                                    <% if current_user != user %>
                                                         <div class="MessageLeftUser col-1">
                                                             <p class="MessageLeftUserName"><%= user.name %></p>
                                                         </div>
