@@ -29,11 +29,12 @@
 
     <!-- 상단 섹션 중 프로필 이미지 -->
       <div class="container">
-        <% if @profile.user.profileimg.url != nil %>
-          <%= image_tag @profile.user.profileimg.url, class: "ProfileImg" %> 
-        <% else %>
-          <%= image_tag "defaultImg3", class: "ProfileDefaultImg" %>
-        <% end %>
+        <%# <% if @profile.user.profileimg.url != nil %>
+          <%# <%= image_tag @profile.user.profileimg.url, class: "ProfileImg" %> 
+        <%# <% else %> 
+          <%# <%= image_tag "defaultImg3", class: "ProfileDefaultImg" %> 
+        <%# <% end %> 
+        <%=image_tag(@profile.image(@profile.user),class:"ProfileImg") %>
       </div>
     <!-- 상단 섹션 중 프로필 이미지 끝 -->
 
@@ -44,7 +45,9 @@
               <div class="ProfileInfo">
                 <p class="ProfileName big-title"> <%= @profile.user.name %> </p>
                 <p class="profile-info-spec">
-                  <%=link_to "프로필 수정하기", edit_user_registration_path, style: "color: rgb(110, 110, 110); font-size: 0.9rem;"%>
+                  <% if @profile.user.name == current_user.name %>
+                    <%=link_to "프로필 수정하기", edit_user_registration_path, style: "color: rgb(110, 110, 110); font-size: 0.9rem;"%>
+                  <% end %>
                 </p>
               </div>
             </div>
@@ -318,7 +321,7 @@
       <div class="ProfileTitle">수정 요청 현황 확인</div>
       <div class="d-flex align-items-end flex-row-reverse">
             <span>
-                <%=link_to '더보기 >', myrequests_path(@profile), class:"main-board-more"%>
+                <%=link_to '더보기 >', myrequests_path(@profile), class:"main-board-more", target: :_blank %>
             </span>
       </div>
      

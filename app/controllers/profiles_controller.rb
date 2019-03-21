@@ -10,22 +10,22 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-    puts "====================="
-    puts "profile"
-    puts @profile.id
-    puts current_user.id
+    # puts "====================="
+    # puts "profile"
+    # puts @profile.id
+    # puts current_user.id
     # params[:id] = current_user.id
     # @user_requests = Userrequest.where(uid: current_user.id)
     @conversations = Conversation.all
   
     #작성글
-    @user_posts = Freeboard.where(user: current_user).where.not(category:"제보글").order("created_at desc").limit(5)
+    @user_posts = Freeboard.where(user: @profile.user).where.not(category:"제보글").order("created_at desc").limit(5)
 
     # 댓글단 게시글
-    @user_comments_id =  Comment.where(user_id:1).pluck(:commentable_id)
-    @user_comments = Freeboard.where(id:@user_comments_id).where.not(user:current_user).order("created_at desc").limit(5)
+    @user_comments_id =  Comment.where(user_id:@profile.user).pluck(:commentable_id)
+    @user_comments = Freeboard.where(id:@user_comments_id).where.not(user:@profile.user).order("created_at desc").limit(5)
     # 제보글
-    @user_requests = Freeboard.where(:user_id => current_user.id, :category => '제보글').order("created_at desc")
+    @user_requests = Freeboard.where(:user_id => @profile.user.id, :category => '제보글').order("created_at desc")
     # @requests_array = Kaminari.paginate_array(@user_requests).page(params[:page]).per(3)
   end
 
@@ -83,19 +83,22 @@ class ProfilesController < ApplicationController
   end
 
   def myposts
+    @profile = Profile.find(params[:id])    
      #작성글
-     @user_posts = Freeboard.where(user: current_user).where.not(category:"제보글").order("created_at desc")
+     @user_posts = Freeboard.where(user_id: @profile.user_id).where.not(category:"제보글").order("created_at desc")
   end
 
   def myrequests
+    @profile = Profile.find(params[:id])    
      # 제보글
-     @user_requests = Freeboard.where(:user_id => current_user.id, :category => '제보글').order("created_at desc")      
+     @user_requests = Freeboard.where(user: @profile.user, :category => '제보글').order("created_at desc")      
   end
 
   def mycomments
+    @profile = Profile.find(params[:id])    
      # 댓글단 게시글
-     @user_comments_id =  Comment.where(user_id:1).pluck(:commentable_id) 
-     @user_comments = Freeboard.where(id:@user_comments_id).where.not(user:current_user).order("created_at desc")
+     @user_comments_id =  Comment.where(user:@profile.user).pluck(:commentable_id) #내가 댓글단게시글의 id
+     @user_comments = Freeboard.where(id:@user_comments_id).where.not(user:@profile.user).order("created_at desc")
   end
 
   private
