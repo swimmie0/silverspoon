@@ -3,10 +3,10 @@
     <div class="zizum-about-container container">
       <div class="zizum-about-box d-flex">
         <div class="zizum-about-imgbox">
-          <% if @zizuminfo.image.blank?%>
+          <% if @zizuminfo.restaurant.image.blank?%>
             <%=image_tag("white-logo.PNG", class:"zizum-about-img")%>
           <%else%>
-            <%=image_tag @zizuminfo.image_url, class:"zizum-about-img"%>
+            <%=image_tag @zizuminfo.restaurant.image_url, class:"zizum-about-img"%>
           <%end %>
         </div>
         <div class="zizum-about-txtbox">
