@@ -11,8 +11,12 @@
                 
                 <div style="background-color: #00307C; height: 89%; width: 100%"> 
                     <%= link_to conversations_path do %>
-                        <p style="text-decoration: none; color: white; line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white">전체 편지함</p>
+                        <p style="text-decoration: none; color: white; line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white">전체 쪽지함</p>
                     <% end %>
+                    
+                    <%= link_to conversations_path(sender_id: current_user.id, recipient_id: User.find_by(:name => "admin")),method: "post" do %>
+                        <p style="text-decoration: none; color: white; line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white">관리자 피드백</p>
+                    <% end %>                    
                 </div>
                 
             </div>
@@ -45,12 +49,17 @@
                                 <% if conversation.messages.count == 0%>
 
                                 <% else %>
-                                <tr class="profile-message-tr" data-href="/conversations/<%=conversation.id%>/messages" style="line-height: 29.5px; border-bottom: 1px solid #dee2e6;">
-                                <th scope = "row"><%= link_to " #{i+=1} 번", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338; font-size: 0.9rem;" %> </th>
-                                    <td><%= link_to "#{recipient.name}님", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338; font-size: 0.9rem;" %>  </td>
-                                    <td><%= link_to " #{conversation.messages.last.body.first(22)}...", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338; font-size: 0.9rem;" %>  </td>
-                                    <td><%= link_to " #{conversation.messages.last.message_time} ", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338; font-size: 0.9rem;" %></td>
-                                </tr>
+                                    <% if conversation.sender_id == User.find_by(:name=>"admin").id || conversation.recipient_id == User.find_by(:name=>"admin").id %>
+                                        <% if conversation.sender_id == User.find_by(:name=>"admin").id || conversation.recipient_id == User.find_by(:name=>"admin").id %>
+                                        <% end %>
+                                    <% else %>
+                                        <tr class="profile-message-tr" data-href="/conversations/<%=conversation.id%>/messages" style="line-height: 29.5px; border-bottom: 1px solid #dee2e6;">
+                                        <th scope = "row"><%= link_to " #{i+=1} 번", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338; font-size: 0.9rem;" %> </th>
+                                            <td><%= link_to "#{recipient.name}님", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338; font-size: 0.9rem;" %>  </td>
+                                            <td><%= link_to " #{conversation.messages.last.body.first(22)}...", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338; font-size: 0.9rem;" %>  </td>
+                                            <td><%= link_to " #{conversation.messages.last.message_time} ", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338; font-size: 0.9rem;" %></td>
+                                        </tr>
+                                    <% end %>
                                 <% end %>
                                 <% else %>
                                 

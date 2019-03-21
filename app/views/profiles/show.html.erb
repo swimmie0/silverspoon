@@ -10,7 +10,8 @@
             <% end %>
             <br>
             <div class="ProfileUpperButtonSection">
-              <% if @profile.user.name == current_user.name %>          
+              <% if @profile.user.name == current_user.name %>
+                <%= link_to "관리자 피드백 보내기", conversations_path(sender_id: current_user.id, recipient_id: User.find_by(name: "admin").id), style: "color: white;", method: "post", class: 'ProfileBanner-Button' %>          
               <% else %>
 
                 <!--
@@ -20,6 +21,7 @@
                   <%= link_to "팔로우하기", profile_follow_path(@profile.id), class: "ProfileBanner-Unbutton", style: "color: white;", method: "get" %>
                 <% end %>
                 -->
+                
                 <%= link_to "쪽지보내기", conversations_path(sender_id: current_user.id, recipient_id: @profile.user.id), style: "color: white;", method: "post", class: 'ProfileBanner-Button' %>
               <% end %>
             </div>
@@ -158,7 +160,7 @@
                     </div>
 
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                      <table class="table" style="font-size: 0.8rem;">
+                      <table class="table" style="font-size: 0.8rem; margin-bottom: 0rem;">
                         <tbody>
                           <% i = 0 %>
                           <% if @profile.user.name == current_user.name%>

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :messages
   end
 
+  get 'conversations/admin' => 'conversations#admin'
+
   get 'legal/privacy' => "legal#privacy"
   get 'legal/using' => "legal#using"
   #PROFILE------FOLLOW/UNFOLLOW

@@ -19,6 +19,10 @@
                                     <p class="MessageSectionLeftBottomText">전체 쪽지함</p>
                                 </div>
                             <% end %>
+                            <%= link_to conversations_path(sender_id: current_user.id, recipient_id: User.find_by(:name => "admin")),method: "post" do %>
+                                    <p class="MessageSectionLeftBottomText">관리자 피드백</p>
+                                    <!-- <p style="text-decoration: none; color: white; line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white"></p>-->
+                            <% end %>
                         <!-- 메세지 섹션 왼쪽칸 아래 끝-->
                         
                         </div>
