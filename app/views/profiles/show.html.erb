@@ -10,7 +10,8 @@
             <% end %>
             <br>
             <div class="ProfileUpperButtonSection">
-              <% if @profile.user.name == current_user.name %>          
+              <% if @profile.user.name == current_user.name %>
+                <%= link_to "관리자 피드백 보내기", conversations_path(sender_id: current_user.id, recipient_id: User.find_by(name: "admin").id), style: "color: white;", method: "post", class: 'ProfileBanner-Button' %>          
               <% else %>
 
                 <!--
@@ -20,6 +21,7 @@
                   <%= link_to "팔로우하기", profile_follow_path(@profile.id), class: "ProfileBanner-Unbutton", style: "color: white;", method: "get" %>
                 <% end %>
                 -->
+                
                 <%= link_to "쪽지보내기", conversations_path(sender_id: current_user.id, recipient_id: @profile.user.id), style: "color: white;", method: "post", class: 'ProfileBanner-Button' %>
               <% end %>
             </div>
@@ -62,7 +64,16 @@
                 <% else %>
                   <a style="text-decoration: none; color: black" class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
                     MESSAGE
-                  <span style="padding-top: 0.2rem; padding-bottom: 0.2rem;" class="badge badge-danger badge-pill"><%= @conversations.where('sender_id=? OR recipient_id=?', current_user.id, current_user.id).count %></span>
+                  <span style="padding-top: 0.2rem; padding-bottom: 0.2rem;" class="badge badge-danger badge-pill">
+                      <% end_number = @conversations.where('sender_id=? OR recipient_id=?', current_user.id, current_user.id).count - 1%>
+                      <% count = 0 %>
+                    <%for conv_count in 0..end_number %>
+                      <% if @conversations.where('sender_id=? OR recipient_id=?', current_user.id, current_user.id)[conv_count].messages.count != 0 %>
+                        <% count += 1%>
+                      <% end %>
+                    <% end %>
+                  <%= count %>
+                  </span>
                   </a>
                   <!--
                   <a style="text-decoration: none; color: black" class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">
@@ -149,13 +160,22 @@
                     </div>
 
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                      <table class="table" style="font-size: 0.8rem;">
+                      <table class="table" style="font-size: 0.8rem; margin-bottom: 0rem;">
                         <tbody>
                           <% i = 0 %>
                           <% if @profile.user.name == current_user.name%>
-                            <%if @conversations.where('sender_id=? OR recipient_id=?', current_user.id, current_user.id).count == 0%>
-                                <div class="profile-message-blank">메세지함이 비었습니다.</div>
-                            <%else%>
+                            <!-- 메시함이 비었습니다 알고리즘 -->
+                              <% check_nil_messages = 0 %>
+                              <% end_number = @conversations.where('sender_id=? OR recipient_id=?', current_user.id, current_user.id).count - 1 %>
+                              <% for conv_count in 0..end_number %>
+                                <% if @conversations.where('sender_id=? OR recipient_id=?', current_user.id, current_user.id)[conv_count].messages.count == 0 %>
+                                  <% check_nil_messages += 1%>
+                                <% end %>
+                              <% end %>
+                              <% if check_nil_messages == @conversations.where('sender_id=? OR recipient_id=?', current_user.id, current_user.id).count %>
+                                  <div class="profile-message-blank">메세지함이 비었습니다.</div>
+                              <% else %>
+                            <!-- 메시함이 비었습니다 알고리즘 끝 -->
                               <% @conversations.reverse_order.each do |conversation| %>
                                 <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
                                     <% if conversation.sender_id == current_user.id %>
@@ -163,6 +183,9 @@
                                     <% else %>
                                     <% recipient = User.find(conversation.sender_id) %>
                                     <% end %>
+                                <% if conversation.messages.count == 0%>
+                                
+                                <% else %>
                                 <tr class="profile-message-tr" data-href="/conversations/<%=conversation.id%>/messages" style="line-height: 29.5px; border-bottom: 1px solid #dee2e6;">
                                 <th scope = "row"><%= link_to " #{i+=1}", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %> </th>
                                     <%if !conversation.messages.last.nil?%>
@@ -170,6 +193,8 @@
                                     <td><%= link_to " #{conversation.messages.last.body.first(22)}...", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %>  </td>
                                     <td><%= link_to " #{conversation.messages.last.message_time} ", conversation_messages_path(conversation), style: "text-decoration: none; color: #454338;" %></td><%end%>
                                 </tr>
+                                <% end %>
+
                                 <% end %> 
                               <% end %>
                             <%end%>
