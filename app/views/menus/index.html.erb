@@ -2,6 +2,9 @@
 <div class="jumbotron">
     <p class="text-center text-light">Restaurant 식당 찾기</p></div>
 </div>  --> 
+<div class="banner-image-box">
+    <%=image_tag("restaurant-top.png", class:"banner-image")%>
+</div>
 
 <!--- 1. 필터링 검색탭 -->
 <div id="main-contents-allergy" class="container">
@@ -165,7 +168,8 @@
                 </div> <!--shop-->
                 <!-- 메뉴 -->
                 <div id="Box">
-                    <div style="color: rgb(100,100,100); font-weight: 500; display:flex;justify-content:center;">원하시는 식당을 누르면 해당 메뉴가 이곳에 보여집니다</div>
+                    <div class="menuboxinfotext" style="color: rgb(100,100,100); font-weight: 500; display:flex;justify-content:center;">원하시는 식당을 누르면 해당 메뉴가 이곳에 보여집니다</div>
+                
                 <div id="menuBox">
                 <%# <%= paginate @menu_array, window: 2 %>    
                 </div>
@@ -202,6 +206,7 @@
 
         $(this).parent(".shop-card").removeClass("shop-card-dim")
         $(this).parent(".shop-card").siblings().addClass("shop-card-dim");
+        $(".menuboxinfotext").css('display', 'none');
 
         $("#menuBox").html($(this).children(".seeMenu").siblings('.hideMenu').html());
         $("#card2").html($(this).children(".seeMenu").siblings('.hideCard').html());
