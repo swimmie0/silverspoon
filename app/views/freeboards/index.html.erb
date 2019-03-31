@@ -25,8 +25,8 @@
 
 <div class ="contents">
   <% if params[:search] == nil %>
-    <div class="post-num row">총&nbsp;<p><%=Freeboard.all.count%></p>건</div><%else%>
-    <div class="post-num row">검색결과</div><%end%> 
+    <div class="post-num row">총&nbsp;<p><%=Freeboard.all.count%></p>건</div>
+  <%else%><div class="post-num row">검색결과</div><%end%> 
   <div class="post-table">    
     <table class="table table-hover" id="post-table">
       <thead>
@@ -97,7 +97,8 @@
             <% end %> 
             </td>
             <%# <td><%= c.category %>
-            <td class="title"><%= link_to c.title, c, {:class => "linkto", :style=>"font-size:0.8rem;"} %></td>
+            <td class="title"><%= link_to c.title, c, {:class => "linkto", :style=>"font-size:0.8rem;"} %>       
+            &nbsp;<% if c.locked %><i class="fas fa-lock"></i><% end %>  </td>
             <td class="post-td-gray"><%= c.name %></td>
             <td class="post-td-gray"><%= c.time(c)%></td>                                            
             <td class="post-td-gray"> <%= c.impressionist_count(:filter=>:session_hash) %></td>        
@@ -139,6 +140,7 @@ $('.nav-link').on('click', function(){
 $(function(){
   $('.single').click(function(){
     $('.postall').hide();
+    $('.p_window').hide();    
     $('tr').not('tr.post'+$(this).attr('target')).hide();  
     $('.post'+$(this).attr('target')).show();
     if($(this).attr('target')=='제보글'){

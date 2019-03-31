@@ -11,11 +11,11 @@ class FreeboardsController < ApplicationController
     #   redirect_to edit_user_registration_path
     # end
     # @free_daily = Freeboard.where(category: "일상글").order("created_at DESC")
-    @free_daily=Kaminari.paginate_array(Freeboard.where(category: "일상글").order("created_at DESC")).page(params[:page]).per(12)
-    @free_information=Kaminari.paginate_array(Freeboard.where(category: "정보글").order("created_at DESC")).page(params[:page]).per(12)
-    @free_qna=Kaminari.paginate_array(Freeboard.where(category: "질문글").order("created_at DESC")).page(params[:page]).per(12)
+    @free_daily=Freeboard.where(category: "일상글").order("created_at DESC")
+    @free_information=Freeboard.where(category: "정보글").order("created_at DESC")
+    @free_qna=Freeboard.where(category: "질문글").order("created_at DESC")
     # @free_adv=Kaminari.paginate_array(Freeboard.where(category: "홍보글").order("created_at DESC")).page(params[:page]).per(12)
-    @free_crowd=Kaminari.paginate_array(Freeboard.where(category: "제보글").order("created_at DESC")).page(params[:page]).per(12)
+    @free_crowd=Freeboard.where(category: "제보글").order("created_at DESC")
   
     # @recipe = Recipe.all
     
