@@ -19,6 +19,10 @@
                                     <p class="MessageSectionLeftBottomText">전체 쪽지함</p>
                                 </div>
                             <% end %>
+                            <%= link_to conversations_path(sender_id: current_user.id, recipient_id: User.find_by(:name => "admin")),method: "post" do %>
+                                    <p class="MessageSectionLeftBottomText">관리자 피드백</p>
+                                    <!-- <p style="text-decoration: none; color: white; line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white"></p>-->
+                            <% end %>
                         <!-- 메세지 섹션 왼쪽칸 아래 끝-->
                         
                         </div>
@@ -28,7 +32,13 @@
                         <div class="MessageSectionRightColumn col-10">
                             <!-- 메세지 섹션 오른쪽칸 위 섹션-->
                                 <div class="MessageSectionRightTop">
-                                    <p class="MessageSectionRightTopText">발신자 : <%= @conversation.sender.name %> 님 </p>
+                                    <% if @conversation.sender_id == current_user.id || @conversation.recipient_id == current_user.id %>
+                                        <% if @conversation.sender_id == current_user.id %>
+                                            <p class="MessageSectionRightTopText"> <%= recipient = User.find(@conversation.recipient_id).name %>님과의 대화 </p>
+                                        <% else %>
+                                            <p class="MessageSectionRightTopText"> <%= recipient = User.find(@conversation.sender_id).name %>님과의 대화 </p>
+                                        <% end %>
+                                    <% end %>
                                 </div>
                             <!-- 메세지 섹션 오른쪽칸 위 섹션 끝 -->
 
@@ -40,7 +50,7 @@
                                             <% if message.body %>
                                                 <% user = User.find(message.user_id) %>
                                                 <!-- 메세지 섹션 채팅창 왼쪽(본인) -->
-                                                    <% if current_user == user %>
+                                                    <% if current_user != user %>
                                                         <div class="MessageLeftUser col-1">
                                                             <p class="MessageLeftUserName"><%= user.name %></p>
                                                         </div>

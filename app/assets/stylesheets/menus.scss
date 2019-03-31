@@ -212,7 +212,11 @@
     // z-index: -1;
 }
 .about-rtnt {
-    padding-top: 90%;
+<<<<<<< HEAD
+    padding-top: 85%;
+=======
+    padding-top: 82%;
+>>>>>>> 115683e1e5180bcd6f4fae16ee6c7309c3fa3194
     // margin-top: 5%;
 }
 
@@ -424,4 +428,16 @@ span.current {
     font-weight: bold; 
     font-size: 0.9rem; 
     margin-bottom: 0.6rem;
+}
+
+.banner-image-box{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 270px;
+}
+
+.banner-image{
+    width: 1300px;
+    height: 100%;
 }
