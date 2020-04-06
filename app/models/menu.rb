@@ -11,7 +11,7 @@ class Menu < ApplicationRecord
 
     def image(zizum)
         if zizum.restaurant.image.url == nil
-            zizum.restaurant.image.url = 'defaultImg3.jpg'  
+            zizum.restaurant.image.url = "beige-logo.PNG"
         else
             zizum.restaurant.image.url
         end

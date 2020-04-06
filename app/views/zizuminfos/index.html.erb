@@ -1,3 +1,7 @@
+<div class="banner-image-box">
+    <%=image_tag("restaurant-top.png", class:"banner-image")%>
+</div>
+
 <div class="container rebrowse-box">
     <%= render partial: "rebrowse"%>
 </div>
@@ -126,6 +130,7 @@
             <%@today_restaurants.each do |res|%>
                 <div class="index-today-rtntbox">
                     <div class="today-rtnt-imgbox">
+                    
                         <% if res.image.url != nil%>
                             <%=link_to image_tag(res.image.url,class:"today-rtnt-img"), zizuminfo_path(res.zizuminfos[0].id)%>                
                         <% else %>
@@ -135,7 +140,8 @@
 
                     <div class="about-rtnt2 about-rtnt-recmd">
                         <div class="rtnt-name"><%= res.restaurant_name%></div>
-                        <div class="rtnt-intro"><%= res.explain%></div>                                 
+                        <div class="rtnt-intro"><%= res.explain%></div>                                
+                        
                     </div>
                 </div>
             <%end%>
