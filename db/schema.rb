@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_03_16_122124) do
 
-  create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "admins", force: :cascade do |t|
     t.string "email", default: ""
     t.string "encrypted_password", default: "", null: false
     t.string "name", null: false
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2019_03_16_122124) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
     t.integer "commentable_id"
     t.string "commentable_type"
     t.string "name"
@@ -41,14 +41,14 @@ ActiveRecord::Schema.define(version: 2019_03_16_122124) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "conversations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "conversations", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "recipient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "follows", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "follows", force: :cascade do |t|
     t.string "followable_type", null: false
     t.integer "followable_id", null: false
     t.string "follower_type", null: false
@@ -62,21 +62,21 @@ ActiveRecord::Schema.define(version: 2019_03_16_122124) do
     t.index ["follower_type", "follower_id"], name: "index_follows_on_follower_type_and_follower_id"
   end
 
-  create_table "freeboards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "freeboards", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.string "name"
     t.string "category"
     t.boolean "locked", default: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "completed", default: false
     t.index ["user_id"], name: "index_freeboards_on_user_id"
   end
 
-  create_table "identities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
+  create_table "identities", force: :cascade do |t|
+    t.integer "user_id"
     t.string "provider"
     t.string "uid"
     t.datetime "created_at", null: false
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2019_03_16_122124) do
     t.index ["user_id"], name: "index_identities_on_user_id"
   end
 
-  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "images", force: :cascade do |t|
     t.string "alt"
     t.string "hint"
     t.string "file"
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 2019_03_16_122124) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "impressions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "impressions", force: :cascade do |t|
     t.string "impressionable_type"
     t.integer "impressionable_id"
     t.integer "user_id"
@@ -111,14 +111,14 @@ ActiveRecord::Schema.define(version: 2019_03_16_122124) do
     t.index ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index"
     t.index ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index"
     t.index ["impressionable_type", "impressionable_id", "ip_address"], name: "poly_ip_index"
-    t.index ["impressionable_type", "impressionable_id", "params"], name: "poly_params_request_index", length: { params: 255 }
+    t.index ["impressionable_type", "impressionable_id", "params"], name: "poly_params_request_index"
     t.index ["impressionable_type", "impressionable_id", "request_hash"], name: "poly_request_index"
     t.index ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
-    t.index ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index", length: { message: 255 }
+    t.index ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
     t.index ["user_id"], name: "index_impressions_on_user_id"
   end
 
-  create_table "menus", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "menus", force: :cascade do |t|
     t.string "menu_name"
     t.integer "a1_maemil"
     t.integer "a2_mil"
@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 2019_03_16_122124) do
     t.integer "a19_gye"
     t.integer "a20_ohjingeoh"
     t.integer "a21_ahwangsan"
-    t.bigint "restaurant_id"
+    t.integer "restaurant_id"
     t.string "restaurant_name"
     t.string "image"
     t.datetime "created_at", null: false
@@ -149,44 +149,44 @@ ActiveRecord::Schema.define(version: 2019_03_16_122124) do
     t.index ["restaurant_id"], name: "index_menus_on_restaurant_id"
   end
 
-  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "messages", force: :cascade do |t|
     t.text "body"
-    t.bigint "conversation_id"
-    t.bigint "user_id"
+    t.integer "conversation_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "new_alarms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "new_alarms", force: :cascade do |t|
     t.string "content"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.string "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_new_alarms_on_user_id"
   end
 
-  create_table "notices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "notices", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.string "image"
     t.boolean "isModal"
     t.index ["user_id"], name: "index_notices_on_user_id"
   end
 
-  create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
+  create_table "profiles", force: :cascade do |t|
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
-  create_table "read_marks", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "read_marks", force: :cascade do |t|
     t.string "readable_type", null: false
     t.integer "readable_id"
     t.string "reader_type", null: false
@@ -197,7 +197,7 @@ ActiveRecord::Schema.define(version: 2019_03_16_122124) do
     t.index ["reader_type", "reader_id"], name: "index_read_marks_on_reader_type_and_reader_id"
   end
 
-  create_table "recipes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "recipes", force: :cascade do |t|
     t.string "title"
     t.text "explanation"
     t.text "ingredients"
@@ -222,7 +222,7 @@ ActiveRecord::Schema.define(version: 2019_03_16_122124) do
     t.string "recipeimage9"
     t.text "content10"
     t.string "recipeimage10"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.string "name"
     t.string "category"
     t.boolean "locked", default: false
@@ -233,7 +233,7 @@ ActiveRecord::Schema.define(version: 2019_03_16_122124) do
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
-  create_table "restaurants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "restaurants", force: :cascade do |t|
     t.string "restaurant_name"
     t.integer "a1_maemil"
     t.integer "a2_mil"
@@ -262,7 +262,7 @@ ActiveRecord::Schema.define(version: 2019_03_16_122124) do
     t.string "explain"
   end
 
-  create_table "userrequests", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "userrequests", force: :cascade do |t|
     t.string "request_type"
     t.string "uid"
     t.text "memo"
@@ -296,7 +296,7 @@ ActiveRecord::Schema.define(version: 2019_03_16_122124) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: ""
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -321,7 +321,7 @@ ActiveRecord::Schema.define(version: 2019_03_16_122124) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "votes", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "votes", force: :cascade do |t|
     t.string "votable_type"
     t.integer "votable_id"
     t.string "voter_type"
@@ -335,14 +335,14 @@ ActiveRecord::Schema.define(version: 2019_03_16_122124) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
-  create_table "zizuminfos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "zizuminfos", force: :cascade do |t|
     t.string "zizum_name"
     t.string "sido"
     t.string "sigungu"
     t.string "sangse_juso"
     t.string "phone_number"
     t.string "image"
-    t.bigint "restaurant_id"
+    t.integer "restaurant_id"
     t.string "restaurant_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -350,9 +350,4 @@ ActiveRecord::Schema.define(version: 2019_03_16_122124) do
     t.index ["restaurant_id"], name: "index_zizuminfos_on_restaurant_id"
   end
 
-  add_foreign_key "freeboards", "users"
-  add_foreign_key "identities", "users"
-  add_foreign_key "notices", "users"
-  add_foreign_key "profiles", "users"
-  add_foreign_key "recipes", "users"
 end

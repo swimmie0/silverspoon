@@ -3,7 +3,12 @@
         <div class="footer-element footer-logo"><%= link_to image_tag("logo-letter.png", class: "headerlogo"), root_path%></div>
         <div class="footer-element footer-detail1">
             <div>By SpoonTales</div>
-            <div>문의 : whj0210@gmail.com</div>
+            <%if user_signed_in?%>
+                <% admin_id = User.find_by(:name => "admin").id %>
+                <div><%= link_to "스푼지기에게 문의하기", conversations_path(sender_id: current_user.id, recipient_id: admin_id),method: "post", class: "footer-linkto"%></div>
+            <%else%>
+                <div class="footer-linkto" style="cursor:pointer;" data-toggle="modal" data-target="#loginModal">스푼지기에게 문의하기</div>
+            <%end%>
             <%# <div>상호: Silver Spoon (실버 스푼)</div>
             <div>COPYRIGHT (C) SPOON TALES 2019.ALL RIGHTS RESERVED</div> %>
         </div>
@@ -32,3 +37,7 @@
         </div>
     </div>
 </div>
+
+<%if !user_signed_in?%>
+    <%= render 'layouts/loginModal'%>
+<%end%>
