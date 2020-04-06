@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Use mysql as the database for Active Record
-gem 'mysql2', '>= 0.3.18', '< 0.6.0'
+#gem 'mysql2', '>= 0.3.18', '< 0.6.0'
 
 ruby '2.4.0'
 gem 'json'
