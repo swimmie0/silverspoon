@@ -10,8 +10,10 @@
             <% end %>
             <br>
             <div class="ProfileUpperButtonSection">
-              <% if @profile.user.name == current_user.name %>
-                <%= link_to "관리자 피드백 보내기", conversations_path(sender_id: current_user.id, recipient_id: User.find_by(name: "admin").id), style: "color: white;", method: "post", class: 'ProfileBanner-Button' %>          
+              <% if @profile.user.name == current_user.name%>
+                <% if User.find_by(admin: true) %>
+                 <%= link_to "관리자 피드백 보내기", conversations_path(sender_id: current_user.id, recipient_id: User.find_by(admin: true).id), style: "color: white;", method: "post", class: 'ProfileBanner-Button' %>    
+                <%end%>      
               <% else %>
 
                 <!--

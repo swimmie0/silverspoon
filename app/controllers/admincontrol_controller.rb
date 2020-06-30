@@ -25,7 +25,7 @@ class AdmincontrolController < ApplicationController
             Zizuminfo.Baskin        #6
             #Zizuminfo.PizzaSchool   #7
             Zizuminfo.SeasonsTable  #8
-            Zizuminfo.Burgerking    #9
+            #Zizuminfo.Burgerking    #9
             Zizuminfo.DunkinDonuts  #10   
         end
 
@@ -55,8 +55,8 @@ class AdmincontrolController < ApplicationController
         #     Zizuminfo.PizzaSchool
         elsif res == "계절밥상"
             Zizuminfo.SeasonsTable
-        elsif res == "버거킹"
-            Zizuminfo.Burgerking
+        #elsif res == "버거킹"
+        #    Zizuminfo.Burgerking
         elsif res == "던킨도너츠"
             Zizuminfo.DunkinDonuts
         end
@@ -83,7 +83,7 @@ class AdmincontrolController < ApplicationController
             Menu.Baskin        #6
             Menu.PizzaSchool   #7
             Menu.SeasonsTable  #8
-            Menu.Burgerking    #9
+            #Menu.Burgerking    #9
             Menu.DunkinDonuts  #10   
         elsif res == "서브웨이"
             Menu.Subway
@@ -103,8 +103,8 @@ class AdmincontrolController < ApplicationController
             Menu.PizzaSchool
         elsif res == "계절밥상"
             Menu.SeasonsTable
-        elsif res == "버거킹"
-            Menu.Burgerking
+        #elsif res == "버거킹"
+        #    Menu.Burgerking
         elsif res == "던킨도너츠"
             Menu.DunkinDonuts
         end
