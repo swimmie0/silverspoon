@@ -16,5 +16,5 @@
      - 회원가입 및 로그인, 관리자기능 / 프로필 및 쪽지
      - 게시판 글작성, 댓글관리
 
-### 메인 페이지 [./screenshot]
+### 메인 페이지
 <img src="./screenshot/main.png" width="50%">
