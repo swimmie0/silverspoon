@@ -22,4 +22,4 @@
 
 ##### 기타 관련 활동
 - 2018.08 멋쟁이사자처럼 중앙 아이디어톤, 해커톤
-- 2019.12 SEED SCHOOL for Challenger 교육
+- 2018.12 SEED SCHOOL for Challenger 교육
