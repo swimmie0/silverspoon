@@ -14,7 +14,7 @@
                         <p style="text-decoration: none; color: white; line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white">전체 쪽지함</p>
                     <% end %>
                     
-                    <%= link_to conversations_path(sender_id: current_user.id, recipient_id: User.find_by(:name => "admin")),method: "post" do %>
+                    <%= link_to conversations_path(sender_id: current_user.id, recipient_id: User.find_by(:admin => true)),method: "post" do %>
                         <p style="text-decoration: none; color: white; line-height: 55px; font-size: 1rem; margin: 0px; border-bottom: 0.5px solid #ffffff8c; color: white">관리자 피드백</p>
                     <% end %>                    
                 </div>
@@ -49,8 +49,8 @@
                                 <% if conversation.messages.count == 0%>
 
                                 <% else %>
-                                    <% if conversation.sender_id == User.find_by(:name=>"admin").id || conversation.recipient_id == User.find_by(:name=>"admin").id %>
-                                        <% if conversation.sender_id == User.find_by(:name=>"admin").id || conversation.recipient_id == User.find_by(:name=>"admin").id %>
+                                    <% if conversation.sender_id == User.find_by(:admin => true).id || conversation.recipient_id == User.find_by(:admin => true).id %>
+                                        <% if conversation.sender_id == User.find_by(:admin => true).id || conversation.recipient_id == User.find_by(:admin => true).id %>
                                         <% end %>
                                     <% else %>
                                         <tr class="profile-message-tr" data-href="/conversations/<%=conversation.id%>/messages" style="line-height: 29.5px; border-bottom: 1px solid #dee2e6;">
