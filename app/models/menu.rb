@@ -1071,116 +1071,117 @@ class Menu < ApplicationRecord
         end
     end        
 
-    def self.Burgerking
-        url = "http://www.burgerking.co.kr/nutrition"
-        data = Nokogiri::HTML(open(url))
-        rows = data.css('table:nth-child(1) table:nth-child(2) table:nth-child(1) table')
-        r_name = "버거킹"
+#     # (2020.08 URL changed)
+#     def self.Burgerking
+#         url = "http://www.burgerking.co.kr/nutrition"
+#         data = Nokogiri::HTML(open(url))
+#         rows = data.css('table:nth-child(1) table:nth-child(2) table:nth-child(1) table')
+#         r_name = "버거킹"
 
-        rows.each do |row| #각 성분테이블
-            a = row.css('tr:nth-child(1)')
-            row.css('tr').each do |r| #메뉴분류
-                r.css('td.bor_bottom').text.split(/, |추가,|\r\n/).each do |menu| #각메뉴
+#         rows.each do |row| #각 성분테이블
+#             a = row.css('tr:nth-child(1)')
+#             row.css('tr').each do |r| #메뉴분류
+#                 r.css('td.bor_bottom').text.split(/, |추가,|\r\n/).each do |menu| #각메뉴
                     
-                    m_name = menu.gsub(',','').strip
+#                     m_name = menu.gsub(',','').strip
 
-                    if Menu.where(restaurant_name: r_name,menu_name: m_name)[0].nil? #신규
-                        a_info = Menu.new
-                        a_info.restaurant_name = r_name
-                        a_info.restaurant_id = Restaurant.where(restaurant_name: r_name)[0].id
-                        a_info.menu_name = m_name
-                    else
-                        a_info = Menu.where(restaurant_name: r_name, menu_name: m_name)[0] #업데이트
-                    end 
+#                     if Menu.where(restaurant_name: r_name,menu_name: m_name)[0].nil? #신규
+#                         a_info = Menu.new
+#                         a_info.restaurant_name = r_name
+#                         a_info.restaurant_id = Restaurant.where(restaurant_name: r_name)[0].id
+#                         a_info.menu_name = m_name
+#                     else
+#                         a_info = Menu.where(restaurant_name: r_name, menu_name: m_name)[0] #업데이트
+#                     end 
 
-                    ## 제공11: 밀, 대두, 우유, 돼지고기, 토마토, 닭고기, 쇠고기, 조개류, 난류, 새우, 게
+#                     ## 제공11: 밀, 대두, 우유, 돼지고기, 토마토, 닭고기, 쇠고기, 조개류, 난류, 새우, 게
 
-                    # 난류 9 
-                    a_info.a9_nanryu = 0                    
-                    if  a.css(':contains("난류")').text != "" 
-                        a_info.a9_nanryu = 1
-                    end
+#                     # 난류 9 
+#                     a_info.a9_nanryu = 0                    
+#                     if  a.css(':contains("난류")').text != "" 
+#                         a_info.a9_nanryu = 1
+#                     end
 
-                    #우유 10
-                    a_info.a10_milk = 0                    
-                    if  a.css(':contains("우유")').text != "" 
-                        a_info.a10_milk = 1
-                    end
+#                     #우유 10
+#                     a_info.a10_milk = 0                    
+#                     if  a.css(':contains("우유")').text != "" 
+#                         a_info.a10_milk = 1
+#                     end
 
-                    #대두 3   
-                    a_info.a3_daedu  = 0                    
-                    if  a.css(':contains("대두")').text != ""
-                        a_info.a3_daedu  = 1
-                    end
+#                     #대두 3   
+#                     a_info.a3_daedu  = 0                    
+#                     if  a.css(':contains("대두")').text != ""
+#                         a_info.a3_daedu  = 1
+#                     end
 
-                    #밀 2 
-                    a_info.a2_mil = 0                    
-                    if  a.css(':contains("밀")').text != "" 
-                        a_info.a2_mil = 1
-                    end
+#                     #밀 2 
+#                     a_info.a2_mil = 0                    
+#                     if  a.css(':contains("밀")').text != "" 
+#                         a_info.a2_mil = 1
+#                     end
 
-                    #돼지고기 8 a8_piggogi
-                    a_info.a8_piggogi = 0                     
-                    if  a.css(':contains("돼지고기")').text != "" 
-                        a_info.a8_piggogi = 1
-                    end
+#                     #돼지고기 8 a8_piggogi
+#                     a_info.a8_piggogi = 0                     
+#                     if  a.css(':contains("돼지고기")').text != "" 
+#                         a_info.a8_piggogi = 1
+#                     end
 
-                    #토마토 7 a7_tomato
-                    a_info.a7_tomato = 0                    
-                    if  a.css(':contains("토마토")').text != "" 
-                        a_info.a7_tomato = 1
-                    end
+#                     #토마토 7 a7_tomato
+#                     a_info.a7_tomato = 0                    
+#                     if  a.css(':contains("토마토")').text != "" 
+#                         a_info.a7_tomato = 1
+#                     end
 
-                    #쇠고기 11 a11_ddakgogi
-                    a_info.a11_ddakgogi = 0                    
-                    if  a.css(':contains("쇠고기")').text != "" 
-                        a_info.a11_ddakgogi = 1
-                    end
+#                     #쇠고기 11 a11_ddakgogi
+#                     a_info.a11_ddakgogi = 0                    
+#                     if  a.css(':contains("쇠고기")').text != "" 
+#                         a_info.a11_ddakgogi = 1
+#                     end
 
-                    #닭고기 12 a12_shoigogi
-                    a_info.a12_shoigogi = 0                    
-                    if  a.css(':contains("닭고기")').text != "" 
-                        a_info.a12_shoigogi = 1
-                    end
+#                     #닭고기 12 a12_shoigogi
+#                     a_info.a12_shoigogi = 0                    
+#                     if  a.css(':contains("닭고기")').text != "" 
+#                         a_info.a12_shoigogi = 1
+#                     end
 
-                    #조개류 18 a18_jogaeryu
-                    a_info.a18_jogaeryu = 0                    
-                    if  a.css(':contains("조개류")').text != "" 
-                        a_info.a18_jogaeryu = 1
-                    end
+#                     #조개류 18 a18_jogaeryu
+#                     a_info.a18_jogaeryu = 0                    
+#                     if  a.css(':contains("조개류")').text != "" 
+#                         a_info.a18_jogaeryu = 1
+#                     end
 
-                    #게
-                    a_info.a19_gye = 0                                       
-                    if  a.css(':contains("게")').text != ""                     
-                        a_info.a19_gye = 1                    
-                    end
+#                     #게
+#                     a_info.a19_gye = 0                                       
+#                     if  a.css(':contains("게")').text != ""                     
+#                         a_info.a19_gye = 1                    
+#                     end
 
-                    #새우
-                    a_info.a13_saewoo = 0                        
-                    if  a.css(':contains("새우")').text != ""                     
-                        a_info.a13_saewoo = 1                        
-                    end
+#                     #새우
+#                     a_info.a13_saewoo = 0                        
+#                     if  a.css(':contains("새우")').text != ""                     
+#                         a_info.a13_saewoo = 1                        
+#                     end
                     
 
-                    ## 미제공10: 땅콩, 복숭아, 아황산, 호두, 굴, 홍합/전복/오징어/고등어/메밀
-                    a_info.a5_ddangkong = -1
-                    a_info.a6_peach = -1
-                    a_info.a21_ahwangsan = -1
-                    a_info.a4_hodu = -1
-                    a_info.a17_gul = -1
-                    a_info.a15_honghap = -1
-                    a_info.a16_junbok = -1
-                    a_info.a20_ohjingeoh = -1 
-                    a_info.a14_godeungeoh =-1
-                    a_info.a1_maemil = -1 
+#                     ## 미제공10: 땅콩, 복숭아, 아황산, 호두, 굴, 홍합/전복/오징어/고등어/메밀
+#                     a_info.a5_ddangkong = -1
+#                     a_info.a6_peach = -1
+#                     a_info.a21_ahwangsan = -1
+#                     a_info.a4_hodu = -1
+#                     a_info.a17_gul = -1
+#                     a_info.a15_honghap = -1
+#                     a_info.a16_junbok = -1
+#                     a_info.a20_ohjingeoh = -1 
+#                     a_info.a14_godeungeoh =-1
+#                     a_info.a1_maemil = -1 
 
-                    if m_name != "추가"
-                        a_info.save
-                    end
-            end
-        end     
-    end
-end   
+#                     if m_name != "추가"
+#                         a_info.save
+#                     end
+#             end
+#         end     
+#     end
+# end   
     
                 
     # def self.Hansot
