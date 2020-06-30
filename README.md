@@ -1,4 +1,4 @@
-# Silverspoon 
+# silverspoon 
 : 식품 알레르기 보유자를 위한 커뮤니티와 음식점 필터링 웹서비스
 
 - Ruby 2.4.0 / Rails 5.2.1 (sqlite3 -active record) 
@@ -21,5 +21,5 @@
 
 
 ##### 기타 관련 활동
-- 2018.08 멋쟁이사자처럼 중앙 아이디어톤, 해커톤
-- 2018.12 SEED SCHOOL for Challenger 교육
+- 2018.08 멋쟁이사자처럼 중앙 아이디어톤, 해커톤 <걱정없식>
+- 2018.12 SEED SCHOOL for Challenger 교육 <걱정없식>
