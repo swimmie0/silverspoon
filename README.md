@@ -1,7 +1,7 @@
 # Silverspoon 
 : 식품 알레르기 보유자를 위한 커뮤니티와 음식점 필터링 웹서비스
 
-- <b> Ruby 2.4.0 / Rails 5.2.1 (sqlite3 -active record) </b>
+- Ruby 2.4.0 / Rails 5.2.1 (sqlite3 -active record) 
   + need aws key in application.yml 
   + install imagemagick on Ubuntu 
 
@@ -16,5 +16,5 @@
      - 회원가입 및 로그인, 관리자기능 / 프로필 및 쪽지
      - 게시판 글작성, 댓글관리
 
-### main 페이지
+### Screenshots [./screenshot]
 <img src="./screenshot/main.png" width="50%">
