@@ -11,7 +11,7 @@ gem 'json'
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master' 
 gem "font-awesome-rails"
 
-gem 'nokogiri', '~> 1.8', '>= 1.8.5'
+gem 'nokogiri', '~> 1.10'
 gem 'rails_db', '~> 2.0', '>= 2.0.4'
 gem 'carrierwave', ' ~>1.0'
 gem 'mini_magick'
