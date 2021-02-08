@@ -13,7 +13,7 @@ gem "font-awesome-rails"
 
 gem 'nokogiri', '~> 1.8', '>= 1.8.5'
 gem 'rails_db', '~> 2.0', '>= 2.0.4'
-gem 'carrierwave', ' ~>1.0'
+gem 'carrierwave', '~> 1.3'
 gem 'mini_magick'
 gem 'fog-aws'
 
